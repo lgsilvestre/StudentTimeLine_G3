@@ -14,10 +14,12 @@ class CreateObservacionTable extends Migration
     public function up()
     {
         Schema::create('observacion', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('titulo', 255)->notnull();
             $table->string('tipo_observacion',255)->notnull();
             $table->string('descripcion', 2000)->notnull();
+            $table->string('categoria', 255)->notnull();
+            $table->string('modulo', 255)->notnull();
             $table->timestamps();
         });
     }
