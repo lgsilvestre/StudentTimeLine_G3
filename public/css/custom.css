@@ -20,6 +20,10 @@
     height: 50px;
 }
 
+.custom-newRoman{
+    font-family: "Times New Roman", Times, serif;
+}
+
 .custom-linea{
     font-family: "Times New Roman", Times, serif;
     color: black;
