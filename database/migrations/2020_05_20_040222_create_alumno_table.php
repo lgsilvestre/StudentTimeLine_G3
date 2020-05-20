@@ -23,6 +23,7 @@ class CreateAlumnoTable extends Migration
             $table->string('correo', 255)->unique();
             $table->unsignedInteger('id_carrera')->notnull();
             $table->foreign('id_carrera')->references('id')->on('carrera');
+            $table->timestamps();
         });
     }
 
