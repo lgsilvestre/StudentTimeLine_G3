@@ -21,5 +21,5 @@ class Usuario_carrera extends Model
         return $this->belongsTo('App\Carrera','id_carrera');
     }
 
-
+    
 }

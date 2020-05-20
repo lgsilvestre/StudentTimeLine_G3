@@ -14,9 +14,10 @@ class Estudiante extends Model
     protected $fillable = [
         'nombre','ap_Paterno','ap_Materno','rut','matricula','correo','id_carrera',
     ];
+    protected $table = 'estudiante';
 
     public function carrera(){
-        return $this->hasOne('App\Carrera','id_carrera');
+        return $this->belongsTo('App\Carrera','id_carrera');
     }
 
     public function observacion_usuario_estudiante(){

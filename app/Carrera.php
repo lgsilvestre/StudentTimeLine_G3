@@ -22,6 +22,6 @@ class Carrera extends Model
     }
 
     public function estudiante(){
-        return $this->hasMany('App\Observacion_usuario_estudiante','id_estudiante');
+        return $this->hasMany('App\Estudiante','id_estudiante');
     }
 }
