@@ -21,13 +21,14 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
       
 </head>
-<body>
+<body class="py-4 custom-fondo">
+    
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light custom-color shadow-sm">
-            <div class="container">
-            <div class="custom-imagen">X</div>  
+            <div class="container" >
+            <div class="custom-imagen"></div>  
                 <a class="navbar-brand custom-universidad">
-                    {{ 'UNIVERSIDAD DE TALCA' }}
+                    
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,7 +43,8 @@
                         @guest
                             @if (Route::has('register'))
                                 <li class="nav-item custom-titulo">
-                                    <a class="custom-facultad">{{ __('FACULTAD DE INGENIERÍA') }}</a>
+                                <div class="custom-imagen2"></div>  
+                                    <a class="custom-facultad"></a>
                                 </li>
                             @endif
                         @else
@@ -69,7 +71,7 @@
             </div>
         </nav>
 
-        <main class="py-4 custom-fondo">
+        <main>
             @yield('content')
         </main>
     </div>
