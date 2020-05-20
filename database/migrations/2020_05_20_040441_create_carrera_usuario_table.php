@@ -13,8 +13,13 @@ class CreateCarreraUsuarioTable extends Migration
      */
     public function up()
     {
-        Schema::table('carrera_usuario', function (Blueprint $table) {
-            
+        Schema::create('carrera_usuario', function (Blueprint $table) {
+
+            $table->unsignedInteger('id_carrera')->notnull();
+            $table->unsignedBigInteger('id_usuario')->notnull();
+            $table->foreign('id_carrera')->references('id')->on('carrera'); 
+            $table->foreign('id_usuario')->references('id')->on('users');   
+
         });
     }
 
@@ -25,9 +30,7 @@ class CreateCarreraUsuarioTable extends Migration
      */
     public function down()
     {
-        Schema::table('carrera_usuario', function (Blueprint $table) {
-            //
-        });
+        Schema::drop('carrera_usuario');
         
     }
 }
