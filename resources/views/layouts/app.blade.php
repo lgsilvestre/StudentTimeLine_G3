@@ -44,7 +44,7 @@
                             @if (Route::has('register'))
                                 <li class="nav-item custom-titulo">
                                 <div class="custom-imagen2"></div>  
-                                    <a class="custom-facultad"></a>
+                                    <a class="custom-facultad">FACULTAD DE INGENIERÍA</a>
                                 </li>
                             @endif
                         @else
