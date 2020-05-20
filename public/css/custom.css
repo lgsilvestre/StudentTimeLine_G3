@@ -30,14 +30,22 @@
 .custom-linea{
     font-family: "Times New Roman", Times, serif;
     color: black;
+    font-weight: bolder;
     font-size: 30px;
     text-align: center;
 }
 
 .custom-inicioSesion{
+    font-family: "Times New Roman", Times, serif;
     text-align: center;
-    color:black;
+    font-weight: lighter;
     font-size: 18px;
+    color: white;
+}
+
+.custom-espacio{
+    width: 25px;
+    height: 25px;
 }
 
 .custom-olvido{
@@ -48,14 +56,20 @@
     text-decoration: underline;
 }
 
+.custom-centrar{
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+
 .custom-color{
-    background-color: rgba(179, 101, 0, 0.63);
-    border-color: black;
+    background-color: rgb(182, 88, 0);
+    border-color: rgba(29, 2, 65, 0.63);
 }
 
 .custom-border{
-    border-color: black;
     display: block;
+    background-color: rgb(245, 245, 245);
 }
 
 .custom-fondo{
@@ -67,4 +81,10 @@
     object-fit: cover; 
     background-repeat: no-repeat;
     background-position: absolute;
+}
+
+.custom-ingresar{
+    text-align: center;
+    height:40px; 
+    width:200px;
 }
