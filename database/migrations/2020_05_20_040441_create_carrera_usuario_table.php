@@ -15,6 +15,7 @@ class CreateCarreraUsuarioTable extends Migration
     {
         Schema::create('carrera_usuario', function (Blueprint $table) {
 
+            $table->bigIncrements('id');
             $table->unsignedInteger('id_carrera')->notnull();
             $table->unsignedBigInteger('id_usuario')->notnull();
             $table->foreign('id_carrera')->references('id')->on('carrera'); 

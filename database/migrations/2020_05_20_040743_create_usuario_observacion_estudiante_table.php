@@ -15,6 +15,7 @@ class CreateUsuarioObservacionEstudianteTable extends Migration
     {
         Schema::create('usuario_observacion_estudiante', function (Blueprint $table) {
             //
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('id_usuario')->notnull();
             $table->unsignedInteger('id_observacion')->notnull();
             $table->unsignedBigInteger('id_estudiante')->notnull();
