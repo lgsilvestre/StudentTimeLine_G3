@@ -14,7 +14,7 @@ class CreateAlumnoTable extends Migration
     public function up()
     {
         Schema::create('estudiante', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('nombre', 255);
             $table->string('ap_Paterno', 255);
             $table->string('ap_Materno', 255);
