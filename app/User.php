@@ -38,4 +38,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function observacion_usuario_estudiante(){
+        return $this->hasMany('App\Observacion_usuario_estudiante','id_usuario');
+    }
+
+    public function usuario_carrera(){
+        return $this->hasMany('App\Usuario_carrera','id_usuario');
+    }
 }
