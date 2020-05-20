@@ -30,6 +30,7 @@ class CreatePermissionUserTable extends Migration
         $name = config('shinobi.tables.permission_user');
 
         Schema::drop($name);
+        
     }
 
 }
