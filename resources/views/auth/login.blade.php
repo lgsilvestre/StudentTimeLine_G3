@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="custom-linea">LÍNEA DE TIEMPO DE ESTUDIANTES</div> 
+
+<div class="custom-espacio"></div> 
+<div class="custom-espacio"></div> 
 <div class="custom-espacio"></div> 
 <div class="container custom-tamanio">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card custom-border">
-                <div class="card-header custom-inicioSesion custom-color">{{ __('Inicio de Sesión') }}</div>
+                <div class="card-header custom-inicioSesion custom-color">{{ __('Student Time Line') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
