@@ -1,0 +1,89 @@
+.custom-universidad{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.custom-facultad{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+
+.custom-tamanio{
+    width: 750px;
+    height: 350px;
+}
+
+.custom-imagen{
+    background-image: url('/images/logo.png');
+    width: 300px;
+    height: 50px;
+}
+
+.custom-newRoman{
+    font-family: "Times New Roman", Times, serif;
+}
+
+.custom-linea{
+    font-family: "Times New Roman", Times, serif;
+    color: black;
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+}
+
+.custom-inicioSesion{
+    font-family: "Times New Roman", Times, serif;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 18px;
+    color: white;
+}
+
+.custom-espacio{
+    width: 25px;
+    height: 25px;
+}
+
+.custom-olvido{
+    display: block;
+    text-align: justify;
+    align-items: center;
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.custom-centrar{
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+
+.custom-color{
+    background-color: rgba(223, 109, 3, 0.801);
+    border-color: rgba(29, 2, 65, 0.63);
+}
+
+.custom-border{
+    display: block;
+    background-color: rgb(245, 245, 245);
+}
+
+.custom-fondo{
+    background-image: url('/images/facultad.jpg');
+    max-width: auto;
+    max-height: auto;
+    height: 100%;
+    background-size: 100%;
+    object-fit: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.custom-ingresar{
+    text-align: center;
+    height:40px; 
+    width:200px;
+    background-color: rgba(223, 109, 3, 0.801);
+    border-color:  rgba(223, 109, 3, 0.801);
+}
