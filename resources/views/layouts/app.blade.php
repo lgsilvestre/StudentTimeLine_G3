@@ -21,14 +21,14 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
       
 </head>
-<body class="py-4 custom-fondo">
+<body class="custom-fondo">
     
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light custom-color shadow-sm">
+        <nav class="navbar navbar-expand-md custom-color shadow-sm">
             <div class="container" >
-            <div class="custom-imagen"></div>  
-                <a class="navbar-brand custom-universidad">
-                    
+            
+                <a class="navbar-brand ">
+                    <img src="../images/logo_blanco.png" width="300px" height="47px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -39,12 +39,11 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
+                    <!-- Authentication Links --> 
                         @guest
                             @if (Route::has('register'))
-                                <li class="nav-item custom-titulo">
-                                <div class="custom-imagen2"></div>  
-                                    <a class="custom-facultad"></a>
+                                <li class="nav-item custom-titulo" style="color: #ffffff">
+                                    <a class="custom-facultad">FACULTAD DE INGENIERÍA</a>
                                 </li>
                             @endif
                         @else
@@ -68,7 +67,7 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
+            </div> 
         </nav>
 
         <main>
