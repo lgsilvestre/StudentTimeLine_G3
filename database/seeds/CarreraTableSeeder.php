@@ -13,25 +13,25 @@ class CarreraTableSeeder extends Seeder
     public function run()
     {
         Carrera::create([
-            'name' => 'Ingenieria Civil en Computacion',
+            'nombre' => 'Ingenieria Civil en Computacion',
         ]);
         Carrera::create([
-            'name' => 'Ingenieria Civil Industrial',
+            'nombre' => 'Ingenieria Civil Industrial',
         ]);
         Carrera::create([
-            'name' => 'Ingenieria Civil en Obras Civiles',
+            'nombre' => 'Ingenieria Civil en Obras Civiles',
         ]);
         Carrera::create([
-            'name' => 'Ingenieria Civil de Minas',
+            'nombre' => 'Ingenieria Civil de Minas',
         ]);
         Carrera::create([
-            'name' => 'Ingenieria Civil Mecatronica',
+            'nombre' => 'Ingenieria Civil Mecatronica',
         ]);
         Carrera::create([
-            'name' => 'Ingenieria Civil Mecanica',
+            'nombre' => 'Ingenieria Civil Mecanica',
         ]);
         Carrera::create([
-            'name' => 'Ingenieria Civil Electrica',
+            'nombre' => 'Ingenieria Civil Electrica',
         ]);
     }
 }
