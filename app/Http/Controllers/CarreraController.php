@@ -46,11 +46,11 @@ class CarreraController extends Controller
     {
         $carrera = new Carrera;  
           
-        $carrera = $request->get('nombre');
+        $carrera->nombre = $request->get('nombre');
         $carrera->save();
 
         $carreras = Carrera::all();
-        return redirect()->route('carrera',$carreras)->with([
+        return redirect()->route('carrera.index',$carreras)->with([
             'message'=> 'La carrera ha sido ingresada correctamente'
         ]);
                
@@ -95,7 +95,7 @@ class CarreraController extends Controller
         $carrera->save();    
         $carreras = Carrera::all();
 
-        return redirect()->route('carrera',$carreras)->with([
+        return redirect()->route('carrera.index',$carreras)->with([
             'message'=>'La carrera ha sido actualizada correctamente']);
             
 
@@ -110,10 +110,8 @@ class CarreraController extends Controller
     public function destroy($id)
     {
         Carrera::destroy($id);
-
         $carreras = Carrera::all();
-
-        return redirect()->route('carrera',$carreras)->with([
+        return redirect()->route('carrera.index',$carreras)->with([
             'message'=>'La carrera ha sido eliminada correctamente']);
     }
 }
