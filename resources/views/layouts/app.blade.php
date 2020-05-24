@@ -28,7 +28,7 @@
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="../images/logo_blanco.png" width="300px" height="47px" >
+                    <img src="../images/logo_blanco.png" width="300px" height="40px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
