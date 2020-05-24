@@ -10,7 +10,7 @@
 }
 
 .custom-tamanio{
-    width: 750px;
+    width: 760px;
     height: 350px;
 }
 
@@ -22,14 +22,6 @@
 
 .custom-newRoman{
     font-family: "Times New Roman", Times, serif;
-}
-
-.custom-linea{
-    font-family: "Times New Roman", Times, serif;
-    color: black;
-    font-weight: bolder;
-    font-size: 30px;
-    text-align: center;
 }
 
 .custom-inicioSesion{
@@ -60,8 +52,7 @@
 }
 
 .custom-color{
-    background-color: rgba(223, 109, 3, 0.801);
-    border-color: rgba(29, 2, 65, 0.63);
+    background-color: rgb(199, 97, 2);
 }
 
 .custom-border{
@@ -70,20 +61,20 @@
 }
 
 .custom-fondo{
-    background-image: url('/images/facultad.jpg');
-    max-width: auto;
-    max-height: auto;
-    height: 100%;
+    background: url('/images/facultad.jpg') no-repeat;
     background-size: 100%;
-    object-fit: cover; 
-    background-repeat: no-repeat;
-    background-position: center center;
+    background-position:center center;
+    background-attachment: fixed;
+    
 }
 
 .custom-ingresar{
     text-align: center;
     height:40px; 
     width:200px;
-    background-color: rgba(223, 109, 3, 0.801);
-    border-color:  rgba(223, 109, 3, 0.801);
+    background-color:  rgb(199, 97, 2);
+}
+.custom-ingresar:hover{
+
+    background-color: brown;
 }
