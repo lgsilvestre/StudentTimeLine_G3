@@ -27,7 +27,6 @@ class EstudianteController extends Controller
     public function create()
     {
         $carreras=Carrera::all();
-
         return view('estudiante.create',compact('carreras'));
     }
 
@@ -41,13 +40,12 @@ class EstudianteController extends Controller
     {
         $estudiante=new Estudiante();
 
-        $estudiante=$request->get('nombre');
-        $estudiante=$request->get('ap_Paterno');
-        $estudiante=$request->get('ap_Materno');
-        $estudiante=$request->get('rut');
-        $estudiante=$request->get('matricula');
-        $estudiante=$request->get('correo');
-        $estudiante=$request->get('id_carrera');
+        $estudiante->nombre=$request->get('nombre');
+        $estudiante->ap_Paterno=$request->get('ap_Paterno');
+        $estudiante->ap_Materno=$request->get('ap_Materno');
+        $estudiante->rut=$request->get('rut');
+        $estudiante->matricula=$request->get('matricula');
+        $estudiante->correo=$request->get('correo');
 
         $estudiante->save();
         $estudiantes=Estudiante::all();
@@ -123,9 +121,7 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         Estudiante::destroy($id);
-
         $estudiantes=Estudiante::all();
-
         return redirect()->route('estudiantes.index',$estudiantes)->with([
             'message'=>'El estudiante ha sido eliminado correctamente']);
     }
