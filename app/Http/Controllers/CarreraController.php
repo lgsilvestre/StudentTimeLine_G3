@@ -22,7 +22,7 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        $carreras = Carrera:all();
+        $carreras = Carrera::all();
         return view('home',compact('carreras'));
     }
 
@@ -48,7 +48,7 @@ class CarreraController extends Controller
         $carrera = $request->get('nombre');
         $carrera->save();
 
-        $carreras = Carrera:all();
+        $carreras = Carrera::all();
 
         return redirect()->route('home',$carreras)->with([
             'message'=> 'La carrera ha sido ingresada correctamente'
@@ -87,10 +87,10 @@ class CarreraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validate = $this->validate($request[
+        $validate = $request->validate([
             'nombre'=> 'required|string|unique'
         ]);
-        $carrera = App\Carrera()::find($id);
+        $carrera = Carrera::find($id);
         $carrera->nombre=$request->get('nombre');
         $carrera->save();    
     }
@@ -103,6 +103,6 @@ class CarreraController extends Controller
      */
     public function destroy($id)
     {
-        App\Carrera::destroy($id);
+        Carrera::destroy($id);
     }
 }
