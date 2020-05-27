@@ -59,7 +59,19 @@ class RolController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = User::all();
+        $cantidad_usuarios = 0;
+        $permisos = $role->special;
+        if($permisos==null){
+            $permisos = $role->permissions;
+        }
+        foreach($users as $user){
+            if($user->hasRole($role->slug)){
+                $cantidad_usuarios+=1;
+                return view('roles.show',compact('role','cantidad_usuarios','permisos'));
+            }
+        }
+        return view('roles.show',compact('role','cantidad_usuarios','permisos'));
     }
 
     /**
@@ -134,4 +146,5 @@ class RolController extends Controller
         return redirect()->route('roles.index',$roles)
             ->with('success','Rol eliminado con éxito');
     }
+
 }
