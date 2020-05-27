@@ -18,5 +18,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function(){ 
+    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('roles', 'RolController@index')->name('rol.index');
+    Route::get('users', 'UsersController@index')->name('user.index');
+    Route::get('user/{user}/editar', 'UsersController@editDatosPersonales')->name('user.perfil');
+});
