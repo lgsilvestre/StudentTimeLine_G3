@@ -15,12 +15,26 @@ class CreateAlumnoTable extends Migration
     {
         Schema::create('estudiante', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('matricula', 20);
+            $table->string('rut', 20);
             $table->string('nombre', 255);
             $table->string('ap_Paterno', 255);
             $table->string('ap_Materno', 255);
-            $table->string('rut', 20);
-            $table->string('matricula', 20);
             $table->string('correo', 255)->unique();
+            $table->string('sexo', 255)->notnull();
+            $table->date('fech_nac')->notnull();
+            $table->integer('plan')->unsigned()->default(16);
+            $table->integer('año_ingreso')->unsigned()->default(2020);
+            $table->string('estado_actual',255)->default('regular');
+            $table->string('comuna',255)->notnull()->default('curico');
+            $table->integer('region')->unsigned()->default(7);
+            $table->integer('creditos_aprobados')->notnull();
+            $table->integer('nivel')->notnull();
+            $table->integer('porc_avance')->notnull();
+            $table->decimal('ult_ptje_prioridad',3,2)->notnull();
+            $table->boolean('regular')->notnull();
+            $table->decimal('prom_aprobadas',3,2)->notnull();
+            $table->decimal('prom_cursados',3,2)->notnull();
             $table->unsignedInteger('id_carrera')->notnull();
             $table->foreign('id_carrera')->references('id')->on('carrera');
             $table->timestamps();

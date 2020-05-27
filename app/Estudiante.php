@@ -12,7 +12,9 @@ class Estudiante extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre','ap_Paterno','ap_Materno','rut','matricula','correo','id_carrera',
+        'nombre','ap_Paterno','ap_Materno','rut','matricula','correo','id_carrera','sexo','fech_nac',
+        'plan','año_ingreso','estado_actual','comuna','region','creditos_aprobados','nivel','porc_avance',
+        'ult_ptje_prioridad','regular','prom_aprobadas','prom_cursados',
     ];
     protected $table = 'estudiante';
 
