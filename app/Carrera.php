@@ -13,7 +13,7 @@ class Carrera extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre',
+        'nombre','codigo_carrera',
     ];
     protected $table = 'carrera';
     
