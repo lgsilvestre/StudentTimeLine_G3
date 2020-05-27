@@ -47,19 +47,22 @@
                                 </a>
                             @endif
                         @else
-                        <li class="nav-item "> <a class="nav-link active" href="" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active" href="" style="color:#ffff">{{ __('Roles') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active" href="" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active" href="{{route('rol.index')}}" style="color:#ffff">{{ __('Roles') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active" href="{{route('user.index')}}" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('user.perfil',auth()->user()->id)}}">
+                                        {{ __('Perfil') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Cerrar sesión') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
