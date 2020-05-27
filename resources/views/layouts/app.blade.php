@@ -28,7 +28,7 @@
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="../images/logo_blanco.png" width="300px" height="40px" >
+                    <img src="../images/logo_blanco.png" width="330px" height="35px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,9 +42,9 @@
                     <!-- Authentication Links --> 
                         @guest
                             @if (Route::has('register'))
-                                <li class="nav-item custom-titulo" style="color: #ffffff">
-                                    <a class="custom-facultad">FACULTAD DE INGENIERÍA</a>
-                                </li>
+                                <a class="nav-item custom-titulo ">
+                                    <img src="../images/ingenieria.png" width="200px" height="50px">
+                                </a>
                             @endif
                         @else
                         <li class="nav-item "> <a class="nav-link active" href="" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
