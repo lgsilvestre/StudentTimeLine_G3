@@ -46,6 +46,7 @@ class EstudianteController extends Controller
         $estudiante->rut=$request->get('rut');
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
+        $esstudiante->id_carrera=$request->get('id_carrera');
 
         $estudiante->save();
         $estudiantes=Estudiante::all();
