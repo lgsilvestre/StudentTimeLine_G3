@@ -28,7 +28,7 @@
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="../images/logo_blanco.png" width="300px" height="47px" >
+                    <img src="../images/logo_blanco.png" width="300px" height="40px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -47,8 +47,11 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item "> <a class="nav-link active" href="" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active" href="" style="color:#ffff">{{ __('Roles') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active" href="" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
