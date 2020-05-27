@@ -46,7 +46,7 @@ class EstudianteController extends Controller
         $estudiante->rut=$request->get('rut');
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
-        $esstudiante->id_carrera=$request->get('id_carrera');
+        $estudiante->id_carrera=$request->get('id_carrera');
 
         $estudiante->save();
         $estudiantes=Estudiante::all();
@@ -74,7 +74,8 @@ class EstudianteController extends Controller
      */
     public function edit($id)
     {
-        //
+        $estudiante = Estudiante::find($id);
+        return view('estudiante.edit',compact('estudiante'));
     }
 
     /**
