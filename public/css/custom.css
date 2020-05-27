@@ -22,7 +22,12 @@
 .custom-inicioSesion{
     text-align: center;
     font-weight: lighter;
+<<<<<<< Updated upstream
     font-size: 16px;
+=======
+    font-size: 18px;
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
+>>>>>>> Stashed changes
     color: white;
 }
 
@@ -34,6 +39,7 @@
 .custom-olvido{
     font-weight: bolder;
     text-decoration: underline;
+    position: center;
 }
 
 .custom-centrar{
