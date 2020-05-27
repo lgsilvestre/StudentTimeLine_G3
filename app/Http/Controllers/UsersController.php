@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Carrera;
+use Caffeinated\Shinobi\Models\Role as Rol;
 
 class UsersController extends Controller
 {
@@ -13,7 +16,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::busqueda($request->get('busqueda'))->withTrashed()->paginate(15);
+        return view('users.index',compact('users'));
     }
 
     /**
@@ -23,7 +27,9 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $carreras = Carrera::all();
+        $roles = Rol::all();
+        return view ('users.create',compact('carreras','roles'));
     }
 
     /**
@@ -34,7 +40,17 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //VALIDAR DATOS???????????
+        $user = new User();
+        $user->name=$request->get('name');
+        $user->email=$request->get('email');
+        $user->password=$request->get('password');
+
+        $user->save();
+        $users=User::all();
+
+        return redirect()->route('users.index',$users)->with([
+            'message'=>'El usuario ha sido ingresado correctamente.']);
     }
 
     /**
@@ -56,7 +72,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        //administrador????
+        $user=User::find($id);
+        $roles=Roles::all();
+        return view('users.edit',compact('user','roles'));
     }
 
     /**
@@ -68,7 +87,27 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $validate=$request->validate([
+            'name'=>'required|string',
+            'email'=>'required|string|unique',
+            'password'=>'required|string|min:8',
+            ]);
+
+        $user=User::find($id);
+
+        $user->name=$request->get('name');
+        $user->email=$request->get('email');
+        $user->password=$request->get('password');
+        
+        $user->update($request->all());
+        $user->roles()->sync($request->get('roles'));
+
+        $user->save();
+        $users=User::all();
+
+        return redirect()->route('users.index',$users)->with([
+            'message'=>'El usuario ha sido modificado correctamente.']);
     }
 
     /**
@@ -79,6 +118,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        $users=User::all();
+
+        return redirect()->back()->with('success', 'Inhabilitado correctamente.');
     }
 }
