@@ -10,7 +10,7 @@
 }
 
 .custom-tamanio{
-    width: 620px;
+    width: 740px;
 }
 
 .custom-imagen{
@@ -20,6 +20,7 @@
 }
 
 .custom-inicioSesion{
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
     text-align: center;
     font-weight: lighter;
     font-size: 16px;
@@ -56,11 +57,11 @@
     background-size: 100%;
     background-position:center center;
     background-attachment: fixed;
-    
+
 }
 
 .custom-tamanioCasilla{
-    width: 180px;
+    width: 250px;
 }
 
 .custom-ingresar{
@@ -79,6 +80,7 @@
 }
 
 .custom-recuperarSesion{
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
     text-align: center;
     font-weight: lighter;
     font-size: 16px;
@@ -96,7 +98,6 @@
 }
 
 .custom-tamanioRecordar{
+    margin-left:100px; margin-right:100px;
     align-content: center;
-    height: 180px;
-    width: 450px;
 }

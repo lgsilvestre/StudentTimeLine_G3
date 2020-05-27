@@ -46,4 +46,11 @@ class User extends Authenticatable
     public function usuario_carrera(){
         return $this->hasMany('App\Usuario_carrera','id_usuario');
     }
+
+    public function scopeBusqueda($query, $busqueda){
+        if($busqueda!=""){
+            $query->where(['name','LIKE',"%$busqueda%"])
+                  ->orWhere(['correo','LIKE',"%$busqueda%"]);
+        }
+    }
 }
