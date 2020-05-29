@@ -14,7 +14,7 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $users = User::busqueda($request->get('busqueda'))->withTrashed()->paginate(15);
         return view('users.index',compact('users'));
@@ -40,7 +40,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //VALIDAR DATOS???????????
+        $validate=$request->validate([
+            'name'=>'required|string',
+            'email'=>'required|string|unique',
+            'password'=>'required|string|min:8',
+            ]);
         $user = new User();
         $user->name=$request->get('name');
         $user->email=$request->get('email');
@@ -74,7 +78,7 @@ class UsersController extends Controller
     {
         //administrador????
         $user=User::find($id);
-        $roles=Roles::all();
+        $roles=Rol::all();
         return view('users.edit',compact('user','roles'));
     }
 
@@ -118,7 +122,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::destroy($id);
+        User::find($id)->delete();
         $users=User::all();
 
         return redirect()->back()->with('success', 'Inhabilitado correctamente.');
