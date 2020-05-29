@@ -21,7 +21,11 @@ class CreateUsuarioObservacionEstudianteTable extends Migration
             $table->unsignedBigInteger('id_estudiante')->notnull();
             $table->foreign('id_usuario')->references('id')->on('users');
             $table->foreign('id_observacion')->references('id')->on('observacion');
-            $table->foreign('id_estudiante')->references('id')->on('estudiante');  
+            $table->foreign('id_estudiante')->references('id')->on('estudiante');
+            
+
+
+
             $table->timestamps();          
         });
     }

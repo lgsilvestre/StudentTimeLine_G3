@@ -44,6 +44,10 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'nombre'=> 'required|string|unique',
+            'codigo_carrera'=> 'required|integer|unique'
+        ]);
         $carrera = new Carrera;  
           
         $carrera->nombre = $request->get('nombre');
