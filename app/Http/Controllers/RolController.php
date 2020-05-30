@@ -12,11 +12,11 @@ class RolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $roles = Rol::busqueda($request->get('busqueda'))->paginate(15);
         $users = User::all();
-        return view('roles.index',compact('roles','users'));
+        return view('rol.index',compact('roles','users'));
     }
 
     /**
