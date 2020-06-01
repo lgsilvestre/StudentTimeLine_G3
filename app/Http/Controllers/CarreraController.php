@@ -44,14 +44,19 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'nombre'=> 'required|string|unique',
+            'codigo_carrera'=> 'required|integer|unique'
+        ]);
         $carrera = new Carrera;  
           
         $carrera->nombre = $request->get('nombre');
+        $carrera->codigo_carrera = $request->get('codigo_carrera');
         $carrera->save();
 
         $carreras = Carrera::all();
         return redirect()->route('carrera.index',$carreras)->with([
-            'message'=> 'La carrera ha sido ingresada correctamente'
+            'message'=> 'La carrera ha sido ingresada correctamente.'
         ]);
                
     }
@@ -75,7 +80,8 @@ class CarreraController extends Controller
      */
     public function edit($id)
     {
-        
+        $carrera = Carrera::find($id);
+        return view('carrera.edit',compact('carrera'));
     }
 
     /**
@@ -88,10 +94,13 @@ class CarreraController extends Controller
     public function update(Request $request, $id)
     {
         $validate = $request->validate([
-            'nombre'=> 'required|string|unique'
+            'nombre'=> 'required|string|unique',
+            'codigo_carrera'=> 'required|integer|unique'
         ]);
+
         $carrera = Carrera::find($id);
         $carrera->nombre=$request->get('nombre');
+        $carrera->codigo_carrera=$request->get('codigo_carrera');
         $carrera->save();    
         $carreras = Carrera::all();
 

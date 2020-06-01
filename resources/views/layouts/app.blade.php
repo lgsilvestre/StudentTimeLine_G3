@@ -19,7 +19,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-      
+
+    <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
 </head>
 <body class="custom-fondo">
     
@@ -28,7 +29,7 @@
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="../images/logo_blanco.png" width="300px" height="40px" >
+                    <img src="../images/logo_blanco.png" width="330px" height="35px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,21 +43,27 @@
                     <!-- Authentication Links --> 
                         @guest
                             @if (Route::has('register'))
-                                <li class="nav-item custom-titulo" style="color: #ffffff">
-                                    <a class="custom-facultad">FACULTAD DE INGENIERÍA</a>
-                                </li>
+                                <a class="nav-item custom-titulo ">
+                                    <img src="../images/ingenieria.png" width="200px" height="50px">
+                                </a>
                             @endif
                         @else
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('roles.index')}}" style="color:#ffff">{{ __('Roles') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('users.index')}}" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item custom-botondesplegable" href="{{route('user.perfil',auth()->user()->id)}}">
+                                        {{ __('Perfil') }}
+                                    </a>
+                                    <a class="dropdown-item custom-botondesplegable" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Cerrar sesión') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

@@ -18,7 +18,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right custom-espesor">{{ __('Correo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" placeholder="Ingrese su correo" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" placeholder="ejemplo@utalca.cl" class="custom-tamanioCasilla custom-colorCasillas form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right custom-espesor">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" placeholder="Ingrese su contraseña" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" placeholder="••••••••••••••" class="custom-tamanioCasilla custom-colorCasillas form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">

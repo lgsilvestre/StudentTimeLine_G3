@@ -6,12 +6,17 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Caffeinated\Shinobi\Concerns\HasRolesAndPermissions;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+
     use HasRolesAndPermissions;
 
+
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
@@ -45,5 +50,12 @@ class User extends Authenticatable
 
     public function usuario_carrera(){
         return $this->hasMany('App\Usuario_carrera','id_usuario');
+    }
+
+    public function scopeBusqueda($query, $busqueda){
+        if($busqueda!=""){
+            $query->where(['name','LIKE',"%$busqueda%"])
+                  ->orWhere(['correo','LIKE',"%$busqueda%"]);
+        }
     }
 }
