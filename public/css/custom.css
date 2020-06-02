@@ -75,6 +75,23 @@
     background-color: #1d3557;
 }
 
+.custom-botonmenu{
+
+}
+
+.custom-botonmenu:hover{
+    background-color: #3d5a80;
+}
+
+.custom-botondesplegable{
+
+}
+
+.custom-botondesplegable:hover{
+    background-color: #e5e5e5;
+}
+
+
 .custom-colorCasillas:read-write{
     background-color: #f1faee;
 }
@@ -103,4 +120,13 @@
 }
 .margen-card{
     margin-top:50px;
+}
+
+.btn-custom{
+    background-color: #577590;
+    color: white;
+    border-color: #577590 ;
+}
+.btn-eliminar{
+    background-color:#f94144;
 }
