@@ -50,7 +50,7 @@
                         @else
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('rol.index')}}" style="color:#ffff">{{ __('Roles') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('user.index')}}" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('users.index')}}" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
                                     {{ Auth::user()->name }} <span class="caret"></span>
