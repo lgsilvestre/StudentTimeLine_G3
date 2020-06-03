@@ -23,6 +23,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
+        return view('categoria.create');
     }
 
     /**
@@ -33,7 +34,18 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nombre'=> 'required|string'
+        ]);
+        $categoria = new Categoria;  
+          
+        $categoria->nombre = $request->get('nombre');
+        $categoria->save();
+
+        /**$categoria = Categoria::all();
+        return redirect()->route('categoria.index',$categorias)->with([
+            'message'=> 'La categoria ha sido ingresada correctamente.'
+        ]);*/
     }
 
     /**
@@ -55,7 +67,8 @@ class CategoriaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categorias::find($id);
+        return view('categoria.edit',compact('categoria'));
     }
 
     /**
@@ -67,7 +80,19 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = $request->validate([
+            'nombre'=> 'required|string',
+        ]);
+
+        $categoria = Categoria::find($id);
+        $categoria->nombre=$request->get('nombre');
+        $categoria->save();    
+
+        /**$categorias = Categoria::all();
+
+        return redirect()->route('categoria.index',$categorias)->with([
+            'message'=>'La categoria ha sido actualizada correctamente']);
+            */
     }
 
     /**
@@ -78,6 +103,10 @@ class CategoriaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Categoria::destroy($id);
+        $categorias = Categoria::all();
+        /*
+        return redirect()->route('categoria.index',$categorias)->with([
+            'message'=>'La categoria ha sido eliminada correctamente']);*/
     }
 }
