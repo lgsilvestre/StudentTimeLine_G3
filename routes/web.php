@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
     Route::get('home', 'HomeController@index')->name('home');
@@ -44,7 +45,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('users/{user}/update','UsersController@edit')->name('users.edit');
 
-    Route::get('users/create','UsersController@create')->name('users.create');
+    Route::get('userscreate','UsersController@create')->name('users.create');
 
     Route::get('users/{user}/store','UsersController@edit')->name('users.store');
 
