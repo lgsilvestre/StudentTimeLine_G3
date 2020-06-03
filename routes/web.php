@@ -22,32 +22,45 @@ Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
     Route::get('home', 'HomeController@index')->name('home');
 
-    Route::post('roles/store','RolController@store')->name('roles.store');
+    Route::post('roles/store','RolController@store')->name('roles.store')
+    ->middleware('has.role:admin');
        
-    Route::get('roles','RolController@index')->name('rol.index');
+    Route::get('roles','RolController@index')->name('rol.index')
+    ->middleware('has.role:admin');
 
-    Route::get('roles/create','RolController@create')->name('rol.create');
+    Route::get('roles/create','RolController@create')->name('rol.create')
+    ->middleware('has.role:admin');
 
-    Route::put('roles/{role}','RolController@update')->name('rol.update');
+    Route::put('roles/{role}','RolController@update')->name('rol.update')
+    ->middleware('has.role:admin');
 
-    Route::get('roles/{role}','RolController@show')->name('rol.show');
+    Route::get('roles/{role}','RolController@show')->name('rol.show')
+    ->middleware('has.role:admin');
 
-    Route::delete('roles/destroy','RolController@destroy')->name('rol.destroy');
+    Route::delete('roles/destroy','RolController@destroy')->name('rol.destroy')
+    ->middleware('has.role:admin');
 
-    Route::get('roles/{role}/edit','RolController@edit')->name('rol.edit');
+    Route::get('roles/{role}/edit','RolController@edit')->name('rol.edit')
+    ->middleware('has.role:admin');
 
     //Usuarios rutas
-    Route::get('users','UsersController@index')->name('users.index');
+    Route::get('users','UsersController@index')->name('users.index')
+    ->middleware('has.role:admin');
 
-    Route::put('users/{user}/edit','UsersController@update')->name('users.update');
+    Route::put('users/{user}/edit','UsersController@update')->name('users.update')
+    ->middleware('has.role:admin');
 
-    Route::get('users/{user}','UsersController@show')->name('users.show');
+    Route::get('users/{user}','UsersController@show')->name('users.show')
+    ->middleware('has.role:admin');
 
-    Route::get('users/{user}/update','UsersController@edit')->name('users.edit');
+    Route::get('users/{user}/update','UsersController@edit')->name('users.edit')
+    ->middleware('has.role:admin');
 
-    Route::get('userscreate','UsersController@create')->name('users.create');
+    Route::get('userscreate','UsersController@create')->name('users.create')
+    ->middleware('has.role:admin');
 
-    Route::get('users/{user}/store','UsersController@edit')->name('users.store');
+    Route::get('users/{user}/store','UsersController@edit')->name('users.store')
+    ->middleware('has.role:admin');
 
     Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
 
