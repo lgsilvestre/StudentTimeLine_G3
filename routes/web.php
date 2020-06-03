@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function(){
     Route::delete('roles/destroy','RolController@destroy')->name('rol.destroy');
 
     Route::get('roles/{role}/edit','RolController@edit')->name('rol.edit');
-    
+
     //Usuarios rutas
     Route::get('users','UsersController@index')->name('users.index');
 
@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('users/{user}/update','UsersController@edit')->name('users.edit');
 
-    Route::get('users/{user}/create','UsersController@create')->name('users.create');
+    Route::get('users/create','UsersController@create')->name('users.create');
 
     Route::get('users/{user}/store','UsersController@edit')->name('users.store');
 
