@@ -8,7 +8,7 @@
             @role('admin')
                 <div class="card-header custom-recuperarSesion" style="background-color:#577590; color:white">Roles</div>
 
-                <div class="card-body">                   
+                <div class="card-body shadow-lg">                   
                 <table class="table table-responsive-sm table-striped table-hover shadow p-3" >
                         <thead class="thead" style="background-color: #577590; color:white;">
                             <tr>
