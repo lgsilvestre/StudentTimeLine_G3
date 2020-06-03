@@ -46,6 +46,7 @@ class EstudianteController extends Controller
             'rut'=>'required|string|max:20',
             'matricula'=>'required|string|max:20',
             'correo'=>'required|string|unique',
+            'carrera'=>'required|string',
             'sexo' => 'required|string|max:255',
             'fech_nac' => 'required|date',
             'plan' => 'integer',
@@ -69,8 +70,13 @@ class EstudianteController extends Controller
         $estudiante->rut=$request->get('rut');
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
+        //Asi si se le pasa el id de carreda directamente
+        //$estudiante->id_carrera=$request->get('id_carrera');
+        //Asi cuando se ingresa el nombre de la carrera, puede cambiar despues dependiendo de front
         $nombre_carrera=$request->get('nombre_carrera');
-        //  $id_carrera=Carrera:: NOS FALTA POR ARREGLAR ALGO AQUI CON LA ISA.
+        $carrera=Carrera::where('nombre',$nombre_carrera);
+        $estudiante->id_carrera=$carrera->id;
+        //hasta aqui
         $estudiante->sexo=$request->get('sexo');
         $estudiante->fech_nac=$request->get('fech_nac');
         $estudiante->plan=$request->get('plan');
@@ -133,6 +139,7 @@ class EstudianteController extends Controller
             'rut'=>'required|string|max:20',
             'matricula'=>'required|string|max:20',
             'correo'=>'required|string|unique',
+            'carrera'=>'required|string',
             'sexo' => 'required|string|max:255',
             'fech_nac' => 'required|date',
             'plan' => 'integer',
@@ -157,7 +164,13 @@ class EstudianteController extends Controller
         $estudiante->rut=$request->get('rut');
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
-        $estudiante->id_carrera=$request->get('id_carrera');
+        //Asi si se le pasa el id de carreda directamente
+        //$estudiante->id_carrera=$request->get('id_carrera');
+        //Asi cuando se ingresa el nombre de la carrera, puede cambiar despues dependiendo de front
+        $nombre_carrera=$request->get('nombre_carrera');
+        $carrera=Carrera::where('nombre',$nombre_carrera);
+        $estudiante->id_carrera=$carrera->id;
+        //hasta aqui
         $estudiante->sexo=$request->get('sexo');
         $estudiante->fech_nac=$request->get('fech_nac');
         $estudiante->plan=$request->get('plan');
