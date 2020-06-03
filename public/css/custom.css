@@ -75,22 +75,13 @@
     background-color: #1d3557;
 }
 
-.custom-botonmenu{
-
-}
-
 .custom-botonmenu:hover{
     background-color: #3d5a80;
-}
-
-.custom-botondesplegable{
-
 }
 
 .custom-botondesplegable:hover{
     background-color: #e5e5e5;
 }
-
 
 .custom-colorCasillas:read-write{
     background-color: #f1faee;
@@ -129,4 +120,27 @@
 }
 .btn-eliminar{
     background-color:#f94144;
+}
+
+.custom-registro{
+    margin-top:50px;
+    margin-left:90px; margin-right:90px;
+}
+
+.custom-letraRegistro{
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+.custom-registrar{
+    text-align: center;
+    height:40px; 
+    width:140px;
+    background-color: #577590;
+}
+
+.custom-registrar:hover{
+    background-color: #1d3557;
 }

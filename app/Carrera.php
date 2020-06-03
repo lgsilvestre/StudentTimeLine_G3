@@ -24,4 +24,8 @@ class Carrera extends Model
     public function estudiante(){
         return $this->hasMany('App\Estudiante','id_estudiante');
     }
+
+    public function modulos(){
+        return $this->hasMany('App\Modulo_carrera','id_carrera');
+    }
 }
