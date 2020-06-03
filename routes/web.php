@@ -35,10 +35,19 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('roles/{role}/edit','RolController@edit')->name('rol.edit');
 
+    //Usuarios rutas
+    Route::get('users','UsersController@index')->name('users.index');
 
+    Route::put('users/{user}/edit','UsersController@update')->name('users.update');
 
+    Route::get('users/{user}','UsersController@show')->name('users.show');
 
-    Route::get('users', 'UsersController@index')->name('user.index');
-    Route::get('user/{user}/editar', 'UsersController@editDatosPersonales')->name('user.perfil');
+    Route::get('users/{user}/update','UsersController@edit')->name('users.edit');
+
+    Route::get('users/create','UsersController@create')->name('users.create');
+
+    Route::get('users/{user}/store','UsersController@edit')->name('users.store');
+
+    Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
 
 });
