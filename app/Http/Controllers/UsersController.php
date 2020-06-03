@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $users = User::busqueda($request->get('busqueda'))->withTrashed()->paginate(15);
-        return view('users.index',compact('users'));
+        return view('Usuario.index',compact('users'));
     }
 
     /**
@@ -29,7 +29,7 @@ class UsersController extends Controller
     {
         $carreras = Carrera::all();
         $roles = Rol::all();
-        return view ('users.create',compact('carreras','roles'));
+        return view ('Usuario.create',compact('carreras','roles'));
     }
 
     /**
@@ -79,7 +79,7 @@ class UsersController extends Controller
         //administrador????
         $user=User::find($id);
         $roles=Rol::all();
-        return view('users.edit',compact('user','roles'));
+        return view('Usuario.edit',compact('user','roles'));
     }
 
     /**
