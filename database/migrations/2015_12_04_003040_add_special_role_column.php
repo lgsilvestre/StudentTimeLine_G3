@@ -15,6 +15,7 @@ class AddSpecialRoleColumn extends Migration
 
         Schema::table($name, function ($table) {
             $table->enum('special', ['all-access', 'no-access'])->nullable();
+            $table->timestamps();
         });
     }
 
