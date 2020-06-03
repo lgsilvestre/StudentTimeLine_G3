@@ -49,7 +49,7 @@
 
 .custom-border{
     display: block;
-    background-color: rgb(245, 245, 245, 0.90);
+    background-color: rgb(245, 245, 245);
 }
 
 .custom-fondo{
@@ -120,4 +120,13 @@
 }
 .margen-card{
     margin-top:50px;
+}
+
+.btn-custom{
+    background-color: #577590;
+    color: white;
+    border-color: #577590 ;
+}
+.btn-eliminar{
+    background-color:#f94144;
 }

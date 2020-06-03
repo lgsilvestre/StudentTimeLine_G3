@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Observacion;
+
 
 class ObservacionController extends Controller
 {
@@ -13,7 +15,8 @@ class ObservacionController extends Controller
      */
     public function index()
     {
-        //
+        $observaciones=Observacion::all();
+        return view('observacion.index',compact('observaciones'));
     }
 
     /**
@@ -23,7 +26,8 @@ class ObservacionController extends Controller
      */
     public function create()
     {
-        //
+        
+
     }
 
     /**
@@ -34,7 +38,28 @@ class ObservacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validate=$request->validate([
+            'titulo'=>'required|string|max:255',
+            'tipo_observacion'=>'required|string|max:15',
+            'descripcion'=>'required|string|max:2000',
+            'categoria'=>'required|string|max:255',
+            'modulo'=>'required|string|max:255',
+        ]);
+
+    $observacion=new Observacion();
+    $observacion->titulo=$request->get('titulo');
+    $observacion->tipo_observacion=$request->get('tipo_observacion');
+    $observacion->descripcion=$request->get('descripcion');
+    $observacion->categoria=$request->get('categoria');
+    $observacion->modulo=$request->get('modulo');
+
+    $observacion->save();
+    $observaciones=Observacion::all();
+    
+    return redirect()->route('observacion.index',$obseraciones)->with([
+        'message'=>'La observacion ha sido ingresado correctamente']);
+
     }
 
     /**
@@ -56,7 +81,11 @@ class ObservacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $observacion = Observacion::find($id);
+        #falta agregar los módulos y categorias 
+        return view('observacion.edit',compact('observacion'));
+
+    
     }
 
     /**
@@ -68,7 +97,29 @@ class ObservacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $validate=$request->validate([
+            'titulo'=>'required|string|max:255',
+            'tipo_observacion'=>'required|string|max:15',
+            'descripcion'=>'required|string|max:2000',
+            'categoria'=>'required|string|max:255',
+            'modulo'=>'required|string|max:255',
+        ]);
+
+    $observacion=Observacion::find($id);
+    
+    $observacion->titulo=$request->get('titulo');
+    $observacion->tipo_descripcion=$request->get('tipo_observacion');
+    $observacion->descripcion=$request->get('descripcion');
+    $observacion->categoria=$request->get('categoria');
+    $observacion->modulo=$request->get('modulo');
+
+    $observacion->save();
+    $observaciones=Observacion::all();
+
+    return redirect()->route('observacion.index',$obseraciones)->with([
+        'message'=>'Los datos han sido modificados correctamente']);
+   
     }
 
     /**
@@ -79,6 +130,9 @@ class ObservacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Observacion::destroy($id);
+        $observaciones=Observacion::all();
+        return redirect()->route('observacion.index',$obseraciones)->with([
+            'mesage'=>'La observación ha sido eliminada correctamente']);
     }
 }
