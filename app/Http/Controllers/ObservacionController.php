@@ -82,7 +82,7 @@ class ObservacionController extends Controller
     public function edit($id)
     {
         $observacion = Observacion::find($id);
-        #falta agregar los módulos y categorias 
+        #falta agregar los módulos y categorias
         return view('observacion.edit',compact('observacion'));
 
     
