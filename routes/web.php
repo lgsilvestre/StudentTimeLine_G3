@@ -47,13 +47,13 @@ Route::middleware(['auth'])->group(function(){
     Route::get('users','UsersController@index')->name('users.index')
     ->middleware('has.role:admin');
 
-    Route::put('users/{user}/edit','UsersController@update')->name('users.update')
+    Route::put('users/{user}/update','UsersController@update')->name('users.update')
     ->middleware('has.role:admin');
 
     Route::get('users/{user}','UsersController@show')->name('users.show')
     ->middleware('has.role:admin');
 
-    Route::get('users/{user}/update','UsersController@edit')->name('users.edit')
+    Route::get('users/{user}/edit','UsersController@edit')->name('users.edit')
     ->middleware('has.role:admin');
 
     Route::get('userscreate','UsersController@create')->name('users.create')
