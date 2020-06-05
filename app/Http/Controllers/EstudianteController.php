@@ -16,7 +16,7 @@ class EstudianteController extends Controller
     public function index()
     {
         $estudiantes=Estudiante::all();
-        return view('home',compact("estudiantes"));
+        return view('home',compact('estudiantes'));
     }
 
     /**
