@@ -29,7 +29,7 @@ class UsersController extends Controller
     {
         $carreras = Carrera::all();
         $roles = Rol::all();
-        return view ('home',compact('carreras','roles'));
+        return view ('Usuario.create',compact('carreras','roles'));
     }
 
     /**
@@ -65,7 +65,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        return View('Usuario.ver');
     }
 
     /**

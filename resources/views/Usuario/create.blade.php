@@ -34,7 +34,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     @foreach($carreras as $carrera)
-                                    <li><a href="#">{{$carrera->nombre}}</a></li>
+                                        <li><a href="#">{{$carrera->nombre}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
@@ -49,7 +49,7 @@
                                 </button>
                                 <ul class="dropdown-menu">
                                     @foreach($roles as $rol)
-                                    <li><a href="#">{{$rol->name}}</a></li>
+                                        <li><a href="#">{{$rol->name}}</a></li>
                                     @endforeach
                                 </ul>
                             </div>
