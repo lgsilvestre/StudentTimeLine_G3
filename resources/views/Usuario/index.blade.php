@@ -9,21 +9,21 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card margen-card" style="width:800px">
+            <div class="card margen-card" >
                 <div class="card-header shadow-sm custom-recuperarSesion" style="background-color:#577590; color:white">Usuarios
                 </div>
                 
                 <div class="card-body">     
                 
-                <table id="usuarios" class="table table-striped table-responsive table-hover dt-responsive" style="width:100%">
+                <table id="usuarios" class="table table-striped table-responsive-sm table-hover " style="width:100%">
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
-                                <th >Nombre</th>
+                                <th  >Nombre</th>
                                 <th >Email</th>
-                                <th >Habilitado</th>
+                               
                                 <th >Rol asignado</th>
-                                <th > <a href="{{ route('users.create') }}" 
+                                <th colspan="3px"> <a href="{{ route('users.create') }}" 
                                         class="btn btn-sm btn-secondary float-cente" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Crear Usuario </a>&nbsp;</th>
                                 
@@ -36,7 +36,6 @@
                                   <td></td>
                                   <td></td>
                                   <td></td>
-                                  <td></td>
                               </tr>
                             @endif
                             @foreach($users as $user)
@@ -45,11 +44,6 @@
                                     
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    @if (empty($user->deleted_at))
-                                        <td>Si</td>
-                                    @else
-                                        <td>No</td>
-                                    @endif
                                     @if($user->roles->count()>0)
                                     @foreach($user->roles as $rol)
                                         <td>{{$rol->name}}</td>
@@ -124,7 +118,8 @@
             }
         $('#usuarios').dataTable({
             responsive: true,
-            language : espanol
+            language : espanol,
+            
             
 
         });

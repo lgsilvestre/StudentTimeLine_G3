@@ -10,7 +10,7 @@
                 <div class="card-header custom-recuperarSesion" style="background-color:#577590; color:white">Roles</div>
 
                 <div class="card-body shadow-lg">                   
-                <table id="roles"class="table table-responsive-sm table-striped table-hover shadow p-3" style="width:100%" >
+                <table id="roles"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                         <thead class="thead" style="background-color: #577590; color:white;">
                             <tr>
                             
@@ -67,8 +67,10 @@
         </div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"defer></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script>
     $(document).ready(function() {
         var espanol={
