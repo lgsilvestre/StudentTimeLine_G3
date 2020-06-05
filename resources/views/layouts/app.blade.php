@@ -17,6 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
@@ -29,14 +30,11 @@
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="../images/logo_blanco.png" width="330px" height="35px" >
+                    <img src="../images/logo_blanco.png" style="width: 100%; max-width: 330px; min-width: 200px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

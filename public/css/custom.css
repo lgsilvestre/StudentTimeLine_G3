@@ -10,7 +10,8 @@
 }
 
 .custom-tamanio{
-    width: 740px;
+    width: 70%;
+    
 }
 
 .custom-imagen{
@@ -54,7 +55,10 @@
 
 .custom-fondo{
     background: url('/images/fondo1.jpg') no-repeat;
-    background-size: 100%;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
     background-position:center center;
     background-attachment: fixed;
 

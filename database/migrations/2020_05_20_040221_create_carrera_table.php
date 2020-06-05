@@ -20,7 +20,6 @@ class CreateCarreraTable extends Migration
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *
