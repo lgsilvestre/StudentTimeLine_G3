@@ -38,14 +38,14 @@ Route::middleware(['auth'])->group(function(){
     Route::get('roles/{role}','RolController@show')->name('rol.show')
     ->middleware('has.role:admin');
 
-    Route::delete('roles/destroy','RolController@destroy')->name('rol.destroy')
+    Route::post('roles.destroy','RolController@destroy')->name('rol.destroy')
     ->middleware('has.role:admin');
 
     Route::get('roles/{role}/edit','RolController@edit')->name('rol.edit')
     ->middleware('has.role:admin');
 
     //Usuarios rutas
-    Route::get('users','UsersController@index')->name('users.index')
+    Route::post('users','UsersController@index')->name('users.index')
     ->middleware('has.role:admin');
 
     Route::put('users/{user}/edit','UsersController@update')->name('users.update')

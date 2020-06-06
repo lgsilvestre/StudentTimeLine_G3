@@ -24,8 +24,8 @@
     <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
 </head>
 <body class="custom-fondo">
-    
     <div id="app">
+     @include('mensajes-flash')   
         <nav class="navbar navbar-expand-md custom-color shadow-sm">
             <div class="container" >
             

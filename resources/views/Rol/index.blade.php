@@ -121,9 +121,10 @@
         ¿Está seguro?
       </div>
       <div class="modal-footer">  
-            <form action="{{ route('rol.destroy') }}" method="DELETE">
+            <form action="{{ route('rol.destroy')}}" method="post">
+            @csrf
                 <input type="hidden" id="rol_sin_usuario" name="idrol" value="">
-                <button style="color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                <button style="color:white"class="btn btn-info btn-sm">Confirmar</button>
             </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
