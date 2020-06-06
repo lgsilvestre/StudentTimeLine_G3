@@ -45,7 +45,7 @@ Route::middleware(['auth'])->group(function(){
     ->middleware('has.role:admin');
 
     //Usuarios rutas
-    Route::post('users','UsersController@index')->name('users.index')
+    Route::get('users','UsersController@index')->name('users.index')
     ->middleware('has.role:admin');
 
     Route::put('users/{user}/edit','UsersController@update')->name('users.update')
@@ -60,9 +60,30 @@ Route::middleware(['auth'])->group(function(){
     Route::get('userscreate','UsersController@create')->name('users.create')
     ->middleware('has.role:admin');
 
-    Route::get('users/{user}/store','UsersController@edit')->name('users.store')
+    Route::post('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
     Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
+
+    Route::post('categoria/store','CategoriaController@store')->name('categoria.store')
+    ->middleware('has.role:admin');
+       
+    Route::get('categoria/index','CategoriaController@index')->name('categoria.index')
+    ->middleware('has.role:admin');
+
+    Route::get('categoria/create','CategoriaController@create')->name('categoria.create')
+    ->middleware('has.role:admin');
+
+    Route::post('categoria/update','CategoriaController@update')->name('categoria.update')
+    ->middleware('has.role:admin');
+
+    Route::get('categoria/{categoria}','CategoriaController@show')->name('categoria.show')
+    ->middleware('has.role:admin');
+
+    Route::post('categoria.destroy','CategoriaController@destroy')->name('categoria.destroy')
+    ->middleware('has.role:admin');
+
+    Route::get('categoria/{categoria}/edit','CategoriaController@edit')->name('categoria.edit')
+    ->middleware('has.role:admin');
 
 });

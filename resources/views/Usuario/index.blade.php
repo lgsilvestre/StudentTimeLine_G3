@@ -19,7 +19,7 @@
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
-                                <th  >Nombre</th>
+                                <th >Nombre</th>
                                 <th >Email</th>
                                
                                 <th >Rol asignado</th>

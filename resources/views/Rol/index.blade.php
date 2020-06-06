@@ -25,32 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @if($roles->count()==0)
-                              <tr>
-                                  <td><H5>Sin Datos</H5></td>
-                                  <td></td>
-                                  <td></td>
-                              </tr>
-                            @endif
-                            @foreach($roles as $role)
-                            <tr>
-                                
-                                <td >{{$role->name}}</td>
-                                <td >
-                                    
-                                        <a style="width:54px" href="{{route('rol.show',$role->id)}}" 
-                                        class="btn btn-secondary btn-custom btn-sm"><i class="fas fa-search-plus"></i> Ver</a>
-                    
-                                        <a style="width:68px;"href="{{route('rol.edit',$role->id)}}" 
-                                        class="btn btn-secondary btn-custom btn-sm"><i class="fas fa-pencil-alt"></i> Editar</a>
-          
-                                        <button style="width:83px" data-toggle="modal" data-target="#modalrol_sin_usuarios" onClick="selRol('{{$role->id}}')"class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                                        
- 
-                                </td>
-                                
-                            </tr>
-                            @endforeach
+                       
                         </tbody>
                     </table>
                    
@@ -94,15 +69,16 @@
                     "colvis": "Visibilidad"
                 }
             }
+        
         $('#roles').dataTable({//en caso de usar serverside se descomenta.
-            /* processing: true,
-            serverSide: true, */
-             language : espanol,/*
+            processing: true,
+            serverSide: true,
+            language : espanol,
             ajax: "{{route('rol.index')}}",
             columns : [
                 {data: 'name'},
-                {defaultContent: ""}
-            ]  */
+                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-custom btn-sm'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btn-eliminar btn-sm'><i class='fas fa-trash-alt'></i> Eliminar</button></div></div>"}
+            ] 
 
         });
     } );
