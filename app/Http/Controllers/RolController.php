@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Rol;
 use App\User;
+use DataTables;
 class RolController extends Controller
 {
     /**
@@ -14,9 +15,15 @@ class RolController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Rol::busqueda($request->get('busqueda'))->paginate(15);
+        $roles = Rol::all();
         $users = User::all();
         return view('rol.index',compact('roles','users'));
+        //por si se usara server process de datatables
+        /* if($request->ajax()){
+            
+            return datatables()->eloquent(Rol::query())->toJson();
+        }
+        return view('rol.index'); */
     }
 
     /**
@@ -26,8 +33,8 @@ class RolController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::get();
-        return view('roles.create',compact('permissions'));
+        
+        return view('roles.create');
     }
 
     /**
@@ -44,8 +51,7 @@ class RolController extends Controller
         ]);
         
         $role = Role::create($request->all());
-        $role->permissions()->sync($request->get('permissions'));
-        $roles = Role::all()->paginate(15);
+        $roles = Role::all();
 
         return redirect()->route('roles.index',$roles)
             ->with('info','Rol guardado con éxito');

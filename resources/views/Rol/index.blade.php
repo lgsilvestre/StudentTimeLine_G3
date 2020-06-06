@@ -17,7 +17,7 @@
                                 <th >Nombre Rol</th>
                                 <th >
                                     @role('admin')
-                                        <a href="{{ route('rol.create') }}" 
+                                        <a href="{{ route('rol.create') }}"  data-toggle="modal" data-target="#modal_crear"
                                         class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Crear Rol
                                     @endrole
@@ -25,7 +25,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @if($roles->count()==0)
+                        @if($roles->count()==0)
                               <tr>
                                   <td><H5>Sin Datos</H5></td>
                                   <td></td>
@@ -40,20 +40,13 @@
                                     
                                         <a style="width:54px" href="{{route('rol.show',$role->id)}}" 
                                         class="btn btn-secondary btn-custom btn-sm"><i class="fas fa-search-plus"></i> Ver</a>
-                                    
-                                
-                                    
+                    
                                         <a style="width:68px;"href="{{route('rol.edit',$role->id)}}" 
                                         class="btn btn-secondary btn-custom btn-sm"><i class="fas fa-pencil-alt"></i> Editar</a>
-                                    
-                                
-
-                                        @if(DB::table('role_user')->where('role_id',$role->id)->exists())
-                                            <button style="width:83px" data-toggle="modal" data-target="#modalrol_con_usuarios" onClick="selRol('{{$role->id}}')"class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                                        @else   
-                                            <button style="width:83px" data-toggle="modal" data-target="#modalrol_sin_usuarios" onClick="selRol('{{$role->id}}')"class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                                        @endif
+          
+                                        <button style="width:83px" data-toggle="modal" data-target="#modalrol_sin_usuarios" onClick="selRol('{{$role->id}}')"class="btn btn-danger btn-eliminar btn-sm"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                         
+ 
                                 </td>
                                 
                             </tr>
@@ -101,12 +94,113 @@
                     "colvis": "Visibilidad"
                 }
             }
-        $('#roles').dataTable({
-            responsive: true,
-            language : espanol
-            
+        $('#roles').dataTable({//en caso de usar serverside se descomenta.
+            /* processing: true,
+            serverSide: true, */
+             language : espanol,/*
+            ajax: "{{route('rol.index')}}",
+            columns : [
+                {data: 'name'},
+                {defaultContent: ""}
+            ]  */
 
         });
     } );
+</script>
+
+<div class="modal fade" id="modalrol_sin_usuarios" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:red">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro?
+      </div>
+      <div class="modal-footer">  
+            <form action="{{ route('rol.destroy') }}" method="DELETE">
+                <input type="hidden" id="rol_sin_usuario" name="idrol" value="">
+                <button style="color:white"class="btn btn-info  btn-sm">Confirmar</button>
+            </form>
+
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:black">Creación Rol</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('rol.store') }}" method="post">
+        <div class="modal-body">
+            <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre del Rol') }}</label>
+
+                <div class="col-md-6">
+                    <input id="name" type="text" placeholder="Ejemplo: Administrador" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>    
+            <div class="form-group row">
+                <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('URL amigable') }}</label>
+
+                <div class="col-md-6">
+                    <input id="slug" type="text" placeholder="Ejemplo: admin" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div> 
+            <div class="form-group row">
+                <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('Descripcion') }}</label>
+
+                <div class="col-md-6">
+                    <input id="slug" type="text" placeholder="Ejemplo: Gestiona el sistema" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>           
+        </div>
+        <div class="modal-footer">  
+                
+                    <input type="hidden" id="rol_sin_usuario" name="idrol" value="">
+                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
+        </form>
+
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+
+    selRol = function(idPersona){
+        $('#rol_con_usuario').val(idPersona);
+        $('#rol_sin_usuario').val(idPersona);
+    };
+
 </script>
 @endsection

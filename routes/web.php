@@ -20,12 +20,13 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
+
     Route::get('home', 'HomeController@index')->name('home');
 
-    Route::post('roles/store','RolController@store')->name('roles.store')
+    Route::post('roles/store','RolController@store')->name('rol.store')
     ->middleware('has.role:admin');
        
-    Route::get('roles','RolController@index')->name('rol.index')
+    Route::get('roles/index','RolController@index')->name('rol.index')
     ->middleware('has.role:admin');
 
     Route::get('roles/create','RolController@create')->name('rol.create')
