@@ -16,14 +16,14 @@ class RolController extends Controller
     public function index(Request $request)
     {
         
-        $roles = Role::all();
-        return view('rol.index',compact('roles'));
+        /* $roles = Role::all();
+        return view('rol.index',compact('roles')); */
         //por si se usara server process de datatables
-        /* if($request->ajax()){
+        if($request->ajax()){
             
             return datatables()->eloquent(Role::query())->toJson();
         }
-        return view('rol.index'); */
+        return view('rol.index');
     }
 
     /**

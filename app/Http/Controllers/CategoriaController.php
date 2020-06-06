@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Categoria;
 class CategoriaController extends Controller
 {
     /**
@@ -11,9 +11,13 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->ajax()){
+            
+            return datatables()->eloquent(Categoria::query())->toJson();
+        }
+        return view('Categoria.index');
     }
 
     /**
@@ -42,10 +46,8 @@ class CategoriaController extends Controller
         $categoria->nombre = $request->get('nombre');
         $categoria->save();
 
-        /**$categoria = Categoria::all();
-        return redirect()->route('categoria.index',$categorias)->with([
-            'message'=> 'La categoria ha sido ingresada correctamente.'
-        ]);*/
+        return redirect()->action('CategoriaController@index')
+            ->with('success','Categoria creada con éxito'); 
     }
 
     /**
@@ -78,21 +80,18 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validate = $request->validate([
             'nombre'=> 'required|string',
         ]);
 
-        $categoria = Categoria::find($id);
+        $categoria = Categoria::find($request->id);
         $categoria->nombre=$request->get('nombre');
-        $categoria->save();    
+        $categoria->save();     
 
-        /**$categorias = Categoria::all();
-
-        return redirect()->route('categoria.index',$categorias)->with([
-            'message'=>'La categoria ha sido actualizada correctamente']);
-            */
+        return redirect()->action('CategoriaController@index')
+            ->with('success','Categoria editada con éxito'); 
     }
 
     /**
@@ -101,12 +100,12 @@ class CategoriaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Categoria::destroy($id);
+        Categoria::destroy($request->get('id'));
         $categorias = Categoria::all();
-        /*
-        return redirect()->route('categoria.index',$categorias)->with([
-            'message'=>'La categoria ha sido eliminada correctamente']);*/
+        
+        return redirect()->action('CategoriaController@index')
+            ->with('success','Categoria eliminada con éxito'); 
     }
 }
