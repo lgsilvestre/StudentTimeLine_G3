@@ -17,37 +17,73 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
+
     Route::get('home', 'HomeController@index')->name('home');
 
-    Route::post('roles/store','RolController@store')->name('roles.store');
+    Route::post('roles/store','RolController@store')->name('rol.store')
+    ->middleware('has.role:admin');
        
-    Route::get('roles','RolController@index')->name('rol.index');
+    Route::get('roles/index','RolController@index')->name('rol.index')
+    ->middleware('has.role:admin');
 
-    Route::get('roles/create','RolController@create')->name('rol.create');
+    Route::get('roles/create','RolController@create')->name('rol.create')
+    ->middleware('has.role:admin');
 
-    Route::put('roles/{role}','RolController@update')->name('rol.update');
+    Route::put('roles/{role}','RolController@update')->name('rol.update')
+    ->middleware('has.role:admin');
 
-    Route::get('roles/{role}','RolController@show')->name('rol.show');
+    Route::get('roles/{role}','RolController@show')->name('rol.show')
+    ->middleware('has.role:admin');
 
-    Route::delete('roles/destroy','RolController@destroy')->name('rol.destroy');
+    Route::post('roles.destroy','RolController@destroy')->name('rol.destroy')
+    ->middleware('has.role:admin');
 
-    Route::get('roles/{role}/edit','RolController@edit')->name('rol.edit');
+    Route::get('roles/{role}/edit','RolController@edit')->name('rol.edit')
+    ->middleware('has.role:admin');
 
     //Usuarios rutas
-    Route::get('users','UsersController@index')->name('users.index');
+    Route::get('users','UsersController@index')->name('users.index')
+    ->middleware('has.role:admin');
 
-    Route::put('users/{user}/edit','UsersController@update')->name('users.update');
+    Route::put('users/{user}/edit','UsersController@update')->name('users.update')
+    ->middleware('has.role:admin');
 
-    Route::get('users/{user}','UsersController@show')->name('users.show');
+    Route::get('users/{user}','UsersController@show')->name('users.show')
+    ->middleware('has.role:admin');
 
-    Route::get('users/{user}/update','UsersController@edit')->name('users.edit');
+    Route::get('users/{user}/update','UsersController@edit')->name('users.edit')
+    ->middleware('has.role:admin');
 
-    Route::get('users/create','UsersController@create')->name('users.create');
+    Route::get('userscreate','UsersController@create')->name('users.create')
+    ->middleware('has.role:admin');
 
-    Route::get('users/{user}/store','UsersController@edit')->name('users.store');
+    Route::post('users/store','UsersController@store')->name('users.store')
+    ->middleware('has.role:admin');
 
     Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
+
+    Route::post('categoria/store','CategoriaController@store')->name('categoria.store')
+    ->middleware('has.role:admin');
+       
+    Route::get('categoria/index','CategoriaController@index')->name('categoria.index')
+    ->middleware('has.role:admin');
+
+    Route::get('categoria/create','CategoriaController@create')->name('categoria.create')
+    ->middleware('has.role:admin');
+
+    Route::post('categoria/update','CategoriaController@update')->name('categoria.update')
+    ->middleware('has.role:admin');
+
+    Route::get('categoria/{categoria}','CategoriaController@show')->name('categoria.show')
+    ->middleware('has.role:admin');
+
+    Route::post('categoria.destroy','CategoriaController@destroy')->name('categoria.destroy')
+    ->middleware('has.role:admin');
+
+    Route::get('categoria/{categoria}/edit','CategoriaController@edit')->name('categoria.edit')
+    ->middleware('has.role:admin');
 
 });

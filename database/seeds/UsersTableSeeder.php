@@ -18,7 +18,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'reivaj_31@hotmail.com',
             'password' => bcrypt('12345678'),
         ]);
+        
         $user->assignRoles('admin');
         $user->save();
+        
     }
 }

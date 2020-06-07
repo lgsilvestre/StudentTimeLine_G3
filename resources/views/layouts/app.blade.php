@@ -17,26 +17,24 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
 </head>
 <body class="custom-fondo">
-    
     <div id="app">
+     @include('mensajes-flash')   
         <nav class="navbar navbar-expand-md custom-color shadow-sm">
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="../images/logo_blanco.png" width="330px" height="35px" >
+                    <img src="../images/logo_blanco.png" style="width: 100%; max-width: 330px; min-width: 200px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -49,7 +47,7 @@
                             @endif
                         @else
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('rol.index')}}" style="color:#ffff">{{ __('Roles') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('users.index')}}" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
