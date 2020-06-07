@@ -47,9 +47,8 @@ class Modulo_carreraController extends Controller
         $modulo->descripcion=$request->get('descripcion');
         $modulo->id_carrera=$request->get('id_carrera'); //asignar id directamente
         $modulo->save();
-        $modulos=Modulo::all();
-        return redirect()->route('modulos.index',$modulos)->with([
-            'message'=>'El modulo ha sido ingresado correctamente']);
+        return redirect()->action('Modulo_carreraController@index')
+        ->with('success','Modulo ingresado con éxito'); 
     }
 
     /**
@@ -91,9 +90,9 @@ class Modulo_carreraController extends Controller
         $modulo->descripcion=$request->get('descripcion');
         $modulo->id_carrera=$request->get('id_carrera'); //asignar id directamente
         $modulo->save();
-        $modulos=Modulo::all();
-        return redirect()->route('modulos.index',$modulos)->with([
-            'message'=>'El modulo ha sido ingresado correctamente']);
+
+        return redirect()->action('Modulo_carreraController@index')
+        ->with('success',',Modulo actualizado con éxito'); 
     }
 
     /**
@@ -105,8 +104,8 @@ class Modulo_carreraController extends Controller
     public function destroy($id)
     {
         Modulo::destroy($id);
-        $modulos=Modulo::all();
-        return redirect()->route('modulos.index',$modulos)->with([
-            'message'=>'El modulo ha sido eliminado correctamente']);
+
+        return redirect()->action('Moudulo_carreraController@index')
+        ->with('success','Modulo eliminado con éxito'); 
     }
 }
