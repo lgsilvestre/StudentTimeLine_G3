@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('userscreate','UsersController@create')->name('users.create')
     ->middleware('has.role:admin');
 
-    Route::get('users/{user}/store','UsersController@edit')->name('users.store')
+    Route::put('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
     Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
