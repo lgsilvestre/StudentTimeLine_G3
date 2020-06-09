@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Modulo_carrera as Modulo;
 use App\Carrera;
-
+use DB;
 
 class Modulo_carreraController extends Controller
 {
@@ -14,10 +14,18 @@ class Modulo_carreraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $modulos = Modulo::all();
-        return view('modulos.index',compact("modulos"));
+        
+        $modulos = DB::table('carrera')
+        ->join('modulo', 'carrera.id', '=', 'modulo.id_carrera')
+        ->select('modulo.id','modulo.descripcion', 'carrera.nombre')
+        ->get();
+        if($request->ajax()){
+            return datatables()->of($modulos)->toJson();
+        }
+        $carreras = Carrera::all();
+        return view('modulo.index',compact('carreras'));
     }
 
     /**
@@ -28,7 +36,7 @@ class Modulo_carreraController extends Controller
     public function create()
     {
         $carreras = Carrera::all();
-        return view('modulos.create',compact('carreras'));
+        return view('modulo.create',compact('carreras'));
     }
 
     /**
@@ -41,11 +49,15 @@ class Modulo_carreraController extends Controller
     {
         $validate=$request->validate([
             'descripcion'=>'required|string|max:255',
+            'carrera' =>'required',
         ]);
-
-        $modulo = new Modulo();
+        $modulo = Modulo::create([
+            'descripcion' => 'au',
+            'id_carrera' => 1,
+        ]);
+        
         $modulo->descripcion=$request->get('descripcion');
-        $modulo->id_carrera=$request->get('id_carrera'); //asignar id directamente
+        $modulo->id_carrera=$request->get('carrera'); //asignar id directamente
         $modulo->save();
         return redirect()->action('Modulo_carreraController@index')
         ->with('success','Modulo ingresado con éxito'); 
@@ -71,7 +83,7 @@ class Modulo_carreraController extends Controller
     public function edit($id)
     {
         $modulo = Modulo::find($id);
-        return view ('modulos.edit', compact('modulo'));
+        return view ('modulo.edit', compact('modulo'));
     }
 
     /**
@@ -101,11 +113,11 @@ class Modulo_carreraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        Modulo::destroy($id);
+        Modulo::destroy($request->get('id'));
 
-        return redirect()->action('Moudulo_carreraController@index')
+        return redirect()->action('Modulo_carreraController@index')
         ->with('success','Modulo eliminado con éxito'); 
     }
 }
