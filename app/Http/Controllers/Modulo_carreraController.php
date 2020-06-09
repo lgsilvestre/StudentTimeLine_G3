@@ -19,7 +19,7 @@ class Modulo_carreraController extends Controller
         
         $modulos = DB::table('carrera')
         ->join('modulo', 'carrera.id', '=', 'modulo.id_carrera')
-        ->select('modulo.id','modulo.descripcion', 'carrera.nombre')
+        ->select('modulo.id','modulo.descripcion', 'carrera.nombre','modulo.id_carrera')
         ->get();
         if($request->ajax()){
             return datatables()->of($modulos)->toJson();
@@ -93,18 +93,18 @@ class Modulo_carreraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $validate=$request->validate([
             'descripcion'=>'required|string|max:255',
         ]);
-        $modulo = Modulo::find($id);
+        $modulo = Modulo::find($request->get('id'));
         $modulo->descripcion=$request->get('descripcion');
-        $modulo->id_carrera=$request->get('id_carrera'); //asignar id directamente
+        $modulo->id_carrera=$request->get('carrera'); //asignar id directamente
         $modulo->save();
 
         return redirect()->action('Modulo_carreraController@index')
-        ->with('success',',Modulo actualizado con éxito'); 
+        ->with('success','Modulo actualizado con éxito'); 
     }
 
     /**
