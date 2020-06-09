@@ -96,4 +96,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('modulo/store','Modulo_carreraController@store')->name('modulo.store')
     ->middleware('has.role:admin');
 
+    Route::post('modulo/update','Modulo_carreraController@update')->name('modulo.update')
+    ->middleware('has.role:admin');
+
+
 });

@@ -89,9 +89,20 @@
                 {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btn-eliminar btn-sm btnEliminar'><i class='fas fa-trash-alt'></i> Eliminar</button></div></div>"}
             ],
         });
+        obtener_data_eliminar("#modulos tbody",table);
         obtener_data_editar("#modulos tbody",table);
     });
     var obtener_data_editar = function(tbody,table){
+        $(tbody).on("click",".btnEditar",function(){
+            var data = table.row($(this).parents("tr")).data();
+            var idmodulo = $("#id_edit").val(data.id);
+            $("#nombre_edit").val(data.descripcion);
+            $("#carreras_select").val(data.id_carrera);
+            $("#modal_editar").modal("show");
+        });
+    };
+
+    var obtener_data_eliminar = function(tbody,table){
         $(tbody).on("click",".btnEliminar",function(){
             var data = table.row($(this).parents("tr")).data();
             var idmodulo = $("#id_mod").val(data.id);
@@ -166,6 +177,55 @@
         </div>
         <div class="modal-footer">  
                 
+                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
+        </form>
+
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para editar modulo -->
+<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-header">
+        <h5 class="modal-title" id="exampleModalLabel" >Creación Rol</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{{ route('modulo.update') }}" method="post">
+        @csrf
+        <div class="modal-body">
+            <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Descripción Modulo') }}</label>
+
+                <div class="col-md-6">
+                    <input id="nombre_edit" type="text" placeholder="Ejemplo: Plan 16 - Álgebra" class="form-control @error('name') is-invalid @enderror" name="descripcion" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
+                    @error('name')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>     
+            <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
+
+                <div class="col-md-6">
+                <select name="carrera" class="form-control" id="carreras_select">
+                   @foreach($carreras as $carrera)
+                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                    @endforeach
+                </select>
+                </div>
+            </div>  
+        </div>
+        <div class="modal-footer">  
+                    <input type="hidden" id="id_edit" name="id" value="">
                     <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
         </form>
 
