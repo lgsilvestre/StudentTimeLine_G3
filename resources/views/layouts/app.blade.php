@@ -47,6 +47,7 @@
                             @endif
                         @else
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('modulo.index')}}" style="color:#ffff">{{ __('Módulos') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('users.index')}}" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
                             <li class="nav-item dropdown">

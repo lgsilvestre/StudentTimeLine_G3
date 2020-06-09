@@ -4,23 +4,23 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card margen-card">
                                   
 
-                <div class="card-header custom-recuperarSesion" style="background-color:#577590; color:white">Categorias Observaciones</div>
+                <div class="card-header custom-recuperarSesion custom-header">Módulos de carreras</div>
 
                     <div class="card-body shadow-lg">                   
-                    <table id="categorias"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
+                    <table id="modulos"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
-                                    <th>id</th>
-                                    <th >Nombre Categoria</th>
+                                    <th >Nombre Modulo</th>
+                                    <th class="no-sort">Nombre Carrera</th>
                                     <th >
                                         @role('admin')
                                             <a href="#"  data-toggle="modal" data-target="#modal_crear"
                                             class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
-                                            <i class="fas fa-plus"></i> Crear Categoria
+                                            <i class="fas fa-plus"></i> Crear Modulo
                                         @endrole
                                     </a></th>
                                 </tr>
@@ -41,6 +41,7 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"defer></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 <script>
+    
     $(document).ready(function() {
         var espanol={
                 "sProcessing":     "Procesando...",
@@ -71,26 +72,35 @@
                 }
             }
         
-        $('#categorias').dataTable({//en caso de usar serverside se descomenta.
+        var table = $('#modulos').DataTable({//en caso de usar serverside se descomenta.
             processing: true,
             serverSide: true,
             language : espanol,
+            rowReorder: true,
             columnDefs: [
             { orderable: true, className: 'reorder', targets: 0 },
             { orderable: true, className: 'reorder', targets: 1 },
             { orderable: false, targets: '_all' }
             ],
-            ajax: "{{route('categoria.index')}}",
+            ajax: "{{route('modulo.index')}}",
             columns : [
-                {data: 'id'},
+                {data: 'descripcion'},
                 {data: 'nombre'},
                 {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btn-eliminar btn-sm btnEliminar'><i class='fas fa-trash-alt'></i> Eliminar</button></div></div>"}
-            ] 
-
+            ],
         });
-    } );
+        obtener_data_editar("#modulos tbody",table);
+    });
+    var obtener_data_editar = function(tbody,table){
+        $(tbody).on("click",".btnEliminar",function(){
+            var data = table.row($(this).parents("tr")).data();
+            var idmodulo = $("#id_mod").val(data.id);
+            $("#modal_eliminar").modal("show");
+        });
+    }
 </script>
-<!-- Modal para eliminar categoria -->
+
+<!-- Modal para eliminar modulo -->
 <div class="modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -104,9 +114,9 @@
         ¿Está seguro?
       </div>
       <div class="modal-footer">  
-            <form action="{{ route('categoria.destroy')}}" method="post">
+            <form action="{{ route('modulo.destroy')}}" method="post">
             @csrf
-                <input type="hidden" id="id_cat" name="id" value="">
+                <input type="hidden" id="id_mod" name="id" value="">
                 <button style="color:white"class="btn btn-info btn-sm">Confirmar</button>
             </form>
 
@@ -116,7 +126,7 @@
   </div>
 </div>
 
-<!-- Modal para crear categoria -->
+<!-- Modal para crear modulo -->
 <div class="modal fade" id="modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -126,14 +136,14 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('categoria.store') }}" method="post">
+      <form action="{{ route('modulo.store') }}" method="post">
         @csrf
         <div class="modal-body">
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre categoria') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Descripción Modulo') }}</label>
 
                 <div class="col-md-6">
-                    <input id="nombre" type="text" placeholder="Ejemplo: Eliminación" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input id="nombre" type="text" placeholder="Ejemplo: Plan 16 - Álgebra" class="form-control @error('name') is-invalid @enderror" name="descripcion" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                     @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -141,7 +151,18 @@
                         </span>
                     @enderror
                 </div>
-            </div>      
+            </div>     
+            <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
+
+                <div class="col-md-6">
+                <select name="carrera" class="form-control" id="exampleFormControlSelect1">
+                   @foreach($carreras as $carrera)
+                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                    @endforeach
+                </select>
+                </div>
+            </div>  
         </div>
         <div class="modal-footer">  
                 
@@ -153,61 +174,4 @@
     </div>
   </div>
 </div>
-
-<!-- Modal para editar categoria -->
-<div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color:black">Editar Rol</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="{{ route('categoria.update') }}" method="post">
-        @csrf
-        <div class="modal-body">
-            <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre categoria') }}</label>
-
-                <div class="col-md-6">
-                    <input type="hidden" id="id_edit" name="id" value="">
-                    <input id="nombre_editar" type="text" placeholder="Ejemplo: Eliminación" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>      
-        </div>
-        <div class="modal-footer">  
-                
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
-        </form>
-
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-$(document).on("click",".btnEliminar",function(){
-    fila = $(this).closest("tr");
-    id = parseInt(fila.find('td:eq(0)').text());
-    $("#id_cat").val(id);
-    $("#modal_eliminar").modal("show");
-});
-
-$(document).on("click",".btnEditar",function(){
-    fila = $(this).closest("tr");
-    id = parseInt(fila.find('td:eq(0)').text());
-    nombre = fila.find('td:eq(1)').text();
-    $("#id_edit").val(id);
-    $("#nombre_editar").val(nombre);
-    $("#modal_editar").modal("show");
-});
-
-</script>
 @endsection
