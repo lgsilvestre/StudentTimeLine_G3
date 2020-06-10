@@ -21,13 +21,13 @@ class UsersController extends Controller
         $usuarios = DB::table('role_user')
         ->join('users', 'role_user.user_id', '=', 'users.id')
         ->join('roles','role_user.role_id','=','roles.id')
-        ->join('carrera_usuario','role_user.user_id','=','carrera_usuario.id_usuario')
         ->whereNull('users.deleted_at')
-        ->select('role_user.user_id','role_user.role_id','users.name as nombre','users.email', 'roles.name','roles.id as id_rol','users.id','carrera_usuario.id_carrera')
+        ->select('role_user.user_id','role_user.role_id','users.name as nombre','users.email', 'roles.name','roles.id as id_rol','users.id')
         ->get();
 
         if($request->ajax()){
-            return datatables()->of($usuarios)->toJson();
+            return datatables()->of($usuarios)
+                ->toJson();
 
         }
         $carreras = Carrera::all();
@@ -75,11 +75,13 @@ class UsersController extends Controller
         $user->email_verified_at = now();
         $user->assignRoles($role->slug);
         
-        $user_carrera = Usuario_carrera::create([
-            'id_carrera' => $request->get('carrera'),
-            'id_usuario' => $user->id,
-        ]);
-
+        foreach($request->carreras as $carrera){
+            $user_carrera = Usuario_carrera::create([
+                'id_carrera' => $carrera,
+                'id_usuario' => $user->id,
+            ]);
+        }
+        
         $user->save();
 
         return redirect()->action('UsersController@index')
@@ -118,29 +120,43 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        
-        $validate=$request->validate([
-            'name'=>'required|string',
-            'email'=>'required|string|unique',
-            'password'=>'required|string|min:8',
+        $user = User::find($request->get('id'));
+        if($user->email == $request->email){
+            $validate=$request->validate([
+                'nombre'=>'required|string',
+                'carreras'=>'required',
             ]);
-
-        $user=User::find($id);
-
-        $user->name=$request->get('name');
-        $user->email=$request->get('email');
-        $user->password=$request->get('password');
+        }else{
+            $validate=$request->validate([
+                'nombre'=>'required|string',
+                'email'=>'required|string|unique:users',
+                'carreras'=>'required',
+            ]);
+        }
         
-        $user->update($request->all());
-        $user->roles()->sync($request->get('roles'));
 
+        
+        $user->name = $request->get('nombre');
+        $user->email = $request->get('email');
+
+
+        $role = Rol::find($request->get('id_rol')); 
+        $user->syncRoles($role->slug);
+        $user_carrera_del = DB::table('carrera_usuario')
+                        ->where('carrera_usuario.id_usuario','=',$request->get('id'))
+                        ->delete();
+        foreach($request->carreras as $carrera){
+            $user_carrera = Usuario_carrera::create([
+                'id_carrera' => $carrera,
+                'id_usuario' => $user->id,
+            ]);
+        }
         $user->save();
-        $users=User::all();
 
-        return redirect()->route('users.index',$users)->with([
-            'message'=>'El usuario ha sido modificado correctamente.']);
+        return redirect()->action('UsersController@index')
+        ->with('success','Usuario actualizado con éxito');  
     }
 
     /**

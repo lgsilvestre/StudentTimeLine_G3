@@ -142,7 +142,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Creación Rol</h5>
+        <h5 class="modal-title" id="exampleModalLabel" >Creación Módulo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -177,7 +177,7 @@
         </div>
         <div class="modal-footer">  
                 
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
+                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
         </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
@@ -191,7 +191,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Creación Rol</h5>
+        <h5 class="modal-title" id="exampleModalLabel" >Editar Módulo</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -226,7 +226,7 @@
         </div>
         <div class="modal-footer">  
                     <input type="hidden" id="id_edit" name="id" value="">
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
+                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
         </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
