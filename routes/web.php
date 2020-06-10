@@ -63,6 +63,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
+    Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
+    ->middleware('has.role:admin');
+
     Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
 
     Route::post('categoria/store','CategoriaController@store')->name('categoria.store')
