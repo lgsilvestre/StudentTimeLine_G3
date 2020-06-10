@@ -106,7 +106,7 @@
     var obtener_data_editar = function(tbody,table){
         $(tbody).on("click",".btnEditar",function(){
             var data = table.row($(this).parents("tr")).data();
-            $("#id_user_edit").val(data.id);
+            $("#id_edit").val(data.id);
             $("#nombre_edit").val(data.nombre);
             $("#id_carrera").val(data.id_carrera);
             $("#id_rol").val(data.id_rol);
@@ -147,7 +147,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Creación Rol</h5>
+        <h5 class="modal-title" id="exampleModalLabel" >Creación Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -169,16 +169,26 @@
                 </div>
             </div>     
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
-
+               
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
                 <div class="col-md-6">
-                <select name="carrera" class="form-control" id="exampleFormControlSelect1">
-                   @foreach($carreras as $carrera)
-                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
-                    @endforeach
-                </select>
+                
+                    <div  class="form-group" style="display:inline;">
+                    
+                        <ul  class="list-unstyled">
+                            
+                            @foreach($carreras as $carrera)
+                                <li>
+                                <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    {{$carrera->nombre}}
+                                </label>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-            </div>  
+            </div> 
 
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
@@ -232,7 +242,7 @@
         </div>
         <div class="modal-footer">  
                 
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
+                <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
         </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
@@ -246,12 +256,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Edición Rol</h5>
+        <h5 class="modal-title" id="exampleModalLabel" >Edición Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('users.store') }}" method="post">
+      <form action="{{ route('users.update') }}" method="post">
         @csrf
         <div class="modal-body">
             <div class="form-group row">
@@ -268,14 +278,24 @@
                 </div>
             </div>     
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
-
+               
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
                 <div class="col-md-6">
-                <select name="carrera" class="form-control" id="id_carrera">
-                   @foreach($carreras as $carrera)
-                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
-                    @endforeach
-                </select>
+                
+                    <div  class="form-group" style="display:inline;">
+                    
+                        <ul  class="list-unstyled">
+                            
+                            @foreach($carreras as $carrera)
+                                <li>
+                                <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    {{$carrera->nombre}}
+                                </label>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>  
 
@@ -330,8 +350,8 @@
 
         </div>
         <div class="modal-footer">  
-                
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Crear</button>
+                <input type="hidden" id="id_edit" name="id" value="">
+                <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
         </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
