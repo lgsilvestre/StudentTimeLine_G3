@@ -48,7 +48,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('users','UsersController@index')->name('users.index')
     ->middleware('has.role:admin');
 
-    Route::put('users/{user}/edit','UsersController@update')->name('users.update')
+    Route::post('users/update','UsersController@update')->name('users.update')
     ->middleware('has.role:admin');
 
     Route::get('users/{user}','UsersController@show')->name('users.show')
@@ -63,14 +63,17 @@ Route::middleware(['auth'])->group(function(){
     Route::post('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
+    Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
+    ->middleware('has.role:admin');
+
     Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
 
     Route::post('categoria/store','CategoriaController@store')->name('categoria.store')
     ->middleware('has.role:admin');
-       
+
     Route::get('categoria/index','CategoriaController@index')->name('categoria.index')
     ->middleware('has.role:admin');
-
+    
     Route::get('categoria/create','CategoriaController@create')->name('categoria.create')
     ->middleware('has.role:admin');
 
@@ -85,5 +88,19 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('categoria/{categoria}/edit','CategoriaController@edit')->name('categoria.edit')
     ->middleware('has.role:admin');
+
+    //rutas de modulos
+    Route::get('modulo/index','Modulo_carreraController@index')->name('modulo.index')
+    ->middleware('has.role:admin');
+
+    Route::post('modulodestroy','Modulo_carreraController@destroy')->name('modulo.destroy')
+    ->middleware('has.role:admin');
+
+    Route::post('modulo/store','Modulo_carreraController@store')->name('modulo.store')
+    ->middleware('has.role:admin');
+
+    Route::post('modulo/update','Modulo_carreraController@update')->name('modulo.update')
+    ->middleware('has.role:admin');
+
 
 });
