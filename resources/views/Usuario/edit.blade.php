@@ -8,7 +8,7 @@
                 <div class="card-header custom-color custom-letraRegistro">{{ __('Regsitro') }}</div>
 
                 <div class="card-body">
-                    <form method="post" action="{{ route('users.store') }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -28,24 +28,30 @@
                         <div class="form-group row">
                             <label for="carrera" class="col-md-4 col-form-label text-md-right">{{ __('Carrera') }}</label>
                         
-                            <div class="form group col-md-6">
-                                <select name="select" id="select" class="custom-select">
+                            <div class="btn-group col-md-6">
+                                <button class="btn dropdown-toggle" 
+                                    type="button" data-toggle="dropdown">Seleccione<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
                                     @foreach($carreras as $carrera)
-                                        <option><a href="#">{{$carrera->nombre}}</a></option>
+                                        <li><a href="#">{{$carrera->nombre}}</a></li>
                                     @endforeach
-                                </select>
+                                </ul>
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="Rol" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
                         
-                            <div class="form group col-md-6">
-                                <select name="select" id="select" class="custom-select">
+                            <div class="btn-group col-md-6">
+                                <button class="btn dropdown-toggle" 
+                                    type="button" data-toggle="dropdown">Seleccione<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
                                     @foreach($roles as $rol)
-                                        <option><a href="#">{{$rol->name}}</a></option>
+                                        <li><a href="#">{{$rol->name}}</a></li>
                                     @endforeach
-                                </select>
+                                </ul>
                             </div>
                         </div>
 

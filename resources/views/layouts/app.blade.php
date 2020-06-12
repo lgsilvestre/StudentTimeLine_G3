@@ -24,8 +24,8 @@
     <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
 </head>
 <body class="custom-fondo">
-    
     <div id="app">
+     @include('mensajes-flash')   
         <nav class="navbar navbar-expand-md custom-color shadow-sm">
             <div class="container" >
             
@@ -47,7 +47,8 @@
                             @endif
                         @else
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('rol.index')}}" style="color:#ffff">{{ __('Roles') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('modulo.index')}}" style="color:#ffff">{{ __('Módulos') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('users.index')}}" style="color:#ffff">{{ __('Usuarios') }}</a> </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
