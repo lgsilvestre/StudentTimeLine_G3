@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Modelo_carrera extends Model
+class Modulo_carrera extends Model
 {
     
     protected $fillable = [
