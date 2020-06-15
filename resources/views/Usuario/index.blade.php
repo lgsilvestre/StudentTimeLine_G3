@@ -23,7 +23,7 @@
                                 <th >Email</th>
                                
                                 <th >Rol asignado</th>
-                                <th colspan="3px"> <a href="{{ route('users.create') }}"  data-toggle="modal" data-target="#modal_crear"
+                                <th colspan="3px"> <a href=""  data-toggle="modal" data-target="#modal_crear"
                                         class="btn btn-sm btn-secondary float-cente" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Crear Usuario </a>&nbsp;</th>
                                 
@@ -85,7 +85,7 @@
                 {data: 'nombre'},
                 {data: 'email'},
                 {data: 'name'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar'><i class='fas fa-trash-alt'></i> Inhabilitar</button></div></div>"}
+                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar'><i class='fas fa-user-minus'></i> Inhabilitar</button></div></div>"}
             ],
             
             
