@@ -36,6 +36,23 @@ class UsersController extends Controller
     }
 
     //crear index inhabilitados
+    public function indexdisable(Request $request)
+    {
+        $usuarios = DB::table('role_user')
+        ->join('users', 'role_user.user_id', '=', 'users.id')
+        ->join('roles','role_user.role_id','=','roles.id')
+        ->whereNotNull('users.deleted_at')
+        ->select('role_user.user_id','role_user.role_id','users.name as nombre','users.email', 'roles.name','roles.id as id_rol','users.id')
+        ->get();
+
+        if($request->ajax()){
+            return datatables()->of($usuarios)
+                ->toJson();
+        }
+        $carreras = Carrera::all();
+        $roles = Rol::all();
+        return view('Usuario.indexinhabilitado',compact('carreras','roles'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -178,7 +195,12 @@ class UsersController extends Controller
     {
         $user = User::onlyTrashed()->find($request->get('id'))->restore();
 
-        return redirect()->action('UsersController@index')
+        return redirect()->action('UsersController@indexDisable')
         ->with('success','Usuario habilitado con éxito');
     }
+
+    public function editDatosPersonales(User $user)
+    {
+        return view('Usuario.perfil', compact('user'));
+    }    
 }
