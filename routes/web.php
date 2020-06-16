@@ -57,16 +57,19 @@ Route::middleware(['auth'])->group(function(){
     Route::get('users/{user}/update','UsersController@edit')->name('users.edit')
     ->middleware('has.role:admin');
 
-    Route::get('userscreate','UsersController@create')->name('users.create')
+    Route::get('usersdisable','UsersController@indexDisable')->name('users.disable')
     ->middleware('has.role:admin');
-
+    
     Route::post('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
     Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
     ->middleware('has.role:admin');
 
-    Route::get('user/{user}/editarPersonal', 'UsersController@editDatosPersonales')->name('user.perfil');
+    Route::post('users/restore','UsersController@restore')->name('users.restore')
+    ->middleware('has.role:admin');
+
+    Route::get('user/{user}/', 'UsersController@editDatosPersonales')->name('user.perfil');
 
     Route::post('categoria/store','CategoriaController@store')->name('categoria.store')
     ->middleware('has.role:admin');
