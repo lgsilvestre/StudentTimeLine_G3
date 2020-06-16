@@ -127,7 +127,8 @@ class UsersController extends Controller
         //administrador????
         $user=User::find($id);
         $roles=Rol::all();
-        return view('Usuario.edit',compact('user','roles'));
+        $carreras=Carrera::all();
+        return view('Usuario.edit',compact('user','roles', 'carreras'));
     }
 
     /**
