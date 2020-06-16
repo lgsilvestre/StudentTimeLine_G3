@@ -93,10 +93,9 @@ class EstudianteController extends Controller
         $estudiante->prom_cursados=$request->get('prom_cursados');
 
         $estudiante->save();
-        $estudiantes=Estudiante::all();
 
-        return redirect()->route('estudiante.index',$estudiantes)->with([
-            'message'=>'El estudiante ha sido ingresado correctamente']);
+        return redirect()->action('EstudianteController@index')
+        ->with('success','Estudiante ingresado con éxito'); 
     }
 
     /**
@@ -187,10 +186,9 @@ class EstudianteController extends Controller
         $estudiante->prom_cursados=$request->get('prom_cursados');
         
         $estudiante->save();
-        $estudiantes=Estudiante::all();
 
-        return redirect()->route('estudiantes.index',$estudiantes)->with([
-            'message'=>'Los datos han sido modificados correctamente']);
+        return redirect()->action('EstudianteController@index')
+        ->with('success','Estudiante actualizado con éxito');
     }
 
     /**
@@ -202,8 +200,7 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         Estudiante::destroy($id);
-        $estudiantes=Estudiante::all();
-        return redirect()->route('estudiantes.index',$estudiantes)->with([
-            'message'=>'El estudiante ha sido eliminado correctamente']);
+        return redirect()->action('EstudianteController@index')
+        ->with('success','Estudiante eliminado con éxito');
     }
 }

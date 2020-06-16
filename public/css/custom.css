@@ -61,7 +61,6 @@
     background-size: cover;
     background-position:center center;
     background-attachment: fixed;
-
 }
 
 .custom-tamanioCasilla{
@@ -147,4 +146,8 @@
 
 .custom-registrar:hover{
     background-color: #1d3557;
+}
+.custom-header{
+    background-color:#577590; 
+    color:white
 }

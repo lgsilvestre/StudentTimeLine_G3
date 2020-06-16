@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rol;
+use Caffeinated\Shinobi\Models\Role;
 use App\User;
+use DataTables;
 class RolController extends Controller
 {
     /**
@@ -14,9 +15,15 @@ class RolController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = Rol::busqueda($request->get('busqueda'))->paginate(15);
-        $users = User::all();
-        return view('rol.index',compact('roles','users'));
+        
+        /* $roles = Role::all();
+        return view('rol.index',compact('roles')); */
+        //por si se usara server process de datatables
+        if($request->ajax()){
+            
+            return datatables()->eloquent(Role::query())->toJson();
+        }
+        return view('rol.index');
     }
 
     /**
@@ -26,8 +33,8 @@ class RolController extends Controller
      */
     public function create()
     {
-        $permissions = Permission::get();
-        return view('roles.create',compact('permissions'));
+        
+        return view('roles.create');
     }
 
     /**
@@ -43,12 +50,11 @@ class RolController extends Controller
             'name' => 'required|unique:roles|min:3|max:45',
         ]);
         
-        $role = Role::create($request->all());
-        $role->permissions()->sync($request->get('permissions'));
-        $roles = Role::all()->paginate(15);
+        $Role = Role::create($request->all());
+        $roles = Role::all();
 
         return redirect()->route('roles.index',$roles)
-            ->with('info','Rol guardado con éxito');
+            ->with('info','Role guardado con éxito');
     }
 
     /**
@@ -57,21 +63,21 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Role $Role)
     {
         $users = User::all();
         $cantidad_usuarios = 0;
-        $permisos = $role->special;
+        $permisos = $Role->special;
         if($permisos==null){
-            $permisos = $role->permissions;
+            $permisos = $Role->permissions;
         }
         foreach($users as $user){
-            if($user->hasRole($role->slug)){
+            if($user->hasRole($Role->slug)){
                 $cantidad_usuarios+=1;
-                return view('roles.show',compact('role','cantidad_usuarios','permisos'));
+                return view('roles.show',compact('Role','cantidad_usuarios','permisos'));
             }
         }
-        return view('roles.show',compact('role','cantidad_usuarios','permisos'));
+        return view('roles.show',compact('Role','cantidad_usuarios','permisos'));
     }
 
     /**
@@ -80,10 +86,10 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $Role)
     {
         $permissions = Permission::get();
-        return view('roles.edit',compact('role','permissions'));
+        return view('roles.edit',compact('Role','permissions'));
     }
 
     /**
@@ -96,11 +102,11 @@ class RolController extends Controller
     public function update(Request $request, $id)
     {
          //no validar nada si se mantienen los mismos parametros
-         if($role->slug == $request->slug && $nombreantiguo == $nombrenuevo){
+         if($Role->slug == $request->slug && $nombreantiguo == $nombrenuevo){
             
         }   
         //solo validar el nombre si los slugs son iguales
-        elseif($role->slug == $request->slug){
+        elseif($Role->slug == $request->slug){
             $validatedData = $request->validate([
                 'name' => 'required|unique:roles|min:3|max:190',
             ]);
@@ -122,13 +128,13 @@ class RolController extends Controller
             
         }
         //actualizar rol
-        $role->update($request->all());
+        $Role->update($request->all());
 
         //actualizar permisos
-        $role->permissions()->sync($request->get('permissions'));
+        $Role->permissions()->sync($request->get('permissions'));
 
         return redirect()->route('roles.index',$roles)
-            ->with('success','Rol actualizado con éxito');  
+            ->with('success','Role actualizado con éxito');  
     }
 
     /**
@@ -137,14 +143,15 @@ class RolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        
         $rol = Role::findOrFail($request->get('idrol'));
         $rol-> delete();
-        $roles = Role::all()->paginate(15);
-         
-        return redirect()->route('roles.index',$roles)
-            ->with('success','Rol eliminado con éxito');
+        $roles = Role::all();
+        
+        return redirect()->action('RolController@index')
+            ->with('success','Rol eliminado con éxito'); 
     }
 
 }
