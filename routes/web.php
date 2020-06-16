@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
 
-    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('home', 'CarreraController@index')->name('home');
 
     Route::post('roles/store','RolController@store')->name('rol.store')
     ->middleware('has.role:admin');
@@ -48,12 +48,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('users','UsersController@index')->name('users.index')
     ->middleware('has.role:admin');
 
-<<<<<<< HEAD
-    Route::post('users/update','UsersController@update')->name('users.update')
-=======
-    Route::put('users/{user}/update','UsersController@update')->name('users.update')
->>>>>>> Ruben
-    ->middleware('has.role:admin');
+    Route::post('users/update','UsersController@update')->name('users.update')->middleware('has.role:admin');
 
     Route::get('users/{user}','UsersController@show')->name('users.show')
     ->middleware('has.role:admin');

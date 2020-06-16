@@ -3,13 +3,28 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Carreras</div>
-
-                <div class="card-body">                   
-                    Vista de carreras. Aquí el admin debe seleccionar una carrera.
-                </div>
+        <div class="col-md-12">
+            <div class="card margen-card custom-card">
+                                  
+                <div class="card-header custom-recuperarSesion custom-header">Carreras</div>
+                    <div class="card-body">
+                        <div class="row">
+                                @foreach($carreras as $carrera) 
+                                <div class="col-sm-4">
+                                    <div class="card shadow p-3" style="margin-bottom: 10px" >
+                                        <img class="card-img-top" src="/images/Logo_ICC.png" alt="No image">
+                                        <div class="card-body"> 
+                                           <hr class="my-4" style="border: 1px solid black"></hr> 
+                                           <h4 class="card-title text-sm-center" style="font-size: 18px"> {{  $carrera->nombre  }}</h4>
+                                            <div class="text-center"> <button href="#" class="btn btn-info"> Ver más</button></div> 
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                @endforeach      
+                        </div>
+                    </div>
+                    
             </div>
         </div>
     </div>
