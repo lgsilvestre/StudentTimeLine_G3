@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
 
-    Route::get('home', 'CarreraController@index')->name('home');
+    Route::get('home/{user}/', 'CarreraController@index')->name('home');
 
     Route::post('roles/store','RolController@store')->name('rol.store')
     ->middleware('has.role:admin');

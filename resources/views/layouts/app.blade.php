@@ -46,7 +46,7 @@
                                 </a>
                             @endif
                         @else
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('home',Auth::user()->id)}}" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
                         @role('admin')
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('modulo.index')}}" style="color:#ffff">{{ __('Módulos') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>  
@@ -70,7 +70,7 @@
                             
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -96,7 +96,9 @@
 
         <main>
             @yield('content')
+
         </main>
     </div>
 </body>
+
 </html>

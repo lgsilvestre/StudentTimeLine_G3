@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Carrera;
+use App\User;
 
 class CarreraController extends Controller
 {
@@ -20,7 +21,7 @@ class CarreraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
         $carreras = Carrera::all();
         return view('home',compact('carreras'));
