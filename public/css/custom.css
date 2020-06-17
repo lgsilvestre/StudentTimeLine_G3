@@ -58,6 +58,11 @@
     background-color: rgb(245, 245, 245);
 }
 
+.custom-card {
+    background-color: #EFEEEE;
+
+}
+
 .custom-fondo{
     background: url('/images/fondo1.jpg') no-repeat;
     -webkit-background-size: cover;
