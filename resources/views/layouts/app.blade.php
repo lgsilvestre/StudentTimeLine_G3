@@ -46,7 +46,7 @@
                                 </a>
                             @endif
                         @else
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('home',Auth::user()->id)}}" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('home')}}" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
                         @role('admin')
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('modulo.index')}}" style="color:#ffff">{{ __('Módulos') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>  
