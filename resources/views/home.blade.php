@@ -16,7 +16,7 @@
                                         <div class="card-body"> 
                                            <hr class="my-4" style="border: 1px solid black"></hr> 
                                            <h4 class="card-title text-sm-center" style="font-size: 18px"> {{  $carrera->nombre  }}</h4>
-                                            <div class="text-center"> <button href="#" class="btn btn-info"> Ver más</button></div> 
+                                            <div class="text-center"> <a href="{{route('estudiantes.index',$carrera->id)}}" class="btn btn-info"> Ver más</a></div> 
                                         </div>
                                         
                                     </div>
