@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Carrera;
+use App\User;
+use Auth;
 
 class CarreraController extends Controller
 {
@@ -22,7 +24,19 @@ class CarreraController extends Controller
      */
     public function index()
     {
-        $carreras = Carrera::all();
+        $user = User::find(Auth::user()->id);
+        if($user->id == 1){
+            $carreras = Carrera::all();
+        }else{
+            $carreras = $user->usuario_carrera;
+            $collect = [];
+            foreach($carreras as $carrera){
+                $car = $carrera->carrera;
+                $collect[]=$car; 
+            }
+            $carreras = collect($collect);
+        }
+        
         return view('home',compact('carreras'));
     }
 
