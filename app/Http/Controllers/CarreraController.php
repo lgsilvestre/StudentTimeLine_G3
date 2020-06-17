@@ -29,6 +29,7 @@ class CarreraController extends Controller
             $carreras = Carrera::all();
         }else{
             $carreras = $user->usuario_carrera;
+            dump($carreras);
             $collect = [];
             foreach($carreras as $carrera){
                 $car = $carrera->carrera;
