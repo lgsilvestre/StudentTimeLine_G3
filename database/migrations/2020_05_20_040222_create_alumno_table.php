@@ -37,6 +37,7 @@ class CreateAlumnoTable extends Migration
             $table->decimal('prom_cursados',3,2)->notnull();
             $table->unsignedInteger('id_carrera')->notnull();
             $table->foreign('id_carrera')->references('id')->on('carrera');
+            $table->integer('num_observaciones')->unsigned()->default(0);
             $table->timestamps();
         });
     }

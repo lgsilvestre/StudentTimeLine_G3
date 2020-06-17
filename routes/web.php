@@ -104,5 +104,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('modulo/update','Modulo_carreraController@update')->name('modulo.update')
     ->middleware('has.role:admin');
 
-
+    //Rutas de estudiantes
+    Route::get('estudiantes/{carrera}/','EstudianteController@index')->name('estudiantes.index');
 });
