@@ -75,6 +75,12 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$name);
+        }
+
         $validate=$request->validate([
             'nombre'=>'required|string',
             'email'=>'required|string|unique:users',
@@ -86,11 +92,13 @@ class UsersController extends Controller
                 'email_verified_at' => now(),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
+                
             ]);
         
         $role = Rol::find($request->get('id_rol')); 
         $user->email_verified_at = now();
         $user->assignRoles($role->slug);
+        $user->imagen = $name;    
         
         foreach($request->carreras as $carrera){
             $user_carrera = Usuario_carrera::create([
@@ -99,10 +107,14 @@ class UsersController extends Controller
             ]);
         }
         
+        
         $user->save();
 
         return redirect()->action('UsersController@index')
         ->with('success','Usuario creado con éxito'); 
+     
+    
+        
     }
 
     /**
