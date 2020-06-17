@@ -152,7 +152,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('users.store') }}" method="post">
+      <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
             <div class="form-group row">
@@ -237,7 +237,28 @@
                         <input id="password-confirm" type="password" placeholder="••••••••••••••" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
             </div>
+            <!--esto es lo que estoy creando para agregar la foto al usuario-->
+            <!--
+            <div class="form-group row">
+                <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
+                <div class="col-md-6 custom-file">
+                    <input id="imagen" type="file"  class="custom-file-input" name="foto">
+                    <label class="custom-file-label" for="validatedCustomFile">Imagen opcional...</label>
+                    <div class="invalid-feedback">Archivo Inválido</div>
+                </div>
+            </div>
+            -->
+
+            <div class="form-group row">
+                <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
+
+                <div class="col-md-6">
+                    <input id="imagen" type="file"  class="form-control" name="foto">
+                </div>
+            </div>
+
+            <!--hasta aqui va la fotito-->
 
         </div>
         <div class="modal-footer">  
