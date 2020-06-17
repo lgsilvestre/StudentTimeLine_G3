@@ -198,3 +198,11 @@
 .custom-perfilElemento{
     display: block;
 }
+
+.card-img-top {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 90px;
+}
