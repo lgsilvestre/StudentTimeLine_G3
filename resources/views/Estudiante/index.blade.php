@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card margen-card">
-                <div class="card-header custom-recuperarSesion custom-header">Estudiantes</div>
+                <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
                     <div class="card-body">                   
                     <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
