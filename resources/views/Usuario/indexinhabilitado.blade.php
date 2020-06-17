@@ -9,13 +9,13 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card margen-card" >
+            <div class="card margen-card custom-card" >
                 <div class="card-header shadow-sm custom-recuperarSesion" style="background-color:#577590; color:white">Usuarios Inhabilitados
                 </div>
                 
                 <div class="card-body">     
                 
-                <table id="usuarios" class="table table-striped table-responsive-sm table-hover " style="width:100%">
+                <table id="usuarios" class="table shadow table-responsive-sm table-hover " style="width:100%">
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
