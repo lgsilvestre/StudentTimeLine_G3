@@ -27,5 +27,6 @@ class RoleTableSeeder extends Seeder
             'name' => 'Secretaria de Escuela', //Se refiere a la secretaría de escuela
             'slug' => 'secretaria',
         ]);
+        /* factory(Role::class, 1000)->create(); */
     }
 }
