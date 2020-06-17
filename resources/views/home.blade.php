@@ -12,7 +12,7 @@
                                 @foreach($carreras as $carrera) 
                                 <div class="col-sm-4">
                                     <div class="card shadow p-3" style="margin-bottom: 10px" >
-                                        <img class="card-img-top" src="/images/Logo_ICC.png" alt="No image">
+                                        <img class="card-img-top" src="../images/{{$carrera->imagen}}" alt="No image">
                                         <div class="card-body"> 
                                            <hr class="my-4" style="border: 1px solid black"></hr> 
                                            <h4 class="card-title text-sm-center" style="font-size: 18px"> {{  $carrera->nombre  }}</h4>
