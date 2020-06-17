@@ -74,7 +74,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $name= null;
         if($request->hasFile('foto')){
             $file = $request->file('foto');
             $name = time().$file->getClientOriginalName();
