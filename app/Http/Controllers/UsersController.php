@@ -8,6 +8,8 @@ use App\Carrera;
 use DB;
 use Caffeinated\Shinobi\Models\Role as Rol;
 use App\Usuario_carrera;
+use Auth;
+use Hash;
 
 class UsersController extends Controller
 {
@@ -189,6 +191,21 @@ class UsersController extends Controller
         ->with('success','Usuario actualizado con éxito');  
     }
 
+    public function updateContrasena(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $validate=$request->validate([
+            'old_password'=>'required|string',
+            'password'=>'required|string|min:8|confirmed|different:old_password',
+        ]);
+        if(Hash::check($request->old_password,$user->password)){
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return  redirect()->back()->with('success', 'Contraseña actualizada con éxito');
+        }else{
+            return  redirect()->back()->with('error', 'Contraseña antigua erronea');
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *

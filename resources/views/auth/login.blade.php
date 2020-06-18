@@ -33,7 +33,7 @@
 
                             <div class="col-md-6 inputWithIcon">
                                 <input id="password" type="password" placeholder="••••••••••••••" class="custom-colorCasillas custom-ajusteTextoImagen form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                <i id="show_password" class="fa fa-eye-slash fa-lg icon" type="button" onclick="mostrarPassword()"></i>
+                                <i id="show_password" class="fa fa-eye-slash fa-lg icon"  onclick="mostrarPassword()"></i>
 
                                 <script type="text/javascript">
                                 
