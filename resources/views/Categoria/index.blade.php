@@ -5,13 +5,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card margen-card">
+            <div class="card margen-card custom-card">
                                   
 
                 <div class="card-header custom-recuperarSesion" style="background-color:#577590; color:white">Categorías Observaciones</div>
 
                     <div class="card-body shadow-lg">                   
-                    <table id="categorias"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
+                    <table id="categorias"class="table table-responsive-sm table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
                                     <th>id</th>

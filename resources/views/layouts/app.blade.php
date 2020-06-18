@@ -47,17 +47,21 @@
                                 </a>
                             @endif
                         @else
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('home')}}" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
+                        @role('admin')
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('modulo.index')}}" style="color:#ffff">{{ __('Módulos') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorías') }}</a> </li>                       
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>  
+                        @endrole          
                         <li class="nav-item dropdown">
+                             @role('admin')
                             <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
                                     {{ __('Gestión de Usuarios') }} <span class="caret"></span>
                             </a>
+                            @endrole
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.index')}}">
-                                    {{ __('Crear / Inhabilitar') }}
-                                </a>
+                                    {{ __('Habilitados') }}
+                                </a> 
 
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.disable')}}">
                                     {{ __('Habilitar') }}
@@ -67,7 +71,7 @@
                             
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                            {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -93,7 +97,9 @@
 
         <main>
             @yield('content')
+
         </main>
     </div>
 </body>
+
 </html>

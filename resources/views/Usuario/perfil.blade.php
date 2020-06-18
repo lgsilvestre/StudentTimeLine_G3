@@ -6,9 +6,10 @@
         <div class="col-md-8">
             <div class="card custom-ajustarVistaPerfil">
                 <div class="card-header custom-color custom-perfil">Mi Perfil</div>
-
-                <div class="card-body">   
-                    <div class= "custom-foto float-center"></div> 
+                <div class="card-body"> 
+                    <div class= "custom-foto float-center">
+                        <img class="imagen" src="../images/{{$user->imagen}}" alt="">
+                    </div> 
                     <ul class="btn btn-link float-center custom-olvido custom-perfilElemento" href="{{ route('password.request') }}">
                         {{ __('Cambiar foto de perfil') }} 
                     </ul>              

@@ -22,7 +22,7 @@ class CreateAlumnoTable extends Migration
             $table->string('ap_Materno', 255);
             $table->string('correo', 255)->unique();
             $table->string('sexo', 255)->notnull();
-            $table->date('fech_nac')->notnull();
+            $table->string('fech_nac')->notnull();
             $table->integer('plan')->unsigned()->default(16);
             $table->integer('año_ingreso')->unsigned()->default(2020);
             $table->string('estado_actual',255)->default('regular');
@@ -31,12 +31,13 @@ class CreateAlumnoTable extends Migration
             $table->integer('creditos_aprobados')->notnull();
             $table->integer('nivel')->notnull();
             $table->integer('porc_avance')->notnull();
-            $table->decimal('ult_ptje_prioridad',3,2)->notnull();
-            $table->boolean('regular')->notnull();
-            $table->decimal('prom_aprobadas',3,2)->notnull();
-            $table->decimal('prom_cursados',3,2)->notnull();
+            $table->string('ult_ptje_prioridad')->notnull();
+            $table->string('regular')->notnull();
+            $table->string('prom_aprobadas')->notnull();
+            $table->string('prom_cursados')->notnull();
             $table->unsignedInteger('id_carrera')->notnull();
             $table->foreign('id_carrera')->references('id')->on('carrera');
+            $table->integer('num_observaciones')->unsigned()->default(0);
             $table->timestamps();
         });
     }

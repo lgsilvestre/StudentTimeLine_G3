@@ -9,13 +9,13 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card margen-card" >
+            <div class="card margen-card custom-card" >
                 <div class="card-header shadow-sm custom-recuperarSesion" style="background-color:#577590; color:white">Usuarios
                 </div>
                 
                 <div class="card-body">     
                 
-                <table id="usuarios" class="table table-striped table-responsive-sm table-hover " style="width:100%">
+                <table id="usuarios" class="table table-responsive-sm table-hover shadow" style="width:100%">
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
@@ -152,7 +152,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="{{ route('users.store') }}" method="post">
+      <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="modal-body">
             <div class="form-group row">
@@ -259,7 +259,28 @@
                         <i class="fa fa-key fa-lg" aria-hidden="true"></i>
                     </div>
             </div>
+            <!--esto es lo que estoy creando para agregar la foto al usuario-->
+            <!--
+            <div class="form-group row">
+                <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
+                <div class="col-md-6 custom-file">
+                    <input id="imagen" type="file"  class="custom-file-input" name="foto">
+                    <label class="custom-file-label" for="validatedCustomFile">Imagen opcional...</label>
+                    <div class="invalid-feedback">Archivo Inválido</div>
+                </div>
+            </div>
+            -->
+
+            <div class="form-group row">
+                <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
+
+                <div class="col-md-6">
+                    <input id="imagen" type="file"  class="form-control" name="foto">
+                </div>
+            </div>
+
+            <!--hasta aqui va la fotito-->
 
         </div>
         <div class="modal-footer">  

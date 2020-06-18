@@ -13,7 +13,7 @@ class Carrera extends Model
      * @var array
      */
     protected $fillable = [
-        'nombre','codigo_carrera',
+        'nombre','codigo_carrera','imagen',
     ];
     protected $table = 'carrera';
     
@@ -21,8 +21,8 @@ class Carrera extends Model
         return $this->hasMany('App\Usuario_carrera','id_carrera');
     }
 
-    public function estudiante(){
-        return $this->hasMany('App\Estudiante','id_estudiante');
+    public function estudiantes(){
+        return $this->hasMany('App\Estudiante','id_carrera');
     }
 
     public function modulos(){

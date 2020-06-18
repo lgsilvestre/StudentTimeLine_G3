@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card margen-card">
+            <div class="card margen-card custom-card">
                                   
 
                 <div class="card-header custom-recuperarSesion custom-header">Módulos de carreras</div>

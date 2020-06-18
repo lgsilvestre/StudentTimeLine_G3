@@ -21,7 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
 
-    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('home/', 'CarreraController@index')->name('home');
 
     Route::post('roles/store','RolController@store')->name('rol.store')
     ->middleware('has.role:admin');
@@ -48,13 +48,12 @@ Route::middleware(['auth'])->group(function(){
     Route::get('users','UsersController@index')->name('users.index')
     ->middleware('has.role:admin');
 
-    Route::post('users/update','UsersController@update')->name('users.update')
-    ->middleware('has.role:admin');
+    Route::post('users/update','UsersController@update')->name('users.update')->middleware('has.role:admin');
 
     Route::get('users/{user}','UsersController@show')->name('users.show')
     ->middleware('has.role:admin');
 
-    Route::get('users/{user}/update','UsersController@edit')->name('users.edit')
+    Route::get('users/{user}/edit','UsersController@edit')->name('users.edit')
     ->middleware('has.role:admin');
 
     Route::get('usersdisable','UsersController@indexDisable')->name('users.disable')
@@ -105,5 +104,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('modulo/update','Modulo_carreraController@update')->name('modulo.update')
     ->middleware('has.role:admin');
 
-
+    //Rutas de estudiantes
+    Route::get('estudiantes/{carrera}/','EstudianteController@index')->name('estudiantes.index');
 });
