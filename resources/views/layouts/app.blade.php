@@ -31,7 +31,7 @@
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="../images/logo_blanco.png" style="width: 100%; max-width: 330px; min-width: 200px" >
+                    <img src="/images/logo_blanco.png" style="width: 100%; max-width: 330px; min-width: 200px" >
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,7 +43,7 @@
                         @guest
                             @if (Route::has('register'))
                                 <a class="nav-item custom-titulo ">
-                                    <img src="../images/ingenieria.png" width="200px" height="50px">
+                                    <img src="/images/ingenieria.png" width="200px" height="50px">
                                 </a>
                             @endif
                         @else
