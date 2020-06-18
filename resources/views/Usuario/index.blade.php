@@ -120,20 +120,20 @@
 <div class="modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color:red">Advertencia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header custom-colorAdvertencia">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ¿Está seguro?
+        ¿Está seguro que desea inhabilitar el usuario seleccionado?
       </div>
       <div class="modal-footer">  
             <form action="{{ route('users.destroy')}}" method="post">
             @csrf
                 <input type="hidden" id="id_user" name="id" value="">
-                <button style="color:white"class="btn btn-info btn-sm">Confirmar</button>
+                <button style="background-color: #2a9d8f; color:white"class="btn btn-info btn-sm">Confirmar</button>
             </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
@@ -158,9 +158,9 @@
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
-                <div class="col-md-6">
-                    <input id="nombre" type="text" placeholder="Ejemplo: Juan" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                <div class="col-md-6 inputWithIcon">
+                    <input id="nombre" type="text" placeholder="Ejemplo: Juan" class="custom-ajusteTextoImagen form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -193,8 +193,9 @@
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
 
-                <div class="col-md-6">
-                <select name="id_rol" class="form-control" id="exampleFormControlSelect1">
+                <div class="col-md-6 inputWithIcon">
+                    <i class="fa fa-user-tie fa-lg" aria-hidden="true"></i>
+                    <select name="id_rol" class="custom-ajusteTextoImagen form-control" id="exampleFormControlSelect1">
                    @foreach($roles as $role)
                         <option value="{{$role->id}}">{{$role->name}}</option>
                     @endforeach
@@ -205,9 +206,9 @@
             <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
-                    <div class="col-md-6">
-                        <input id="email" type="email" placeholder="ejemplo@utalca.cl" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                    <div class="col-md-6 inputWithIcon">
+                        <input id="email" type="email" placeholder="ejemplo@utalca.cl" class="custom-ajusteTextoImagen form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -219,9 +220,29 @@
             <div class="form-group row">
                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
-                <div class="col-md-6">
-                    <input id="password" type="password" placeholder="••••••••••••••" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                <div class="col-md-6 inputWithIcon">
+                    <input id="password" type="password" placeholder="••••••••••••••" class="custom-ajusteTextoImagen form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                    <i id="show_password" class="fa fa-eye-slash fa-lg icon" type="button" onclick="mostrarPassword()"></i>
 
+                    <script type="text/javascript">
+                                
+                        function mostrarPassword(){
+                            var cambio = document.getElementById("password");
+                                
+                                if(cambio.type == "password"){
+                                    cambio.type = "text";
+                                    
+                                    $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                                }
+                                
+                                else{
+                                    cambio.type = "password";
+        
+                                    $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                                }                           
+                            } 
+                    </script>
+                        
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -233,8 +254,9 @@
             <div class="form-group row">
                     <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
 
-                    <div class="col-md-6">
-                        <input id="password-confirm" type="password" placeholder="••••••••••••••" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    <div class="col-md-6 inputWithIcon">
+                        <input id="password-confirm" type="password" placeholder="••••••••••••••" class="custom-ajusteTextoImagen form-control" name="password_confirmation" required autocomplete="new-password">
+                        <i class="fa fa-key fa-lg" aria-hidden="true"></i>
                     </div>
             </div>
             <!--esto es lo que estoy creando para agregar la foto al usuario-->
@@ -288,9 +310,9 @@
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
 
-                <div class="col-md-6">
-                    <input id="nombre_edit" type="text" placeholder="Ejemplo: Juan" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                <div class="col-md-6 inputWithIcon">
+                    <input id="nombre_edit" type="text" placeholder="Ejemplo: Juan" class="custom-ajusteTextoImagen form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <i class="fa fa-user fa-lg" aria-hidden="true"></i>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -323,21 +345,22 @@
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
 
-                <div class="col-md-6">
-                <select name="id_rol" class="form-control" id="id_rol">
-                   @foreach($roles as $role)
-                        <option value="{{$role->id}}">{{$role->name}}</option>
-                    @endforeach
-                </select>
+                <div class="col-md-6 inputWithIcon">
+                    <i class="fa fa-user-tie fa-lg" aria-hidden="true"></i>
+                    <select name="id_rol" class="custom-ajusteTextoImagen form-control" id="id_rol">
+                        @foreach($roles as $role)
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
 
             <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
-                    <div class="col-md-6">
-                        <input id="email_edit" type="email" placeholder="ejemplo@utalca.cl" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
+                    <div class="col-md-6 inputWithIcon">
+                        <input id="email_edit" type="email" placeholder="ejemplo@utalca.cl" class="custom-ajusteTextoImagen form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
