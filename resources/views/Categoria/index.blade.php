@@ -8,19 +8,19 @@
             <div class="card margen-card">
                                   
 
-                <div class="card-header custom-recuperarSesion" style="background-color:#577590; color:white">Categorias Observaciones</div>
+                <div class="card-header custom-recuperarSesion" style="background-color:#577590; color:white">Categorías Observaciones</div>
 
                     <div class="card-body shadow-lg">                   
                     <table id="categorias"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
                                     <th>id</th>
-                                    <th >Nombre Categoria</th>
+                                    <th >Nombre Categoría</th>
                                     <th >
                                         @role('admin')
                                             <a href="#"  data-toggle="modal" data-target="#modal_crear"
                                             class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
-                                            <i class="fas fa-plus"></i> Crear Categoria
+                                            <i class="fas fa-plus"></i> Crear Categoría
                                         @endrole
                                     </a></th>
                                 </tr>
@@ -94,20 +94,20 @@
 <div class="modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color:red">Advertencia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header custom-colorAdvertencia">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ¿Está seguro?
+        ¿Está seguro que desea eliminar la categoría seleccionada?
       </div>
       <div class="modal-footer">  
             <form action="{{ route('categoria.destroy')}}" method="post">
             @csrf
                 <input type="hidden" id="id_cat" name="id" value="">
-                <button style="color:white"class="btn btn-info btn-sm">Confirmar</button>
+                <button style="background-color: #2a9d8f; color:white"class="btn btn-info btn-sm">Confirmar</button>
             </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
@@ -120,8 +120,8 @@
 <div class="modal fade" id="modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header custom-header">
-        <h5 class="modal-title" id="exampleModalLabel" >Creación Rol</h5>
+      <div class="modal-header custom-header custom-color">
+        <h5 class="modal-title" id="exampleModalLabel" >Creación Categoría</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -130,11 +130,11 @@
         @csrf
         <div class="modal-body">
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre categoria') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre categoría') }}</label>
 
-                <div class="col-md-6">
-                    <input id="nombre" type="text" placeholder="Ejemplo: Eliminación" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                <div class="col-md-6 inputWithIcon">
+                    <input id="nombre" type="text" placeholder="Ejemplo: Eliminación" class="custom-ajusteTextoImagen form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <i class="fa fa-tag fa-lg" aria-hidden="true"></i>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -158,9 +158,9 @@
 <div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color:black">Editar Rol</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header custom-color">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white">Editar Categoría</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -168,12 +168,12 @@
         @csrf
         <div class="modal-body">
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre categoria') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre categoría') }}</label>
 
-                <div class="col-md-6">
+                <div class="col-md-6 inputWithIcon">
                     <input type="hidden" id="id_edit" name="id" value="">
-                    <input id="nombre_editar" type="text" placeholder="Ejemplo: Eliminación" class="form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                    <input id="nombre_editar" type="text" placeholder="Ejemplo: Eliminación" class="custom-ajusteTextoImagen form-control @error('name') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <i class="fa fa-tag fa-lg" aria-hidden="true"></i>
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

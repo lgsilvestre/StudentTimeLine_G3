@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,8 +21,8 @@
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/fontawesome.min.css">
 
-    <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
 </head>
 <body class="custom-fondo">
     <div id="app">
@@ -48,18 +49,18 @@
                         @else
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="/home" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('modulo.index')}}" style="color:#ffff">{{ __('Módulos') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>                       
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorías') }}</a> </li>                       
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
                                     {{ __('Gestión de Usuarios') }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.index')}}">
-                                    {{ __('Habilitados') }}
+                                    {{ __('Crear / Inhabilitar') }}
                                 </a>
 
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.disable')}}">
-                                    {{ __('Inhabilitados') }}
+                                    {{ __('Habilitar') }}
                                 </a>
                             </div>
                         </li>
