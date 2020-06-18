@@ -250,3 +250,10 @@
 .custom-colorAdvertencia{
     background-color: #e63946;
 }
+  }
+
+.imgRedonda {
+    width:  30px;
+    height: 30px;
+    border-radius: 60px;
+}
