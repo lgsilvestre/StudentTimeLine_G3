@@ -24,9 +24,9 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
-                            <div class="col-md-6 custom-tamanioCasillaLogin">
-                                <input id="email" type="email" placeholder="ejemplo@utalca.cl" class="custom-colorCasillas form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
+                            <div class="col-md-6 custom-tamanioCasillaLogin inputWithIcon">
+                                <input id="email" type="email" placeholder="ejemplo@utalca.cl" class="custom-ajusteTextoImagen custom-colorCasillas form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <i class="fa fa-envelope fa-lg" aria-hidden="true"></i>
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

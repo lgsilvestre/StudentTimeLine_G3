@@ -29,9 +29,9 @@
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Cambio de Contraseña</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <div class="modal-header custom-color">
+                                    <h5 class="modal-title" id="exampleModalLabel" style="color:white">Cambio de Contraseña</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
@@ -40,8 +40,9 @@
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña Antigua') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" placeholder="••••••••••••••" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="col-md-6 inputWithIcon">
+                                    <input id="old_password" type="password" placeholder="••••••••••••••" class="custom-ajusteTextoImagen form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <i class="fa fa-key fa-lg" aria-hidden="true"></i>
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -53,8 +54,29 @@
                             <div class="form-group row">
                                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña Nueva') }}</label>
 
-                                <div class="col-md-6">
-                                    <input id="password" type="password" placeholder="••••••••••••••" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="col-md-6 inputWithIcon">
+                                    <input id="password" type="password" placeholder="••••••••••••••" class="custom-ajusteTextoImagen form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                    <i id="show_password" class="fa fa-eye-slash fa-lg icon" type="button" onclick="mostrarPassword()"></i>
+
+                                <script type="text/javascript">
+                                
+                                    function mostrarPassword(){
+		                                var cambio = document.getElementById("password");
+                                    
+                                        if(cambio.type == "password"){
+			                                cambio.type = "text";
+                                        
+                                            $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                                        }
+                                    
+                                        else{
+			                                cambio.type = "password";
+            
+                                            $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+		                                }                           
+	                                } 
+                                </script>
+
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -65,16 +87,17 @@
 
                             <div class="form-group row">
                                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar nueva Contraseña') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" placeholder="••••••••••••••" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                 
+                                <div class="col-md-6 inputWithIcon">
+                                    <input id="password-confirm" type="password" placeholder="••••••••••••••" class="custom-ajusteTextoImagen form-control" name="password_confirmation" required autocomplete="new-password">
+                                    <i class="fa fa-lock fa-lg" aria-hidden="true"></i>
                                 </div>
                             </div>
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                        <button type="button" style="background-color: #2a9d8f" class="btn btn-primary">Guardar Cambios</button>
                     </div>
                 </div>
             </div>
