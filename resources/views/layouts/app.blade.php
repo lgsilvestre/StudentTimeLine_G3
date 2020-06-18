@@ -50,7 +50,7 @@
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('home')}}" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
                         @role('admin')
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('modulo.index')}}" style="color:#ffff">{{ __('Módulos') }}</a> </li>
-                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorias') }}</a> </li>  
+                        <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorías') }}</a> </li>  
                         @endrole          
                         <li class="nav-item dropdown">
                              @role('admin')
@@ -60,7 +60,7 @@
                             @endrole
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.index')}}">
-                                    {{ __('Habilitados') }}
+                                    {{ __('Crear / Inhabilitar') }}
                                 </a> 
 
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.disable')}}">
