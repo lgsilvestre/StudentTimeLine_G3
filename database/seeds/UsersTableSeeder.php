@@ -20,5 +20,6 @@ class UsersTableSeeder extends Seeder
         ]);
         $user->assignRoles('admin');
         $user->save();
+        
     }
 }

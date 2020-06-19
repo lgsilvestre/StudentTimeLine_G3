@@ -13,11 +13,29 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Carrera $carrera, Request $request)
     {
-        $estudiantes=Estudiante::all();
-        return view('home',compact("estudiantes"));
+        $estudiantes=$carrera->estudiantes();
+        if($request->ajax()){
+            return datatables()->of($estudiantes)->toJson();
+        }
+        return view('Estudiante.index',compact('carrera'));
     }
+
+  /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexAjax(Request $request)
+    {
+        $estudiantes=$carrera->estudiantes();
+        if($request->ajax()){
+            return datatables()->of($estudiantes)->toJson();
+        }
+        return view('Estudiante.index');
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,8 +64,9 @@ class EstudianteController extends Controller
             'rut'=>'required|string|max:20',
             'matricula'=>'required|string|max:20',
             'correo'=>'required|string|unique',
+            'carrera'=>'required|string',
             'sexo' => 'required|string|max:255',
-            'fech_nac' => 'required|date',
+            'fech_nac' => 'required|string',
             'plan' => 'integer',
             'año_ingreso' => 'integer',
             'estado_actual' => 'string|max:255',
@@ -56,10 +75,10 @@ class EstudianteController extends Controller
             'creditos_aprobados' => 'required|integer',
             'nivel' => 'required|integer',
             'porc_avance' => 'required|integer',
-            'ult_ptje_prioridad' => 'required|decimal',
-            'regular' => 'required|boolean',
-            'prom_aprobados' => 'required|decimal',
-            'prom_cursados' => 'required|decimal',
+            'ult_ptje_prioridad' => 'required|string',
+            'regular' => 'required|string',
+            'prom_aprobados' => 'required|string',
+            'prom_cursados' => 'required|string',
             ]);
         
         $estudiante=new Estudiante();
@@ -69,8 +88,13 @@ class EstudianteController extends Controller
         $estudiante->rut=$request->get('rut');
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
+        //Asi si se le pasa el id de carreda directamente
+        //$estudiante->id_carrera=$request->get('id_carrera');
+        //Asi cuando se ingresa el nombre de la carrera, puede cambiar despues dependiendo de front
         $nombre_carrera=$request->get('nombre_carrera');
-        //  $id_carrera=Carrera:: NOS FALTA POR ARREGLAR ALGO AQUI CON LA ISA.
+        $carrera=Carrera::where('nombre',$nombre_carrera);
+        $estudiante->id_carrera=$carrera->id;
+        //hasta aqui
         $estudiante->sexo=$request->get('sexo');
         $estudiante->fech_nac=$request->get('fech_nac');
         $estudiante->plan=$request->get('plan');
@@ -87,10 +111,9 @@ class EstudianteController extends Controller
         $estudiante->prom_cursados=$request->get('prom_cursados');
 
         $estudiante->save();
-        $estudiantes=Estudiante::all();
 
-        return redirect()->route('estudiante.index',$estudiantes)->with([
-            'message'=>'El estudiante ha sido ingresado correctamente']);
+        return redirect()->action('EstudianteController@index')
+        ->with('success','Estudiante ingresado con éxito'); 
     }
 
     /**
@@ -133,6 +156,7 @@ class EstudianteController extends Controller
             'rut'=>'required|string|max:20',
             'matricula'=>'required|string|max:20',
             'correo'=>'required|string|unique',
+            'carrera'=>'required|string',
             'sexo' => 'required|string|max:255',
             'fech_nac' => 'required|date',
             'plan' => 'integer',
@@ -157,7 +181,13 @@ class EstudianteController extends Controller
         $estudiante->rut=$request->get('rut');
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
-        $estudiante->id_carrera=$request->get('id_carrera');
+        //Asi si se le pasa el id de carreda directamente
+        //$estudiante->id_carrera=$request->get('id_carrera');
+        //Asi cuando se ingresa el nombre de la carrera, puede cambiar despues dependiendo de front
+        $nombre_carrera=$request->get('nombre_carrera');
+        $carrera=Carrera::where('nombre',$nombre_carrera);
+        $estudiante->id_carrera=$carrera->id;
+        //hasta aqui
         $estudiante->sexo=$request->get('sexo');
         $estudiante->fech_nac=$request->get('fech_nac');
         $estudiante->plan=$request->get('plan');
@@ -174,10 +204,9 @@ class EstudianteController extends Controller
         $estudiante->prom_cursados=$request->get('prom_cursados');
         
         $estudiante->save();
-        $estudiantes=Estudiante::all();
 
-        return redirect()->route('estudiantes.index',$estudiantes)->with([
-            'message'=>'Los datos han sido modificados correctamente']);
+        return redirect()->action('EstudianteController@index')
+        ->with('success','Estudiante actualizado con éxito');
     }
 
     /**
@@ -189,8 +218,7 @@ class EstudianteController extends Controller
     public function destroy($id)
     {
         Estudiante::destroy($id);
-        $estudiantes=Estudiante::all();
-        return redirect()->route('estudiantes.index',$estudiantes)->with([
-            'message'=>'El estudiante ha sido eliminado correctamente']);
+        return redirect()->action('EstudianteController@index')
+        ->with('success','Estudiante eliminado con éxito');
     }
 }

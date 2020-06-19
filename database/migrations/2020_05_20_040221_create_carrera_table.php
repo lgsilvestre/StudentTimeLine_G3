@@ -17,10 +17,10 @@ class CreateCarreraTable extends Migration
             $table->increments('id');
             $table->integer('codigo_carrera')->notnull()->unique();
             $table->string('nombre',100)->notnull();
+            $table->string('imagen');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

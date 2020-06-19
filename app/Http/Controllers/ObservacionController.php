@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Observacion;
-
+use App\Categoria;
+use App\Carrera;
 
 class ObservacionController extends Controller
 {
@@ -24,9 +25,12 @@ class ObservacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        
+        $categorias=Categoria::all();
+        $carrera=Carrera::find($request->get('id'));
+        $modulos=$carrera->modulos();
+        return view ('observacion.create', compact('modulos', 'categorias'));
 
     }
 
@@ -43,7 +47,7 @@ class ObservacionController extends Controller
             'titulo'=>'required|string|max:255',
             'tipo_observacion'=>'required|string|max:15',
             'descripcion'=>'required|string|max:2000',
-            'categoria'=>'required|string|max:255',
+            'nombre_categoria'=>'required|string|max:255',
             'modulo'=>'required|string|max:255',
         ]);
 
@@ -51,15 +55,13 @@ class ObservacionController extends Controller
     $observacion->titulo=$request->get('titulo');
     $observacion->tipo_observacion=$request->get('tipo_observacion');
     $observacion->descripcion=$request->get('descripcion');
-    $observacion->categoria=$request->get('categoria');
+    $observacion->nombre_categoria=$request->get('nombre_categoria');
     $observacion->modulo=$request->get('modulo');
 
     $observacion->save();
-    $observaciones=Observacion::all();
-    
-    return redirect()->route('observacion.index',$obseraciones)->with([
-        'message'=>'La observacion ha sido ingresado correctamente']);
 
+    return redirect()->action('ObservacionController@index')
+        ->with('success','Observacion ingresada con éxito'); 
     }
 
     /**
@@ -82,9 +84,8 @@ class ObservacionController extends Controller
     public function edit($id)
     {
         $observacion = Observacion::find($id);
-        #falta agregar los módulos y categorias 
+        #falta agregar los módulos y categorias
         return view('observacion.edit',compact('observacion'));
-
     
     }
 
@@ -102,7 +103,7 @@ class ObservacionController extends Controller
             'titulo'=>'required|string|max:255',
             'tipo_observacion'=>'required|string|max:15',
             'descripcion'=>'required|string|max:2000',
-            'categoria'=>'required|string|max:255',
+            'nombre_categoria'=>'required|string|max:255',
             'modulo'=>'required|string|max:255',
         ]);
 
@@ -111,14 +112,13 @@ class ObservacionController extends Controller
     $observacion->titulo=$request->get('titulo');
     $observacion->tipo_descripcion=$request->get('tipo_observacion');
     $observacion->descripcion=$request->get('descripcion');
-    $observacion->categoria=$request->get('categoria');
+    $observacion->nombre_categoria=$request->get('nombre_categoria');
     $observacion->modulo=$request->get('modulo');
 
     $observacion->save();
-    $observaciones=Observacion::all();
 
-    return redirect()->route('observacion.index',$obseraciones)->with([
-        'message'=>'Los datos han sido modificados correctamente']);
+    return redirect()->action('ObservacionController@index')
+    ->with('success','Observacion modificada con éxito'); 
    
     }
 
@@ -131,8 +131,7 @@ class ObservacionController extends Controller
     public function destroy($id)
     {
         Observacion::destroy($id);
-        $observaciones=Observacion::all();
-        return redirect()->route('observacion.index',$obseraciones)->with([
-            'mesage'=>'La observación ha sido eliminada correctamente']);
+        return redirect()->action('ObservacionController@index')
+        ->with('success','Observacion eliminada con éxito'); 
     }
 }
