@@ -50,7 +50,8 @@
 }
 
 .custom-color{
-    background-color: rgb(87, 117, 144, 0.95);
+    background-color: #577590; 
+     
 }
 
 .custom-border{
@@ -81,7 +82,7 @@
     text-align: center;
     height:40px; 
     width:170px;
-    background-color: #577590;
+    background-color: #577590; 
 }
 
 .custom-ingresar:hover{
@@ -115,7 +116,7 @@
 }
 
 .custom-enviarSolicitud:hover{
-    background-color: #1d3557
+    background-color: #1d3557;
 }
 
 .custom-tamanioRecordar{
@@ -158,7 +159,8 @@
     background-color: #1d3557;
 }
 .custom-header{
-    background-color:#577590; 
+    background-color:#577590;
+ 
     color:white
 }
 
@@ -194,7 +196,64 @@
 
 }
 
-
 .custom-perfilElemento{
     display: block;
+}
+
+.card-img-top {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 90px;
+}
+
+.btn-info{
+    background: linear-gradient(to right,#90be6d, #43aa8b);
+    border-color: #43aa8b ;
+    color: white;
+
+}
+
+.btn-info:hover{
+    background-color: #34806a;
+    border-color: #34806a;
+}
+
+.btn-info:focus{
+    background-color: #34806a;
+    border-color: #34806a;
+}
+
+#sticky-footer {
+    flex-shrink: none;
+}
+
+.inputWithIcon {
+    position: relative;
+}
+  
+.inputWithIcon i {
+    position: absolute;
+    left: 20px;
+    top: 12px;
+    padding: 9x 8px;
+    color: #aaa;
+    transition: 0.3s;
+    float: none;
+}
+
+.custom-ajusteTextoImagen{
+    padding-left: 30px; 
+}
+  
+.custom-colorAdvertencia{
+    background-color: #e63946;
+}
+  
+
+.imgRedonda {
+    width:  30px;
+    height: 30px;
+    border-radius: 60px;
 }
