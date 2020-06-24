@@ -18,7 +18,7 @@ class CreateModuloTable extends Migration
             $table->bigIncrements('id');
             $table->string('descripcion',255)->notnull();
             $table->unsignedInteger('id_carrera')->notnull();
-            $table->foreign('id_carrera')->references('id')->on('carrera');
+            $table->foreign('id_carrera')->references('id')->on('carrera')->onDelete('cascade');
             $table->timestamps();
         });
     }

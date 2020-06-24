@@ -205,12 +205,12 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 90px;
+    height: 300px;
 }
 
 .btn-info{
-    background: linear-gradient(to right,#90be6d, #43aa8b);
-    border-color: #43aa8b ;
+    background-color:#e4007d;
+    border-color: #0b1613 ;
     color: white;
 
 }

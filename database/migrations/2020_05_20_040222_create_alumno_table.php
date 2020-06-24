@@ -36,7 +36,7 @@ class CreateAlumnoTable extends Migration
             $table->string('prom_aprobadas')->notnull();
             $table->string('prom_cursados')->notnull();
             $table->unsignedInteger('id_carrera')->notnull();
-            $table->foreign('id_carrera')->references('id')->on('carrera');
+            $table->foreign('id_carrera')->references('id')->on('carrera')->onDelete('cascade');
             $table->integer('num_observaciones')->unsigned()->default(0);
             $table->timestamps();
         });
