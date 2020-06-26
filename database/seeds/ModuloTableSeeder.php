@@ -2015,5 +2015,317 @@ class ModuloTableSeeder extends Seeder
             'descripcion' => 'Plan 16 - Memoria de Titulo II',
             'id_carrera' => 6,
         ]);
+
+        #CURSOS DE LA CARRERA INGENIERÍA CIVIL ELECTRICA
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Introducción a las Matemáticas',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Álgebra',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Química',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Introducción a la Ingeniería Eléctrica',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Idioma Extranjero I',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Comunicación Oral y Escrita I',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Cálculo I',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Álgebra Lineal',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Solución Algorítimiza de Problemas',
+            'id_carrera' => 7,
+        ]);
+        
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Sistemas de Almacenamiento de energía',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Idioma Extranjero II',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Comunicación Oral y Escrita II',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Cálculo II',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Física General',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Programación',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Fuentes Renovables de Energía',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Idioma Extranjero III',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Autogestión del Aprendizaje',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Cálculo III',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Ecuaciones Diferenciales',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Electricidad y Magnetismo',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Mecánica General',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Probabilidad y Estadística',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Trabajo en Equipo y Desarrollo de Habilidades Sociales',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Deporte I',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Métodos Numéricos',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Dispositivos Semiconductores',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Electrotecnia y Electromecánica',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Campos Electromagnéticos',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Termodinámica',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Comprensión de Contextos Sociales',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Deporte II',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Fundamento de Electrónica',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Sistemas Dinámicos',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Máquinas Eléctricas',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Laboratorio de Máquinas Eléctricas',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Sistemas de Generación',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Comprensión de Contextos Culturales',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Sistemas Digitales',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Fundamentos de Administración',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Accionamientos Eléctricos',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Sistemas de Control',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Sistemas Eléctricos de Potencia',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Ética y Responsabilidad Social',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Electivo I',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Electrónica de Potencia para Integración de ENRC',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Ingeniería Económica y Evaluación de Proyectos',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Taller de Integración I',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Distribución Industrial de la Energía',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Responsabilidad Social',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Electivo II',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Microredes y Redes',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Gestión de Innovación y Emprendimiento',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Legislación y Mercado Eléctrico',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Electivo III',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Taller de Conversión Eléctrica',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Gestión de Recursos Humanos',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Electivo IV',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Proyecto Memoria',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Proyectos Elécticos',
+            'id_carrera' => 7,
+        ]);
+        
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - FACTS y Generación Distribuida',
+            'id_carrera' => 7,
+        ]);
+
+        Modulo_carrera::create([
+            'descripcion' => 'Plan 16 - Memoria de Titulo',
+            'id_carrera' => 7,
+        ]);
     }
 }
