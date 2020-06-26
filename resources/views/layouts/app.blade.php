@@ -27,13 +27,16 @@
 <body class="custom-fondo">
     <div id="app">
      @include('mensajes-flash')   
-        <nav class="navbar navbar-expand-md custom-color shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark custom-color shadow-sm">
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img src="/images/logo_blanco.png" style="width: 100%; max-width: 330px; min-width: 200px" >
+                    <img class="img-responsive" src="/images/logo_blanco.png" style="width: 100%; max-width: 330px; min-width: 200px" >
                 </a>
-
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     
 

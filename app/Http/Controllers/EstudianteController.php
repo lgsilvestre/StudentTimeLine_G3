@@ -13,7 +13,7 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Carrera $carrera, Request $request)
+    public function index(Carrera $carrera,Request $request)
     {
         $estudiantes=$carrera->estudiantes();
         if($request->ajax()){
@@ -21,21 +21,6 @@ class EstudianteController extends Controller
         }
         return view('Estudiante.index',compact('carrera'));
     }
-
-  /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function indexAjax(Request $request)
-    {
-        $estudiantes=$carrera->estudiantes();
-        if($request->ajax()){
-            return datatables()->of($estudiantes)->toJson();
-        }
-        return view('Estudiante.index');
-    }
-
 
     /**
      * Show the form for creating a new resource.
@@ -66,7 +51,7 @@ class EstudianteController extends Controller
             'correo'=>'required|string|unique',
             'carrera'=>'required|string',
             'sexo' => 'required|string|max:255',
-            'fech_nac' => 'required|string',
+            'fech_nac' => 'required|date',
             'plan' => 'integer',
             'año_ingreso' => 'integer',
             'estado_actual' => 'string|max:255',
@@ -75,10 +60,10 @@ class EstudianteController extends Controller
             'creditos_aprobados' => 'required|integer',
             'nivel' => 'required|integer',
             'porc_avance' => 'required|integer',
-            'ult_ptje_prioridad' => 'required|string',
-            'regular' => 'required|string',
-            'prom_aprobados' => 'required|string',
-            'prom_cursados' => 'required|string',
+            'ult_ptje_prioridad' => 'required|decimal',
+            'regular' => 'required|boolean',
+            'prom_aprobados' => 'required|decimal',
+            'prom_cursados' => 'required|decimal',
             ]);
         
         $estudiante=new Estudiante();
