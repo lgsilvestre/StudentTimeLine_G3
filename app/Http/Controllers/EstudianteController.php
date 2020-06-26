@@ -13,10 +13,13 @@ class EstudianteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Carrera $carrera,Request $request)
     {
-        $estudiantes=Estudiante::all();
-        return view('home',compact('estudiantes'));
+        $estudiantes=$carrera->estudiantes();
+        if($request->ajax()){
+            return datatables()->of($estudiantes)->toJson();
+        }
+        return view('Estudiante.index',compact('carrera'));
     }
 
     /**

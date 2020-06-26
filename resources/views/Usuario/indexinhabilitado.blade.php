@@ -9,13 +9,13 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card margen-card" >
+            <div class="card margen-card custom-card" >
                 <div class="card-header shadow-sm custom-recuperarSesion" style="background-color:#577590; color:white">Usuarios Inhabilitados
                 </div>
                 
                 <div class="card-body">     
                 
-                <table id="usuarios" class="table table-striped table-responsive-sm table-hover " style="width:100%">
+                <table id="usuarios" class="table shadow table-responsive-sm table-hover " style="width:100%">
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
@@ -105,20 +105,20 @@
 <div class="modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel" style="color:red">Advertencia</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header custom-colorAdvertencia">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ¿Está seguro?
+        ¿Está seguro que desea habilitar el usuario seleccionado?
       </div>
       <div class="modal-footer">  
             <form action="{{ route('users.restore')}}" method="post">
             @csrf
                 <input type="hidden" id="id_user" name="id" value="">
-                <button style="color:white"class="btn btn-info btn-sm">Confirmar</button>
+                <button style="background-color: #2a9d8f; color:white"class="btn btn-info btn-sm">Confirmar</button>
             </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>

@@ -10,15 +10,20 @@
 }
 
 .custom-tamanio{
-    width: 70%;
-    
+    width: 70%;  
 }
 
+.custom-negrita{
+    font-weight: bold;
+}
+
+/**
 .custom-imagen{
     background-image: url('/images/logo.png');
     width: 300px;
     height: 50px;
 }
+**/
 
 .custom-inicioSesion{
     margin-left:-1px; margin-right:-1px; margin-top:-1px;
@@ -45,7 +50,8 @@
 }
 
 .custom-color{
-    background-color: rgb(87, 117, 144, 0.95);
+    background-color: #577590; 
+     
 }
 
 .custom-border{
@@ -76,7 +82,7 @@
     text-align: center;
     height:40px; 
     width:170px;
-    background-color: #577590;
+    background-color: #577590; 
 }
 
 .custom-ingresar:hover{
@@ -110,7 +116,7 @@
 }
 
 .custom-enviarSolicitud:hover{
-    background-color: #1d3557
+    background-color: #1d3557;
 }
 
 .custom-tamanioRecordar{
@@ -153,6 +159,115 @@
     background-color: #1d3557;
 }
 .custom-header{
-    background-color:#577590; 
+    background-color:#577590;
+ 
     color:white
+}
+
+.custom-perfil{
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
+    text-align: center;
+    font-weight: lighter;
+    font-size: 16px;
+    color: white;
+}
+
+.custom-ajustarVistaPerfil{
+    margin-left:180px; margin-right:-1px; margin-top:80px;
+    width: 350px;
+    text-align: center;
+    font-weight: lighter;
+}
+
+
+.custom-foto{
+    width: 150px;
+    height: 150px;
+    margin-left:85px;
+    border-color: red;
+    background: url('../images/def.jpg');    
+    border-radius: 100%;
+}
+
+.custom-foto > .imagen{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+
+}
+
+.custom-perfilElemento{
+    display: block;
+}
+
+.card-img-top {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 300px;
+}
+
+.btn-info{
+    background-color:#e4007d;
+    border-color: #0b1613 ;
+    color: white;
+
+}
+
+.btn-info:hover{
+    background-color: #34806a;
+    border-color: #34806a;
+}
+
+.btn-info:focus{
+    background-color: #34806a;
+    border-color: #34806a;
+}
+
+#sticky-footer {
+    flex-shrink: none;
+}
+
+.inputWithIcon {
+    position: relative;
+}
+  
+.inputWithIcon i {
+    position: absolute;
+    left: 20px;
+    top: 12px;
+    padding: 9x 8px;
+    color: #aaa;
+    transition: 0.3s;
+    float: none;
+}
+
+.custom-ajusteTextoImagen{
+    padding-left: 30px; 
+}
+  
+.custom-colorAdvertencia{
+    background-color: #e63946;
+}
+  
+
+.imgRedonda {
+    width:  30px;
+    height: 30px;
+    border-radius: 60px;
+}
+.icono-input .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.icono-input .form-control {
+    padding-left: 2.375rem;
 }

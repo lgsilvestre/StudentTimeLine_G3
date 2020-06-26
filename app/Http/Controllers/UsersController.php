@@ -8,6 +8,8 @@ use App\Carrera;
 use DB;
 use Caffeinated\Shinobi\Models\Role as Rol;
 use App\Usuario_carrera;
+use Auth;
+use Hash;
 
 class UsersController extends Controller
 {
@@ -74,7 +76,13 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $name= null;
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$name);
+        }
+
         $validate=$request->validate([
             'nombre'=>'required|string',
             'email'=>'required|string|unique:users',
@@ -86,11 +94,13 @@ class UsersController extends Controller
                 'email_verified_at' => now(),
                 'email' => $request->get('email'),
                 'password' => bcrypt($request->get('password')),
+                
             ]);
         
         $role = Rol::find($request->get('id_rol')); 
         $user->email_verified_at = now();
         $user->assignRoles($role->slug);
+        $user->imagen = $name;    
         
         foreach($request->carreras as $carrera){
             $user_carrera = Usuario_carrera::create([
@@ -99,10 +109,14 @@ class UsersController extends Controller
             ]);
         }
         
+        
         $user->save();
 
         return redirect()->action('UsersController@index')
         ->with('success','Usuario creado con éxito'); 
+     
+    
+        
     }
 
     /**
@@ -177,6 +191,21 @@ class UsersController extends Controller
         ->with('success','Usuario actualizado con éxito');  
     }
 
+    public function updateContrasena(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $validate=$request->validate([
+            'old_password'=>'required|string',
+            'password'=>'required|string|min:8|confirmed|different:old_password',
+        ]);
+        if(Hash::check($request->old_password,$user->password)){
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return  redirect()->back()->with('success', 'Contraseña actualizada con éxito');
+        }else{
+            return  redirect()->back()->with('error', 'Contraseña antigua erronea');
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *
