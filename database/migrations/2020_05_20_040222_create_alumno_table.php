@@ -21,6 +21,7 @@ class CreateAlumnoTable extends Migration
             $table->string('ap_Paterno', 255);
             $table->string('ap_Materno', 255);
             $table->string('correo', 255)->unique();
+            $table->string('via_ingreso', 255)->notnull()->default('PSU');
             $table->string('sexo', 255)->notnull();
             $table->string('fech_nac')->notnull();
             $table->integer('plan')->unsigned()->default(16);

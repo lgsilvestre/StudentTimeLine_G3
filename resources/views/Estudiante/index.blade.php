@@ -104,33 +104,33 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-        
+        </div>
+        <form action="{{ route('estudiante.store',$carrera->id) }}" method="post">
+                @csrf
         <div class="modal-body">
         <div class="col-xl-12 mx-auto">
-            <form action="{{ route('estudiante.store') }}" method="post">
-                @csrf
+            
                 <div class="form-group row">
                     <div class="col-sm-3">
                         
                         <label for="inputFirstname">Matrícula</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="inputFirstname" placeholder="2015307020">
+                            <input type="text" class="form-control" id="matricula" name="matricula" placeholder="2015307020">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputLastname">Rut</label>
                         <div class="form-group icono-input">
                             <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="inputLastname" placeholder="14823887-1">
+                            <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="inputLastname">Correo Electrónico</label>
                         <div class="form-group icono-input">
                             <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="inputLastname" placeholder="14823887-1">
+                            <input type="text" class="form-control" id="correo" name="correo" placeholder="ejemplo@utalca.alumnos.cl">
                         </div>
                     </div>
                 </div>
@@ -139,28 +139,28 @@
                         <label for="inputAddressLine1">Nombres</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="inputAddressLine1" placeholder="Juan Andres">
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Juan Andres">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputAddressLine2">Ap. Paterno</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="inputAddressLine2" placeholder="Pérez">
+                            <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" placeholder="Pérez">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputAddressLine2">Ap. Materno</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="inputAddressLine2" placeholder="Soto">
+                            <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" placeholder="Soto">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputCity">Situación Academica</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" id="estado_actual" name="estado_actual">
                                 <option>Regular</option>
                                 <option>No regular</option>
                             </select>
@@ -173,7 +173,7 @@
                         <label for="inputState">Sexo</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-venus-mars fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <select class="form-control" id="sexo" name="sexo"> 
                                 <option>Masculino</option>
                                 <option>Femenino</option>
                             </select>
@@ -183,7 +183,7 @@
                         <label for="inputContactNumber">Fecha de nacimiento</label>
                         <div class="form-group icono-input">
                             <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="date" class="form-control" id="inputContactNumber" placeholder="nacimiento">
+                            <input type="date" class="form-control" id="fech_nac" name="fech_nac" placeholder="nacimiento">
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -211,7 +211,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <label for="inputWebsite">Región</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
@@ -219,11 +219,18 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <label for="inputWebsite">Nivel</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
                             <input type="number" class="form-control" min="1" max="12" id="nivel" name="nivel" placeholder="11">
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="inputWebsite">Plan</label>
+                        <div class="form-group icono-input">
+                            <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                            <input type="text" class="form-control"  id="plan" name="plan" placeholder="16">
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -240,7 +247,7 @@
                         <label for="inputWebsite">Porcentaje Avance</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="number" class="form-control" min="0" max="100"id="porcentaje" name="porcentaje" placeholder="94">
+                            <input type="number" class="form-control" min="0" max="100"id="porc_avance" name="porc_avance" placeholder="94">
                         </div>
                     </div>
 
@@ -268,12 +275,11 @@
                     </div>
                 </div>  
 
-            
-        </div>
+            </div>
         </div>
         <div class="modal-footer">  
                 
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+            <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
         </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
