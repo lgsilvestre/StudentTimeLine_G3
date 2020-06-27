@@ -109,6 +109,6 @@ Route::middleware(['auth'])->group(function(){
     //Rutas de estudiantes
     Route::get('estudiantes/{carrera}/','EstudianteController@index')->name('estudiantes.index');
 
-    Route::post('estudiantes/store','EstudianteController@store')->name('estudiante.store')
+    Route::post('estudiantes/{carrera}/store','EstudianteController@store')->name('estudiante.store')
     ->middleware('has.role:admin');
 });
