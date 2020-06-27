@@ -70,6 +70,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::get('user/{user}/', 'UsersController@editDatosPersonales')->name('user.perfil');
 
+    Route::post('users/updatecontrasena','UsersController@updateContrasena')->name('users.updatecontrasena');
+    //rutas de categorias
     Route::post('categoria/store','CategoriaController@store')->name('categoria.store')
     ->middleware('has.role:admin');
 
@@ -106,4 +108,7 @@ Route::middleware(['auth'])->group(function(){
 
     //Rutas de estudiantes
     Route::get('estudiantes/{carrera}/','EstudianteController@index')->name('estudiantes.index');
+
+    Route::post('estudiantes/store','EstudianteController@store')->name('estudiante.store')
+    ->middleware('has.role:admin');
 });

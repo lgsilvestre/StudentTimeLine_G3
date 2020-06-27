@@ -20,7 +20,7 @@ class CreateObservacionTable extends Migration
             $table->string('descripcion', 2000)->notnull();
             $table->unsignedBigInteger('id_categoria')->notnull();
             $table->string('nombre_categoria',255)->notnull();
-            //$table->foreign('id_categoria')->references('id')->on('categoria');
+            //$table->foreign('id_categoria')->references('id')->on('categoria')->onDelete('cascade');
             $table->string('modulo', 255)->notnull();
             $table->timestamps();
         });
