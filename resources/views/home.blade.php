@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card margen-card custom-card">
-                                  
+            <!-- {{ Breadcrumbs::render('home') }}   -->              
                 <div class="card-header custom-recuperarSesion custom-header">Carreras</div>
                     <div class="card-body">
                         <div class="row">
