@@ -50,13 +50,9 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña Antigua') }}</label>
 
                             <div class="col-md-6 inputWithIcon">
-                                <input id="old_password" type="password" placeholder="••••••••••••••" class="custom-ajusteTextoImagen form-control @error('password') is-invalid @enderror" name="old_password" required autocomplete="new-password">
+                                <input id="old_password" type="password" placeholder="••••••••••••••" class="custom-ajusteTextoImagen form-control" name="old_password" >
                                 <i class="fa fa-key fa-lg" aria-hidden="true"></i>
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                
                             </div>
                         </div>
 
@@ -97,9 +93,9 @@
         </div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
-                                    
+        
     function mostrarPassword(){
         var cambio = document.getElementById("password");
 
@@ -114,6 +110,16 @@
 
             $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
         }                           
-    } 
+    }
+     
+</script>
+
+<script>
+     
+    $( document ).ready(function() {
+        $('.modal').on('show.bs.modal', function(){
+            $(this).find('form')[0].reset();
+        });
+    });
 </script>
 @endsection

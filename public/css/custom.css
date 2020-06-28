@@ -205,12 +205,12 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 90px;
+    height: 300px;
 }
 
 .btn-info{
-    background: linear-gradient(to right,#90be6d, #43aa8b);
-    border-color: #43aa8b ;
+    background-color:#e4007d;
+    border-color: #0b1613 ;
     color: white;
 
 }
@@ -250,10 +250,24 @@
 .custom-colorAdvertencia{
     background-color: #e63946;
 }
-  }
+  
 
 .imgRedonda {
     width:  30px;
     height: 30px;
     border-radius: 60px;
+}
+.icono-input .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #aaa;
+}
+.icono-input .form-control {
+    padding-left: 2.375rem;
 }
