@@ -108,15 +108,11 @@ class UsersController extends Controller
                 'id_usuario' => $user->id,
             ]);
         }
-        
-        
+         
         $user->save();
 
         return redirect()->action('UsersController@index')
-        ->with('success','Usuario creado con éxito'); 
-     
-    
-        
+        ->with('success','Usuario creado con éxito');    
     }
 
     /**
@@ -231,5 +227,30 @@ class UsersController extends Controller
     public function editDatosPersonales(User $user)
     {
         return view('Usuario.perfil', compact('user'));
-    }    
+    }  
+    
+    public function postProfileImage(Request $request){
+        
+        $this->validate($request, [
+            'photo' => 'required|image'
+        ]);
+        
+        $user = Auth::user();
+        $extension = $request->file('photo')->getClientOriginalExtension();
+        $file_name = $user->id . '.' . $extension;
+
+        $path = public_path('public/images/' . $file_name);
+
+        Image::make($request->file('photo'))
+            ->fit(150,150)
+            ->save($path);
+
+        $user->imagen = $extension;
+        $user->save();
+
+        $data['success'] = true;
+        $data['file_name'] = $file_name;
+       // return back()->with('notification', 'Se ha actualizado su foto de Perfil');
+    }
+    
 }

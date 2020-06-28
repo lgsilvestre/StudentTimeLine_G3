@@ -62,6 +62,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
+    //rutas de imagen, test
+    Route::post('user/image','UsersController@postProfileImage')->name('users.postProfileImage');
+
     Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
     ->middleware('has.role:admin');
 

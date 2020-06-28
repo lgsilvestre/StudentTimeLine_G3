@@ -8,11 +8,12 @@
                 <div class="card-header custom-color custom-perfil">Mi Perfil</div>
                 <div class="card-body"> 
                     <div class= "custom-foto float-center">
-                        <img class="imagen" src="../images/{{$user->imagen}}" alt="">
+                        <img id="avatarImagen" class="imagen" src="../images/{{$user->imagen}}" alt="">
                     </div> 
-                    <ul class="btn btn-link float-center custom-olvido custom-perfilElemento" href="{{ route('password.request') }}">
-                        {{ __('Cambiar foto de perfil') }} 
-                    </ul>              
+                        <form id="avatarCambio" action="{{ route('users.postProfileImage') }}" class="float-center custom-olvido custom-perfilElemento">
+                            {{ __('Cambiar foto de perfil') }}  
+                            <input class="col-md-8 float-center custom-invisible" type="file" id="avatarInput" onclick="cambiarImagen()">                
+                        </form>
                     <ul class= "float-left custom-perfilElemento">
                         <a class="custom-negrita">Nombre:</a> 
                         {{$user->name}}
@@ -30,6 +31,7 @@
         </div>
     </div>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -93,7 +95,43 @@
         </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script type="text/javascript">
+    var $avatarInput, $avatarCambio, $avatarImagen;
+    var avartarUrl;
+
+    function cambiarImagen(){
+        $avatarInput = $('#avatarInput');
+        $avatarCambio = $('#avatarCambio');
+        $avatarImagen = $('#avatarImagen');
+
+        $avatarUrl = $avatarCambio.attr('action');
+
+        $avatarInput.on('change', function() {
+
+            var formData = new FormData();
+            formData.append('photo', $avatarInput[0].files[0]);
+
+            $.ajax({
+                url: $avatarUrl+'?'+$avatarCambio.serialize(),
+                method: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false
+            })
+            .done(function(data){
+                if(data.success)
+                    $avatarImagen.attr('src', '..images/'+data.file_name);
+            })
+            .fail(function() {
+                alert('La imagen subida no tiene el formato correcto');
+            });
+        });
+    }
+</script>
+
 <script type="text/javascript">
         
     function mostrarPassword(){
