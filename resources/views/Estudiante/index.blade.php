@@ -6,6 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card margen-card">
+            {{ Breadcrumbs::render('carrera', $carrera) }} 
                 <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
                     <div class="card-body">                   
                     <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
@@ -28,7 +29,8 @@
                             <tbody>
                         
                             </tbody>
-                        </table>    
+                        </table>   
+                        
                 </div>
             </div>
         </div>
