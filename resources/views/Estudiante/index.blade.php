@@ -6,6 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card margen-card">
+            {{ Breadcrumbs::render('carrera', $carrera) }} 
                 <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
                  <!-- aqui se agrega el boton parcial para ingreso de archivo excel para
                     estudiantes -->
@@ -37,7 +38,8 @@
                             <tbody>
                         
                             </tbody>
-                        </table>    
+                        </table>   
+                        
                 </div>
             </div>
         </div>
