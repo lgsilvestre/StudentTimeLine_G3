@@ -7,6 +7,14 @@
         <div class="col-md-12">
             <div class="card margen-card">
                 <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
+                 <!-- aqui se agrega el boton parcial para ingreso de archivo excel para
+                    estudiantes -->
+                    <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="file">
+                        <button>Importar Estudiantes</button>
+                    </form>    
+                <!--hasta aqui es-->
                     <div class="card-body">                   
                     <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
@@ -22,7 +30,8 @@
                                         <a href="#"  data-toggle="modal" data-target="#modal_crear"
                                         class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Añadir Estudiante
-                                    </a></th>
+                                        </a>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
