@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Estudiante;
 use App\Carrera;
 use Rut;
+use Excel;
+
+use App\Imports\EstudianteImport;
+
 
 class EstudianteController extends Controller
 {
@@ -207,4 +211,13 @@ class EstudianteController extends Controller
         return redirect()->action('EstudianteController@index')
         ->with('success','Estudiante eliminado con éxito');
     }
+
+    public function importExcel(Request $request, Carrera $carrera){
+
+        $file =  $request->file('file');
+        Excel::import(new EstudianteImport, $file);
+        return redirect()->action('EstudianteController@index',$carrera)
+        ->with('success','Estudiantes ingresados con éxito'); 
+    }
+
 }
