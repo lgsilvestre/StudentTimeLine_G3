@@ -231,26 +231,18 @@ class UsersController extends Controller
     
     public function postProfileImage(Request $request){
         
-        $this->validate($request, [
-            'photo' => 'required|image'
-        ]);
-        
-        $user = Auth::user();
-        $extension = $request->file('photo')->getClientOriginalExtension();
-        $file_name = $user->id . '.' . $extension;
-
-        $path = public_path('public/images/' . $file_name);
-
-        Image::make($request->file('photo'))
-            ->fit(150,150)
-            ->save($path);
-
-        $user->imagen = $extension;
+        $user = User::find(Auth::user()->id);
+        $newname=null;
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $newname = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$newname);
+            
+            $user->imagen = $newname;
+        }
         $user->save();
 
-        $data['success'] = true;
-        $data['file_name'] = $file_name;
-       // return back()->with('notification', 'Se ha actualizado su foto de Perfil');
+        return  redirect()->back()->with('success', 'Foto cambiada con éxito');      
     }
     
 }
