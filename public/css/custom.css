@@ -250,7 +250,17 @@
 .custom-colorAdvertencia{
     background-color: #e63946;
 }
-  
+
+.custom-invisible{
+    position: absolute;
+    top: 225px;
+    left: 60px;
+    right: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 8%;
+    opacity: 0;
+}
 
 .imgRedonda {
     width:  30px;
