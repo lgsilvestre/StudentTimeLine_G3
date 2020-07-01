@@ -62,6 +62,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
+    //rutas de imagen, test
+    Route::post('user/image','UsersController@postProfileImage')->name('users.postProfileImage');
+
     Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
     ->middleware('has.role:admin');
 
@@ -110,5 +113,9 @@ Route::middleware(['auth'])->group(function(){
     Route::get('estudiantes/{carrera}/','EstudianteController@index')->name('estudiantes.index');
 
     Route::post('estudiantes/{carrera}/store','EstudianteController@store')->name('estudiante.store')
+    ->middleware('has.role:admin');
+
+    //ruta para excel
+    Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');
 });
