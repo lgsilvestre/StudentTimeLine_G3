@@ -142,7 +142,7 @@
   </div>
 </div>
 
-<!-- Modal para crear modulo -->
+<!-- Modal para crear usuario -->
 <div class="modal fade" id="modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
