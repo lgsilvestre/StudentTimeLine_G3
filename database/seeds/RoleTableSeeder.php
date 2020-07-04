@@ -61,15 +61,15 @@ class RoleTableSeeder extends Seeder
             'slug' => 'secretariaBioinformatica',
         ]);
         
-        $sec_juegos->givePermissionTo('bioinformatica.addUser');
-        $sec_bioinformatica->givePermissionTo('videojuegos.addUser');
-        $sec_compu->givePermissionTo('computacion.addUser');
-        $sec_indu->givePermissionTo('industrial.addUser');
-        $sec_obras->givePermissionTo('obras.addUser');
-        $sec_mecatronica->givePermissionTo('mecatronica.addUser');
-        $sec_mecanica->givePermissionTo('mecanica.addUser');
-        $sec_minas->givePermissionTo('minas.addUser');
-        $sec_electrica->givePermissionTo('electrica.addUser');
+        $sec_juegos->givePermissionTo('bioinformatica.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_bioinformatica->givePermissionTo('videojuegos.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_compu->givePermissionTo('computacion.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_indu->givePermissionTo('industrial.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_obras->givePermissionTo('obras.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_mecatronica->givePermissionTo('mecatronica.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_mecanica->givePermissionTo('mecanica.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_minas->givePermissionTo('minas.addUser','modulos.index','categoria.index','estudiante.add');
+        $sec_electrica->givePermissionTo('electrica.addUser','modulos.index','categoria.index','estudiante.add');
 
         
         /* factory(Role::class, 1000)->create(); */
