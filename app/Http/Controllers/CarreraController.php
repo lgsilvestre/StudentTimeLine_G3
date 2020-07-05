@@ -58,20 +58,26 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
+        $name= null;
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$name);
+        }
+
         $validate = $request->validate([
-            'nombre'=> 'required|string|unique',
-            'codigo_carrera'=> 'required|integer|unique'
+            'nombre'=> 'required|string|unique:carrera',
+            'codigo_carrera'=> 'required|integer|unique:carrera'
         ]);
         $carrera = new Carrera;  
           
         $carrera->nombre = $request->get('nombre');
         $carrera->codigo_carrera = $request->get('codigo_carrera');
+        $carrera->imagen = $name; 
         $carrera->save();
-
         $carreras = Carrera::all();
-        return redirect()->route('carrera.index',$carreras)->with([
-            'message'=> 'La carrera ha sido ingresada correctamente.'
-        ]);
+        return redirect()->action('CarreraController@index')
+        ->with('success','Carrera creada con éxito');
                
     }
 
