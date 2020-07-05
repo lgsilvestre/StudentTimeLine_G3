@@ -76,12 +76,11 @@
             </div>
         </div>  
 
-        <!-- falta agregar el nombre de la imagen sobre el boton de archivo-->
         <div class="form-group row">
             <label for="foto" class="col-md-4 col-form-label text-md-right fileinput">{{ __('Imagen Carrera') }}</label>
             <div class="col-md-6 custom-file">
-                <label class="custom-file-label" for="customFile">Seleccionar archivo</label>
                 <input id="foto" type="file" class="custom-file-input" name="foto">
+                <label class="custom-file-label text-truncate" for="customFile">Seleccionar archivo</label>
             </div>  
         </div>
 
@@ -94,21 +93,17 @@
   </div>
 </div>
 
-
-<!-- 
-    <script src=  
+<script src=  
 "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">  
     </script>  
-<script> 
-        $(".custom-file-input").on("change", function() { 
-            var file_name = $(this).val().split("\\").pop();
-            console.log("hola"); 
-            $(this).siblings(".custom-file-label") 
-                    .addClass("selected").html(file_name); 
-        }); 
+<script>
+        $(document).ready(function(){
+            $('.custom-file-input').on('change', function() { 
+            console.log("hola");
+            let fileName = $(this).val().split('\\').pop(); 
+            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+            });
+        });    
 </script>
-
--->
-
 
 @endsection

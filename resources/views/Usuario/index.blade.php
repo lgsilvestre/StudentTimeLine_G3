@@ -260,19 +260,8 @@
                         <i class="fa fa-key fa-lg" aria-hidden="true"></i>
                     </div>
             </div>
-            <!--esto es lo que estoy creando para agregar la foto al usuario-->
+            
             <!--
-            <div class="form-group row">
-                <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
-
-                <div class="col-md-6 custom-file">
-                    <input id="imagen" type="file"  class="custom-file-input" name="foto">
-                    <label class="custom-file-label" for="validatedCustomFile">Imagen opcional...</label>
-                    <div class="invalid-feedback">Archivo Inválido</div>
-                </div>
-            </div>
-            -->
-
             <div class="form-group row">
                 <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
 
@@ -280,8 +269,15 @@
                     <input id="imagen" type="file"  class="form-control" name="foto">
                 </div>
             </div>
-
-            <!--hasta aqui va la fotito-->
+            -->
+            
+            <div class="form-group row">
+                <label for="foto" class="col-md-4 col-form-label text-md-right fileinput">{{ __('Foto') }}</label>
+                <div class="col-md-6 custom-file">
+                    <input id="imagen" type="file" class="custom-file-input" name="foto">
+                    <label class="custom-file-label text-truncate" for="customFile">Seleccionar archivo</label>
+                </div>  
+            </div>                    
 
         </div>
         <div class="modal-footer">  
@@ -404,4 +400,20 @@
     </div>
   </div>
 </div>
+
+
+<script src=  
+"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">  
+    </script>  
+<script>
+        $(document).ready(function(){
+            $('.custom-file-input').on('change', function() { 
+            console.log("hola");
+            let fileName = $(this).val().split('\\').pop(); 
+            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+            });
+        });    
+</script>
+
+
 @endsection
