@@ -22,7 +22,10 @@ class EstudianteController extends Controller
     {
         $estudiantes=$carrera->estudiantes();
         if($request->ajax()){
-            return datatables()->of($estudiantes)->toJson();
+            return datatables()->of($estudiantes)
+                    ->addColumn('btn','actions')
+                    ->rawColumns(['btn'])
+                    ->toJson();
         }
         return view('Estudiante.index',compact('carrera'));
     }

@@ -178,6 +178,7 @@
                         <ul  class="list-unstyled">
                             
                             @foreach($carreras as $carrera)
+                                
                                 <li>
                                 <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
