@@ -62,6 +62,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('users/store','UsersController@store')->name('users.store')
     ->middleware('has.role:admin');
 
+    //rutas de imagen, test
+    Route::post('user/image','UsersController@postProfileImage')->name('users.postProfileImage');
+
     Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
     ->middleware('has.role:admin');
 
@@ -73,38 +76,38 @@ Route::middleware(['auth'])->group(function(){
     Route::post('users/updatecontrasena','UsersController@updateContrasena')->name('users.updatecontrasena');
     //rutas de categorias
     Route::post('categoria/store','CategoriaController@store')->name('categoria.store')
-    ->middleware('has.role:admin');
+    ->middleware('can:categoria.index');
 
     Route::get('categoria/index','CategoriaController@index')->name('categoria.index')
-    ->middleware('has.role:admin');
+    ->middleware('can:categoria.index');
     
     Route::get('categoria/create','CategoriaController@create')->name('categoria.create')
-    ->middleware('has.role:admin');
+    ->middleware('can:categoria.index');
 
     Route::post('categoria/update','CategoriaController@update')->name('categoria.update')
-    ->middleware('has.role:admin');
+    ->middleware('can:categoria.index');
 
     Route::get('categoria/{categoria}','CategoriaController@show')->name('categoria.show')
-    ->middleware('has.role:admin');
+    ->middleware('can:categoria.index');
 
     Route::post('categoria.destroy','CategoriaController@destroy')->name('categoria.destroy')
-    ->middleware('has.role:admin');
+    ->middleware('can:categoria.index');
 
     Route::get('categoria/{categoria}/edit','CategoriaController@edit')->name('categoria.edit')
-    ->middleware('has.role:admin');
+    ->middleware('can:categoria.index');
 
     //rutas de modulos
     Route::get('modulo/index','Modulo_carreraController@index')->name('modulo.index')
-    ->middleware('has.role:admin');
+    ->middleware('can:modulos.index');
 
     Route::post('modulodestroy','Modulo_carreraController@destroy')->name('modulo.destroy')
-    ->middleware('has.role:admin');
+    ->middleware('can:modulos.index');
 
     Route::post('modulo/store','Modulo_carreraController@store')->name('modulo.store')
-    ->middleware('has.role:admin');
+    ->middleware('can:modulos.index');
 
     Route::post('modulo/update','Modulo_carreraController@update')->name('modulo.update')
-    ->middleware('has.role:admin');
+    ->middleware('can:modulos.index');
 
     //Rutas de estudiantes
     Route::get('estudiantes/{carrera}/','EstudianteController@index')->name('estudiantes.index');
@@ -112,6 +115,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('estudiantes/{carrera}/store','EstudianteController@store')->name('estudiante.store')
     ->middleware('has.role:admin');
 
+    Route::get('estudiantes/{estudiante}/show','EstudianteController@show')->name('estudiante.show');
     //ruta para excel
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');

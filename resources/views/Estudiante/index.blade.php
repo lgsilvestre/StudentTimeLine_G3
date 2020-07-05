@@ -28,10 +28,13 @@
                                     <th >Situación académica</th>
                                     <th >Nº de observaciones</th>
                                     <th >
+                                    
+                                    @can('estudiante.add')
                                         <a href="#"  data-toggle="modal" data-target="#modal_crear"
                                         class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Añadir Estudiante
                                         </a>
+                                    @endcan
                                     </th>
                                 </tr>
                             </thead>
@@ -99,11 +102,12 @@
                 {data: 'nombre'},
                 {data: 'estado_actual'},
                 {data: 'num_observaciones'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Ver detalles</button>"}
+                {data: 'btn'}
             ],
+            
         });
+        
     });
-    
 </script>
 
 <!-- Modal para crear modulo -->

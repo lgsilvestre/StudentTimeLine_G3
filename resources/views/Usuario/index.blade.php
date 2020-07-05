@@ -142,7 +142,7 @@
   </div>
 </div>
 
-<!-- Modal para crear modulo -->
+<!-- Modal para crear usuario -->
 <div class="modal fade" id="modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -178,6 +178,7 @@
                         <ul  class="list-unstyled">
                             
                             @foreach($carreras as $carrera)
+                                
                                 <li>
                                 <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
