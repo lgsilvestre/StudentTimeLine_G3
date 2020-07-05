@@ -115,6 +115,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('estudiantes/{carrera}/store','EstudianteController@store')->name('estudiante.store')
     ->middleware('has.role:admin');
 
+    Route::get('estudiantes/{estudiante}/show','EstudianteController@show')->name('estudiante.show');
     //ruta para excel
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');

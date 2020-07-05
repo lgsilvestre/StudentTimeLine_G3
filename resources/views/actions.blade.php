@@ -1,0 +1,1 @@
+<a href="{{route('estudiante.show',$id)}}"class="btn btn-secondary btnEditar btn-custom btn-sm btnEditar"><i class="fas fa-pencil-alt"></i> Ver detalles</a>
