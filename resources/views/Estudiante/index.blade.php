@@ -102,11 +102,12 @@
                 {data: 'nombre'},
                 {data: 'estado_actual'},
                 {data: 'num_observaciones'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Ver detalles</button>"}
+                {data: 'btn'}
             ],
+            
         });
+        
     });
-    
 </script>
 
 <!-- Modal para crear modulo -->
