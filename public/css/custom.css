@@ -281,3 +281,8 @@
 .icono-input .form-control {
     padding-left: 2.375rem;
 }
+
+.custom-lineaTiempo{
+    height: 490px;
+    width: 250px;
+}
