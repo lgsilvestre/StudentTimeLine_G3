@@ -116,4 +116,19 @@ Route::middleware(['auth'])->group(function(){
     //ruta para excel
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');
+
+
+    //Rutas de carreras
+
+    Route::post('carrera/store','CarreraController@store')->name('carrera.store')
+    ->middleware('has.role:admin');
+
+    Route::post('carrera/destroy','CarreraController@destroy')->name('carrera.destroy')
+    ->middleware('has.role:admin');
+
+    Route::post('carrera/update','CarreraController@update')->name('carrera.update')
+    ->middleware('has.role:admin');
+
+
+
 });
