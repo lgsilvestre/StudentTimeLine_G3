@@ -47,5 +47,15 @@ class CarreraTableSeeder extends Seeder
             'codigo_carrera' => 3410,
             'imagen' => 'ice.jpg',
         ]);
+        Carrera::create([
+            'nombre' => 'Ingeniería Civil en Bioinformática',
+            'codigo_carrera' => 3411,
+            'imagen' => 'icb.jpg',
+        ]);
+        Carrera::create([
+            'nombre' => 'Ingeniería en Desarrollo de Videojuegos y Realidad Virtual',
+            'codigo_carrera' => 3412,
+            'imagen' => 'idvrv.jpg',
+        ]);
     }
 }
