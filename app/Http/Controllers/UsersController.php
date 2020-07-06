@@ -232,14 +232,15 @@ class UsersController extends Controller
     public function postProfileImage(Request $request){
         
         $user = User::find(Auth::user()->id);
+        
         $newname=null;
         if($request->hasFile('foto')){
             $file = $request->file('foto');
             $newname = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$newname);
-            
-            $user->imagen = $newname;
         }
+        
+        $user->imagen = $newname;
         $user->save();
 
         return  redirect()->back()->with('success', 'Foto cambiada con éxito');      

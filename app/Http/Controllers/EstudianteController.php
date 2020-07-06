@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Estudiante;
 use App\Carrera;
+use App\Categoria;
 use Rut;
 use Excel;
 
@@ -117,7 +118,9 @@ class EstudianteController extends Controller
      */
     public function show($id)
     {
-        //
+        $estudiante = Estudiante::find($id);
+        $categorias = Categoria::all();
+        return view('estudiante.show', compact('estudiante','categorias'));
     }
 
     /**

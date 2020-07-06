@@ -22,8 +22,11 @@ class CarreraController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()){
+            dd("HOLA");
+        }
         $user = User::find(Auth::user()->id);
         if($user->id == 1){
             $carreras = Carrera::all();
