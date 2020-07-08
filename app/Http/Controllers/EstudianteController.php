@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Estudiante;
 use App\Carrera;
+use App\Categoria;
 use Rut;
+use Excel;
+
+use App\Imports\EstudianteImport;
+
 
 class EstudianteController extends Controller
 {
@@ -18,7 +23,10 @@ class EstudianteController extends Controller
     {
         $estudiantes=$carrera->estudiantes();
         if($request->ajax()){
-            return datatables()->of($estudiantes)->toJson();
+            return datatables()->of($estudiantes)
+                    ->addColumn('btn','actions')
+                    ->rawColumns(['btn'])
+                    ->toJson();
         }
         return view('Estudiante.index',compact('carrera'));
     }
@@ -110,7 +118,9 @@ class EstudianteController extends Controller
      */
     public function show($id)
     {
-        //
+        $estudiante = Estudiante::find($id);
+        $categorias = Categoria::all();
+        return view('estudiante.show', compact('estudiante','categorias'));
     }
 
     /**
@@ -207,4 +217,13 @@ class EstudianteController extends Controller
         return redirect()->action('EstudianteController@index')
         ->with('success','Estudiante eliminado con éxito');
     }
+
+    public function importExcel(Request $request, Carrera $carrera){
+
+        $file =  $request->file('file');
+        Excel::import(new EstudianteImport, $file);
+        return redirect()->action('EstudianteController@index',$carrera)
+        ->with('success','Estudiantes ingresados con éxito'); 
+    }
+
 }

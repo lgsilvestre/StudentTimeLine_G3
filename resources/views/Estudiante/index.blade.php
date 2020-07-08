@@ -8,6 +8,14 @@
             <div class="card margen-card">
             {{ Breadcrumbs::render('carrera', $carrera) }} 
                 <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
+                 <!-- aqui se agrega el boton parcial para ingreso de archivo excel para
+                    estudiantes -->
+                    <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="file" name="file">
+                        <button>Importar Estudiantes</button>
+                    </form>    
+                <!--hasta aqui es-->
                     <div class="card-body">                   
                     <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
@@ -20,10 +28,14 @@
                                     <th >Situación académica</th>
                                     <th >Nº de observaciones</th>
                                     <th >
+                                    
+                                    @can('estudiante.add')
                                         <a href="#"  data-toggle="modal" data-target="#modal_crear"
                                         class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Añadir Estudiante
-                                    </a></th>
+                                        </a>
+                                    @endcan
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -90,11 +102,12 @@
                 {data: 'nombre'},
                 {data: 'estado_actual'},
                 {data: 'num_observaciones'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Ver detalles</button>"}
+                {data: 'btn'}
             ],
+            
         });
+        
     });
-    
 </script>
 
 <!-- Modal para crear modulo -->
