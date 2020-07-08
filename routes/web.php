@@ -50,9 +50,6 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('users/update','UsersController@update')->name('users.update')->middleware('has.role:admin');
 
-    Route::get('users/{user}','UsersController@show')->name('users.show')
-    ->middleware('has.role:admin');
-
     Route::get('users/{user}/edit','UsersController@edit')->name('users.edit')
     ->middleware('has.role:admin');
 
@@ -115,8 +112,23 @@ Route::middleware(['auth'])->group(function(){
     Route::post('estudiantes/{carrera}/store','EstudianteController@store')->name('estudiante.store')
     ->middleware('has.role:admin');
 
-    Route::get('estudiantes/{estudiante}/show','EstudianteController@show')->name('estudiante.show');
+    Route::get('estudiantes/{estudiante}/show', 'EstudianteController@show')->name('estudiante.show');
     //ruta para excel
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');
+
+
+    //Rutas de carreras
+
+    Route::post('carrera/store','CarreraController@store')->name('carrera.store')
+    ->middleware('has.role:admin');
+
+    Route::post('carrera/destroy','CarreraController@destroy')->name('carrera.destroy')
+    ->middleware('has.role:admin');
+
+    Route::post('carrera/update','CarreraController@update')->name('carrera.update')
+    ->middleware('has.role:admin');
+
+
+
 });
