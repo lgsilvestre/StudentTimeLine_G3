@@ -209,20 +209,20 @@
 }
 
 .btn-info{
-    background-color:#e4007d;
-    border-color: #0b1613 ;
+    background-color:#577590;
+    border-color:#577590 ;
     color: white;
 
 }
 
 .btn-info:hover{
-    background-color: #34806a;
-    border-color: #34806a;
+    background-color: #3d5a80;
+    border-color: #3d5a80;
 }
 
 .btn-info:focus{
-    background-color: #34806a;
-    border-color: #34806a;
+    background-color: #3d5a80;
+    border-color: #3d5a80;
 }
 
 #sticky-footer {
@@ -285,4 +285,16 @@
 .custom-lineaTiempo{
     height: 490px;
     width: 250px;
+}
+.btn-secondary{
+    background-color: #2a9d8f;
+}
+.btn-secondary:hover{
+    background-color: #1e6e65;
+}
+.btn-secondary:focus{
+    background-color: #1e6e65;
+}
+.custom-file-input::before{
+    content: 'Buscar';
 }

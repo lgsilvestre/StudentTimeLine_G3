@@ -18,7 +18,7 @@
                                     <th >
                                         @role('admin')
                                             <a href="#"  data-toggle="modal" data-target="#modal_crear"
-                                            class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
+                                            class="btn btn-sm btn-secondary float-left" > 
                                             <i class="fas fa-plus"></i> Crear Módulo
                                         @endrole
                                     </a></th>
@@ -85,7 +85,7 @@
             columns : [
                 {data: 'descripcion'},
                 {data: 'nombre'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btn-eliminar btn-sm btnEliminar'><i class='fas fa-trash-alt'></i> Eliminar</button></div></div>"}
+                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button style='margin-left:5px' class='btn btn-danger btn-eliminar btn-sm btnEliminar'><i class='fas fa-trash-alt'></i> Eliminar</button></div></div>"}
             ],
         });
         obtener_data_eliminar("#modulos tbody",table);
@@ -127,10 +127,10 @@
             <form action="{{ route('modulo.destroy')}}" method="post">
             @csrf
                 <input type="hidden" id="id_mod" name="id" value="">
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info btn-sm">Confirmar</button>
+                <button class="btn btn-secondary btn-sm">Confirmar</button>
             </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -177,10 +177,10 @@
         </div>
         <div class="modal-footer">  
                 
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                    <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -227,10 +227,10 @@
         </div>
         <div class="modal-footer">  
                     <input type="hidden" id="id_edit" name="id" value="">
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                    <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
