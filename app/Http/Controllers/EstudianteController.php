@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Estudiante;
+use App\User;
 use App\Carrera;
 use App\Categoria;
+use Carbon\Carbon;
+use Auth;
 use Rut;
 use Excel;
 
@@ -118,9 +121,11 @@ class EstudianteController extends Controller
      */
     public function show($id)
     {
+        $usuario = User::find(Auth::user()->id);
+        $now = Carbon::now();
         $estudiante = Estudiante::find($id);
         $categorias = Categoria::all();
-        return view('estudiante.show', compact('estudiante','categorias'));
+        return view('estudiante.show', compact('estudiante','categorias','usuario','now'));
     }
 
     /**
