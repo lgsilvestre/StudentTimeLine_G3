@@ -101,18 +101,80 @@ class UsersController extends Controller
         $user->email_verified_at = now();
         $user->assignRoles($role->slug);
         $user->imagen = $name;    
-        
-        foreach($request->carreras as $carrera){
-            $user_carrera = Usuario_carrera::create([
-                'id_carrera' => $carrera,
-                'id_usuario' => $user->id,
-            ]);
+        if($role->slug=="admin"){
+            $carreras = Carrera::all();
+            foreach($carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
+        }else{//se toman las carreras que se entregan desde el request
+
+            foreach($request->carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
         }
+        
          
         $user->save();
 
         return redirect()->action('UsersController@index')
         ->with('success','Usuario creado con éxito');    
+    }
+    public function store_Profesor(Request $request)
+    {
+        $name= null;
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$name);
+        }
+
+        $validate=$request->validate([
+            'nombre'=>'required|string',
+            'email'=>'required|string|unique:users',
+            'password'=>'required|string|min:8|confirmed',
+            ]);
+
+        $user = User::create([
+                'name' => $request->get('nombre'),
+                'email_verified_at' => now(),
+                'email' => $request->get('email'),
+                'password' => bcrypt($request->get('password')),
+                
+            ]);
+        
+        $role = Rol::find($request->get('id_rol')); 
+        $user->email_verified_at = now();
+        $user->assignRoles($role->slug);
+        $user->imagen = $name;    
+        if($role->slug=="admin"){
+            $carreras = Carrera::all();
+            foreach($carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
+        }else{//se toman las carreras que se entregan desde el request
+
+            foreach($request->carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
+        }
+        
+         
+        $user->save();
+
+        return redirect()->route('home')
+        ->with('success','Profesor creado con éxito');    
     }
 
     /**
