@@ -85,7 +85,7 @@
                 {data: 'nombre'},
                 {data: 'email'},
                 {data: 'name'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar'><i class='fas fa-user-minus'></i> Inhabilitar</button></div></div>"}
+                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar' style='margin-left:5px'><i class='fas fa-user-minus'></i> Inhabilitar</button></div></div>"}
             ],
             
             
@@ -116,7 +116,7 @@
     }
 </script>
 
-<!-- Modal para eliminar modulo -->
+<!-- Modal para inhabilitar usuario -->
 <div class="modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -133,10 +133,10 @@
             <form action="{{ route('users.destroy')}}" method="post">
             @csrf
                 <input type="hidden" id="id_user" name="id" value="">
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info btn-sm">Confirmar</button>
+                <button class="btn btn-secondary btn-sm">Confirmar</button>
             </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -168,42 +168,43 @@
                     @enderror
                 </div>
             </div>     
-            <div class="form-group row">
-               
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
-                <div class="col-md-6">
-                
-                    <div  class="form-group" style="display:inline;">
-                    
-                        <ul  class="list-unstyled">
-                            
-                            @foreach($carreras as $carrera)
-                                
-                                <li>
-                                <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    {{$carrera->nombre}}
-                                </label>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div> 
 
             <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
 
                 <div class="col-md-6 inputWithIcon">
                     <i class="fa fa-user-tie fa-lg" aria-hidden="true"></i>
-                    <select name="id_rol" class="custom-ajusteTextoImagen form-control" id="exampleFormControlSelect1">
+                    <select name="id_rol" class="custom-ajusteTextoImagen form-control" id="id_rol" onChange="comprobar();">
                    @foreach($roles as $role)
                         <option value="{{$role->id}}">{{$role->name}}</option>
                     @endforeach
                 </select>
                 </div>
             </div>
-
+            
+            <div id="div_carreras" class="form-group row" style="display:none">
+               
+               <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
+               <div class="col-md-6">
+               
+                   <div  class="form-group" style="display:inline;">
+                   
+                       <ul  class="list-unstyled">
+                           
+                           @foreach($carreras as $carrera)
+                               
+                               <li>
+                               <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                               <label class="form-check-label" for="defaultCheck1">
+                                   {{$carrera->nombre}}
+                               </label>
+                               </li>
+                           @endforeach
+                       </ul>
+                   </div>
+               </div>
+           </div> 
+           
             <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
@@ -261,37 +262,28 @@
                     </div>
             </div>
             
-            <!--
-            <div class="form-group row">
-                <label for="foto" class="col-md-4 col-form-label text-md-right">{{ __('Foto') }}</label>
-
-                <div class="col-md-6">
-                    <input id="imagen" type="file"  class="form-control" name="foto">
-                </div>
-            </div>
-            -->
             
             <div class="form-group row">
                 <label for="foto" class="col-md-4 col-form-label text-md-right fileinput">{{ __('Foto') }}</label>
                 <div class="col-md-6 custom-file">
                     <input id="imagen" type="file" class="custom-file-input" name="foto">
-                    <label class="custom-file-label text-truncate" for="customFile">Seleccionar archivo</label>
+                    <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Seleccionar archivo</label>
                 </div>  
             </div>                    
 
         </div>
         <div class="modal-footer">  
                 
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Modal para editar modulo -->
+<!-- Modal para editar usuario -->
 <div class="modal fade" id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -317,7 +309,20 @@
                     @enderror
                 </div>
             </div>     
+
             <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Rol') }}</label>
+
+                <div class="col-md-6 inputWithIcon">
+                    <i class="fa fa-user-tie fa-lg" aria-hidden="true"></i>
+                    <select name="id_rol" class="custom-ajusteTextoImagen form-control" id="id_rol_editar" onChange="comprobar();">
+                        @foreach($roles as $role)
+                            <option value="{{$role->id}}">{{$role->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+            <div id="div_carreras_editar"class="form-group row" style="display:none">
                
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('') }}</label>
                 <div class="col-md-6">
@@ -338,20 +343,6 @@
                     </div>
                 </div>
             </div>  
-
-            <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Roles') }}</label>
-
-                <div class="col-md-6 inputWithIcon">
-                    <i class="fa fa-user-tie fa-lg" aria-hidden="true"></i>
-                    <select name="id_rol" class="custom-ajusteTextoImagen form-control" id="id_rol">
-                        @foreach($roles as $role)
-                            <option value="{{$role->id}}">{{$role->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
             <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
@@ -365,37 +356,14 @@
                         @enderror
                     </div>
             </div>  
-
-            <!-- <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-
-                <div class="col-md-6">
-                    <input id="password_edit" type="password" placeholder="••••••••••••••" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="form-group row">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
-
-                    <div class="col-md-6">
-                        <input id="password-confirm_edit" type="password" placeholder="••••••••••••••" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    </div>
-            </div> -->
             
-
         </div>
         <div class="modal-footer">  
                 <input type="hidden" id="id_edit" name="id" value="">
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -414,6 +382,24 @@
             });
         });    
 </script>
+<script>
+ 
+function comprobar()
+          {
+            var select_box = document.getElementById("id_rol");
+            var id_rol = select_box.options[select_box.selectedIndex].value;
+            
+              if(id_rol==2 || id_rol==3){
+                
+                document.getElementById("div_carreras").style.display = "";
+                document.getElementById("div_carreras_editar").style.display = "";
 
+              }else{
+                document.getElementById("div_carreras").style.display = "none";
+                document.getElementById("div_carreras_editar").style.display = "none";
+              }
+
+          }
+</script>
 
 @endsection
