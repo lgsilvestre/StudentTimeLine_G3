@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -34,7 +35,7 @@
 <!-- Modal cambiar observacion -->
 <div class="modal fade" id="modalObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content "style="height:500px;width:600px">
+        <div class="modal-content "style="height:600px;width:600px">
             <div class="modal-header custom-color">
                 <h5 class="modal-title" id="modalProfileLabel" style="color:white">Observación</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
@@ -45,8 +46,11 @@
                 <div class="modal-body">
                     @csrf
                     <div class="form-group row">
-                        <label for="name" class="col-md-2 col-form-label">{{ __('Categoría') }}</label>
-                        <div class="col-md-6">
+                        <label for="name" class="col-md-2 col-form-label"> Título </label>
+                        <input type="text" class="col-md-8" id="titulo" placeholder="Ingrese un título" style="margin-left: 15px;">    
+    
+                        <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Categoría') }}</label>
+                        <div class="col-md-6" style="margin-top: 10px">
                             <select name="id_rol" class="form-control" id="id_rol">
                                 @foreach($categorias as $categoria)
                                     <option value="{{$categoria->nombre}}">{{$categoria->nombre}}</option>
@@ -58,6 +62,12 @@
                     <label for="name" class="col-md-2 col-form-label">{{ __('Observacion') }}</label>
                     <div class="col-md-6">
                         <textarea name="comentario" rows="10" cols="73"></textarea>
+                    </div>
+                    <label for="name" class="col-md-2 col-form-label"> Autor:</label>
+                    <label>{{$usuario->name}} </label>
+                    <div style="margin-top: 10px">
+                        <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
+                        <label>{{$now->format('d-m-Y')}} </label>
                     </div>
                 <div class="modal-footer">
                     <button style="background-color: #2a9d8f" class="btn btn-info btn-sm">Agregar Observación</button>
