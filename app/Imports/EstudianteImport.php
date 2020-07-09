@@ -4,10 +4,17 @@ namespace App\Imports;
 
 use App\Estudiante;
 use Maatwebsite\Excel\Concerns\ToModel; 
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-
-class EstudianteImport implements ToModel
+class EstudianteImport implements ToModel, WithHeadingRow
 {
+
+    private $id_carrera;
+
+    public function __construct($id_carrera){
+        $this->id_carrera = $id_carrera;
+    }
+
     /**
     * @param array $row
     *
@@ -15,31 +22,37 @@ class EstudianteImport implements ToModel
     */
     public function model(array $row)
     {
-        $nombre = explode(' ',$row[4]);
-        
+        $nombre = explode(' ',$row['nbe_alumno']);
+
         return new Estudiante([
             'nombre'                        => $nombre[2].' '.$nombre[3],
             'ap_Paterno'                    => $nombre[0],
             'ap_Materno'                    => $nombre[1],
-            'rut'                           => $row[3],
-            'matricula'                     => $row[2],
-            'correo'                        => $row[5],
-            'id_carrera'                    => $row[0],
-            'sexo'                          => $row[6],
-            'fech_nac'                      => $row[7],
-            'plan'                          => $row[8],
-            'año_ingreso'                   => $row[9],
-            'estado_actual'                 => $row[11],
-            'comuna'                        => $row[12],
-            'region'                        => $row[13],
-            'creditos_aprobados'            => $row[14],
-            'nivel'                         => $row[15],
-            'porc_avance'                   => $row[16],
-            'ult_ptje_prioridad'            => $row[17],
-            'regular'                       => $row[18],  
-            'prom_aprobadas'                => $row[19],
-            'prom_cursados'                 => $row[20],
+            'rut'                           => $row['run'],
+            'matricula'                     => $row['matricula'],
+            'correo'                        => $row['correo'],
+            'id_carrera'                    => $this->id_carrera,
+            'sexo'                          => $row['sexo'],
+            'fech_nac'                      => $row['fecha_nac'],
+            'plan'                          => $row['plan'],
+            'año_ingreso'                   => $row['anho_ingreso'],
+            'estado_actual'                 => $row['sit_actual'],
+            'comuna'                        => $row['comuna'],
+            'region'                        => $row['region'],
+            'creditos_aprobados'            => $row['cred_aprobados'],
+            'nivel'                         => $row['nivel'],
+            'porc_avance'                   => $row['porc_avance'],
+            'ult_ptje_prioridad'            => $row['ult_ptje_prioridad'],
+            'regular'                       => $row['regular'],  
+            'prom_aprobadas'                => $row['prom_aprobadas'],
+            'prom_cursados'                 => $row['prom_cursadas'],
             'num_observaciones'             => 0,
         ]);
+
+    }
+
+    public function headingRow(): int
+    {
+        return 6;
     }
 }
