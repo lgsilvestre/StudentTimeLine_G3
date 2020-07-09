@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Estudiante;
 use App\User;
-use DB;
 use App\Carrera;
 use App\Categoria;
 use App\Modulo_carrera;
@@ -243,6 +242,11 @@ class EstudianteController extends Controller
 
     public function importExcel(Request $request, Carrera $carrera){
 
+
+        $validate=$request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+            ]);
+            
         $file =  $request->file('file');
         Excel::import(new EstudianteImport($carrera->id), $file);
         return redirect()->action('EstudianteController@index',$carrera)
