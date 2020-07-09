@@ -114,7 +114,7 @@ Route::middleware(['auth'])->group(function(){
     Route::post('estudiantes/{carrera}/store','EstudianteController@store')->name('estudiante.store')
     ->middleware('has.role:admin');
 
-    Route::get('estudiantes/{estudiante}/show', 'EstudianteController@show')->name('estudiante.show');
+    Route::get('estudiante/{estudiante}/', 'EstudianteController@show')->name('estudiante.show');
     //ruta para excel
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');
@@ -131,6 +131,8 @@ Route::middleware(['auth'])->group(function(){
     Route::post('carrera/update','CarreraController@update')->name('carrera.update')
     ->middleware('has.role:admin');
 
+    //Rutas de Observacion
+    Route::post('observacion/{estudiante}/store','ObservacionController@store')->name('observacion.store');
 
 
 });
