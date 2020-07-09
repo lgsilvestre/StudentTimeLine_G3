@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Observacion;
 use App\Categoria;
 use App\Carrera;
+use Auth;
+use App\Observacion_usuario_estudiante;
 
 class ObservacionController extends Controller
 {
@@ -17,7 +19,7 @@ class ObservacionController extends Controller
     public function index()
     {
         $observaciones=Observacion::all();
-        return view('observacion.index',compact('observaciones'));
+        return view('estudiante.show',compact('observaciones'));
     }
 
     /**
@@ -40,14 +42,14 @@ class ObservacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
 
         $validate=$request->validate([
             'titulo'=>'required|string|max:255',
             'tipo_observacion'=>'required|string|max:15',
             'descripcion'=>'required|string|max:2000',
-            'nombre_categoria'=>'required|string|max:255',
+            'id_categoria'=>'required|string|max:255',
             'modulo'=>'required|string|max:255',
         ]);
 
@@ -55,12 +57,22 @@ class ObservacionController extends Controller
     $observacion->titulo=$request->get('titulo');
     $observacion->tipo_observacion=$request->get('tipo_observacion');
     $observacion->descripcion=$request->get('descripcion');
-    $observacion->nombre_categoria=$request->get('nombre_categoria');
+    $categoria=Categoria::find($request->get('id_categoria'));
+    $observacion->nombre_categoria=$categoria->nombre;
+    $observacion->id_categoria=$categoria->id;
     $observacion->modulo=$request->get('modulo');
 
     $observacion->save();
 
-    return redirect()->action('ObservacionController@index')
+    Observacion_usuario_estudiante::create([
+        'id_usuario'=> Auth::user()->id,
+        'id_observacion' => $observacion->id,
+        'id_estudiante' => $id,
+    ]);
+
+    
+
+    return redirect()->action('EstudianteController@show', $id)
         ->with('success','Observacion ingresada con éxito'); 
     }
 
