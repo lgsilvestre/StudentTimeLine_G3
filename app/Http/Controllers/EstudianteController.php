@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Estudiante;
 use App\User;
+use DB;
 use App\Carrera;
 use App\Categoria;
+use App\Modulo_carrera;
 use Carbon\Carbon;
+use App\Observacion_usuario_estudiante;
+use App\Observacion;
 use Auth;
 use Rut;
 use Excel;
@@ -125,8 +129,21 @@ class EstudianteController extends Controller
         $usuario = User::find(Auth::user()->id);
         $now = Carbon::now();
         $estudiante = Estudiante::find($id);
+
+        $modulos = DB::table('modulo')
+            ->where('modulo.id_carrera',"=",$estudiante->id_carrera)
+            ->get();
+
+        $detalle_observacion = DB::table('usuario_observacion_estudiante')
+            ->where('usuario_observacion_estudiante.id_estudiante',"=",$id)
+            ->get();
+        
+        $observaciones = Observacion::all();
+
         $categorias = Categoria::all();
-        return view('estudiante.show', compact('estudiante','categorias','usuario','now'));
+
+        return view('estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
+                                                'observaciones', 'detalle_observacion'));
     }
 
     /**
