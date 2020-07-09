@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use Auth;
 use Rut;
 use Excel;
+use Illuminate\Support\Facades\DB;
 
 use App\Imports\EstudianteImport;
 
@@ -53,7 +54,7 @@ class EstudianteController extends Controller
      */
     public function store(Request $request,Carrera $carrera)
     {
-        
+         
         $validate=$request->validate([
             'nombre'=>'required|string|max:255',
             'ap_Paterno'=>'required|string|max:255',
@@ -226,9 +227,10 @@ class EstudianteController extends Controller
     public function importExcel(Request $request, Carrera $carrera){
 
         $file =  $request->file('file');
-        Excel::import(new EstudianteImport, $file);
+        Excel::import(new EstudianteImport($carrera->id), $file);
         return redirect()->action('EstudianteController@index',$carrera)
         ->with('success','Estudiantes ingresados con éxito'); 
+        
     }
 
 }
