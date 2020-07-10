@@ -194,8 +194,8 @@
                            @foreach($carreras as $carrera)
                                
                                <li>
-                               <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
-                               <label class="form-check-label" for="defaultCheck1">
+                               <input name="carreras[]"class="form-check-input" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                               <label class="form-check-label" for="defaultCheck1" >
                                    {{$carrera->nombre}}
                                </label>
                                </li>
@@ -333,7 +333,7 @@
                             
                             @foreach($carreras as $carrera)
                                 <li>
-                                <input name="carreras[]"class="form-check-input" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                                <input name="carreras[]"class="form-check-input-editar" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
                                     {{$carrera->nombre}}
                                 </label>
@@ -386,20 +386,63 @@
  
 function comprobar()
           {
+            var x = document.getElementsByClassName("form-check-input");
+            var i;
+            for (i = 0; i < x.length; i++) {
+                x[i].checked = false;
+            }
+
+            var x = document.getElementsByClassName("form-check-input-editar");
+            var i;
+            for (i = 0; i < x.length; i++) {
+                x[i].checked = false;
+            }
+
             var select_box = document.getElementById("id_rol");
             var id_rol = select_box.options[select_box.selectedIndex].value;
             
               if(id_rol==2 || id_rol==3){
                 
                 document.getElementById("div_carreras").style.display = "";
-                document.getElementById("div_carreras_editar").style.display = "";
 
               }else{
                 document.getElementById("div_carreras").style.display = "none";
+              }
+
+            var select_box_editar = document.getElementById("id_rol_editar");
+            var id_rol_editar = select_box_editar.options[select_box_editar.selectedIndex].value;
+            if(id_rol_editar==2 || id_rol_editar==3){
+                
+                document.getElementById("div_carreras_editar").style.display = "";
+
+              }else{
                 document.getElementById("div_carreras_editar").style.display = "none";
               }
 
           }
+
+function checkOnlyOne(b)
+            {
+                var select_box = document.getElementById("id_rol");
+                var id_rol = select_box.options[select_box.selectedIndex].value;
+                if (id_rol==3){
+                    var x = document.getElementsByClassName("form-check-input");
+                    var i;
+                    for (i = 0; i < x.length; i++) {
+                        if(x[i].value != b) x[i].checked = false;
+                    }
+                }
+                var select_box_editar = document.getElementById("id_rol_editar");
+                var id_rol_editar = select_box_editar.options[select_box_editar.selectedIndex].value;
+                if (id_rol_editar==3){
+                    var x = document.getElementsByClassName("form-check-input-editar");
+                    var i;
+                    for (i = 0; i < x.length; i++) {
+                        if(x[i].value != b) x[i].checked = false;
+                    }
+                }
+            }
+
 </script>
 
 @endsection
