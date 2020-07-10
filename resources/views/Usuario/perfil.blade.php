@@ -25,9 +25,7 @@
                     </ul>
                     <button type="button" class="btn btn-link loat-center custom-olvido" data-toggle="modal" data-target="#exampleModal">
                         ¿Desea cambiar su contraseña?
-                    </button>
-                    
-                    
+                    </button>   
             </div>
         </div>
     </div>
@@ -47,8 +45,13 @@
                 <div class="modal-body">
                     <!-- Aqui va el código de las contraseñar -->
                     @csrf
-                        <input id="imagen" type="file" class="form-control" name="foto">
-                </div>
+                    <div class="form-group row">
+                        <label for="foto" class="col-md-2 col-form-label text-md-right fileinput">{{ __('Foto') }}</label>
+                        <div class="col-md-8 custom-file">
+                            <input id="imagen" type="file" class="custom-file-input" name="foto" required>
+                            <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Seleccionar archivo</label>
+                        </div>  
+                    </div>    
                 <div class="modal-footer">
                     <button style="background-color: #2a9d8f" class="btn btn-info btn-sm">Cambiar foto</button>
                     <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -57,7 +60,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -143,6 +145,17 @@
         }                           
     }
      
+</script>
+
+<!-- Script foto -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function(){
+            $('.custom-file-input').on('change', function() { 
+            let fileName = $(this).val().split('\\').pop(); 
+            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+            });
+        });    
 </script>
 
 <script>
