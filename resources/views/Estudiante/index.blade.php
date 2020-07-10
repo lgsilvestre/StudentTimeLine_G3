@@ -8,19 +8,21 @@
             <div class="card margen-card">
             {{ Breadcrumbs::render('carrera', $carrera) }} 
                 <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
-                    <div class="card-body">                   
-<!-- importación masiva -->
-    <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="form-group row" style="float:left">
-            <div class="col-md-8 custom-file">
-            <input id="file" type="file" class="custom-file-input" name="file" required>
-            <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Importación de Estudiantes</label>
-            </div>
-            <button style="background-color: #2a9d8f; color:white;margin-left:7px"class="btn btn-info  btn-sm">Importar</button>             
-        </div> 
-    </form>
-<!-- -->
+                    <div class="card-body">     
+                    @can('addUser')          
+                    <!-- importación masiva -->
+                        <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row" style="float:left">
+                                <div class="col-md-8 custom-file">
+                                <input id="file" type="file" class="custom-file-input" name="file" required>
+                                <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Importación de Estudiantes</label>
+                                </div>
+                                <button style="background-color: #2a9d8f; color:white;margin-left:7px"class="btn btn-info  btn-sm">Importar</button>             
+                            </div> 
+                        </form>
+                    <!-- -->
+                    @endcan
                     <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
@@ -301,10 +303,10 @@
         </div>
         <div class="modal-footer">  
                 
-            <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+            <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
