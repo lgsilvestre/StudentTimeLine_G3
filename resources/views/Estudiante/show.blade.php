@@ -6,6 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
+            {{ Breadcrumbs::render('estudiante', $estudiante) }}
                 <div class="card-header custom-inicioSesion custom-color">{{ __('Línea de Tiempo') }}</div>
                 <div class="card-body custom-lineaTiempo">
                     <div class= "custom-foto float-center"></div> 
