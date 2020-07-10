@@ -298,13 +298,17 @@ class UsersController extends Controller
         
         $user = User::find(Auth::user()->id);
         
+        $validate=$request->validate([
+            'foto' => 'required|mimes:jpg,png',
+        ]);
+
         $newname=null;
         if($request->hasFile('foto')){
             $file = $request->file('foto');
             $newname = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$newname);
         }
-        
+
         $user->imagen = $newname;
         $user->save();
 

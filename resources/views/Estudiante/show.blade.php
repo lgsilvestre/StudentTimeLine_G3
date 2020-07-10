@@ -46,20 +46,30 @@
                 <!-- Inicio linea de tiempo -->
                 <div class="card-body overflow-auto custom-lineaTiempo" style="width:739px;margin-left:370px;margin-top:-490px">
                 @if($observaciones->isempty())
-                    <h1>Sin observaciones por el momento...</h1>
+                <ul class="cbp_tmtimeline">
+                        <li> 
+                            <time class="cbp_tmtime"><span>{{$now->format('d/m/y')}}</span> <span>{{$now->format('G:i A')}}</span></time>
+                            <div class="cbp_tmicon cbp_tmicon-phone"></div>
+                            <div class="cbp_tmlabel">
+                                <h2>Sin observación</h2>
+                                <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
+                                no presenta observaciones en ningún módulo</p>
+                            </div>
+                        </li>
+                    </ul>
                 @else
                     <ul class="cbp_tmtimeline">
                         @foreach($observaciones as $observacion)
                         <li>
-                            
                             <time class="cbp_tmtime"><span>{{$observacion->created_at->format('d/m/y')}}</span> <span>{{$observacion->created_at->format('G:i A')}}</span></time>
                             <div class="cbp_tmicon cbp_tmicon-phone"></div>
                             <div class="cbp_tmlabel">
-                                <h2>{{$observacion->titulo}}</h2>
-                                <h5>{{$observacion->modulo}}</h5>
-                                <p>{{$observacion->descripcion}}</p>
+                                <h2>Titulo: {{$observacion->titulo}}</h2>
+                                <p>Autor: {{$observacion->nombre_autor}}</p>
+                                <h6>Modulo: {{$observacion->modulo}}</h6>
+                                <p>Detalle: {{$observacion->descripcion}}</p>
                                 <footer>
-                                    <h6>{{$observacion->nombre_categoria}}</h6>
+                                    <h6>Categoría: {{$observacion->nombre_categoria}}</h6>
                                 </footer>
                             </div>
                         @endforeach
@@ -76,7 +86,7 @@
 <!-- Modal agregar observacion -->
 <div class="modal fade" id="modalObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content "style="height:700px;width:600px;margin-top:-25px">
+        <div class="modal-content "style="height:630px;width:580px;margin-top:-25px">
             <div class="modal-header custom-color">
                 <h5 class="modal-title" id="modalProfileLabel" style="color:white">Observación</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
@@ -121,7 +131,7 @@
 
                     <label for="name" class="col-md-2 col-form-label">{{ __('Observacion') }}</label>
                     <div class="col-md-6">
-                        <textarea for="descripcion" id="descripcion" name="descripcion" rows="10" cols="70"></textarea>
+                        <textarea for="descripcion" id="descripcion" name="descripcion" rows="7" cols="70"></textarea>
                     </div>
                     <label for="name" class="col-md-2 col-form-label"> Autor:</label>
                     <label>{{$usuario->name}} </label>

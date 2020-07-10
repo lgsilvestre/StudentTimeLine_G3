@@ -61,6 +61,8 @@ class ObservacionController extends Controller
     $observacion->nombre_categoria=$categoria->nombre;
     $observacion->id_categoria=$categoria->id;
     $observacion->modulo=$request->get('modulo');
+    $observacion->id_autor =  Auth::user()->id;
+    $observacion->nombre_autor = Auth::user()->name;
 
     $observacion->save();
 
