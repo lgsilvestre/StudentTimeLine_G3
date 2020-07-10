@@ -7,7 +7,6 @@
         <div class="col-md-12">
             <div class="card margen-card">
             {{ Breadcrumbs::render('carrera', $carrera) }} 
-                <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
                     <div class="card-body">     
                     @can('addUser')          
                     <!-- importación masiva -->
