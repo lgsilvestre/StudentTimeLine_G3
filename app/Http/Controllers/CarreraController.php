@@ -10,12 +10,6 @@ use Auth;
 class CarreraController extends Controller
 {
 
-    /*
-    Esto es para que se puedan acceder a los metodos solo los usuarios autenticados.
-    public function __construct(){
-        $this->middleware('auth');
-    }
-    /*
 
     /**
      * Display a listing of the carrer.
@@ -24,9 +18,6 @@ class CarreraController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()){
-            dd("HOLA");
-        }
         $user = User::find(Auth::user()->id);
         if($user->id == 1){
             $carreras = Carrera::all();
