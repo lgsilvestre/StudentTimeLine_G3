@@ -1,4 +1,5 @@
 <?php
+use App\Carrera;
 
 // Home
 Breadcrumbs::for('home', function ($trail) {
@@ -8,12 +9,14 @@ Breadcrumbs::for('home', function ($trail) {
 // Home > [Carrera]
 Breadcrumbs::for('carrera', function ($trail, $carrera) {
     $trail->parent('home');
-    $trail->push($carrera->nombre, route('estudiantes.index', $carrera->id));
+    $trail->push($carrera->nombre, route('estudiantes.index', $carrera));
 });
-/* IMPLEMENTAR CUANDO ESTE LA RUTA A UN ESTUDIANTE ESPECIFICO
+
 
 // Home > [Carrera] > [Estudiante]
 Breadcrumbs::for('estudiante', function ($trail, $estudiante) {
-    $trail->parent('carrera');
-    $trail->push($estudiante->nombre, route('', $estudiante->id));
-}); */
+    $carrera=Carrera::find($estudiante->id_carrera);
+    $trail->parent('carrera', $carrera);
+    $name=$estudiante->nombre." ".$estudiante->ap_Paterno." ".$estudiante->ap_Materno;
+    $trail->push($name, route('estudiante.show', $estudiante));
+}); 
