@@ -247,6 +247,11 @@ class EstudianteController extends Controller
 
     public function importExcel(Request $request, Carrera $carrera){
 
+
+        $validate=$request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+            ]);
+            
         $file =  $request->file('file');
         Excel::import(new EstudianteImport($carrera->id), $file);
         return redirect()->action('EstudianteController@index',$carrera)
