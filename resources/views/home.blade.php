@@ -94,9 +94,9 @@
         </div>
 
         <div class="modal-footer">  
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -215,7 +215,6 @@
 <script>
         $(document).ready(function(){
             $('.custom-file-input').on('change', function() { 
-            console.log("hola");
             let fileName = $(this).val().split('\\').pop(); 
             $(this).next('.custom-file-label').addClass("selected").html(fileName); 
             });

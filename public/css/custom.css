@@ -261,7 +261,6 @@
     height: 8%;
     opacity: 0;
 }
-
 .imgRedonda {
     width:  30px;
     height: 30px;
@@ -490,5 +489,25 @@
         left: auto;
         margin: -55px 5px 0 0px;
     }
+    
 }
   /*fin linea de tiempo*/
+.breadcrumb{
+
+    background-color:#577590;
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
+    
+}
+.breadcrumb-item.active{
+    color: white;
+    font-size: medium;
+}
+.breadcrumb-item+.breadcrumb-item:before{
+    color:#cfcccc;
+    font-size: medium;
+}
+.breadcrumb-item a{
+    padding: 0 5px;
+    color: #cfcccc;
+    font-size: medium;
+  }
