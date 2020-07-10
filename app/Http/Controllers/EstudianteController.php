@@ -7,10 +7,14 @@ use App\Estudiante;
 use App\User;
 use App\Carrera;
 use App\Categoria;
+use App\Modulo_carrera;
 use Carbon\Carbon;
+use App\Observacion_usuario_estudiante;
+use App\Observacion;
 use Auth;
 use Rut;
 use Excel;
+use Illuminate\Support\Facades\DB;
 
 use App\Imports\EstudianteImport;
 
@@ -53,7 +57,7 @@ class EstudianteController extends Controller
      */
     public function store(Request $request,Carrera $carrera)
     {
-        
+         
         $validate=$request->validate([
             'nombre'=>'required|string|max:255',
             'ap_Paterno'=>'required|string|max:255',
@@ -124,8 +128,26 @@ class EstudianteController extends Controller
         $usuario = User::find(Auth::user()->id);
         $now = Carbon::now();
         $estudiante = Estudiante::find($id);
+
+        $modulos = Modulo_carrera::
+            where('modulo.id_carrera',"=",$estudiante->id_carrera)
+            ->get();
+
+        $detalle_observacion = Observacion_usuario_estudiante::
+            where('usuario_observacion_estudiante.id_estudiante',"=",$id)
+            ->orderBy('created_at','desc')
+            ->get();
+        
+        $observaciones=[];
+        foreach($detalle_observacion as $detalle){
+            $observaciones[] = $detalle->observacion;
+        }  
+        $observaciones = collect($observaciones);
+
         $categorias = Categoria::all();
-        return view('estudiante.show', compact('estudiante','categorias','usuario','now'));
+
+        return view('estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
+                                                'observaciones', 'detalle_observacion'));
     }
 
     /**
@@ -225,10 +247,16 @@ class EstudianteController extends Controller
 
     public function importExcel(Request $request, Carrera $carrera){
 
+
+        $validate=$request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+            ]);
+            
         $file =  $request->file('file');
-        Excel::import(new EstudianteImport, $file);
+        Excel::import(new EstudianteImport($carrera->id), $file);
         return redirect()->action('EstudianteController@index',$carrera)
         ->with('success','Estudiantes ingresados con éxito'); 
+        
     }
 
 }

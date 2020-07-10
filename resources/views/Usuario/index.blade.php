@@ -376,7 +376,6 @@
 <script>
         $(document).ready(function(){
             $('.custom-file-input').on('change', function() { 
-            console.log("hola");
             let fileName = $(this).val().split('\\').pop(); 
             $(this).next('.custom-file-label').addClass("selected").html(fileName); 
             });

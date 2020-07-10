@@ -76,17 +76,20 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        
         $name= null;
         if($request->hasFile('foto')){
             $file = $request->file('foto');
             $name = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$name);
         }
+        
 
         $validate=$request->validate([
             'nombre'=>'required|string',
             'email'=>'required|string|unique:users',
             'password'=>'required|string|min:8|confirmed',
+            'foto' =>'required|mimes:xls,xlsx',
             ]);
 
         $user = User::create([
@@ -123,7 +126,7 @@ class UsersController extends Controller
         $user->save();
 
         return redirect()->action('UsersController@index')
-        ->with('success','Usuario creado con éxito');    
+        ->with('success','Usuario creado con éxito');   
     }
     public function store_Profesor(Request $request)
     {
@@ -295,13 +298,17 @@ class UsersController extends Controller
         
         $user = User::find(Auth::user()->id);
         
+        $validate=$request->validate([
+            'foto' => 'required|mimes:jpg,png',
+        ]);
+
         $newname=null;
         if($request->hasFile('foto')){
             $file = $request->file('foto');
             $newname = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$newname);
         }
-        
+
         $user->imagen = $newname;
         $user->save();
 
