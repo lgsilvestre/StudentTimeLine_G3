@@ -7,16 +7,21 @@
         <div class="col-md-12">
             <div class="card margen-card">
             {{ Breadcrumbs::render('carrera', $carrera) }} 
-                <div class="card-header custom-recuperarSesion custom-header">Estudiantes de {{$carrera->nombre}}</div>
-                 <!-- aqui se agrega el boton parcial para ingreso de archivo excel para
-                    estudiantes -->
-                    <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input type="file" name="file">
-                        <button>Importar Estudiantes</button>
-                    </form>    
-                <!--hasta aqui es-->
-                    <div class="card-body">                   
+                    <div class="card-body">     
+                    @can('addUser')          
+                    <!-- importación masiva -->
+                        <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row" style="float:left">
+                                <div class="col-md-8 custom-file">
+                                <input id="file" type="file" class="custom-file-input" name="file" required>
+                                <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Importación de Estudiantes</label>
+                                </div>
+                                <button style="background-color: #2a9d8f; color:white;margin-left:7px"class="btn btn-info  btn-sm">Importar</button>             
+                            </div> 
+                        </form>
+                    <!-- -->
+                    @endcan
                     <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
@@ -35,6 +40,8 @@
                                         <i class="fas fa-plus"></i> Añadir Estudiante
                                         </a>
                                     @endcan
+
+                                    
                                     </th>
                                 </tr>
                             </thead>
@@ -104,18 +111,19 @@
                 {data: 'num_observaciones'},
                 {data: 'btn'}
             ],
-            
+
         });
         
     });
 </script>
 
-<!-- Modal para crear modulo -->
+<!-- Modal para crear Estudiante -->
 <div class="modal fade " id="modal_crear" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header custom-color">
         <h5 class="modal-title" id="exampleModalLabel" >Creación Estudiante</h5>
+
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -294,12 +302,23 @@
         </div>
         <div class="modal-footer">  
                 
-            <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+            <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function(){
+            $('.custom-file-input').on('change', function() { 
+            console.log("hola");
+            let fileName = $(this).val().split('\\').pop(); 
+            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+            });
+        });    
+</script>
+
 @endsection

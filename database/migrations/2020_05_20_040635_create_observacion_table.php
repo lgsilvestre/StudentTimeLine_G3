@@ -16,6 +16,8 @@ class CreateObservacionTable extends Migration
         Schema::create('observacion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo', 255)->notnull();
+            $table->string('nombre_autor', 255)->notnull();
+            $table->string('id_autor', 255)->notnull();
             $table->string('tipo_observacion',255)->notnull();
             $table->string('descripcion', 2000)->notnull();
             $table->unsignedBigInteger('id_categoria')->notnull();
