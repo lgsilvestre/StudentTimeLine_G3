@@ -8,6 +8,7 @@ use App\Categoria;
 use App\Carrera;
 use Auth;
 use App\Observacion_usuario_estudiante;
+use App\Estudiante;
 
 class ObservacionController extends Controller
 {
@@ -65,14 +66,16 @@ class ObservacionController extends Controller
     $observacion->nombre_autor = Auth::user()->name;
 
     $observacion->save();
-
+    
+    
     Observacion_usuario_estudiante::create([
         'id_usuario'=> Auth::user()->id,
         'id_observacion' => $observacion->id,
         'id_estudiante' => $id,
     ]);
-
-    
+    $estudiante = Estudiante::find($id);
+    $estudiante->num_observaciones +=1;
+    $estudiante->save();
 
     return redirect()->action('EstudianteController@show', $id)
         ->with('success','Observacion ingresada con éxito'); 
