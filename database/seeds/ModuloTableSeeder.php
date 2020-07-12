@@ -335,11 +335,6 @@ class ModuloTableSeeder extends Seeder
             'id_carrera' => 1,
         ]);
 
-        Modulo_carrera::create([
-            'descripcion' => 'Otro',
-            'id_carrera' => 1,
-        ]);
-
 
         #CURSOS DE LA CARRERA INGENIERIA CIVIL INDUSTRIAL
 
@@ -999,7 +994,7 @@ class ModuloTableSeeder extends Seeder
 
         Modulo_carrera::create([
             'descripcion' => 'Plan 16 - Taller Proyecto de Estructuras',
-            'id_carrera' => 1,
+            'id_carrera' => 3,
         ]);
 
         Modulo_carrera::create([

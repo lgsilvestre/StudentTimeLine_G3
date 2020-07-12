@@ -82,7 +82,7 @@
                 {data: 'nombre'},
                 {data: 'email'},
                 {data: 'name'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btn-sm btnEliminar' style='background-color: #2a9d8f'><i class='fas fa-user-plus'></i> Habilitar</button></div></div>"}
+                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-info btn-sm btnEliminar' style='background-color: #2a9d8f'><i class='fas fa-user-plus'></i> Habilitar</button></div></div>"}
             ],
             
             
