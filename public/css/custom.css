@@ -401,6 +401,7 @@
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
     border-right-color: #6cbfee;
 }
+
  
 /* iconos */
 .cbp_tmtimeline > li .cbp_tmicon {
@@ -489,7 +490,10 @@
         left: auto;
         margin: -55px 5px 0 0px;
     }
-    
+    .btn-editar{
+        color: white;
+        border-color: #577590 ;
+    }
 }
   /*fin linea de tiempo*/
 .breadcrumb{
@@ -510,4 +514,26 @@
     padding: 0 5px;
     color: #cfcccc;
     font-size: medium;
+  }
+
+  .editar-observacion{
+    margin-top:-10px;
+    font-weight: bold;
+    color: white;
+    outline: none;
+    border: none;
+  }
+
+  .editar-observacion:hover{
+    color:whitesmoke;
+    text-decoration: underline;
+    outline: none;
+    border: none;
+  }
+
+  .editar-observacion:focus{
+    outline: none;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
   }
