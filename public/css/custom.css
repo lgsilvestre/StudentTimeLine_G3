@@ -374,7 +374,7 @@
 .cbp_tmtimeline > li .cbp_tmlabel {
     margin: 0 60px 45px 25%;
     color: #fff;
-    background-color:  #3594cb;;
+    background-color:  #2891ce;;
     padding: 25px;
     font-size: 15px;
     font-weight: 10px;
@@ -385,7 +385,7 @@
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
-    background-color: #3594cb;;
+    background-color: #0e6fa7;;
 }
  
 .cbp_tmtimeline > li .cbp_tmlabel h2 {
