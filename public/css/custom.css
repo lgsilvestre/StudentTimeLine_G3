@@ -285,6 +285,16 @@
     height: 490px;
     width: 250px;
 }
+
+.custom-tipo[tipo="Negativa"] {
+    background: red;
+}
+.custom-tipo[tipo="Positiva"] {
+    background: #09139b;
+}
+.custom-tipo[tipo="Informativa"] {
+    background: #858e94;
+}
 .btn-secondary{
     background-color: #2a9d8f;
 }
@@ -363,8 +373,8 @@
 /* contenido a la derecha */
 .cbp_tmtimeline > li .cbp_tmlabel {
     margin: 0 60px 45px 25%;
-    background: #3594cb;
     color: #fff;
+    background-color:  #2891ce;;
     padding: 25px;
     font-size: 15px;
     font-weight: 10px;
@@ -375,7 +385,7 @@
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
-    background: #57afe2;
+    background-color: #0e6fa7;;
 }
  
 .cbp_tmtimeline > li .cbp_tmlabel h2 {
@@ -417,7 +427,6 @@
     -webkit-font-smoothing: antialiased;
     position: absolute;
     color: #fff;
-    background: #46a4da;
     border-radius: 50%;
     box-shadow: 0 0 0 8px #afdcf8;
     text-align: center;
