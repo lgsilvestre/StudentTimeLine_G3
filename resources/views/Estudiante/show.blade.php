@@ -51,15 +51,11 @@
                 <!-- Inicio linea de tiempo -->
                 <div class="card-body overflow-auto custom-lineaTiempo" style="width:739px;margin-left:370px;margin-top:-490px">
                 @if($observaciones->isempty())
-                <ul class="cbp_tmtimeline">
+                     <ul >
                         <li> 
-                            <time class="cbp_tmtime"><span>{{$now->format('d/m/y')}}</span> <span>{{$now->format('G:i A')}}</span></time>
-                            <div class="cbp_tmicon "><i class="fas fa-info-circle"></i></div>
-                            <div class="cbp_tmlabel">
-                                <h2>Sin observación</h2>
+                            <h2>Sin observación</h2>
                                 <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
                                 no presenta observaciones en ningún módulo</p>
-                            </div>
                         </li>
                     </ul>
                 @else
@@ -67,7 +63,16 @@
                         @foreach($observaciones as $observacion)
                         <li>
                             <time class="cbp_tmtime" ><span>{{$observacion->created_at->format('d/m/y')}}</span> <span>{{$observacion->created_at->format('G:i A')}}</span></time>
-                            <div class="cbp_tmicon custom-tipo" tipo="{{$observacion->tipo_observacion}}" ><i class="fas fa-info-circle" ></i></div>
+                            <div class="cbp_tmicon custom-tipo" tipo="{{$observacion->tipo_observacion}}" >
+                                @if($observacion->tipo_observacion=='Informativa')
+                                    <i class="fas fa-info-circle" ></i>
+                                @elseif($observacion->tipo_observacion=='Positiva')
+                                     <i class="fas fa-check-circle"></i>
+                                @else
+                                    <i class="fas fa-times-circle"></i>
+                                @endif
+
+                            </div>
                             <div class="cbp_tmlabel">
                                     <h2>Titulo: {{$observacion->titulo}}</h2>
                                     <p>Autor: {{$observacion->nombre_autor}}</p>
