@@ -7,96 +7,101 @@
         <div class="col-md-12">
             <div class="card">
             {{ Breadcrumbs::render('estudiante', $estudiante) }}
-                <div class="card-body custom-lineaTiempo">
-                    <div class= "custom-foto float-center"></div> 
-                    <div class="form-group" style="margin-top:25px; width: 400px;">
-                        <ul>
-                            <a class="custom-negrita">Nombre: </a>
-                            {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Rut: </a>
-                            {{$estudiante->rut}} 
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Correo: </a>
-                            {{$estudiante->correo}} 
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Matricula: </a>
-                            {{$estudiante->matricula}}
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Situacion Academica: </a>
-                            {{$estudiante->estado_actual}} 
-                        </ul>
-                        <div >
-                            <button type="button" class="btn btn-primary" style="margin-left:40px" data-toggle="modal" data-target="#modalObservacion">
-                                {{ __('Agregar observacion') }}
-                            </button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modalEditar">
-                                {{ __('Editar datos version 1') }}
-                            </button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modal_editar">
-                                {{ __('Editar datos version 2') }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Inicio linea de tiempo -->
-                <div class="card-body overflow-auto custom-lineaTiempo" style="width:739px;margin-left:370px;margin-top:-490px">
-                @if($observaciones->isempty())
-                     <ul >
-                        <li> 
-                            <h2>Sin observación</h2>
-                                <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
-                                no presenta observaciones en ningún módulo</p>
-                        </li>
-                    </ul>
-                @else
-                    <ul class="cbp_tmtimeline">
-                        @foreach($observaciones as $observacion)
-                        <li>
-                            <time class="cbp_tmtime" ><span>{{$observacion->created_at->format('d/m/y')}}</span> <span>{{$observacion->created_at->format('G:i A')}}</span></time>
-                            <div class="cbp_tmicon custom-tipo" tipo="{{$observacion->tipo_observacion}}" >
-                                @if($observacion->tipo_observacion=='Informativa')
-                                    <i class="fas fa-info-circle" ></i>
-                                @elseif($observacion->tipo_observacion=='Positiva')
-                                     <i class="fas fa-check-circle"></i>
+                <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class= "custom-foto float-center"></div> 
+                                <div class="form-group" >
+                                    <ul>
+                                        <a class="custom-negrita">Nombre: </a>
+                                        {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Rut: </a>
+                                        {{$estudiante->rut}} 
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Correo: </a>
+                                        {{$estudiante->correo}} 
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Matricula: </a>
+                                        {{$estudiante->matricula}}
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Situacion Academica: </a>
+                                        {{$estudiante->estado_actual}} 
+                                    </ul>
+                                    <div >
+                                        <button type="button" class="btn btn-primary" style="margin-left:40px" data-toggle="modal" data-target="#modalObservacion">
+                                            {{ __('Agregar observacion') }}
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modalEditar">
+                                            {{ __('Editar datos version 1') }}
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modal_editar">
+                                            {{ __('Editar datos version 2') }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8 overflow-auto" style="height:470px">
+                            <!-- Inicio linea de tiempo -->
+                                
+                                @if($observaciones->isempty())
+                                    <ul >
+                                        <li> 
+                                            <h2>Sin observación</h2>
+                                                <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
+                                                no presenta observaciones en ningún módulo</p>
+                                        </li>
+                                    </ul>
                                 @else
-                                    <i class="fas fa-times-circle"></i>
+                                    <ul class="cbp_tmtimeline">
+                                        @foreach($observaciones as $observacion)
+                                        <li>
+                                            <time class="cbp_tmtime" ><span>{{$observacion->created_at->format('d/m/y')}}</span> <span>{{$observacion->created_at->format('G:i A')}}</span></time>
+                                            <div class="cbp_tmicon custom-tipo" tipo="{{$observacion->tipo_observacion}}" >
+                                                @if($observacion->tipo_observacion=='Informativa')
+                                                    <i class="fas fa-info-circle" ></i>
+                                                @elseif($observacion->tipo_observacion=='Positiva')
+                                                    <i class="fas fa-check-circle"></i>
+                                                @else
+                                                    <i class="fas fa-times-circle"></i>
+                                                @endif
+
+                                            </div>
+                                            <div class="cbp_tmlabel">
+                                                    <h2>Titulo: {{$observacion->titulo}}</h2>
+                                                    <p>Autor: {{$observacion->nombre_autor}}</p>
+                                                    <h6>Modulo: {{$observacion->modulo}}</h6>
+                                                    <p>Detalle: {{$observacion->descripcion}}</p>
+                                                    <footer>
+                                                        <h6>Categoría: {{$observacion->nombre_categoria}}</h6>
+                                                        <h6>Tipo: {{$observacion->tipo_observacion}}</h6>
+                                                    </footer>
+                                                    <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
+                                                    <button type="button" class="btn btn-editar custom-olvido" style="color: #ffffff; backgroundcolor: #05668B" data-toggle="modal" data-target="#modal_editarObservacion">
+                                                    {{ __('Editar observacion') }}
+                                                </button>
+                                            </div>
+
+                                        
+
+                                        </li>
+                                        @endforeach
+                                        
+                                    </ul>
                                 @endif
-
+                                
+                                <!-- Fin linea de tiempo --> 
                             </div>
-                            <div class="cbp_tmlabel">
-                                    <h2>Titulo: {{$observacion->titulo}}</h2>
-                                    <p>Autor: {{$observacion->nombre_autor}}</p>
-                                    <h6>Modulo: {{$observacion->modulo}}</h6>
-                                    <p>Detalle: {{$observacion->descripcion}}</p>
-                                    <footer>
-                                        <h6>Categoría: {{$observacion->nombre_categoria}}</h6>
-                                        <h6>Tipo: {{$observacion->tipo_observacion}}</h6>
-                                    </footer>
-                                    <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
-                                    <button type="button" class="btn btn-editar custom-olvido" style="color: #ffffff; backgroundcolor: #05668B" data-toggle="modal" data-target="#modal_editarObservacion">
-                                    {{ __('Editar observacion') }}
-                                </button>
-                            </div>
-
-                           
-
-                           
-                        @endforeach
-                        </li>
-                    </ul>
-                @endif
-                <!-- Fin linea de tiempo -->
-                </div>
+                        </div>  
+                </div>  
             </div>
         </div>
     </div>
