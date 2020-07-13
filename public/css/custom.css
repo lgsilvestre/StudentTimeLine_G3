@@ -515,3 +515,25 @@
     color: #cfcccc;
     font-size: medium;
   }
+
+  .editar-observacion{
+    margin-top:-10px;
+    font-weight: bold;
+    color: white;
+    outline: none;
+    border: none;
+  }
+
+  .editar-observacion:hover{
+    color:whitesmoke;
+    text-decoration: underline;
+    outline: none;
+    border: none;
+  }
+
+  .editar-observacion:focus{
+    outline: none;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
