@@ -3,29 +3,38 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card custom-ajustarVistaPerfil">
-                <div class="card-header custom-color custom-perfil">Mi Perfil</div>
+        <div class="col-md-4">
+            <div class="card margen-card">
+                <div class="card-header custom-color custom-recuperarSesion">Mi Perfil</div>
                 <div class="card-body"> 
-                    <div class= "custom-foto float-center">
-                        <img  class="imagen" src="../images/{{$user->imagen}}" alt="">
-                    </div> 
-                    <ul class= "float-center custom-perfilElemento" style="margin-right:20px">
-                        <button type="button" class="btn btn-link loat-center custom-olvido" data-toggle="modal" data-target="#modalProfile">
-                            {{ __('Cambiar foto de perfil') }}
-                        </button>
-                    </ul>
-                    <ul class= "float-left custom-perfilElemento">
-                        <a class="custom-negrita">Nombre:</a> 
-                        {{$user->name}}
-                    </ul>
-                    <ul class= "float-left custom-perfilElemento">
-                        <a class="custom-negrita">Correo:</a>
-                        {{$user->email}}
-                    </ul>
-                    <button type="button" class="btn btn-link loat-center custom-olvido" data-toggle="modal" data-target="#exampleModal">
-                        ¿Desea cambiar su contraseña?
-                    </button>   
+                    <div class="row">
+                        <div class= "custom-foto float-center">
+                            <img  class="imagen" src="../images/{{$user->imagen}}" alt="">
+                        </div> 
+                    </div>
+                    <div clas="row">
+                            <button type="button" style="margin-left:60px" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#modalProfile">
+                                Cambiar foto de perfil
+                            </button>
+                            
+                    </div>
+                    <div class="row">
+                        <ul  >
+                            <a class="custom-negrita">Nombre:</a> 
+                            {{$user->name}}
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <ul >
+                            <a style="text-align: center;"  class="custom-negrita">Correo:</a>
+                            {{$user->email}}
+                        </ul>
+                    </div>
+                    <div class="row">
+                        <button type="button" style="margin-left:auto;margin-right:auto" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#exampleModal">
+                            ¿Desea cambiar su contraseña?
+                        </button>   
+                    </div>
             </div>
         </div>
     </div>
