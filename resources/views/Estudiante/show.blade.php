@@ -67,21 +67,25 @@
                         @foreach($observaciones as $observacion)
                         <li>
                             <time class="cbp_tmtime" ><span>{{$observacion->created_at->format('d/m/y')}}</span> <span>{{$observacion->created_at->format('G:i A')}}</span></time>
-                            <div class="cbp_tmicon "><i class="fas fa-info-circle" ></i></div>
+                            <div class="cbp_tmicon custom-tipo" tipo="{{$observacion->tipo_observacion}}" ><i class="fas fa-info-circle" ></i></div>
                             <div class="cbp_tmlabel">
-                                <h2>Titulo: {{$observacion->titulo}}</h2>
-                                <p>Autor: {{$observacion->nombre_autor}}</p>
-                                <h6>Modulo: {{$observacion->modulo}}</h6>
-                                <p>Detalle: {{$observacion->descripcion}}</p>
-                                <footer>
-                                    <h6>Categoría: {{$observacion->nombre_categoria}}</h6>
-                                    <h6>Tipo: {{$observacion->tipo_observacion}}</h6>
-                                </footer>
-                                <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
-                                <button type="button" class="btn btn-editar custom-olvido" style="color: #ffffff; backgroundcolor: #05668B" data-toggle="modal" data-target="#modal_editarObservacion">
-                                {{ __('Editar observacion') }}
-                            </button>
+                                    <h2>Titulo: {{$observacion->titulo}}</h2>
+                                    <p>Autor: {{$observacion->nombre_autor}}</p>
+                                    <h6>Modulo: {{$observacion->modulo}}</h6>
+                                    <p>Detalle: {{$observacion->descripcion}}</p>
+                                    <footer>
+                                        <h6>Categoría: {{$observacion->nombre_categoria}}</h6>
+                                        <h6>Tipo: {{$observacion->tipo_observacion}}</h6>
+                                    </footer>
+                                    <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
+                                    <button type="button" class="btn btn-editar custom-olvido" style="color: #ffffff; backgroundcolor: #05668B" data-toggle="modal" data-target="#modal_editarObservacion">
+                                    {{ __('Editar observacion') }}
+                                </button>
                             </div>
+
+                           
+
+                           
                         @endforeach
                         </li>
                     </ul>
