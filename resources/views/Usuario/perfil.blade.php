@@ -51,17 +51,18 @@
                             <input id="imagen" type="file" class="custom-file-input" name="foto" required>
                             <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Seleccionar archivo</label>
                         </div>  
-                    </div>    
+                    </div>  
+                    </div>  
                 <div class="modal-footer">
-                    <button style="background-color: #2a9d8f" class="btn btn-info btn-sm">Cambiar foto</button>
-                    <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button  class="btn btn-secondary btn-sm">Cambiar foto</button>
+                    <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal cambiar contraseña-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -116,16 +117,16 @@
 
                 <div class="modal-footer">
                     
-                    <button style="background-color: #2a9d8f" class="btn btn-info btn-sm">Guardar Cambios</button>
+                    <button class="btn btn-secondary btn-sm">Guardar Cambios</button>
                     </form>
-                    <button class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
                 </div>
              
         </div>
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 
 <script type="text/javascript">
         

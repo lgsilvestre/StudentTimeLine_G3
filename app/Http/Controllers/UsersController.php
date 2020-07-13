@@ -297,7 +297,7 @@ class UsersController extends Controller
         $user = User::find(Auth::user()->id);
         
         $validate=$request->validate([
-            'foto' => 'required|mimes:jpg,png',
+            'foto' => 'required|mimes:jpg,png,jpeg',
         ]);
 
         $newname=null;

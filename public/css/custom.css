@@ -285,6 +285,21 @@
     height: 490px;
     width: 250px;
 }
+
+.custom-tipo[tipo="Negativa"] {
+    background: #f94144;
+}
+.custom-tipo[tipo="Positiva"] {
+    background: #90be6d;
+}
+.custom-tipo[tipo="Informativa"] {
+    background: #5390d9;
+}
+.custom-tipo[tipo="vacio"] {
+    background: #5390d9;
+}
+
+
 .btn-secondary{
     background-color: #2a9d8f;
 }
@@ -363,8 +378,8 @@
 /* contenido a la derecha */
 .cbp_tmtimeline > li .cbp_tmlabel {
     margin: 0 60px 45px 25%;
-    background: #3594cb;
     color: #fff;
+    background-color:  #4ba8df;;
     padding: 25px;
     font-size: 15px;
     font-weight: 10px;
@@ -375,7 +390,7 @@
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
-    background: #6cbfee;
+    background-color: #248ecc;;
 }
  
 .cbp_tmtimeline > li .cbp_tmlabel h2 {
@@ -401,6 +416,7 @@
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
     border-right-color: #6cbfee;
 }
+
  
 /* iconos */
 .cbp_tmtimeline > li .cbp_tmicon {
@@ -416,7 +432,6 @@
     -webkit-font-smoothing: antialiased;
     position: absolute;
     color: #fff;
-    background: #46a4da;
     border-radius: 50%;
     box-shadow: 0 0 0 8px #afdcf8;
     text-align: center;
@@ -489,6 +504,50 @@
         left: auto;
         margin: -55px 5px 0 0px;
     }
-    
+    .btn-editar{
+        color: white;
+        border-color: #577590 ;
+    }
 }
   /*fin linea de tiempo*/
+.breadcrumb{
+
+    background-color:#577590;
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
+    
+}
+.breadcrumb-item.active{
+    color: white;
+    font-size: medium;
+}
+.breadcrumb-item+.breadcrumb-item:before{
+    color:#cfcccc;
+    font-size: medium;
+}
+.breadcrumb-item a{
+    padding: 0 5px;
+    color: #cfcccc;
+    font-size: medium;
+  }
+
+  .editar-observacion{
+    margin-top:-10px;
+    font-weight: bold;
+    color: white;
+    outline: none;
+    border: none;
+  }
+
+  .editar-observacion:hover{
+    color:whitesmoke;
+    text-decoration: underline;
+    outline: none;
+    border: none;
+  }
+
+  .editar-observacion:focus{
+    outline: none;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
