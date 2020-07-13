@@ -375,7 +375,7 @@
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
-    background: #6cbfee;
+    background: #57afe2;
 }
  
 .cbp_tmtimeline > li .cbp_tmlabel h2 {
@@ -401,6 +401,7 @@
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel:after {
     border-right-color: #6cbfee;
 }
+
  
 /* iconos */
 .cbp_tmtimeline > li .cbp_tmicon {
@@ -489,6 +490,28 @@
         left: auto;
         margin: -55px 5px 0 0px;
     }
-    
+    .btn-editar{
+        color: white;
+        border-color: #577590 ;
+    }
 }
   /*fin linea de tiempo*/
+.breadcrumb{
+
+    background-color:#577590;
+    margin-left:-1px; margin-right:-1px; margin-top:-1px;
+    
+}
+.breadcrumb-item.active{
+    color: white;
+    font-size: medium;
+}
+.breadcrumb-item+.breadcrumb-item:before{
+    color:#cfcccc;
+    font-size: medium;
+}
+.breadcrumb-item a{
+    padding: 0 5px;
+    color: #cfcccc;
+    font-size: medium;
+  }

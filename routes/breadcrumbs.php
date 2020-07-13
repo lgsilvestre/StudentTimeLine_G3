@@ -3,7 +3,7 @@ use App\Carrera;
 
 // Home
 Breadcrumbs::for('home', function ($trail) {
-    $trail->push('Home', route('home'));
+    $trail->push('Inicio', route('home'));
 });
 
 // Home > [Carrera]
