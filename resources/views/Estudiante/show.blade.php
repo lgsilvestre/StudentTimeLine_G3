@@ -78,7 +78,7 @@
                                     <h6>Tipo: {{$observacion->tipo_observacion}}</h6>
                                 </footer>
                                 <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
-                                <button type="button" class="btn btn-editar custom-olvido" style="color: #ffffff; backgroundcolor: #05668B" data-toggle="modal" data-target="#modal_editarObservacion">
+                                <button type="button" class="btn float-right editar-observacion" data-toggle="modal" data-target="#modal_editarObservacion">
                                 {{ __('Editar observacion') }}
                             </button>
                             </div>
@@ -156,7 +156,7 @@
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
                         <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$now->format('d-m-Y')}}</label>
+                            <label for="name" style="margin-top:7px"> {{$now->format('d-m-Y')}}</label>
                         </div>
                     </div>
                     
@@ -169,6 +169,7 @@
         </div>
     </div>
 </div>
+
 <!-- Modal editar observacion -->
 <div class="modal fade" id="modal_editarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -245,6 +246,7 @@
         </div>
     </div>
 </div>
+
 <!-- Modal editar datos estudiante-->
 <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -256,45 +258,81 @@
                 </button>
             </div>
             <form action="{{ route('estudiante.store', $estudiante->id) }}" method="post" enctype="multipart/form-data">
+            @csrf
                 <div class="modal-body">
-                    @csrf
+
                     <div class="form-group row">
-                        <label id="nombre" class="col-md-2 col-form-label"> Nombre: </label>
-                        <input type="text" name="nombre" id="nombre" class="col-md-8" placeholder={{$estudiante->nombre}} style="margin-left: 15px">
-                        
-                        <label id="ap_Paterno" class="col-md-4" style="margin-top: 10px" > Apellido Paterno: </label>
-                        <input type="text" name="ap_Paterno" id="ap_Paterno" class="col-md-7" style="margin-left: 15px margin-top: 10px" placeholder={{$estudiante->ap_Paterno}}>
-                        
-                        <label id="ap_Materno" class="col-md-4" style="margin-top: 10px" > Apellido Materno: </label>
-                        <input type="text" name="ap_Materno" id="ap_Materno" class="col-md-7" style="margin-left: 15px margin-top: 10px" placeholder={{$estudiante->ap_Materno}}>
-                        
-                        <label id="rut" class="col-md-2 col-form-label" style="margin-top: 10px" > Rut: </label>
-                        <input type="text" name="rut" id="rut" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->rut}}>
+                        <label id="nombre" class="col-md-4 col-form-label text-md-left">{{ __('Nombre:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder={{$estudiante->nombre}}>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label id="ap_Paterno" class="col-md-4 col-form-label text-md-left" > {{ __('Apellido Paterno:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control" name="ap_Paterno" id="ap_Paterno" placeholder={{$estudiante->ap_Paterno}}>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label id="ap_Materno" class="col-md-4" > {{ __('Apellido Materno:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->ap_Materno}}>
+                        </div>  
+                    </div>  
 
-                        <label id="matricula" class="col-md-2 col-form-label" style="margin-top: 10px" > Matricula: </label>
-                        <input type="text" name="matricula" id="matricula" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->matricula}}>
-  
-                        <label id="correo" class="col-md-2 col-form-label" style="margin-top: 10px" > Correo: </label>
-                        <input type="text" name="correo" id="correo" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->correo}}>
-  
-                        <label id="comuna" class="col-md-2 col-form-label" style="margin-top: 10px" > Comuna: </label>
-                        <input type="text" name="comuna" id="comuna" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->comuna}}>
+                    <div class="form-group row">
+                        <label id="ap_Materno" class="col-md-4" > {{ __('Rut:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->rut}}>
+                        </div>  
+                    </div>  
 
-                        <label id="region" class="col-md-2 col-form-label" style="margin-top: 10px" > Region: </label>
-                        <input type="number" min="1" max="13" name="region" id="region" class="col-md-8" style="margin-left: 15px " placeholder={{$estudiante->region}}>
+                    <div class="form-group row">
+                        <label id="ap_Materno" class="col-md-4" > {{ __('Matricula:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->matricula}}>
+                        </div>  
+                    </div> 
+                      
+                    <div class="form-group row">
+                        <label id="ap_Materno" class="col-md-4" > {{ __('Correo:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->correo}}>
+                        </div>  
+                    </div>
+                 
+                    <div class="form-group row">
+                        <label id="ap_Materno" class="col-md-4" > {{ __('Comuna:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control"  name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->comuna}}>
+                        </div>  
+                    </div>
+                 
+                    <div class="form-group row">
+                        <label id="ap_Materno" class="col-md-4" > {{ __('Región:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control"  name="ap_Materno" id="ap_Materno"  placeholder={{$estudiante->region}}>
+                        </div>  
+                    </div>
 
-                        <label id="plan" class="col-md-2 col-form-label" style="margin-top: 10px" > Plan: </label>
-                        <input type="text" name="plan" id="plan" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->plan}}>
-                        
-                        <label for="situacion-academica" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Situación Academica:') }}</label>
-                        <div class="col-md-9" style="margin-top: 10px">
+                    <div class="form-group row">
+                        <label id="ap_Materno" class="col-md-4" > {{ __('Plan:') }} </label>
+                        <div  class="col-md-6">
+                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno"  placeholder={{$estudiante->plan}}>
+                        </div>  
+                    </div>
+                 
+                    <div class="form-group row">
+                        <label for="situacion-academica" class="col-md-4">{{ __('Situación Academica:') }}</label>
+                        <div class="col-md-6">
                             <select for="tipo_situacion" name="tipo_situacion" class="form-control">
                                     <option value="Regular">Regular</option>
                                     <option value="Irregular">Irregular</option>
                             </select>
                         </div>
-                    </div>                    
-                    </div>
+                    </div>                 
                 <div class="modal-footer">
                     <button  class="btn btn-secondary btn-sm">Guardar Cambios</button>
                     <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
@@ -304,7 +342,6 @@
         </div>
     </div>
 </div>
-
 
 <!--Modal editar datos estudiantes version 2-->
 <div class="modal fade " id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
