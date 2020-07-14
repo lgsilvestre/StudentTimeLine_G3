@@ -38,13 +38,8 @@
                                         </button>
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modalEditar">
-                                            {{ __('Editar datos version 1') }}
-                                        </button>
-                                    </div>
-                                    <div>
                                         <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modal_editar">
-                                            {{ __('Editar datos version 2') }}
+                                            {{ __('Editar datos') }}
                                         </button>
                                     </div>
                                 </div>
@@ -394,7 +389,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
         </div>
-        <form action="{{ route('estudiante.store',$estudiante->id) }}" method="post">
+        <form action="{{ route('estudiante.update',$estudiante->id) }}" method="post">
                 @csrf
         <div class="modal-body">
         <div class="col-xl-12 mx-auto">
@@ -405,21 +400,21 @@
                         <label for="inputFirstname">Matrícula</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="matricula" name="matricula" placeholder={{$estudiante->matricula}}>
+                            <input type="text" class="form-control" id="matricula" name="matricula" value="{{$estudiante->matricula}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputLastname">Rut</label>
                         <div class="form-group icono-input">
                             <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="rut"name="rut" placeholder={{$estudiante->rut}}>
+                            <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="inputLastname">Correo Electrónico</label>
                         <div class="form-group icono-input">
                             <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="correo" name="correo" placeholder={{$estudiante->correo}}>
+                            <input type="text" class="form-control" id="correo" name="correo" value="{{$estudiante->correo}}">
                         </div>
                     </div>
                 </div>
@@ -428,21 +423,21 @@
                         <label for="inputAddressLine1">Nombres</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder={{$estudiante->nombre}}>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{$estudiante->nombre}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputAddressLine2">Ap. Paterno</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" placeholder={{$estudiante->ap_Paterno}}>
+                            <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputAddressLine2">Ap. Materno</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" placeholder={{$estudiante->ap_Materno}}>
+                            <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" value="{{$estudiante->ap_Materno}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -462,7 +457,7 @@
                         <label for="inputWebsite">Comuna</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-house-user fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="comuna" name="comuna" placeholder={{$estudiante->comuna}}>
+                            <input type="text" class="form-control" id="comuna" name="comuna" value="{{$estudiante->comuna}}">
                         </div>
                     </div>
 
@@ -470,7 +465,7 @@
                         <label for="inputWebsite">Región</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="number" class="form-control" min="1" id="region" name="region" placeholder={{$estudiante->region}}>
+                            <input type="number" class="form-control" min="1" id="region" name="region" value="{{$estudiante->region}}">
                         </div>
                     </div>
 
@@ -478,14 +473,14 @@
                         <label for="inputWebsite">Nivel</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="number" class="form-control" min="1" max="12" id="nivel" name="nivel" placeholder={{$estudiante->nivel}}>
+                            <input type="number" class="form-control" min="1" max="12" id="nivel" name="nivel" value="{{$estudiante->nivel}}">
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <label for="inputWebsite">Plan</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control"  id="plan" name="plan" placeholder={{$estudiante->plan}}>
+                            <input type="text" class="form-control"  id="plan" name="plan" value="{{$estudiante->plan}}">
                         </div>
                     </div>
                 </div>
@@ -494,7 +489,7 @@
         </div>
         <div class="modal-footer">  
                 
-            <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Guardar Cambios</button>
+            <button style="background-color: #2a9d8f; color:white" class="btn btn-info  btn-sm">Guardar Cambios</button>
         </form>
 
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
