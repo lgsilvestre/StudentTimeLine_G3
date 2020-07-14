@@ -76,28 +76,26 @@
 
                                             </div>
                                             <div class="cbp_tmlabel">
-                                                    <h2>Titulo: {{$observacion->titulo}}</h2>
-                                                    <p>Autor: {{$observacion->nombre_autor}}</p>
-                                                    <h6>Modulo: {{$observacion->modulo}}</h6>
-                                                    <p>Detalle: {{$observacion->descripcion}}</p>
-                                                    <footer>
-                                                        <h6>Categoría: {{$observacion->nombre_categoria}}</h6>
-                                                        <h6>Tipo: {{$observacion->tipo_observacion}}</h6>
-                                                    </footer>
+                                                <h2 id="titulo_observacion">Titulo: {{$observacion->titulo}}</h2>
+                                                <p id="autor_observacion">Autor: {{$observacion->nombre_autor}}</p>
+                                                <h6 id="modulo_observacion">Modulo: {{$observacion->modulo}}</h6>
+                                                <p id="detalle_observacion">Detalle: {{$observacion->descripcion}}</p>
+                                                <footer>
+                                                    <h6 id="categoria_observacion">Categoría: {{$observacion->nombre_categoria}}</h6>
+                                                    <h6 id="tipo_observacion">Tipo: {{$observacion->tipo_observacion}}</h6>
+                                                </footer>
                                                     <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
-                                                    <button type="button" class="btn btn-editar custom-olvido" style="color: #ffffff; backgroundcolor: #05668B" data-toggle="modal" data-target="#modal_editarObservacion">
-                                                    {{ __('Editar observacion') }}
-                                                </button>
+                                                <button type="button" class="btn editar-observacion" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}')">
+                                                    <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                                                </button>  
+                                                <button type="button" class="btn eliminar-observacion" id="boton-eliminarObservacion" onclick="eliminar_observacion('{{$observacion->id}}')">
+                                                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                                                </button>   
                                             </div>
-
-                                        
-
                                         </li>
-                                        @endforeach
-                                        
+                                        @endforeach   
                                     </ul>
-                                @endif
-                                
+                                @endif                               
                                 <!-- Fin linea de tiempo --> 
                             </div>
                         </div>  
@@ -189,22 +187,25 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
             <div class="modal-header custom-color">
-                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Editar observación</h5>
+                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Editar Observación</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('observacion.store', $estudiante->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('observacion.update', $estudiante->id) }}" method="post" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group row">
+                        <!--id llamado para editar-->
+                        <input type="hidden" name="id_edit" id="id_editar" value="" class="col-md-8">  
+                        <!--fin de llamado al id-->  
                         <label id="titulo" class="col-md-2 col-form-label"> Título: </label>
-                        <input type="text" name="titulo" id="titulo" class="col-md-8" placeholder="Ingrese un título" style="margin-left: 15px">    
+                        <input type="text" name="titulo_edit" id="titulo_editar" class="col-md-8" style="margin-left: 15px">    
 
                         <!--solo para llenar el campo, es momentaneo-->
                         <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Tipo:') }}</label>
                         <div class="col-md-9" style="margin-top: 10px">
-                            <select for="tipo_observacion" name="tipo_observacion" class="form-control">
+                            <select for="tipo_observacion" name="tipo_edit" id="tipo_editar" name="tipo_observacion" class="form-control">
                                     <option value="Positiva">Positiva</option>
                                     <option value="Negativa">Negativa</option>
                                     <option value="Informativa">Informativa</option>
@@ -214,7 +215,7 @@
 
                         <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Categoría:') }}</label>
                         <div class="col-md-9" style="margin-top: 10px">
-                            <select for="id_categoria" name="id_categoria" id="id_categoria" class="form-control">
+                            <select for="categoria" name="categoria_edit" id="categoria_editar" class="form-control">
                                 @foreach($categorias as $categoria)
                                     <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                                 @endforeach
@@ -223,7 +224,7 @@
                       
                         <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Módulo:') }}</label>
                         <div class="col-md-9" style="margin-top: 10px">
-                            <select for="modulo" name="modulo" class="form-control" id="modulo">
+                            <select for="modulo" name="modulo_edit" id="modulo_editar" class="form-control">
                             @foreach ($modulos as $modulo)
                                 <option value="{{$modulo->descripcion}}">{{$modulo->descripcion}}</option>
                             @endforeach
@@ -234,31 +235,56 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
                         <div class="col-md-6">
-                            <textarea for="descripcion" id="descripcion" name="descripcion" rows="3" cols="35" style="resize: none"></textarea>
+                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="3" cols="35" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                     
                         <label for="name" class="col-md-2 col-form-label"> Autor:</label>
                         <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$usuario->name}}</label>
+                            <label for="name" name="autor_edit" class="col-md-2 col-form-label">{{$usuario->name}}</label>
                         </div>
                     </div>
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
                         <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$now->format('d-m-Y')}}</label>
+                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->format('d/m/y')}}</label>
                         </div>
-                    </div>
-                    
+                    </div>    
                 <div class="modal-footer">
-                    <button  class="btn btn-secondary btn-sm">Guardar Cambios</button>
+                    <button  class="btn btn-secondary btn-sm">Editar Observación</button>
                     <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
                 </div>
             </form>
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal para eliminar observacion -->
+<div class="modal fade" id="modal_eliminarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-colorAdvertencia">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro que desea eliminar la observación seleccionada?
+      </div>
+      <div class="modal-footer">  
+            <form action="{{ route('observacion.destroy', $estudiante->id) }}" method="post">
+            @csrf
+                <input type="hidden" id="id_eliminar_observacion" name="id_observacion_eliminar" value="">
+                <button class="btn btn-secondary btn-sm">Confirmar</button>
+            </form>
+
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- Modal editar datos estudiante-->
@@ -477,4 +503,25 @@
   </div>
 </div>
 
+<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+
+<script>
+    function editar_observacion(titulo, autor, modulo, descripcion, categoria, tipo, id){
+        $('#titulo_editar').val(titulo);
+        $('#autor_editar').val(autor);
+        $('#categoria_editar').val(categoria);
+        $('#modulo_editar').val(modulo);
+        $('#descripcion_editar').val(descripcion);
+        $('#tipo_editar').val(tipo);
+        $('#id_editar').val(id);
+        $('#modal_editarObservacion').modal('show');
+    }
+</script>
+
+<script>
+    function eliminar_observacion(id){
+        $('#id_eliminar_observacion').val(id);
+        $('#modal_eliminarObservacion').modal('show');
+    }
+</script>
 @endsection

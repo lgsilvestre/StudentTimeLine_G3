@@ -134,5 +134,8 @@ Route::middleware(['auth'])->group(function(){
     //Rutas de Observacion
     Route::post('observacion/{estudiante}/store','ObservacionController@store')->name('observacion.store');
 
+    Route::post('observacion/{estudiante}/update','ObservacionController@update')->name('observacion.update');
+
+    Route::post('observacion/{estudiante}/destroy','ObservacionController@destroy')->name('observacion.destroy');
 
 });
