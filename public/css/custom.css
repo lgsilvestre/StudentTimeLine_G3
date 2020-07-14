@@ -531,27 +531,26 @@
   }
 
   .editar-observacion{
-    margin-top: -50px;
-    margin-left: 320px;
     color: white;
-    background-color: teal;
+    background-color: #90be6d;
     border-radius: 50%;
+    position: relative;
+    left:75%;
   }
 
   .editar-observacion:hover{
     color: white;
-    background-color:rgb(1, 88, 88);
+    
   }
 
   .eliminar-observacion{
-    margin-top: -85px;
-    margin-left: 380px;
     color: white;
-    background-color: rgb(207, 12, 12);
+    background-color: #e63946;
     border-radius: 50%;
+    position: relative;
+    left:75%;
   }
 
   .eliminar-observacion:hover{
-    color:white;
-    background-color:  rgb(134, 0, 0);
+    color:rgb(202, 195, 195);
   }
