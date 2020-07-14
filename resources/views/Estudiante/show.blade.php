@@ -81,7 +81,7 @@
                                                 </footer>
                                                     <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
                                                 <button type="button" class="btn editar-observacion" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}')">
-                                                    <i class="fa fa-edit fa-lg" aria-hidden="true"></i>
+                                                    <i class="fas fa-pen-square fa-lg"></i>
                                                 </button>  
                                                 <button type="button" class="btn eliminar-observacion" id="boton-eliminarObservacion" onclick="eliminar_observacion('{{$observacion->id}}')">
                                                     <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
@@ -187,7 +187,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('observacion.update', $estudiante->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('observacion.update', $estudiante->id) }}" method="post">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group row">
@@ -212,7 +212,7 @@
                         <div class="col-md-9" style="margin-top: 10px">
                             <select for="categoria" name="categoria_edit" id="categoria_editar" class="form-control">
                                 @foreach($categorias as $categoria)
-                                    <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                                    <option value="{{$categoria->nombre}}">{{$categoria->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -280,102 +280,6 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Modal editar datos estudiante-->
-<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content ">
-            <div class="modal-header custom-color">
-                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Datos estudiante</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('estudiante.store', $estudiante->id) }}" method="post" enctype="multipart/form-data">
-            @csrf
-                <div class="modal-body">
-
-                    <div class="form-group row">
-                        <label id="nombre" class="col-md-4 col-form-label text-md-left">{{ __('Nombre:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control" name="nombre" id="nombre" placeholder={{$estudiante->nombre}}>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <label id="ap_Paterno" class="col-md-4 col-form-label text-md-left" > {{ __('Apellido Paterno:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control" name="ap_Paterno" id="ap_Paterno" placeholder={{$estudiante->ap_Paterno}}>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group row">
-                        <label id="ap_Materno" class="col-md-4" > {{ __('Apellido Materno:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->ap_Materno}}>
-                        </div>  
-                    </div>  
-
-                    <div class="form-group row">
-                        <label id="ap_Materno" class="col-md-4" > {{ __('Rut:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->rut}}>
-                        </div>  
-                    </div>  
-
-                    <div class="form-group row">
-                        <label id="ap_Materno" class="col-md-4" > {{ __('Matricula:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->matricula}}>
-                        </div>  
-                    </div> 
-                      
-                    <div class="form-group row">
-                        <label id="ap_Materno" class="col-md-4" > {{ __('Correo:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->correo}}>
-                        </div>  
-                    </div>
-                 
-                    <div class="form-group row">
-                        <label id="ap_Materno" class="col-md-4" > {{ __('Comuna:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control"  name="ap_Materno" id="ap_Materno" placeholder={{$estudiante->comuna}}>
-                        </div>  
-                    </div>
-                 
-                    <div class="form-group row">
-                        <label id="ap_Materno" class="col-md-4" > {{ __('Región:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control"  name="ap_Materno" id="ap_Materno"  placeholder={{$estudiante->region}}>
-                        </div>  
-                    </div>
-
-                    <div class="form-group row">
-                        <label id="ap_Materno" class="col-md-4" > {{ __('Plan:') }} </label>
-                        <div  class="col-md-6">
-                            <input type="text" class="form-control" name="ap_Materno" id="ap_Materno"  placeholder={{$estudiante->plan}}>
-                        </div>  
-                    </div>
-                 
-                    <div class="form-group row">
-                        <label for="situacion-academica" class="col-md-4">{{ __('Situación Academica:') }}</label>
-                        <div class="col-md-6">
-                            <select for="tipo_situacion" name="tipo_situacion" class="form-control">
-                                    <option value="Regular">Regular</option>
-                                    <option value="Irregular">Irregular</option>
-                            </select>
-                        </div>
-                    </div>                 
-                <div class="modal-footer">
-                    <button  class="btn btn-secondary btn-sm">Guardar Cambios</button>
-                    <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
 </div>
 
 <!--Modal editar datos estudiantes version 2-->
