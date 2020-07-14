@@ -123,8 +123,7 @@ class ObservacionController extends Controller
             'modulo_edit'=>'required|string|max:255',
         ]);
 
-    $observacion=Observacion::find('id_edit');
-    
+    $observacion=Observacion::find($request->get('id_edit'));
     $observacion->titulo=$request->get('titulo_edit');
     $observacion->tipo_observacion=$request->get('tipo_edit');
     $observacion->descripcion=$request->get('descripcion_edit');
