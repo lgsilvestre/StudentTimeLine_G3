@@ -24,7 +24,7 @@
                                
                                 <th >Rol asignado</th>
                                 <th colspan="3px"> <a href=""  data-toggle="modal" data-target="#modal_crear"
-                                        class="btn btn-sm btn-secondary float-cente" style="background-color: #2a9d8f"> 
+                                        class="btn btn-sm btn-secondary float-center" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Crear Usuario </a>&nbsp;</th>
                                 
                             </tr>
@@ -109,7 +109,7 @@
             $("#id_edit").val(data.id);
             $("#nombre_edit").val(data.nombre);
             $("#id_carrera").val(data.id_carrera);
-            $("#id_rol").val(data.id_rol);
+            $("#id_rol_editar").val(data.id_rol);
             $('#email_edit').val(data.email);
             $("#modal_editar").modal("show");
         });
@@ -333,7 +333,7 @@
                             
                             @foreach($carreras as $carrera)
                                 <li>
-                                <input name="carreras[]"class="form-check-input-editar" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                                <input name="carreras[]"class="form-check-input form-check-input-editar" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
                                     {{$carrera->nombre}}
                                 </label>
@@ -343,6 +343,7 @@
                     </div>
                 </div>
             </div>  
+           
             <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
