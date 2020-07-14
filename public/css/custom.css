@@ -380,7 +380,7 @@
     margin: 0 60px 45px 25%;
     color: #fff;
     background-color:  #4ba8df;;
-    padding: 25px;
+    padding: 20px;
     font-size: 15px;
     font-weight: 10px;
     line-height: 17px;
@@ -531,23 +531,27 @@
   }
 
   .editar-observacion{
-    margin-top:-10px;
-    font-weight: bold;
+    margin-top: -50px;
+    margin-left: 320px;
     color: white;
-    outline: none;
-    border: none;
+    background-color: teal;
+    border-radius: 50%;
   }
 
   .editar-observacion:hover{
-    color:whitesmoke;
-    text-decoration: underline;
-    outline: none;
-    border: none;
+    color: white;
+    background-color:rgb(1, 88, 88);
   }
 
-  .editar-observacion:focus{
-    outline: none;
-    border: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  .eliminar-observacion{
+    margin-top: -85px;
+    margin-left: 380px;
+    color: white;
+    background-color: rgb(207, 12, 12);
+    border-radius: 50%;
+  }
+
+  .eliminar-observacion:hover{
+    color:white;
+    background-color:  rgb(134, 0, 0);
   }
