@@ -287,14 +287,19 @@
 }
 
 .custom-tipo[tipo="Negativa"] {
-    background: red;
+    background: #f94144;
 }
 .custom-tipo[tipo="Positiva"] {
-    background: #09139b;
+    background: #90be6d;
 }
 .custom-tipo[tipo="Informativa"] {
-    background: #858e94;
+    background: #5390d9;
 }
+.custom-tipo[tipo="vacio"] {
+    background: #5390d9;
+}
+
+
 .btn-secondary{
     background-color: #2a9d8f;
 }
@@ -374,8 +379,8 @@
 .cbp_tmtimeline > li .cbp_tmlabel {
     margin: 0 60px 45px 25%;
     color: #fff;
-    background-color:  #2891ce;;
-    padding: 25px;
+    background-color:  #4ba8df;;
+    padding: 20px;
     font-size: 15px;
     font-weight: 10px;
     line-height: 17px;
@@ -385,7 +390,7 @@
 }
  
 .cbp_tmtimeline > li:nth-child(odd) .cbp_tmlabel {
-    background-color: #0e6fa7;;
+    background-color: #248ecc;;
 }
  
 .cbp_tmtimeline > li .cbp_tmlabel h2 {
@@ -526,23 +531,26 @@
   }
 
   .editar-observacion{
-    margin-top:-10px;
-    font-weight: bold;
     color: white;
-    outline: none;
-    border: none;
+    background-color: #90be6d;
+    border-radius: 50%;
+    position: relative;
+    left:75%;
   }
 
   .editar-observacion:hover{
-    color:whitesmoke;
-    text-decoration: underline;
-    outline: none;
-    border: none;
+    color:rgb(202, 195, 195);
+    
   }
 
-  .editar-observacion:focus{
-    outline: none;
-    border: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  .eliminar-observacion{
+    color: white;
+    background-color: #e63946;
+    border-radius: 50%;
+    position: relative;
+    left:75%;
+  }
+
+  .eliminar-observacion:hover{
+    color:rgb(202, 195, 195);
   }
