@@ -132,7 +132,7 @@ class EstudianteTableSeeder extends Seeder
             'id_carrera' => 1,
             'num_observaciones' => 0,
         ]);
-        Estudiante::create([
+        /* Estudiante::create([
             'matricula' => '2015406023',
             'rut' => '17.232.242-3',
             'nombre' => 'Jose',
@@ -851,6 +851,6 @@ class EstudianteTableSeeder extends Seeder
             'prom_cursados' => '4,45',
             'id_carrera' => 7,
             'num_observaciones' => 0,
-        ]);
+        ]); */
     }
 }
