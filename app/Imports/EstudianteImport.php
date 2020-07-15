@@ -62,8 +62,15 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
         {
             return [
                 '*.matricula' => ['required','unique:estudiante,matricula'],
-                '*.run' => ['cl_rut','unique:estudiante,rut'],
+                '*.nbe_alumno' =>['required'],
+                '*.sexo' =>['required'],
+                '*.regular'=>['required'],
+                '*.run' => ['required','cl_rut','unique:estudiante,rut'],
                 '*.correo' => ['email','unique:estudiante,correo'],
+                '*.anho_ingreso'=>['required'],
+                '*.sit_actual' =>['required'],
+                '*.plan' =>['required'],
+                '*.comuna' =>['required'],
             ];
         }
 
