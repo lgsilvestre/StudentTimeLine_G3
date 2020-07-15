@@ -10,19 +10,13 @@ use Auth;
 class CarreraController extends Controller
 {
 
-    /*
-    Esto es para que se puedan acceder a los metodos solo los usuarios autenticados.
-    public function __construct(){
-        $this->middleware('auth');
-    }
-    /*
 
     /**
      * Display a listing of the carrer.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = User::find(Auth::user()->id);
         if($user->id == 1){
@@ -58,20 +52,26 @@ class CarreraController extends Controller
      */
     public function store(Request $request)
     {
+        $name= null;
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $name = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$name);
+        }
+
         $validate = $request->validate([
-            'nombre'=> 'required|string|unique',
-            'codigo_carrera'=> 'required|integer|unique'
+            'nombre'=> 'required|string|unique:carrera',
+            'codigo_carrera'=> 'required|integer|unique:carrera'
         ]);
         $carrera = new Carrera;  
           
         $carrera->nombre = $request->get('nombre');
         $carrera->codigo_carrera = $request->get('codigo_carrera');
+        $carrera->imagen = $name; 
         $carrera->save();
-
         $carreras = Carrera::all();
-        return redirect()->route('carrera.index',$carreras)->with([
-            'message'=> 'La carrera ha sido ingresada correctamente.'
-        ]);
+        return redirect()->action('CarreraController@index')
+        ->with('success','Carrera creada con éxito');
                
     }
 

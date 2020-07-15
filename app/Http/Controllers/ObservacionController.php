@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Observacion;
 use App\Categoria;
 use App\Carrera;
+use Auth;
+use App\Observacion_usuario_estudiante;
+use App\Estudiante;
 
 class ObservacionController extends Controller
 {
@@ -17,7 +20,7 @@ class ObservacionController extends Controller
     public function index()
     {
         $observaciones=Observacion::all();
-        return view('observacion.index',compact('observaciones'));
+        return view('estudiante.show',compact('observaciones'));
     }
 
     /**
@@ -40,14 +43,14 @@ class ObservacionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
 
         $validate=$request->validate([
             'titulo'=>'required|string|max:255',
             'tipo_observacion'=>'required|string|max:15',
             'descripcion'=>'required|string|max:2000',
-            'nombre_categoria'=>'required|string|max:255',
+            'id_categoria'=>'required|string|max:255',
             'modulo'=>'required|string|max:255',
         ]);
 
@@ -55,12 +58,26 @@ class ObservacionController extends Controller
     $observacion->titulo=$request->get('titulo');
     $observacion->tipo_observacion=$request->get('tipo_observacion');
     $observacion->descripcion=$request->get('descripcion');
-    $observacion->nombre_categoria=$request->get('nombre_categoria');
+    $categoria=Categoria::find($request->get('id_categoria'));
+    $observacion->nombre_categoria=$categoria->nombre;
+    $observacion->id_categoria=$categoria->id;
     $observacion->modulo=$request->get('modulo');
+    $observacion->id_autor =  Auth::user()->id;
+    $observacion->nombre_autor = Auth::user()->name;
 
     $observacion->save();
+    
+    
+    Observacion_usuario_estudiante::create([
+        'id_usuario'=> Auth::user()->id,
+        'id_observacion' => $observacion->id,
+        'id_estudiante' => $id,
+    ]);
+    $estudiante = Estudiante::find($id);
+    $estudiante->num_observaciones +=1;
+    $estudiante->save();
 
-    return redirect()->action('ObservacionController@index')
+    return redirect()->action('EstudianteController@show', $id)
         ->with('success','Observacion ingresada con éxito'); 
     }
 
@@ -98,28 +115,27 @@ class ObservacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $validate=$request->validate([
-            'titulo'=>'required|string|max:255',
-            'tipo_observacion'=>'required|string|max:15',
-            'descripcion'=>'required|string|max:2000',
-            'nombre_categoria'=>'required|string|max:255',
-            'modulo'=>'required|string|max:255',
+            'titulo_edit'=>'required|string|max:255',
+            'tipo_edit'=>'required|string|max:15',
+            'descripcion_edit'=>'required|string|max:2000',
+            'categoria_edit'=>'required|string|max:255',
+            'modulo_edit'=>'required|string|max:255',
         ]);
 
-    $observacion=Observacion::find($id);
-    
-    $observacion->titulo=$request->get('titulo');
-    $observacion->tipo_descripcion=$request->get('tipo_observacion');
-    $observacion->descripcion=$request->get('descripcion');
-    $observacion->nombre_categoria=$request->get('nombre_categoria');
-    $observacion->modulo=$request->get('modulo');
+    $observacion=Observacion::find($request->get('id_edit'));
+    $observacion->titulo=$request->get('titulo_edit');
+    $observacion->tipo_observacion=$request->get('tipo_edit');
+    $observacion->descripcion=$request->get('descripcion_edit');
+    $observacion->nombre_categoria=$request->get('categoria_edit');
+    $observacion->modulo=$request->get('modulo_edit');
+    $observacion->id_autor =  Auth::user()->id;
+    $observacion->nombre_autor = Auth::user()->name;
 
     $observacion->save();
 
-    return redirect()->action('ObservacionController@index')
+    return redirect()->action('EstudianteController@show', $id)
     ->with('success','Observacion modificada con éxito'); 
-   
     }
 
     /**
@@ -128,10 +144,14 @@ class ObservacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        Observacion::destroy($id);
-        return redirect()->action('ObservacionController@index')
+        $estudiante = Estudiante::find($id);
+        $estudiante->num_observaciones -=1;
+        $estudiante->save();
+
+        Observacion::find($request->get('id_observacion_eliminar'))->delete();
+        return redirect()->action('EstudianteController@show', $id)
         ->with('success','Observacion eliminada con éxito'); 
     }
 }

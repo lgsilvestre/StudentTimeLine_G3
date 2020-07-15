@@ -10,6 +10,7 @@ use Caffeinated\Shinobi\Models\Role as Rol;
 use App\Usuario_carrera;
 use Auth;
 use Hash;
+use Carbon\Carbon;
 
 class UsersController extends Controller
 {
@@ -76,6 +77,57 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $validate=$request->validate([
+            'nombre'=>'required|string',
+            'email'=>'required|string|unique:users',
+            'password'=>'required|string|min:8|confirmed',
+            'foto' =>'mimes:jpeg,png,jpg',
+        ]);
+
+        $name= null;
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $name = time().$file->getClientOriginalExtension();
+            $file->move(public_path().'/images/',$name);
+        }
+        
+
+        $user = User::create([
+                'name' => $request->get('nombre'),
+                'email_verified_at' => now(),
+                'email' => $request->get('email'),
+                'password' => bcrypt($request->get('password')),
+                
+            ]);
+        
+        $role = Rol::find($request->get('id_rol')); 
+        $user->assignRoles($role->slug);
+        $user->imagen = $name;    
+        if($role->slug=="admin"){
+            $carreras = Carrera::all();
+            foreach($carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera->id,
+                    'id_usuario' => $user->id,
+                ]);
+            }
+        }else{//se toman las carreras que se entregan desde el request
+            foreach($request->carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
+        }
+        
+        
+        $user->save();
+
+        return redirect()->action('UsersController@index')
+        ->with('success','Usuario creado con éxito');   
+    }
+    public function store_Profesor(Request $request)
+    {
         $name= null;
         if($request->hasFile('foto')){
             $file = $request->file('foto');
@@ -101,22 +153,29 @@ class UsersController extends Controller
         $user->email_verified_at = now();
         $user->assignRoles($role->slug);
         $user->imagen = $name;    
-        
-        foreach($request->carreras as $carrera){
-            $user_carrera = Usuario_carrera::create([
-                'id_carrera' => $carrera,
-                'id_usuario' => $user->id,
-            ]);
+        if($role->slug=="admin"){
+            $carreras = Carrera::all();
+            foreach($carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
+        }else{//se toman las carreras que se entregan desde el request
+
+            foreach($request->carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
         }
         
-        
+         
         $user->save();
 
-        return redirect()->action('UsersController@index')
-        ->with('success','Usuario creado con éxito'); 
-     
-    
-        
+        return redirect()->route('home')
+        ->with('success','Profesor creado con éxito');    
     }
 
     /**
@@ -231,5 +290,27 @@ class UsersController extends Controller
     public function editDatosPersonales(User $user)
     {
         return view('Usuario.perfil', compact('user'));
-    }    
+    }  
+    
+    public function postProfileImage(Request $request){
+        
+        $user = User::find(Auth::user()->id);
+        
+        $validate=$request->validate([
+            'foto' => 'required|mimes:jpg,png,jpeg',
+        ]);
+
+        $newname=null;
+        if($request->hasFile('foto')){
+            $file = $request->file('foto');
+            $newname = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/',$newname);
+        }
+
+        $user->imagen = $newname;
+        $user->save();
+
+        return  redirect()->back()->with('success', 'Foto cambiada con éxito');      
+    }
+    
 }

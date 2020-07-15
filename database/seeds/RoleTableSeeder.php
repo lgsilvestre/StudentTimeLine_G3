@@ -22,11 +22,13 @@ class RoleTableSeeder extends Seeder
             'name' => 'Profesor',
             'slug' => 'profe',
         ]);
-
-        Role::create([
-            'name' => 'Secretaria de Escuela', //Se refiere a la secretaría de escuela
-            'slug' => 'secretaria',
+        $secretaria = Role::create([
+            'name' =>'Secretaría de Escuela',
+            'slug' =>'secretaria',
         ]);
+       
+        $secretaria->givePermissionTo('modulos.index','categoria.index','estudiante.add','addUser');
+        
         /* factory(Role::class, 1000)->create(); */
     }
 }

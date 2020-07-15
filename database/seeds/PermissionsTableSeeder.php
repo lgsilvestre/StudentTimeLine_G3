@@ -28,7 +28,26 @@ class PermissionsTableSeeder extends Seeder
             'slug' => 'modulos.index',
             'description' => 'Lista y navega todos los modulos del sistema',
         ]);
+        Permission::create([
+            'name' => 'Añadir estudiante',
+            'slug' => 'estudiante.add',
+            'description' => 'Podra añadir estudiante de la carrera que se le asigne',
+        ]);
 
+        /** 
+         * 
+         * Añadir usuarios por carrera
+         * 
+         * 
+        */
+        
+        Permission::create([
+            'name' => 'Añadir usuario al sistema',
+            'slug' => 'addUser',
+            'description' => 'Podra añadir usuario al sistema',
+        ]);
+        
+        
         
     }
 }

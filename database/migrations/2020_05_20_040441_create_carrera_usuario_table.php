@@ -18,8 +18,8 @@ class CreateCarreraUsuarioTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('id_carrera')->notnull();
             $table->unsignedBigInteger('id_usuario')->notnull();
-            $table->foreign('id_carrera')->references('id')->on('carrera'); 
-            $table->foreign('id_usuario')->references('id')->on('users');  
+            $table->foreign('id_carrera')->references('id')->on('carrera')->onDelete('cascade'); 
+            $table->foreign('id_usuario')->references('id')->on('users')->onDelete('cascade');  
 
             $table->timestamps();
         });

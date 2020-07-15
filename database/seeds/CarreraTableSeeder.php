@@ -15,37 +15,47 @@ class CarreraTableSeeder extends Seeder
         Carrera::create([
             'nombre' => 'Ingeniería Civil en Computación',
             'codigo_carrera' => 3407,
-            'imagen' => 'icc.png',
+            'imagen' => 'icc.jpg',
         ]);
         Carrera::create([
             'nombre' => 'Ingeniería Civil Industrial',
             'codigo_carrera' => 3406,
-            'imagen' => 'ici.png',
+            'imagen' => 'ici.jpg',
         ]);
         Carrera::create([
             'nombre' => 'Ingeniería Civil en Obras Civiles',
             'codigo_carrera' => 3408,
-            'imagen' => 'icoc.png',
+            'imagen' => 'icoc.jpg',
         ]);
         Carrera::create([
             'nombre' => 'Ingeniería Civil de Minas',
             'codigo_carrera' => 3409,
-            'imagen' => 'icm.png',
+            'imagen' => 'minas.jpg',
         ]);
         Carrera::create([
             'nombre' => 'Ingeniería Civil Mecatrónica',
             'codigo_carrera' => 3404,
-            'imagen' => 'meca.png',
+            'imagen' => 'mkt.jpg',
         ]);
         Carrera::create([
             'nombre' => 'Ingeniería Civil Mecánica',
             'codigo_carrera' => 3405,
-            'imagen' => 'icm.png',
+            'imagen' => 'icm.jpg',
         ]);
         Carrera::create([
             'nombre' => 'Ingeniería Civil Eléctrica',
             'codigo_carrera' => 3410,
-            'imagen' => 'ice.png',
+            'imagen' => 'ice.jpg',
+        ]);
+        Carrera::create([
+            'nombre' => 'Ingeniería Civil en Bioinformática',
+            'codigo_carrera' => 3411,
+            'imagen' => 'icb.jpg',
+        ]);
+        Carrera::create([
+            'nombre' => 'Ingeniería en Desarrollo de Videojuegos y Realidad Virtual',
+            'codigo_carrera' => 3412,
+            'imagen' => 'idvrv.jpg',
         ]);
     }
 }

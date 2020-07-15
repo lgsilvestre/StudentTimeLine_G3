@@ -19,7 +19,7 @@
                                     <th >
                                         @role('admin')
                                             <a href="#"  data-toggle="modal" data-target="#modal_crear"
-                                            class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
+                                            class="btn btn-sm btn-secondary float-left" > 
                                             <i class="fas fa-plus"></i> Crear Categoría
                                         @endrole
                                     </a></th>
@@ -84,7 +84,7 @@
             columns : [
                 {data: 'id'},
                 {data: 'nombre'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-secondary btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-danger btn-eliminar btn-sm btnEliminar'><i class='fas fa-trash-alt'></i> Eliminar</button></div></div>"}
+                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-info btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button style='margin-left:5px' class='btn btn-danger btn-eliminar btn-sm btnEliminar'><i class='fas fa-trash-alt'></i> Eliminar</button></div></div>"}
             ] 
 
         });
@@ -107,10 +107,10 @@
             <form action="{{ route('categoria.destroy')}}" method="post">
             @csrf
                 <input type="hidden" id="id_cat" name="id" value="">
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info btn-sm">Confirmar</button>
+                <button class="btn btn-secondary btn-sm">Confirmar</button>
             </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -145,10 +145,10 @@
         </div>
         <div class="modal-footer">  
                 
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                    <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
@@ -184,10 +184,10 @@
         </div>
         <div class="modal-footer">  
                 
-                    <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Confirmar</button>
+                    <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
