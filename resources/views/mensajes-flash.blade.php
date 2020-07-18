@@ -1,5 +1,5 @@
 @if ($message = Session::get('success'))
-<div class="alert alert-success alert-block animated shake" >
+<div id="successAlert"class="alert alert-success alert-block animated shake" >
     <button type="button" class="close" data-dismiss="alert">×</button>    
     <h5>{{ $message }}</h5>
 </div>
@@ -34,3 +34,12 @@
     @endforeach
 </div>
 @endif
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 4000);
+
+</script>

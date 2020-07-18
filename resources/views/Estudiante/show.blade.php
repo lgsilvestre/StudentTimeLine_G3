@@ -79,12 +79,13 @@
                                                     <h6 id="categoria_observacion">Categoría: {{$observacion->nombre_categoria}}</h6>
                                                     <h6 id="tipo_observacion">Tipo: {{$observacion->tipo_observacion}}</h6>
                                                 </footer>
+                                                
                                                     <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
-                                                <button type="button" class="btn editar-observacion" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}')">
-                                                    <i class="fas fa-pen-square fa-lg"></i>
+                                                <button type="button" class="btn btn-md editar-observacion " id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}')">
+                                                    <i class="fas fa-pen-square fa-lg"  aria-hidden="true"></i>
                                                 </button>  
-                                                <button type="button" class="btn eliminar-observacion" id="boton-eliminarObservacion" onclick="eliminar_observacion('{{$observacion->id}}')">
-                                                    <i class="fa fa-trash fa-lg" aria-hidden="true"></i>
+                                                <button type="button" class="btn btn-md eliminar-observacion" id="boton-eliminarObservacion" onclick="eliminar_observacion('{{$observacion->id}}')">
+                                                    <i class="fas fa-trash fa-lg" aria-hidden="true"></i>
                                                 </button>   
                                             </div>
                                         </li>
@@ -393,10 +394,10 @@
         </div>
         <div class="modal-footer">  
                 
-            <button style="background-color: #2a9d8f; color:white" class="btn btn-info  btn-sm">Guardar Cambios</button>
+            <button class="btn btn-secondary  btn-sm">Guardar Cambios</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
