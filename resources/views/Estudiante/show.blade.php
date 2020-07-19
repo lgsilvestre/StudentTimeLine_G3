@@ -62,11 +62,11 @@
                                     <div class="cd-timeline-block">
                                         <div class="cd-timeline-img custom-tipo cd-picture" tipo="{{$observacion->tipo_observacion}}">
                                         @if($observacion->tipo_observacion=='Informativa')
-                                            <i class="fas fa-info-circle fa-lg"  style="margin-left:5.5px;margin-top:5px"></i>
+                                            <i class="fas fa-info-circle fa-lg"  style="margin-left:5.5px;margin-top:7.5px"></i>
                                         @elseif($observacion->tipo_observacion=='Positiva')
-                                            <i class="fas fa-check-circle fa-lg"  style="margin-left:5.5px;margin-top:5px"></i>
+                                            <i class="fas fa-check-circle fa-lg"  style="margin-left:5.5px;margin-top:7.4px"></i>
                                         @else
-                                            <i class="fas fa-times-circle fa-lg" style="margin-left:5.5px;margin-top:5px"></i>
+                                            <i class="fas fa-times-circle fa-lg" style="margin-left:5.5px;margin-top:8px"></i>
                                         @endif
                                         </div><!-- cd-timeline-img -->
 
