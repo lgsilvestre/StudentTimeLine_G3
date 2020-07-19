@@ -16,7 +16,9 @@
 .custom-negrita{
     font-weight: bold;
 }
-
+.paginate_button:hover{
+    color: gray;
+}
 /**
 .custom-imagen{
     background-image: url('/images/logo.png');
@@ -24,6 +26,9 @@
     height: 50px;
 }
 **/
+.scrollbar-primary::-webkit-scrollbar {
+    width: 12px;
+    background-color: #8cbeca; }
 
 .custom-inicioSesion{
     margin-left:-1px; margin-right:-1px; margin-top:-1px;
@@ -288,16 +293,18 @@
 }
 
 .custom-tipo[tipo="Negativa"] {
-    background: #f94144;
+    box-shadow: 0 0 0 4px #f1636f, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+    background: #e63946;
 }
 .custom-tipo[tipo="Positiva"] {
+    background: #90be6d;
+    box-shadow: 0 0 0 4px #b5e98d, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
     background: #90be6d;
 }
 .custom-tipo[tipo="Informativa"] {
     background: #5390d9;
-}
-.custom-tipo[tipo="vacio"] {
-    background: #5390d9;
+    box-shadow: 0 0 0 4px #b5e98d, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+    background: #90be6d;
 }
 
 
