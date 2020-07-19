@@ -23,16 +23,11 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.scss') }}" rel="stylesheet">
-    <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
-    <script defer src="{{ asset('fontawesome/js/all.js') }}"></script> <!--load all styles -->
-    <link href="{{ asset('fontawesome/css/fontawesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('fontawesome/css/brands.css') }}" rel="stylesheet">
-    <link href="{{ asset('fontawesome/css/solid.css') }}" rel="stylesheet">
 
 
-    <script defer src="{{ asset('fontawesome/js/brands.js') }}"></script>
-    <script defer src="{{ asset('fontawesome/js/solid.js') }}"></script>
-    <script defer src="{{ asset('fontawesome/js/fontawesome.js') }}"></script>
+    <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
+
+
 
 </head>
 <body class="custom-fondo">
