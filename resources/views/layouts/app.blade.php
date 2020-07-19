@@ -21,8 +21,18 @@
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.scss') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/fontawesome.min.css">
+    <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
+    <script defer src="{{ asset('fontawesome/js/all.js') }}"></script> <!--load all styles -->
+    <link href="{{ asset('fontawesome/css/fontawesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('fontawesome/css/brands.css') }}" rel="stylesheet">
+    <link href="{{ asset('fontawesome/css/solid.css') }}" rel="stylesheet">
+
+
+    <script defer src="{{ asset('fontawesome/js/brands.js') }}"></script>
+    <script defer src="{{ asset('fontawesome/js/solid.js') }}"></script>
+    <script defer src="{{ asset('fontawesome/js/fontawesome.js') }}"></script>
 
 </head>
 <body class="custom-fondo">
