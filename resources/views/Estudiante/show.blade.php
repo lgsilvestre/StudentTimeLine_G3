@@ -2,92 +2,102 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container" style="margin-top:30px">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card custom-card">
             {{ Breadcrumbs::render('estudiante', $estudiante) }}
-                <div class="card-body custom-lineaTiempo">
-                    <div class= "custom-foto float-center"></div> 
-                    <div class="form-group" style="margin-top:25px; width: 400px;">
-                        <ul>
-                            <a class="custom-negrita">Nombre: </a>
-                            {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Rut: </a>
-                            {{$estudiante->rut}} 
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Correo: </a>
-                            {{$estudiante->correo}} 
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Matricula: </a>
-                            {{$estudiante->matricula}}
-                        </ul>
-                        <ul>
-                            <a class="custom-negrita">Situacion Academica: </a>
-                            {{$estudiante->estado_actual}} 
-                        </ul>
-                        <div >
-                            <button type="button" class="btn btn-primary" style="margin-left:40px" data-toggle="modal" data-target="#modalObservacion">
-                                {{ __('Agregar observacion') }}
-                            </button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modalEditar">
-                                {{ __('Editar datos version 1') }}
-                            </button>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modal_editar">
-                                {{ __('Editar datos version 2') }}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Inicio linea de tiempo -->
-                <div class="card-body overflow-auto custom-lineaTiempo" style="width:739px;margin-left:370px;margin-top:-490px">
-                @if($observaciones->isempty())
-                <ul class="cbp_tmtimeline">
-                        <li> 
-                            <time class="cbp_tmtime"><span>{{$now->format('d/m/y')}}</span> <span>{{$now->format('G:i A')}}</span></time>
-                            <div class="cbp_tmicon "><i class="fas fa-info-circle"></i></div>
-                            <div class="cbp_tmlabel">
-                                <h2>Sin observación</h2>
-                                <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
-                                no presenta observaciones en ningún módulo</p>
+                <div class="card-body " >
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class= "custom-foto float-center"></div> 
+                                <div class="form-group" >
+                                    <ul>
+                                        <a class="custom-negrita">Nombre: </a>
+                                        {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Rut: </a>
+                                        {{$estudiante->rut}} 
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Correo: </a>
+                                        {{$estudiante->correo}} 
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Matricula: </a>
+                                        {{$estudiante->matricula}}
+                                    </ul>
+                                    <ul>
+                                        <a class="custom-negrita">Situacion Academica: </a>
+                                        {{$estudiante->estado_actual}} 
+                                    </ul>
+                                    <div >
+                                        <button type="button" class="btn btn-primary" style="margin-left:40px" data-toggle="modal" data-target="#modalObservacion">
+                                            {{ __('Agregar observacion') }}
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modal_editar">
+                                            {{ __('Editar datos') }}
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                        </li>
-                    </ul>
-                @else
-                    <ul class="cbp_tmtimeline">
-                        @foreach($observaciones as $observacion)
-                        <li>
-                            <time class="cbp_tmtime" ><span>{{$observacion->created_at->format('d/m/y')}}</span> <span>{{$observacion->created_at->format('G:i A')}}</span></time>
-                            <div class="cbp_tmicon "><i class="fas fa-info-circle" ></i></div>
-                            <div class="cbp_tmlabel">
-                                <h2>Titulo: {{$observacion->titulo}}</h2>
-                                <p>Autor: {{$observacion->nombre_autor}}</p>
-                                <h6>Modulo: {{$observacion->modulo}}</h6>
-                                <p>Detalle: {{$observacion->descripcion}}</p>
-                                <footer>
-                                    <h6>Categoría: {{$observacion->nombre_categoria}}</h6>
-                                    <h6>Tipo: {{$observacion->tipo_observacion}}</h6>
-                                </footer>
-                                <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
-                                <button type="button" class="btn btn-editar custom-olvido" style="color: #ffffff; backgroundcolor: #05668B" data-toggle="modal" data-target="#modal_editarObservacion">
-                                {{ __('Editar observacion') }}
-                            </button>
+                            <div class="col-sm-8 overflow-auto " style="height:470px; border-radius: 12px;" >
+                            <!-- Inicio linea de tiempo -->
+                                
+                                @if($observaciones->isempty())
+                                    <ul >
+                                        <li> 
+                                            <h2>Sin observación</h2>
+                                                <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
+                                                no presenta observaciones en ningún módulo</p>
+                                        </li>
+                                    </ul>
+                                @else
+                                <section id="cd-timeline" class="cd-container">
+                                    @foreach($observaciones as $observacion)
+                                    <div class="cd-timeline-block">
+                                        <div class="cd-timeline-img custom-tipo cd-picture" tipo="{{$observacion->tipo_observacion}}">
+                                        @if($observacion->tipo_observacion=='Informativa')
+                                            <i class="fas fa-info-circle fa-lg"  style="margin-left:5.5px;margin-top:7.5px"></i>
+                                        @elseif($observacion->tipo_observacion=='Positiva')
+                                            <i class="fas fa-check-circle fa-lg"  style="margin-left:5.5px;margin-top:7.4px"></i>
+                                        @else
+                                            <i class="fas fa-times-circle fa-lg" style="margin-left:5.5px;margin-top:8px"></i>
+                                        @endif
+                                        </div><!-- cd-timeline-img -->
+
+                                        <div class="cd-timeline-content">
+                                            <h2><strong>{{$observacion->titulo}}</strong></h2>
+                                            <div class="timeline-content-info">
+                                                <span class="timeline-content-info-title">
+                                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                                    Autor: {{$observacion->nombre_autor}}
+                                                </span>
+                                                
+                                            </div>
+                                            <p>{{$observacion->descripcion}}</p>
+                                            <ul class="content-skills">
+                                            <li><i class="fas fa-info-circle"></i> Categoria: {{$observacion->nombre_categoria}}</li>
+                                            <li><i class="fas fa-info-circle"></i> Modulo: {{$observacion->modulo}}</li>
+                                            
+                                            </ul>
+                                            
+                                            <button class="btn btn-sm" data-toggle="modal" data-target="#modal_editarObservacion"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
+                                            <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;"></i></button>
+                                            <span class="cd-date"><strong>{{$observacion->created_at->format('d/m/y')}}</strong></span>
+                                        </div> <!-- cd-timeline-content -->
+                                    </div> <!-- cd-timeline-block -->
+                                    @endforeach
+                                </section> <!-- cd-timeline -->
+                                @endif                               
+                                <!-- Fin linea de tiempo --> 
                             </div>
-                        @endforeach
-                        </li>
-                    </ul>
-                @endif
-                <!-- Fin linea de tiempo -->
-                </div>
+                        </div>  
+                </div>  
             </div>
         </div>
     </div>
@@ -156,7 +166,7 @@
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
                         <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$now->format('d-m-Y')}}</label>
+                            <label for="name" style="margin-top:7px"> {{$now->format('d-m-Y')}}</label>
                         </div>
                     </div>
                     
@@ -169,27 +179,31 @@
         </div>
     </div>
 </div>
+
 <!-- Modal editar observacion -->
 <div class="modal fade" id="modal_editarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">
             <div class="modal-header custom-color">
-                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Editar observación</h5>
+                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Editar Observación</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('observacion.store', $estudiante->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('observacion.update', $estudiante->id) }}" method="post">
                 <div class="modal-body">
                     @csrf
                     <div class="form-group row">
+                        <!--id llamado para editar-->
+                        <input type="hidden" name="id_edit" id="id_editar" value="" class="col-md-8">  
+                        <!--fin de llamado al id-->  
                         <label id="titulo" class="col-md-2 col-form-label"> Título: </label>
-                        <input type="text" name="titulo" id="titulo" class="col-md-8" placeholder="Ingrese un título" style="margin-left: 15px">    
+                        <input type="text" name="titulo_edit" id="titulo_editar" class="col-md-8" style="margin-left: 15px">    
 
                         <!--solo para llenar el campo, es momentaneo-->
                         <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Tipo:') }}</label>
                         <div class="col-md-9" style="margin-top: 10px">
-                            <select for="tipo_observacion" name="tipo_observacion" class="form-control">
+                            <select for="tipo_observacion" name="tipo_edit" id="tipo_editar" name="tipo_observacion" class="form-control">
                                     <option value="Positiva">Positiva</option>
                                     <option value="Negativa">Negativa</option>
                                     <option value="Informativa">Informativa</option>
@@ -199,16 +213,16 @@
 
                         <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Categoría:') }}</label>
                         <div class="col-md-9" style="margin-top: 10px">
-                            <select for="id_categoria" name="id_categoria" id="id_categoria" class="form-control">
+                            <select for="categoria" name="categoria_edit" id="categoria_editar" class="form-control">
                                 @foreach($categorias as $categoria)
-                                    <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                                    <option value="{{$categoria->nombre}}">{{$categoria->nombre}}</option>
                                 @endforeach
                             </select>
                         </div>
                       
                         <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Módulo:') }}</label>
                         <div class="col-md-9" style="margin-top: 10px">
-                            <select for="modulo" name="modulo" class="form-control" id="modulo">
+                            <select for="modulo" name="modulo_edit" id="modulo_editar" class="form-control">
                             @foreach ($modulos as $modulo)
                                 <option value="{{$modulo->descripcion}}">{{$modulo->descripcion}}</option>
                             @endforeach
@@ -219,84 +233,24 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
                         <div class="col-md-6">
-                            <textarea for="descripcion" id="descripcion" name="descripcion" rows="3" cols="35" style="resize: none"></textarea>
+                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="3" cols="35" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                     
                         <label for="name" class="col-md-2 col-form-label"> Autor:</label>
                         <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$usuario->name}}</label>
+                            <label for="name" name="autor_edit" class="col-md-2 col-form-label">{{$usuario->name}}</label>
                         </div>
                     </div>
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
                         <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$now->format('d-m-Y')}}</label>
+                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->format('d/m/y')}}</label>
                         </div>
-                    </div>
-                    
+                    </div>    
                 <div class="modal-footer">
-                    <button  class="btn btn-secondary btn-sm">Guardar Cambios</button>
-                    <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Modal editar datos estudiante-->
-<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content ">
-            <div class="modal-header custom-color">
-                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Datos estudiante</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('estudiante.store', $estudiante->id) }}" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    @csrf
-                    <div class="form-group row">
-                        <label id="nombre" class="col-md-2 col-form-label"> Nombre: </label>
-                        <input type="text" name="nombre" id="nombre" class="col-md-8" placeholder={{$estudiante->nombre}} style="margin-left: 15px">
-                        
-                        <label id="ap_Paterno" class="col-md-4" style="margin-top: 10px" > Apellido Paterno: </label>
-                        <input type="text" name="ap_Paterno" id="ap_Paterno" class="col-md-7" style="margin-left: 15px margin-top: 10px" placeholder={{$estudiante->ap_Paterno}}>
-                        
-                        <label id="ap_Materno" class="col-md-4" style="margin-top: 10px" > Apellido Materno: </label>
-                        <input type="text" name="ap_Materno" id="ap_Materno" class="col-md-7" style="margin-left: 15px margin-top: 10px" placeholder={{$estudiante->ap_Materno}}>
-                        
-                        <label id="rut" class="col-md-2 col-form-label" style="margin-top: 10px" > Rut: </label>
-                        <input type="text" name="rut" id="rut" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->rut}}>
-
-                        <label id="matricula" class="col-md-2 col-form-label" style="margin-top: 10px" > Matricula: </label>
-                        <input type="text" name="matricula" id="matricula" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->matricula}}>
-  
-                        <label id="correo" class="col-md-2 col-form-label" style="margin-top: 10px" > Correo: </label>
-                        <input type="text" name="correo" id="correo" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->correo}}>
-  
-                        <label id="comuna" class="col-md-2 col-form-label" style="margin-top: 10px" > Comuna: </label>
-                        <input type="text" name="comuna" id="comuna" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->comuna}}>
-
-                        <label id="region" class="col-md-2 col-form-label" style="margin-top: 10px" > Region: </label>
-                        <input type="number" min="1" max="13" name="region" id="region" class="col-md-8" style="margin-left: 15px " placeholder={{$estudiante->region}}>
-
-                        <label id="plan" class="col-md-2 col-form-label" style="margin-top: 10px" > Plan: </label>
-                        <input type="text" name="plan" id="plan" class="col-md-9" style="margin-left: 15px " placeholder={{$estudiante->plan}}>
-                        
-                        <label for="situacion-academica" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Situación Academica:') }}</label>
-                        <div class="col-md-9" style="margin-top: 10px">
-                            <select for="tipo_situacion" name="tipo_situacion" class="form-control">
-                                    <option value="Regular">Regular</option>
-                                    <option value="Irregular">Irregular</option>
-                            </select>
-                        </div>
-                    </div>                    
-                    </div>
-                <div class="modal-footer">
-                    <button  class="btn btn-secondary btn-sm">Guardar Cambios</button>
+                    <button  class="btn btn-secondary btn-sm">Editar Observación</button>
                     <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
                 </div>
             </form>
@@ -305,19 +259,44 @@
     </div>
 </div>
 
+<!-- Modal para eliminar observacion -->
+<div class="modal fade" id="modal_eliminarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-colorAdvertencia">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro que desea eliminar la observación seleccionada?
+      </div>
+      <div class="modal-footer">  
+            <form action="{{ route('observacion.destroy', $estudiante->id) }}" method="post">
+            @csrf
+                <input type="hidden" id="id_eliminar_observacion" name="id_observacion_eliminar" value="">
+                <button class="btn btn-secondary btn-sm">Confirmar</button>
+            </form>
+
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--Modal editar datos estudiantes version 2-->
 <div class="modal fade " id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header custom-color">
-        <h5 class="modal-title" id="exampleModalLabel" >Editar Datos</h5>
+            <h5 class="modal-title" id="exampleModalLabel" >Editar Datos</h5>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
-          <span aria-hidden="true">&times;</span>
-        </button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-        <form action="{{ route('estudiante.store',$estudiante->id) }}" method="post">
+        <form action="{{ route('estudiante.update',$estudiante->id) }}" method="post">
                 @csrf
         <div class="modal-body">
         <div class="col-xl-12 mx-auto">
@@ -328,21 +307,21 @@
                         <label for="inputFirstname">Matrícula</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="matricula" name="matricula" placeholder={{$estudiante->matricula}}>
+                            <input type="text" class="form-control" id="matricula" name="matricula" value="{{$estudiante->matricula}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputLastname">Rut</label>
                         <div class="form-group icono-input">
                             <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="rut"name="rut" placeholder={{$estudiante->rut}}>
+                            <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}">
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <label for="inputLastname">Correo Electrónico</label>
                         <div class="form-group icono-input">
                             <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="correo" name="correo" placeholder={{$estudiante->correo}}>
+                            <input type="text" class="form-control" id="correo" name="correo" value="{{$estudiante->correo}}">
                         </div>
                     </div>
                 </div>
@@ -351,21 +330,21 @@
                         <label for="inputAddressLine1">Nombres</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder={{$estudiante->nombre}}>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{$estudiante->nombre}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputAddressLine2">Ap. Paterno</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" placeholder={{$estudiante->ap_Paterno}}>
+                            <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <label for="inputAddressLine2">Ap. Materno</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" placeholder={{$estudiante->ap_Materno}}>
+                            <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" value="{{$estudiante->ap_Materno}}">
                         </div>
                     </div>
                     <div class="col-sm-3">
@@ -385,7 +364,7 @@
                         <label for="inputWebsite">Comuna</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-house-user fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control" id="comuna" name="comuna" placeholder={{$estudiante->comuna}}>
+                            <input type="text" class="form-control" id="comuna" name="comuna" value="{{$estudiante->comuna}}">
                         </div>
                     </div>
 
@@ -393,7 +372,7 @@
                         <label for="inputWebsite">Región</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="number" class="form-control" min="1" id="region" name="region" placeholder={{$estudiante->region}}>
+                            <input type="number" class="form-control" min="1" id="region" name="region" value="{{$estudiante->region}}">
                         </div>
                     </div>
 
@@ -401,14 +380,14 @@
                         <label for="inputWebsite">Nivel</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="number" class="form-control" min="1" max="12" id="nivel" name="nivel" placeholder={{$estudiante->nivel}}>
+                            <input type="number" class="form-control" min="1" max="12" id="nivel" name="nivel" value="{{$estudiante->nivel}}">
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <label for="inputWebsite">Plan</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <input type="text" class="form-control"  id="plan" name="plan" placeholder={{$estudiante->plan}}>
+                            <input type="text" class="form-control"  id="plan" name="plan" value="{{$estudiante->plan}}">
                         </div>
                     </div>
                 </div>
@@ -417,13 +396,34 @@
         </div>
         <div class="modal-footer">  
                 
-            <button style="background-color: #2a9d8f; color:white"class="btn btn-info  btn-sm">Guardar Cambios</button>
+            <button class="btn btn-secondary  btn-sm">Guardar Cambios</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 
+<script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
+
+<script>
+    function editar_observacion(titulo, autor, modulo, descripcion, categoria, tipo, id){
+        $('#titulo_editar').val(titulo);
+        $('#autor_editar').val(autor);
+        $('#categoria_editar').val(categoria);
+        $('#modulo_editar').val(modulo);
+        $('#descripcion_editar').val(descripcion);
+        $('#tipo_editar').val(tipo);
+        $('#id_editar').val(id);
+        $('#modal_editarObservacion').modal('show');
+    }
+</script>
+
+<script>
+    function eliminar_observacion(id){
+        $('#id_eliminar_observacion').val(id);
+        $('#modal_eliminarObservacion').modal('show');
+    }
+</script>
 @endsection
