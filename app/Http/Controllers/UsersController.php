@@ -313,5 +313,22 @@ class UsersController extends Controller
 
         return  redirect()->back()->with('success', 'Foto cambiada con éxito');      
     }
+
+    public function obtcarrera(Request $request){
+        $user = User::find($request->id);
+
+        if($user->id == 1){
+            $carreras = Carrera::all();
+        }else{
+            $carreras = $user->usuario_carrera;
+            $collect = [];
+            foreach($carreras as $carrera){
+                $car = $carrera->carrera;
+                $collect[]=$car; 
+            }
+            $carreras = collect($collect);
+        }
+        return $carreras->toJson();
+    }
     
 }
