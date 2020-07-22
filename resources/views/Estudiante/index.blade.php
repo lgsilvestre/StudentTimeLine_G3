@@ -35,7 +35,7 @@
                                     <th >
                                     
                                     @can('estudiante.add')
-                                        <a href="#"  data-toggle="modal" data-target="#modal_crear"
+                                        <a href="#"  data-toggle="modal" data-target="#modal-wizard"
                                         class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Añadir Estudiante
                                         </a>
@@ -310,6 +310,83 @@
     </div>
   </div>
 </div>
+<!-- MODAL PARA CREAR ESTUDIANTE CON WIZARD -->
+<div id="modal-wizard" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="wizard-title">Agregar estudiante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab">Datos personales</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#ads" role="tab">Ads</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#placementPanel" role="tab">Placement</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#schedulePanel" role="tab">Schedule</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#reviewPanel" role="tab">Review</a>
+          <li>
+        </ul>
+        
+        <div class="tab-content mt-2">
+          <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
+            <h4>Información Personal</h4>
+            <div class="form-group">
+              <label for="campaignName">Nombre</label>
+              <input type="text" class="form-text" id='campaignName'></input>
+              <label for="campaignName">Apellido Paterno</label>
+              <input type="text" class="form-text" id='campaignName'></input>
+              <label for="campaignName">Apellido Materno</label>
+              <input type="text" class="form-text" id='campaignName'></input>
+              <label for="campaignName">Rut</label>
+              <input type="text" class="form-text" id='campaignName'></input>
+              <label for="campaignName">Region</label>
+              <input type="text" class="form-text" id='campaignName'></input>
+              <label for="campaignName">Comuna</label>
+              <input type="text" class="form-text" id='campaignName'></input>
+              <label for="campaignName">Fecha de nacimiento</label>
+              <input type="text" class="form-text" id='campaignName'></input>
+            </div>
+            <button class="btn btn-secondary" id="infoContinue">Continuar</button>
+          </div>
+          <div class="tab-pane fade" id="ads" role="tabpanel">
+            <h4>Ads</h4>
+            <div class="form-group">
+              <label for="exampleInputFile">Fullscreen Ad Image</label>
+              <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+              <small id="fileHelp" class="form-text text-muted">Select a file to use as the fullscreen ad image. Please ensure the size is at least 1080x1920 with a 9:16 (portrait) aspect ratio.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFile">Banner Ad Image</label>
+              <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+              <small id="fileHelp" class="form-text text-muted">Select a file to use as the banner ad image. Please ensure the size is exactly 1080x450 for proper rendering.</small>
+            </div>
+            <button class="btn btn-secondary" id="adsContinue">Continue</button>
+          </div>
+        <div class="progress mt-5">
+          <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Step 1 of 5</div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Save for later</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--FIN MODAL PARA CREAR ESTUDIANTE CON WIZARD--->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
         $(document).ready(function(){
