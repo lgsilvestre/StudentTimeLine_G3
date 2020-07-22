@@ -2,12 +2,13 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container" style="margin-top:30px">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card custom-card">
             {{ Breadcrumbs::render('estudiante', $estudiante) }}
-                <div class="card-body">
+                <div class="card-body " >
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class= "custom-foto float-center"></div> 
@@ -44,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-8 overflow-auto" style="height:470px">
+                            <div class="col-sm-8 overflow-auto " style="height:470px; border-radius: 12px;" >
                             <!-- Inicio linea de tiempo -->
                                 
                                 @if($observaciones->isempty())
@@ -56,41 +57,42 @@
                                         </li>
                                     </ul>
                                 @else
-                                    <ul class="cbp_tmtimeline">
-                                        @foreach($observaciones as $observacion)
-                                        <li>
-                                            <time class="cbp_tmtime" ><span>{{$observacion->created_at->format('d/m/y')}}</span> <span>{{$observacion->created_at->format('G:i A')}}</span></time>
-                                            <div class="cbp_tmicon custom-tipo" tipo="{{$observacion->tipo_observacion}}" >
-                                                @if($observacion->tipo_observacion=='Informativa')
-                                                    <i class="fas fa-info-circle" ></i>
-                                                @elseif($observacion->tipo_observacion=='Positiva')
-                                                    <i class="fas fa-check-circle"></i>
-                                                @else
-                                                    <i class="fas fa-times-circle"></i>
-                                                @endif
+                                <section id="cd-timeline" class="cd-container">
+                                    @foreach($observaciones as $observacion)
+                                    <div class="cd-timeline-block">
+                                        <div class="cd-timeline-img custom-tipo cd-picture" tipo="{{$observacion->tipo_observacion}}">
+                                        @if($observacion->tipo_observacion=='Informativa')
+                                            <i class="fas fa-info-circle fa-lg"  style="margin-left:5.5px;margin-top:7.5px"></i>
+                                        @elseif($observacion->tipo_observacion=='Positiva')
+                                            <i class="fas fa-check-circle fa-lg"  style="margin-left:5.5px;margin-top:7.4px"></i>
+                                        @else
+                                            <i class="fas fa-times-circle fa-lg" style="margin-left:5.5px;margin-top:8px"></i>
+                                        @endif
+                                        </div><!-- cd-timeline-img -->
 
-                                            </div>
-                                            <div class="cbp_tmlabel">
-                                                <h2 id="titulo_observacion">Titulo: {{$observacion->titulo}}</h2>
-                                                <p id="autor_observacion">Autor: {{$observacion->nombre_autor}}</p>
-                                                <h6 id="modulo_observacion">Modulo: {{$observacion->modulo}}</h6>
-                                                <p id="detalle_observacion">Detalle: {{$observacion->descripcion}}</p>
-                                                <footer>
-                                                    <h6 id="categoria_observacion">Categoría: {{$observacion->nombre_categoria}}</h6>
-                                                    <h6 id="tipo_observacion">Tipo: {{$observacion->tipo_observacion}}</h6>
-                                                </footer>
+                                        <div class="cd-timeline-content">
+                                            <h2><strong>{{$observacion->titulo}}</strong></h2>
+                                            <div class="timeline-content-info">
+                                                <span class="timeline-content-info-title">
+                                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                                    Autor: {{$observacion->nombre_autor}}
+                                                </span>
                                                 
-                                                    <!--SI EL TIEMPO DESDE QUE SE CREO ES MENOR A 24 HORAS-->
-                                                <button type="button" class="btn btn-md editar-observacion " id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}')">
-                                                    <i class="fas fa-pen-square fa-lg"  aria-hidden="true"></i>
-                                                </button>  
-                                                <button type="button" class="btn btn-md eliminar-observacion" id="boton-eliminarObservacion" onclick="eliminar_observacion('{{$observacion->id}}')">
-                                                    <i class="fas fa-trash fa-lg" aria-hidden="true"></i>
-                                                </button>   
                                             </div>
-                                        </li>
-                                        @endforeach   
-                                    </ul>
+                                            <p>{{$observacion->descripcion}}</p>
+                                            <ul class="content-skills">
+                                            <li><i class="fas fa-info-circle"></i> Categoria: {{$observacion->nombre_categoria}}</li>
+                                            <li><i class="fas fa-info-circle"></i> Modulo: {{$observacion->modulo}}</li>
+                                            
+                                            </ul>
+                                            
+                                            <button class="btn btn-sm" data-toggle="modal" data-target="#modal_editarObservacion"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
+                                            <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;"></i></button>
+                                            <span class="cd-date"><strong>{{$observacion->created_at->format('d/m/y')}}</strong></span>
+                                        </div> <!-- cd-timeline-content -->
+                                    </div> <!-- cd-timeline-block -->
+                                    @endforeach
+                                </section> <!-- cd-timeline -->
                                 @endif                               
                                 <!-- Fin linea de tiempo --> 
                             </div>
@@ -288,11 +290,11 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header custom-color">
-        <h5 class="modal-title" id="exampleModalLabel" >Editar Datos</h5>
+            <h5 class="modal-title" id="exampleModalLabel" >Editar Datos</h5>
 
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
-          <span aria-hidden="true">&times;</span>
-        </button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <form action="{{ route('estudiante.update',$estudiante->id) }}" method="post">
                 @csrf
@@ -394,10 +396,10 @@
         </div>
         <div class="modal-footer">  
                 
-            <button style="background-color: #2a9d8f; color:white" class="btn btn-info  btn-sm">Guardar Cambios</button>
+            <button class="btn btn-secondary  btn-sm">Guardar Cambios</button>
         </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
