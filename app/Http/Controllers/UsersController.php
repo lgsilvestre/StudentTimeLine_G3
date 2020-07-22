@@ -25,6 +25,7 @@ class UsersController extends Controller
         ->join('users', 'role_user.user_id', '=', 'users.id')
         ->join('roles','role_user.role_id','=','roles.id')
         ->whereNull('users.deleted_at')
+        ->where('user_id','!=',1)
         ->select('role_user.user_id','role_user.role_id','users.name as nombre','users.email', 'roles.name','roles.id as id_rol','users.id')
         ->get();
 

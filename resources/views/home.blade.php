@@ -17,9 +17,9 @@
                 </div>
                         
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row justify-content-center">
                                 @foreach($carreras as $carrera)
-                                <div class="col-sm-4">
+                                <div class="col-md-5ths col-xs-6">
                                     <div class="card shadow p-3 " style="margin-bottom: 10px; border-radius: 25px; background-color: #474747" >
                                         <img class="card-img-top" src="../images/{{$carrera->imagen}}" alt="No image">
                                         @role('secretaria')

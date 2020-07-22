@@ -177,7 +177,7 @@ class EstudianteController extends Controller
                 'nombre'=>'required|string|max:255',
                 'ap_Paterno'=>'required|string|max:255',
                 'ap_Materno'=>'required|string|max:255',
-                'rut'=>'required|string|max:20',
+                'rut'=>'cl_rut|unique:estudiante|required|string|max:20',
                 'matricula'=>'required|string|max:20',
                 'plan' => 'integer',
                 'estado_actual' => 'string|max:255',
@@ -215,29 +215,8 @@ class EstudianteController extends Controller
        
         $estudiante->save();
 
-        $usuario = User::find(Auth::user()->id);
-        $now = Carbon::now();
-
-        $modulos = Modulo_carrera::
-            where('modulo.id_carrera',"=",$estudiante->id_carrera)
-            ->get();
-
-        $detalle_observacion = Observacion_usuario_estudiante::
-            where('usuario_observacion_estudiante.id_estudiante',"=",$id)
-            ->orderBy('created_at','desc')
-            ->get();
-        
-        $observaciones=[];
-        foreach($detalle_observacion as $detalle){
-            $observaciones[] = $detalle->observacion;
-        }  
-        $observaciones = collect($observaciones);
-
-        $categorias = Categoria::all();
-
-        return view('estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
-                                                'observaciones', 'detalle_observacion'))
-                                                ->with('success','Estudiante actualizado con éxito');
+        return redirect()->action('EstudianteController@show', $id)
+        ->with('success','Estudiante actualizado con éxito'); 
     }
 
     /**
