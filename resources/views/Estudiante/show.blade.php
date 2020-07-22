@@ -13,35 +13,38 @@
                             <div class="col-sm-4">
                                 <div class= "custom-foto float-center"></div> 
                                 <div class="form-group" >
-                                    <ul>
-                                        <a class="custom-negrita">Nombre: </a>
-                                        {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}
-                                    </ul>
-                                    <ul>
-                                        <a class="custom-negrita">Rut: </a>
-                                        {{$estudiante->rut}} 
-                                    </ul>
-                                    <ul>
-                                        <a class="custom-negrita">Correo: </a>
-                                        {{$estudiante->correo}} 
-                                    </ul>
-                                    <ul>
-                                        <a class="custom-negrita">Matricula: </a>
-                                        {{$estudiante->matricula}}
-                                    </ul>
-                                    <ul>
-                                        <a class="custom-negrita">Situacion Academica: </a>
-                                        {{$estudiante->estado_actual}} 
-                                    </ul>
-                                    <div >
-                                        <button type="button" class="btn btn-primary" style="margin-left:40px" data-toggle="modal" data-target="#modalObservacion">
-                                            {{ __('Agregar observacion') }}
+
+                                    <table class="table table-striped table-bordered table-striped shadow p-3 mb-4">
+                                        <tbody>
+                                        <tr >
+                                            <td> <a class="custom-negrita">Nombre: </a>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
+                                        </tr>
+                                        <tr>   
+                                            <td><a class="custom-negrita">Rut: </a>{{$estudiante->rut}}  </td>
+                                        
+                                        <tr>
+                                            <td><a class="custom-negrita">Correo: </a>{{$estudiante->correo}} </td>
+                                        </tr>
+                                        <tr>
+                                            <td><a class="custom-negrita">Matricula: </a>{{$estudiante->matricula}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><a class="custom-negrita">Situacion Academica: </a>{{$estudiante->estado_actual}} </td>
+                                        </tr>
+                                                
+                                        </tbody>
+                                    </table>
+                                    <div style="margin-right:auto">
+                                        <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar">
+                                        <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
                                         </button>
+                                        <button type="button" class="btn btn-sm btn-secondary" style="margin-left:6px" data-toggle="modal" data-target="#modalObservacion">
+                                        <i class="fas fa-plus"></i> {{ __('Agregar observacion') }}
+                                        </button>
+                                        
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-link custom-olvido" style="margin-top:10px;margin-left:40px" data-toggle="modal" data-target="#modal_editar">
-                                            {{ __('Editar datos') }}
-                                        </button>
+                                        
                                     </div>
                                 </div>
                             </div>
