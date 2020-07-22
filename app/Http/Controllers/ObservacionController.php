@@ -7,6 +7,7 @@ use App\Observacion;
 use App\Categoria;
 use App\Carrera;
 use Auth;
+use Carbon\Carbon;
 use App\Observacion_usuario_estudiante;
 use App\Estudiante;
 
@@ -64,6 +65,14 @@ class ObservacionController extends Controller
     $observacion->modulo=$request->get('modulo');
     $observacion->id_autor =  Auth::user()->id;
     $observacion->nombre_autor = Auth::user()->name;
+
+    $now = Carbon::now();
+    if($now->format('m')>= '03' && $now->format('m')<= '07'){
+        $observacion->semestre='Otoño-Invierno (1)';
+    }
+    elseif($now->format('m')>= '08' && $now->format('m')<= '12'){
+        $observacion->semestre='Primavera-Verano (2)';
+    }
 
     $observacion->save();
     
@@ -123,6 +132,7 @@ class ObservacionController extends Controller
             'modulo_edit'=>'required|string|max:255',
         ]);
 
+    
     $observacion=Observacion::find($request->get('id_edit'));
     $observacion->titulo=$request->get('titulo_edit');
     $observacion->tipo_observacion=$request->get('tipo_edit');
@@ -131,6 +141,7 @@ class ObservacionController extends Controller
     $observacion->modulo=$request->get('modulo_edit');
     $observacion->id_autor =  Auth::user()->id;
     $observacion->nombre_autor = Auth::user()->name;
+    $observacion->semestre=$request->get('semester_edit');
 
     $observacion->save();
 
