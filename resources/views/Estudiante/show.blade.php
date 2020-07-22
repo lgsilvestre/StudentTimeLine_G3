@@ -396,8 +396,22 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
+                        <label for="inputCarrera">Carrera</label>
+                        <div class="form-group icono-input">
+                            <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
+                            <select class="form-control" id="carrera" name="carrera">
+                            @foreach($carreras as $carrera)
+                                @if($estudiante->id_carrera==$carrera->id)
+                                    <option value="{{$carrera->id}}" selected>{{$carrera->nombre}}</option>
+                                @else
+                                    <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                                @endif
+                            @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
                         <label for="inputWebsite">Comuna</label>
                         <div class="form-group icono-input">
                             <span class="fas fa-house-user fa-lg form-control-feedback" aria-hidden="true"></span>
