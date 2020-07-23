@@ -12,7 +12,7 @@ class Observacion extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo','id_autor','nombre_autor','tipo_observacion','fecha','descripcion','modulo','created_at','nombre_categoria',
+        'titulo','id_autor','nombre_autor','tipo_observacion','fecha','descripcion','modulo','created_at','nombre_categoria','semestre'
     ];
     protected $table = 'observacion';
     

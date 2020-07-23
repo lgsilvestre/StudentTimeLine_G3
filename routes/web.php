@@ -20,6 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
+    Route::post('/obtcarrera','UsersController@obtcarrera')->name('obtcarrera');
 
     Route::get('home/', 'CarreraController@index')->name('home');
 

@@ -128,7 +128,7 @@ class EstudianteController extends Controller
         $usuario = User::find(Auth::user()->id);
         $now = Carbon::now();
         $estudiante = Estudiante::find($id);
-
+        $carreras = Carrera::all();
         $modulos = Modulo_carrera::
             where('modulo.id_carrera',"=",$estudiante->id_carrera)
             ->get();
@@ -147,7 +147,7 @@ class EstudianteController extends Controller
         $categorias = Categoria::all();
 
         return view('estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
-                                                'observaciones', 'detalle_observacion'));
+                                                'observaciones', 'detalle_observacion','carreras'));
     }
 
     /**
@@ -172,41 +172,37 @@ class EstudianteController extends Controller
     public function update(Request $request, $id)
     {
         $estudiante = Estudiante::find($id);
-        if($estudiante->correo == $request->correo){
+        if($estudiante->correo != $request->correo){
             $validate=$request->validate([
-                'nombre'=>'required|string|max:255',
-                'ap_Paterno'=>'required|string|max:255',
-                'ap_Materno'=>'required|string|max:255',
-                'rut'=>'cl_rut|unique:estudiante|required|string|max:20',
-                'matricula'=>'required|string|max:20',
-                'plan' => 'integer',
-                'estado_actual' => 'string|max:255',
-                'comuna' => 'string|max:255',
-                'region' => 'integer',
-                'nivel' => 'required|integer',
-                ]);
-        } else{
-            $validate=$request->validate([
-                'nombre'=>'required|string|max:255',
-                'ap_Paterno'=>'required|string|max:255',
-                'ap_Materno'=>'required|string|max:255',
-                'rut'=>'required|string|max:20',
-                'matricula'=>'required|string|max:20',
                 'correo'=>'required|string|unique:estudiante',
-                'plan' => 'integer',
-                'estado_actual' => 'string|max:255',
-                'comuna' => 'string|max:255',
-                'region' => 'integer',
-                'nivel' => 'required|integer',
                 ]);
         }
+        if($estudiante->rut != $request->rut){
+            $validate=$request->validate([
+                'rut'=>'cl_rut|unique:estudiante|required|string|max:20',
+                ]);
+        }
+
+        $validate=$request->validate([
+            'nombre'=>'required|string|max:255',
+            'ap_Paterno'=>'required|string|max:255',
+            'ap_Materno'=>'required|string|max:255',
+            'matricula'=>'required|string|max:20',
+            'plan' => 'integer',
+            'estado_actual' => 'string|max:255',
+            'comuna' => 'string|max:255',
+            'region' => 'integer',
+            'nivel' => 'required|integer',
+            ]);
 
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
         $estudiante->rut=$request->get('rut');
         $estudiante->matricula=$request->get('matricula');
+        $estudiante->id_carrera=$request->get('carrera');
         $estudiante->correo=$request->get('correo');
+        $estudiante->id_carrera=$request->get('carrera');
         $estudiante->plan=$request->get('plan');
         $estudiante->estado_actual=$request->get('estado_actual');
         $estudiante->comuna=$request->get('comuna');
