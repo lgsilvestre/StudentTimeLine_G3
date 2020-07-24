@@ -322,20 +322,24 @@
       </div>
 
       <div class="modal-body">
+    
         <ul class="nav nav-tabs" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab">Datos personales</a>
+            <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab" id="adsBack">Datos personales</a>
           <li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ads" role="tab">Datos académicos</a>
+            <a class="nav-link" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
           <li>
         </ul>
-        
-        <div class="tab-content mt-2">
-          <div class="tab-pane fade show active" id="infoPanel" role="tabpanel">
-            <h4>Datos personales</h4>
-            <div class="form-group">
 
+
+        <form action="{{ route('estudiante.store',$carrera->id) }}" method="post">
+            @csrf
+        <div class="tab-content mt-2">
+          <div class="tab-pane fade show active" id="infoPanel" role="tabpanel"  href="#infoPanel">
+            <h4>Datos personales</h4>
+            <div class="form-group"> 
+            
                 <div class="col-xl-12 mx-auto">
                     <div class="form-group row">
                         <div class="col-sm-4">
@@ -432,13 +436,13 @@
                     </div>
 
                 </div>
-                      
+
             </div>
             
           </div>
 
 
-          <div class="tab-pane fade" id="ads" role="tabpanel">
+          <div class="tab-pane fade" id="ads" role="tabpanel"  href="#ads">
             <h4>Datos académicos</h4>
 
             <div class="form-group">
@@ -547,17 +551,22 @@
 
 
                </div>
+
             </div>
             
 
-          </div>
+        </div>
+    </form>
         <div class="progress mt-5">
           <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Paso 1 de 2</div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #f94144;">Cancel</button>
-        <button class="btn btn-secondary" id="infoContinue" style="background-color: #1d355;" >Continuar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #f94144;">Cancelar</button>
+        <button class="btn btn-secondary" id="infoContinue" style="background-color: #1d355;" >Guardar</button>
+        <!--
+        <button class="btn btn-secondary" id="adsBack" style="background-color: #1d355;">Volver</button>
+        <button class="btn btn-secondary" id="infoContinue" style="background-color: #1d355;" >Continuar</button> -->
       </div>
     </div>
   </div>
@@ -590,8 +599,11 @@
     $('#myTab a[href="#ads"]').tab('show');
   });
 
-  $('#adsContinue').click(function (e) {
-   
+  $('#adsBack').click(function (e) {
+    e.preventDefault();
+    $('.progress-bar').css('width', '50%');
+    $('.progress-bar').html('Paso 1 de 2');
+    $('#myTab a[href="#infoPanel"]').tab('show');
   });
 
 
