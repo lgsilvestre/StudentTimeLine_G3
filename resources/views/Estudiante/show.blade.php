@@ -89,8 +89,8 @@
                                             
                                             </ul>
                                             
-                                            <button class="btn btn-sm" data-toggle="modal" data-target="#modal_editarObservacion"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
-                                            <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;"></i></button>
+                                            <button class="btn btn-sm" data-toggle="modal" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}','{{$observacion->semestre}}')"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
+                                            <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;" onclick="eliminar_observacion('{{$observacion->id}}')"></i></button>
                                             <span class="cd-date"><strong>{{$observacion->created_at->format('d/m/y')}}</strong></span>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
@@ -166,6 +166,21 @@
                             <label for="name" class="col-md-2 col-form-label"> {{$usuario->name}}</label>
                         </div>
                     </div>
+                    <div class="form-group row">
+                    
+                        <label for="name" class="col-md-2 col-form-label"> Semestre:</label>
+                        <div class="col-md-6">
+                       
+                            @if($now->format('m')>= '04' && $now->format('m')<= '08' )
+                                <label for="semestre_agregar" class="col-form-label">Otoño-Invierno (1) {{$now->format('Y')}}</label>               
+                            @elseif($now->format('m')>= '09' && $now->format('m')<= '12')
+                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano (2) {{$now->format('Y')}}</label>        
+                            @elseif($now->format('m')>= '01' && $now->format('m')<= '03')
+                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano (2) {{$now->format('Y')-1}}</label>
+                            @endif
+                        
+                        </div>
+                    </div>
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
                         <div class="col-md-4">
@@ -200,6 +215,7 @@
                         <!--id llamado para editar-->
                         <input type="hidden" name="id_edit" id="id_editar" value="" class="col-md-8">  
                         <!--fin de llamado al id-->  
+                        
                         <label id="titulo" class="col-md-2 col-form-label"> Título: </label>
                         <input type="text" name="titulo_edit" id="titulo_editar" class="col-md-8" style="margin-left: 15px">    
 
@@ -246,6 +262,34 @@
                             <label for="name" name="autor_edit" class="col-md-2 col-form-label">{{$usuario->name}}</label>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                    
+                    @role('admin')   
+                    <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Semestre:') }}</label>
+                        <div class="col-md-5" style="margin-top: 10px">
+                            <select for="editar_semestre" name="semester_edit" class="form-control">
+                                <option value="Otoño-Invierno (1)">Otoño-Invierno (1)</option>
+                                <option value="Primavera-Verano (2)">Primavera-Verano (2)</option>
+                            </select>
+                        </div>
+
+                    <label for="tipo_observacion" class="col-md-1 col-form-label" style="margin-top: 10px">{{ __('Año:') }}</label>
+                        <div class="col-md-3" style="margin-top: 10px">
+                            <select name="anio" id="anio_semestre" class="form-control">
+                                @for($i= 1955; $i <= $now->format('Y') ; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                    @else
+                        <label for="name" class="col-md-2 col-form-label"> Semestre:</label>
+                        <div class="col-md-6">
+                                <label for="editar_semestre" id="semestre_editar" name="semestre_edit" class="col-form-label">{{$observacion->semestre}}</label>               
+                        </div>
+                    @endrole
+                    </div>
+
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
                         <div class="col-md-4">
@@ -425,7 +469,7 @@
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
 
 <script>
-    function editar_observacion(titulo, autor, modulo, descripcion, categoria, tipo, id){
+    function editar_observacion(titulo, autor, modulo, descripcion, categoria, tipo, id, semestre){
         $('#titulo_editar').val(titulo);
         $('#autor_editar').val(autor);
         $('#categoria_editar').val(categoria);
@@ -433,6 +477,7 @@
         $('#descripcion_editar').val(descripcion);
         $('#tipo_editar').val(tipo);
         $('#id_editar').val(id);
+        $('#semestre_editar').val(semestre);
         $('#modal_editarObservacion').modal('show');
     }
 </script>
