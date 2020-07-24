@@ -68,10 +68,16 @@ class ObservacionController extends Controller
 
     $now = Carbon::now();
     if($now->format('m')>= '03' && $now->format('m')<= '07'){
-        $observacion->semestre='Otoño-Invierno (1)';
+        $anio = $now->format('Y');
+        $observacion->semestre='Otoño-Invierno (1) '.$anio;
     }
     elseif($now->format('m')>= '08' && $now->format('m')<= '12'){
-        $observacion->semestre='Primavera-Verano (2)';
+        $anio = $now->format('Y');
+        $observacion->semestre='Primavera-Verano (2) '.$anio;
+    }
+    elseif($now->format('m')>= '01' && $now->format('m')<= '03'){
+        $anio = $now->format('Y')-1;
+        $observacion->semestre='Primavera-Verano (2) '.$anio;
     }
 
     $observacion->save();
@@ -141,7 +147,10 @@ class ObservacionController extends Controller
     $observacion->modulo=$request->get('modulo_edit');
     $observacion->id_autor =  Auth::user()->id;
     $observacion->nombre_autor = Auth::user()->name;
-    $observacion->semestre=$request->get('semester_edit');
+    $valor_semestre=$request->get('semester_edit');
+    $valor_anio=$request->get('anio');
+
+    $observacion->semestre=$valor_semestre.' '.$valor_anio;
 
     $observacion->save();
 
