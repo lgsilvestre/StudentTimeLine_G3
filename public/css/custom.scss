@@ -235,8 +235,11 @@ border-right: 7px solid #577590;
   position: absolute;
   width: 100%;
   left: 140%;
-  top: 6px;
-  color: #2B343A;;
+  top: 22px;
+  background-color: #84878a;
+  border-radius: 13px;
+  text-align: center;
+  color: #dde0e2;;
   font-size: 16px;
   font-size: 1rem;
 }
@@ -256,7 +259,7 @@ border-right: 7px solid #577590;
 .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
   left: auto;
   right: 140%;
-  color: #2B343A;
-  text-align: right;
+  color: #dde0e2;;
+  text-align: center;
 }
 }

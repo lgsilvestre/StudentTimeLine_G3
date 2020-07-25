@@ -68,6 +68,7 @@ class ObservacionController extends Controller
     $observacion->nombre_autor = Auth::user()->name;
 
     $now = Carbon::now();
+
     if($now->format('m')>= '03' && $now->format('m')<= '07'){
         $anio = $now->format('Y');
         $observacion->semestre='Otoño-Invierno (1) '.$anio;
