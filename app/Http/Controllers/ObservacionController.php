@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Observacion;
 use App\Categoria;
 use App\Carrera;
+use DB;
 use Auth;
 use Carbon\Carbon;
 use App\Observacion_usuario_estudiante;
@@ -63,7 +64,7 @@ class ObservacionController extends Controller
     $observacion->nombre_categoria=$categoria->nombre;
     $observacion->id_categoria=$categoria->id;
     $observacion->modulo=$request->get('modulo');
-    $observacion->id_autor =  Auth::user()->id;
+    $observacion->id_autor = Auth::user()->id;
     $observacion->nombre_autor = Auth::user()->name;
 
     $now = Carbon::now();
@@ -79,6 +80,9 @@ class ObservacionController extends Controller
         $anio = $now->format('Y')-1;
         $observacion->semestre='Primavera-Verano (2) '.$anio;
     }
+
+    $fecha_limite = Carbon::now()->addDay(1);
+    $observacion->fecha_limite = $fecha_limite;
 
     $observacion->save();
     
@@ -145,13 +149,27 @@ class ObservacionController extends Controller
     $observacion->descripcion=$request->get('descripcion_edit');
     $observacion->nombre_categoria=$request->get('categoria_edit');
     $observacion->modulo=$request->get('modulo_edit');
-    $observacion->id_autor =  Auth::user()->id;
-    $observacion->nombre_autor = Auth::user()->name;
-    $valor_semestre=$request->get('semester_edit');
-    $valor_anio=$request->get('anio');
+    $observacion->fecha_limite = $observacion->fecha_limite;
 
-    $observacion->semestre=$valor_semestre.' '.$valor_anio;
-
+    $identidad = Auth::user()->id;
+    $rol = DB::table('role_user')
+        ->where('user_id','=',$identidad)
+        ->select('role_user.role_id')
+        ->get();
+    
+    if($rol[0]->role_id == 1){
+        $observacion->id_autor =  $observacion->id_autor;
+        $observacion->nombre_autor =  $observacion->nombre_autor;
+        $valor_semestre=$request->get('semester_edit');
+        $valor_anio=$request->get('año');
+        $observacion->semestre=$valor_semestre.' '.$valor_anio;
+    }
+    else{
+        $observacion->id_autor = Auth::user()->id;
+        $observacion->nombre_autor = Auth::user()->name;
+        $observacion->semestre = $observacion->semestre;
+    }
+    
     $observacion->save();
 
     return redirect()->action('EstudianteController@show', $id)
