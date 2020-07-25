@@ -268,7 +268,7 @@
                     @role('admin')   
                     <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Semestre:') }}</label>
                         <div class="col-md-5" style="margin-top: 10px">
-                            <select for="editar_semestre" name="semester_edit" class="form-control">
+                            <select for="editar_semestre" name="semester_edit" id="semestre_editar" class="form-control">
                                 <option value="Otoño-Invierno (1)">Otoño-Invierno (1)</option>
                                 <option value="Primavera-Verano (2)">Primavera-Verano (2)</option>
                             </select>
@@ -276,16 +276,17 @@
 
                     <label for="tipo_observacion" class="col-md-1 col-form-label" style="margin-top: 10px">{{ __('Año:') }}</label>
                         <div class="col-md-3" style="margin-top: 10px">
-                            <select name="anio" id="anio_semestre" class="form-control">
+                            <select name="año" id="año_editar" class="form-control">
                                 @for($i= 1955; $i <= $now->format('Y') ; $i++)
                                     <option value="{{$i}}">{{$i}}</option>
                                 @endfor
                             </select>
                         </div>
+                        <div style="display: none" id="mostrar_semestre"></div>
                     @else
                         <label for="name" class="col-md-2 col-form-label"> Semestre:</label>
                         <div class="col-md-6">
-                                <label for="editar_semestre" id="semestre_editar" name="semestre_edit" class="col-form-label">{{$observacion->semestre}}</label>               
+                                <div for="editar_semestre" name="semestre_edit"  id="mostrar_semestre" class="col-form-label"></div>               
                         </div>
                     @endrole
                     </div>
@@ -477,7 +478,10 @@
         $('#descripcion_editar').val(descripcion);
         $('#tipo_editar').val(tipo);
         $('#id_editar').val(id);
-        $('#semestre_editar').val(semestre);
+        document.getElementById('mostrar_semestre').innerHTML = semestre;
+        cadena = semestre.split(" ");
+        $('#semestre_editar').val(cadena[0]+" "+cadena[1]);
+        $('#año_editar').val(cadena[2]);
         $('#modal_editarObservacion').modal('show');
     }
 </script>
@@ -488,4 +492,5 @@
         $('#modal_eliminarObservacion').modal('show');
     }
 </script>
+
 @endsection
