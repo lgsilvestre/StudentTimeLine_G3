@@ -91,7 +91,7 @@
                                             
                                             <button class="btn btn-sm" data-toggle="modal" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}','{{$observacion->semestre}}')"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
                                             <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;" onclick="eliminar_observacion('{{$observacion->id}}')"></i></button>
-                                            <span class="cd-date"><strong>{{$observacion->created_at->format('d/m/y')}}</strong></span>
+                                            <span class="cd-date"><i class="fas fa-clock"></i><strong> {{$observacion->created_at->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</strong></span>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
                                     @endforeach
