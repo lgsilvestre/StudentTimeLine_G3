@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Observacion;
 use App\Categoria;
 use App\Carrera;
+use DB;
 use Auth;
+use Carbon\Carbon;
 use App\Observacion_usuario_estudiante;
 use App\Estudiante;
 
@@ -62,8 +64,26 @@ class ObservacionController extends Controller
     $observacion->nombre_categoria=$categoria->nombre;
     $observacion->id_categoria=$categoria->id;
     $observacion->modulo=$request->get('modulo');
-    $observacion->id_autor =  Auth::user()->id;
+    $observacion->id_autor = Auth::user()->id;
     $observacion->nombre_autor = Auth::user()->name;
+
+    $now = Carbon::now();
+
+    if($now->format('m')>= '03' && $now->format('m')<= '07'){
+        $anio = $now->format('Y');
+        $observacion->semestre='Otoño-Invierno (1) '.$anio;
+    }
+    elseif($now->format('m')>= '08' && $now->format('m')<= '12'){
+        $anio = $now->format('Y');
+        $observacion->semestre='Primavera-Verano (2) '.$anio;
+    }
+    elseif($now->format('m')>= '01' && $now->format('m')<= '03'){
+        $anio = $now->format('Y')-1;
+        $observacion->semestre='Primavera-Verano (2) '.$anio;
+    }
+
+    $fecha_limite = Carbon::now()->addDay(1);
+    $observacion->fecha_limite = $fecha_limite;
 
     $observacion->save();
     
@@ -115,28 +135,46 @@ class ObservacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $validate=$request->validate([
-            'titulo'=>'required|string|max:255',
-            'tipo_observacion'=>'required|string|max:15',
-            'descripcion'=>'required|string|max:2000',
-            'nombre_categoria'=>'required|string|max:255',
-            'modulo'=>'required|string|max:255',
+            'titulo_edit'=>'required|string|max:255',
+            'tipo_edit'=>'required|string|max:15',
+            'descripcion_edit'=>'required|string|max:2000',
+            'categoria_edit'=>'required|string|max:255',
+            'modulo_edit'=>'required|string|max:255',
         ]);
 
-    $observacion=Observacion::find($id);
     
-    $observacion->titulo=$request->get('titulo');
-    $observacion->tipo_descripcion=$request->get('tipo_observacion');
-    $observacion->descripcion=$request->get('descripcion');
-    $observacion->nombre_categoria=$request->get('nombre_categoria');
-    $observacion->modulo=$request->get('modulo');
+    $observacion=Observacion::find($request->get('id_edit'));
+    $observacion->titulo=$request->get('titulo_edit');
+    $observacion->tipo_observacion=$request->get('tipo_edit');
+    $observacion->descripcion=$request->get('descripcion_edit');
+    $observacion->nombre_categoria=$request->get('categoria_edit');
+    $observacion->modulo=$request->get('modulo_edit');
+    $observacion->fecha_limite = $observacion->fecha_limite;
 
+    $identidad = Auth::user()->id;
+    $rol = DB::table('role_user')
+        ->where('user_id','=',$identidad)
+        ->select('role_user.role_id')
+        ->get();
+    
+    if($rol[0]->role_id == 1){
+        $observacion->id_autor =  $observacion->id_autor;
+        $observacion->nombre_autor =  $observacion->nombre_autor;
+        $valor_semestre=$request->get('semester_edit');
+        $valor_anio=$request->get('año');
+        $observacion->semestre=$valor_semestre.' '.$valor_anio;
+    }
+    else{
+        $observacion->id_autor = Auth::user()->id;
+        $observacion->nombre_autor = Auth::user()->name;
+        $observacion->semestre = $observacion->semestre;
+    }
+    
     $observacion->save();
 
-    return redirect()->action('ObservacionController@index')
+    return redirect()->action('EstudianteController@show', $id)
     ->with('success','Observacion modificada con éxito'); 
-   
     }
 
     /**
@@ -145,10 +183,14 @@ class ObservacionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        Observacion::destroy($id);
-        return redirect()->action('ObservacionController@index')
+        $estudiante = Estudiante::find($id);
+        $estudiante->num_observaciones -=1;
+        $estudiante->save();
+
+        Observacion::find($request->get('id_observacion_eliminar'))->delete();
+        return redirect()->action('EstudianteController@show', $id)
         ->with('success','Observacion eliminada con éxito'); 
     }
 }

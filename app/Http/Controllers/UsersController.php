@@ -25,6 +25,7 @@ class UsersController extends Controller
         ->join('users', 'role_user.user_id', '=', 'users.id')
         ->join('roles','role_user.role_id','=','roles.id')
         ->whereNull('users.deleted_at')
+        ->where('user_id','!=',1)
         ->select('role_user.user_id','role_user.role_id','users.name as nombre','users.email', 'roles.name','roles.id as id_rol','users.id')
         ->get();
 
@@ -311,6 +312,23 @@ class UsersController extends Controller
         $user->save();
 
         return  redirect()->back()->with('success', 'Foto cambiada con éxito');      
+    }
+
+    public function obtcarrera(Request $request){
+        $user = User::find($request->id);
+
+        if($user->id == 1){
+            $carreras = Carrera::all();
+        }else{
+            $carreras = $user->usuario_carrera;
+            $collect = [];
+            foreach($carreras as $carrera){
+                $car = $carrera->carrera;
+                $collect[]=$car; 
+            }
+            $carreras = collect($collect);
+        }
+        return $carreras->toJson();
     }
     
 }

@@ -5,8 +5,10 @@ namespace App\Imports;
 use App\Estudiante;
 use Maatwebsite\Excel\Concerns\ToModel; 
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
+use Rut;
 
-class EstudianteImport implements ToModel, WithHeadingRow
+class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
 {
 
     private $id_carrera;
@@ -55,4 +57,21 @@ class EstudianteImport implements ToModel, WithHeadingRow
     {
         return 6;
     }
+
+    public function rules(): array
+        {
+            return [
+                '*.matricula' => ['required','unique:estudiante,matricula'],
+                '*.nbe_alumno' =>['required'],
+                '*.sexo' =>['required'],
+                '*.regular'=>['required'],
+                '*.run' => ['required','cl_rut','unique:estudiante,rut'],
+                '*.correo' => ['email','unique:estudiante,correo'],
+                '*.anho_ingreso'=>['required'],
+                '*.sit_actual' =>['required'],
+                '*.plan' =>['required'],
+                '*.comuna' =>['required'],
+            ];
+        }
+
 }

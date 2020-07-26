@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card margen-card custom-card">
-                                  
-
+            <div class="card margen-card custom-card">     
+                
                 <div class="card-header custom-recuperarSesion custom-header">Módulos de carreras</div>
                     <div class="card-body shadow-lg">            
                     <table id="modulos"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
@@ -72,7 +71,6 @@
             }
         
         var table = $('#modulos').DataTable({//en caso de usar serverside se descomenta.
-            processing: true,
             serverSide: true,
             language : espanol,
             rowReorder: true,

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -72,7 +71,6 @@
             }
         
         $('#categorias').dataTable({//en caso de usar serverside se descomenta.
-            processing: true,
             serverSide: true,
             language : espanol,
             columnDefs: [

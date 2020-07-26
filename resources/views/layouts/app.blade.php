@@ -21,8 +21,13 @@
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.scss') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/fontawesome.min.css">
+
+
+    <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
+
+
 
 </head>
 <body class="custom-fondo">

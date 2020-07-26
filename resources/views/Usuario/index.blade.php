@@ -3,8 +3,6 @@
 @section('content')
 
 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-
 <div class="container">
 
     <div class="row justify-content-center">
@@ -24,7 +22,7 @@
                                
                                 <th >Rol asignado</th>
                                 <th colspan="3px"> <a href=""  data-toggle="modal" data-target="#modal_crear"
-                                        class="btn btn-sm btn-secondary float-cente" style="background-color: #2a9d8f"> 
+                                        class="btn btn-sm btn-secondary float-center" style="background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Crear Usuario </a>&nbsp;</th>
                                 
                             </tr>
@@ -71,7 +69,6 @@
                 }
             }
         var table = $('#usuarios').DataTable({
-            processing: true,
             serverSide: true,
             language : espanol,
             rowReorder: true,
@@ -85,7 +82,7 @@
                 {data: 'nombre'},
                 {data: 'email'},
                 {data: 'name'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-info btnEditar btn-custom btn-sm btnEditar'><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar' style='margin-left:5px'><i class='fas fa-user-minus'></i> Inhabilitar</button></div></div>"}
+                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-info btnEditar btn-custom btn-sm btnEditar' ><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar' style='margin-left:5px'><i class='fas fa-user-minus'></i> Inhabilitar</button></div></div>"}
             ],
             
             
@@ -106,12 +103,30 @@
     var obtener_data_editar = function(tbody,table){
         $(tbody).on("click",".btnEditar",function(){
             var data = table.row($(this).parents("tr")).data();
+            //obtengo todos los datos de la carreras asociadas al usuario.
+            var carreras = $.ajax({
+                type: "POST",
+                url: "/obtcarrera",
+                data: { id: data.id,
+                    _token: "{{ csrf_token() }}"}
+                }).done(function( msg ) {
+                
+            });
+            
+
             $("#id_edit").val(data.id);
             $("#nombre_edit").val(data.nombre);
-            $("#id_carrera").val(data.id_carrera);
-            $("#id_rol").val(data.id_rol);
+            
+            if(data.id_rol==2 || data.id_rol==3){
+                document.getElementById("div_carreras_editar").style.display = "";
+
+            }else{
+                document.getElementById("div_carreras_editar").style.display = "none";
+            }
+            
+            $("#id_rol_editar").val(data.id_rol);
             $('#email_edit').val(data.email);
-            $("#modal_editar").modal("show");
+            $('#modal_editar').modal('show');
         });
     }
 </script>
@@ -194,7 +209,7 @@
                            @foreach($carreras as $carrera)
                                
                                <li>
-                               <input name="carreras[]"class="form-check-input" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                               <input name="carreras[]" class="form-check-input" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
                                <label class="form-check-label" for="defaultCheck1" >
                                    {{$carrera->nombre}}
                                </label>
@@ -333,7 +348,7 @@
                             
                             @foreach($carreras as $carrera)
                                 <li>
-                                <input name="carreras[]"class="form-check-input-editar" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                                <input name="carreras[]"class="form-check-input form-check-input-editar" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
                                     {{$carrera->nombre}}
                                 </label>
@@ -343,6 +358,7 @@
                     </div>
                 </div>
             </div>  
+           
             <div class="form-group row">
                     <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo') }}</label>
 
@@ -382,7 +398,7 @@
         });    
 </script>
 <script>
- 
+
 function comprobar()
           {
             var x = document.getElementsByClassName("form-check-input");
@@ -411,7 +427,6 @@ function comprobar()
             var select_box_editar = document.getElementById("id_rol_editar");
             var id_rol_editar = select_box_editar.options[select_box_editar.selectedIndex].value;
             if(id_rol_editar==2 || id_rol_editar==3){
-                
                 document.getElementById("div_carreras_editar").style.display = "";
 
               }else{
@@ -441,7 +456,6 @@ function checkOnlyOne(b)
                     }
                 }
             }
-
 </script>
 
 @endsection
