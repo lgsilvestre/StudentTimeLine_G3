@@ -549,18 +549,14 @@
             </div>
         </div>
         <button class="btn btn-secondary" style="background-color: #1d355;" >Guardar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #f94144;">Cancelar</button>
         </form>
         <div class="progress mt-5">
           <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Paso 1 de 2</div>
         </div>
         
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="background-color: #f94144;">Cancelar</button>
-        <!--
-        <button class="btn btn-secondary" id="adsBack" style="background-color: #1d355;">Volver</button>
-        <button class="btn btn-secondary" id="infoContinue" style="background-color: #1d355;" >Continuar</button> -->
-      </div>
+     
     </div>
   </div>
 </div>
