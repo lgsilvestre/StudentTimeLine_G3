@@ -6,41 +6,39 @@
         <div class="col-md-12">
             <div class="card margen-card">
             {{ Breadcrumbs::render('carrera', $carrera) }} 
+                    
                     <div class="card-body">     
-                    @can('addUser')          
-                    <!-- importación masiva -->
-                        <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="form-group row" style="float:left">
-                                <div class="col-md-8 custom-file">
-                                <input id="file" type="file" class="custom-file-input" name="file" required>
-                                <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Importación de Estudiantes</label>
-                                </div>
-                                <button style="background-color: #2a9d8f; color:white;margin-left:7px"class="btn btn-info  btn-sm">Importar</button>             
-                            </div> 
-                        </form>
-                    <!-- -->
-                    @endcan
                     <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
                                     <th >Matrícula</th>
                                     <th >RUT</th>
-                                    <th >Apellido Paterno</th>
-                                    <th >Apellido Materno</th>
+                                    <th >Ap Paterno</th>
+                                    <th >Ap Materno</th>
                                     <th >Nombres</th>
-                                    <th >Situación académica</th>
-                                    <th >Nº de observaciones</th>
+                                    <th >Sit. académica</th>
+                                    <th >Nº Obs.</th>
                                     <th >
                                     
                                     @can('estudiante.add')
                                         <a href="#"  data-toggle="modal" data-target="#modal-wizard"
-                                        class="btn btn-sm btn-secondary float-left" style="background-color: #2a9d8f"> 
-                                        <i class="fas fa-plus"></i> Añadir Estudiante
+                                        class="btn btn-md btn-secondary float-left" style="width:37.5px ;background-color: #2a9d8f"> 
+                                        <i class="fas fa-user-plus"></i> 
                                         </a>
-                                    @endcan
+                                    @endcan       
 
-                                    
+                                    @can('estudiante.add')  
+                                        <a href="#"  data-toggle="modal" data-target="#modal_importar"
+                                        class="btn btn-md btn-secondary float-left" style="margin-left:4px ;background-color: #2a9d8f"> 
+                                        <i class="fas fa-file-upload"></i> 
+                                        </a>        
+                                    @endcan   
+                                    @can('estudiante.add')  
+                                        <a href="#"  data-toggle="modal" data-target="#modal_exportar"
+                                        class="btn btn-md btn-secondary float-left" style="margin-left:4px; background-color: #2a9d8f"> 
+                                        <i class="fas fa-file-download"></i> 
+                                        </a>        
+                                    @endcan                           
                                     </th>
                                 </tr>
                             </thead>
@@ -48,7 +46,6 @@
                         
                             </tbody>
                         </table>   
-                        
                 </div>
             </div>
         </div>
@@ -94,9 +91,14 @@
             language : espanol,
             rowReorder: true,
             columnDefs: [
-            { orderable: true, className: 'reorder', targets: 0 },
-            { orderable: true, className: 'reorder', targets: 1 },
-            { orderable: false, targets: '_all' }
+            { orderable: true, className: 'reorder dt-body-center', targets: 0 },
+            { orderable: true, className: 'reorder dt-body-center', targets: 1 },
+            { orderable: false, className: 'reorder dt-body-center', targets: 2 },
+            { orderable: false, className: 'reorder dt-body-center', targets: 3 },
+            { orderable: true, className: 'reorder dt-body-center', targets: 4 },
+            { orderable: false, className: 'reorder dt-body-center', targets: 5 },
+            { orderable: false, width: "9%", className:'dt-body-center', targets: 6},
+            { orderable: false, width: "20%", className: 'dt-body-center', targets: 7},
             ],
             ajax: "{{route('estudiantes.index',$carrera->id)}}",
             columns : [
@@ -308,6 +310,38 @@
     </div>
   </div>
 </div>
+<!-- MODAL PARA IMPORTACION DE ESTUDIANTE -->
+
+<div class="modal fade " id="modal_importar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-header custom-color">
+        <h5 class="modal-title" id="exampleModalLabel" >Importar Estudiantes</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-body">
+                <div class="col-md-7 custom-file" style="">
+                    <input id="file" type="file" class="custom-file-input" name="file" required>
+                    <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Importación de Estudiantes</label>
+                </div>
+        </div>
+        <div class="modal-footer">  
+            <button style="background-color: #2a9d8f; color:white;margin-left:7px"class="btn btn-info  btn-sm">Importar</button>             
+        </form>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
+       </div>
+    </div>
+  </div>
+</div>
+
+<!-- -->
+
+
 <!-- MODAL PARA CREAR ESTUDIANTE CON WIZARD -->
 <div id="modal-wizard" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
