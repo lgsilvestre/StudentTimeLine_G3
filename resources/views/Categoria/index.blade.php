@@ -71,7 +71,6 @@
             }
         
         $('#categorias').dataTable({//en caso de usar serverside se descomenta.
-            processing: true,
             serverSide: true,
             language : espanol,
             columnDefs: [
