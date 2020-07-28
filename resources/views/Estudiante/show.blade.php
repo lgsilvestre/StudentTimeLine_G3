@@ -87,7 +87,7 @@
                                             <ul class="content-skills">
                                             <li><i class="fas fa-info-circle"></i> Categoria: {{$observacion->nombre_categoria}}</li>
                                             <li><i class="fas fa-info-circle"></i> Modulo: {{$observacion->modulo}}</li>
-                                            
+                                            <li><i class="fas fa-info-circle"></i> Semestre: {{$observacion->semestre}}</li>
                                             
                                             </ul>
                                             @role('admin') 

@@ -19,10 +19,9 @@
                                     <th >Sit. académica</th>
                                     <th >Nº Obs.</th>
                                     <th >
-                                    
                                     @can('estudiante.add')
                                         <a href="#"  data-toggle="modal" data-target="#modal-wizard"
-                                        class="btn btn-md btn-secondary float-left" title="Añadir Estudiante"style="width:37.5px ;background-color: #43aa8b"> 
+                                        class="btn btn-md btn-secondary float-left" title="Añadir Estudiante"style="margin-left:5px ;width:37.5px ;background-color: #43aa8b"> 
                                         <i class="fas fa-user-plus"></i> 
                                         </a>
                                     @endcan       
