@@ -69,7 +69,6 @@
                 }
             }
         var table = $('#usuarios').DataTable({
-            processing: true,
             serverSide: true,
             language : espanol,
             rowReorder: true,
@@ -210,7 +209,7 @@
                            @foreach($carreras as $carrera)
                                
                                <li>
-                               <input name="carreras[]"class="form-check-input" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
+                               <input name="carreras[]" class="form-check-input" onclick="checkOnlyOne(this.value);" type="checkbox" value="{{$carrera->id}}" id="defaultCheck1">
                                <label class="form-check-label" for="defaultCheck1" >
                                    {{$carrera->nombre}}
                                </label>

@@ -68,7 +68,6 @@
                 }
             }
         var table = $('#usuarios').DataTable({
-            processing: true,
             serverSide: true,
             language : espanol,
             rowReorder: true,
