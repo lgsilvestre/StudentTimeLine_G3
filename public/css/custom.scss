@@ -46,7 +46,7 @@ left: 25px;
 height: 100%;
 width: 4px;
 background: #f8961e;
-background: -moz-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
+background: -moz-linear-gradient(top, rgba(80,80,80,0)  0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
   background: -webkit-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
   background: -o-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
   background: -ms-linear-gradient(top, rgba(80,80,80,0) 0%, rgb(80,80,80) 8%, rgb(80,80,80) 92%, rgba(80,80,80,0) 100%);
@@ -251,7 +251,7 @@ border-right: 7px solid #577590;
   left: auto;
   right: 100%;
   border-color: transparent;
-  border-right-color: #282a2c;
+  border-right-color: #577590;
 }
 .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
   float: right;
