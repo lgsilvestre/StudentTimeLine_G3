@@ -71,13 +71,15 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
                 '*.sit_actual' =>['required'],
                 '*.plan' =>['required'],
                 '*.comuna' =>['required'],
-            ];
-        }
-
-        public function customValidationMessages()
-        {
-            return [
-                '1.in' => 'Custom message for :attribute.',
+                '*.region' => ['required'],
+                '*.creditos_aprobados' => ['required'],
+                '*.nivel' => ['required'],
+                '*.porc_avance' => ['required'],
+                '*.ult_ptje_prioridad' => ['required'],
+                '*.regular' => ['required'],
+                '*.prom_aprobadas' => ['required'],
+                '*.prom_cursados' => ['required'],
+                '*.num_observaciones' => ['required'] 
             ];
         }
 
