@@ -326,7 +326,7 @@
         <div class="modal-body">
                 <div class="col-md-7 custom-file" style="">
                     <input id="file" type="file" class="custom-file-input" name="file" required>
-                    <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Importación de Estudiantes</label>
+                    <label class="custom-file-label text-truncate" data-browse="Buscar" for="customFile">Importación de Estudiantes</label>
                 </div>
         </div>
         <div class="modal-footer">  

@@ -230,16 +230,21 @@ class EstudianteController extends Controller
 
     public function importExcel(Request $request, Carrera $carrera){
 
-
         $validate=$request->validate([
             'file' => 'required|mimes:xls,xlsx'
-            ]);
+        ]);
+        try{
+            $file =  $request->file('file');
+            Excel::import(new EstudianteImport($carrera->id), $file);
+            return redirect()->action('EstudianteController@index',$carrera)
+            ->with('success','Estudiantes ingresados con éxito'); 
+        }
+        catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            return redirect()->action('EstudianteController@index', $carrera)
+             ->with('error','El archivo no tiene el formato correcto o los datos ya han sido ingresados'); 
             
-        $file =  $request->file('file');
-        Excel::import(new EstudianteImport($carrera->id), $file);
-        return redirect()->action('EstudianteController@index',$carrera)
-        ->with('success','Estudiantes ingresados con éxito'); 
-        
+        }
     }
 
 }

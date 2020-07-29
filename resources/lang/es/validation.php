@@ -82,7 +82,7 @@ return [
         'string'  => 'El campo :attribute no debe contener más de :max caracteres.',
         'array'   => 'El campo :attribute no debe contener más de :max elementos.',
     ],
-    'mimes'                => 'El campo :attribute debe ser un archivo de tipo: :values.',
+    'mimes'                => 'El archivo debe ser de tipo: :values.',
     'mimetypes'            => 'El campo :attribute debe ser un archivo de tipo: :values.',
     'min'                  => [
         'numeric' => 'El campo :attribute debe ser al menos :min.',

@@ -188,6 +188,7 @@
 .custom-foto{
     width: 150px;
     height: 150px;
+    margin-bottom: 40px;
     margin-left:85px;
     border-color: red;
     background: url('../images/def.jpg');    

@@ -164,17 +164,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
-                        <div class="col-md-6">
+                        <label for="name" class="col-md-2 col-form-label">{{ __('Detalle:') }}</label>
+                        <div class="col-md-4">
                             <textarea for="descripcion" id="descripcion" name="descripcion" rows="3" cols="35" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                     
-                        <label for="name" class="col-md-2 col-form-label"> Autor:</label>
-                        <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$usuario->name}}</label>
-                        </div>
+                        <label for="name" class="col-md-2 col-form-label">Autor:</label>
+                        <label for="name" class="col-md-2 col-form-label">{{$usuario->name}}</label>
                     </div>
                     <div class="form-group row">
                     
@@ -182,19 +180,19 @@
                         <div class="col-md-6">
                        
                             @if($now->format('m')>= '04' && $now->format('m')<= '08' )
-                                <label for="semestre_agregar" class="col-form-label">Otoño-Invierno (1) {{$now->format('Y')}}</label>               
+                                <label for="semestre_agregar" class="col-form-label">Otoño-Invierno  {{$now->format('Y')}}/1</label>               
                             @elseif($now->format('m')>= '09' && $now->format('m')<= '12')
-                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano (2) {{$now->format('Y')}}</label>        
+                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano {{$now->format('Y')}}/2</label>        
                             @elseif($now->format('m')>= '01' && $now->format('m')<= '03')
-                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano (2) {{$now->format('Y')-1}}</label>
+                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano {{$now->format('Y')-1}}/2(</label>
                             @endif
                         
                         </div>
                     </div>
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
-                        <div class="col-md-4">
-                            <label for="name" style="margin-top:7px"> {{$now->format('d-m-Y')}}</label>
+                        <div class="col-md-5">
+                            <label for="name" style="margin-top:7px"> {{$now->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</label>
                         </div>
                     </div>
                     
@@ -345,7 +343,7 @@
 
 <!--Modal editar datos estudiantes version 2-->
 <div class="modal fade " id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header custom-color">
             <h5 class="modal-title" id="exampleModalLabel" >Editar Datos</h5>
@@ -357,7 +355,7 @@
         <form action="{{ route('estudiante.update',$estudiante->id) }}" method="post">
                 @csrf
         <div class="modal-body">
-        <div class="col-xl-12 mx-auto">
+        <div class="col-xl-11 mx-auto">
             
                 <div class="form-group row">
                     <div class="col-sm-3">
