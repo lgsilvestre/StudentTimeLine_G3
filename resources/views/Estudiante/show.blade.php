@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="container" style="margin-top:30px">
+<div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card custom-card">
+            <div class="card custom-card margen-card" >
             {{ Breadcrumbs::render('estudiante', $estudiante) }}
                 <div class="card-body " >
                         <div class="row">
@@ -34,9 +34,11 @@
                                         </tbody>
                                     </table>
                                     <div style="margin-right:auto">
-                                        <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar">
-                                        <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
-                                        </button>
+                                        @can('estudiante.add')
+                                            <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar">
+                                            <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
+                                            </button>
+                                        @endcan
                                         <button type="button" class="btn btn-sm btn-secondary" style="margin-left:6px" data-toggle="modal" data-target="#modalObservacion">
                                         <i class="fas fa-plus"></i> {{ __('Agregar observacion') }}
                                         </button>
@@ -85,7 +87,7 @@
                                             <ul class="content-skills">
                                             <li><i class="fas fa-info-circle"></i> Categoria: {{$observacion->nombre_categoria}}</li>
                                             <li><i class="fas fa-info-circle"></i> Modulo: {{$observacion->modulo}}</li>
-                                            
+                                            <li><i class="fas fa-info-circle"></i> Semestre: {{$observacion->semestre}}</li>
                                             
                                             </ul>
                                             @role('admin') 
@@ -99,7 +101,7 @@
                                                     @endif
                                                 @endif
                                             @endrole
-                                            <span class="cd-date"><strong>{{$observacion->created_at->format('d/m/y')}}</strong></span>
+                                            <span class="cd-date"><i class="fas fa-clock"></i><strong> {{$observacion->created_at->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</strong></span>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
                                     @endforeach
