@@ -74,4 +74,11 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
             ];
         }
 
+        public function customValidationMessages()
+        {
+            return [
+                '1.in' => 'Custom message for :attribute.',
+            ];
+        }
+
 }
