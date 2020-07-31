@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card margen-card custom-card">
             <!-- {{ Breadcrumbs::render('home') }}   -->   
-                <div class="card-header custom-recuperarSesion custom-header">Carreras
+                <div class="card-header custom-recuperarSesion custom-header ">Carreras
                 @role('admin')
                     <a href="#"  data-toggle="modal" data-target="#modal_crear"
                         class="btn btn-sm btn-secondary float-right" > 

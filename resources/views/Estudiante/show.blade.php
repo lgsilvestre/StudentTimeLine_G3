@@ -1,12 +1,11 @@
-
 @extends('layouts.app')
 
 @section('content')
 
-<div class="container" style="margin-top:30px">
+<div class="container" >
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card custom-card">
+            <div class="card custom-card margen-card" >
             {{ Breadcrumbs::render('estudiante', $estudiante) }}
                 <div class="card-body " >
                         <div class="row">
@@ -35,9 +34,11 @@
                                         </tbody>
                                     </table>
                                     <div style="margin-right:auto">
-                                        <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar">
-                                        <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
-                                        </button>
+                                        @can('estudiante.add')
+                                            <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar">
+                                            <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
+                                            </button>
+                                        @endcan
                                         <button type="button" class="btn btn-sm btn-secondary" style="margin-left:6px" data-toggle="modal" data-target="#modalObservacion">
                                         <i class="fas fa-plus"></i> {{ __('Agregar observacion') }}
                                         </button>
@@ -87,10 +88,19 @@
                                             <li><i class="fas fa-info-circle"></i> Categoria: {{$observacion->nombre_categoria}}</li>
                                             <li><i class="fas fa-info-circle"></i> Modulo: {{$observacion->modulo}}</li>
                                             <li><i class="fas fa-info-circle"></i> Semestre: {{$observacion->semestre}}</li>
-                                            </ul>
                                             
-                                            <button class="btn btn-sm" data-toggle="modal" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}','{{$observacion->semestre}}')"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
-                                            <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;" onclick="eliminar_observacion('{{$observacion->id}}')"></i></button>
+                                            </ul>
+                                            @role('admin') 
+                                                <button class="btn btn-sm" data-toggle="modal" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}','{{$observacion->semestre}}')"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
+                                                <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;" onclick="eliminar_observacion('{{$observacion->id}}')"></i></button>
+                                            @else
+                                                @if($observacion->created_at <= $now && $now <= $observacion->fecha_limite)
+                                                    @if($usuario->id == $observacion->id_autor)
+                                                        <button class="btn btn-sm" data-toggle="modal" id="boton-editarobservacion" onclick="editar_observacion('{{$observacion->titulo}}','{{$observacion->nombre_autor}}','{{$observacion->modulo}}','{{$observacion->descripcion}}','{{$observacion->nombre_categoria}}','{{$observacion->tipo_observacion}}','{{$observacion->id}}','{{$observacion->semestre}}')"><i class="fas fa-edit fa-lg" style="font-size:20px;color: #20c997;"></i></button>
+                                                        <button class="btn btn-sm"><i class="fas fa-times-circle " style="margin-top:4px;font-size:20px;margin-left:0px;color: #ff6b6b;" onclick="eliminar_observacion('{{$observacion->id}}')"></i></button>
+                                                    @endif
+                                                @endif
+                                            @endrole
                                             <span class="cd-date"><i class="fas fa-clock"></i><strong> {{$observacion->created_at->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</strong></span>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
@@ -154,17 +164,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
-                        <div class="col-md-6">
+                        <label for="name" class="col-md-2 col-form-label">{{ __('Detalle:') }}</label>
+                        <div class="col-md-4">
                             <textarea for="descripcion" id="descripcion" name="descripcion" rows="3" cols="35" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
                     
-                        <label for="name" class="col-md-2 col-form-label"> Autor:</label>
-                        <div class="col-md-4">
-                            <label for="name" class="col-md-2 col-form-label"> {{$usuario->name}}</label>
-                        </div>
+                        <label for="name" class="col-md-2 col-form-label">Autor:</label>
+                        <label for="name" class="col-md-2 col-form-label">{{$usuario->name}}</label>
                     </div>
                     <div class="form-group row">
                     
@@ -172,19 +180,19 @@
                         <div class="col-md-6">
                        
                             @if($now->format('m')>= '04' && $now->format('m')<= '08' )
-                                <label for="semestre_agregar" class="col-form-label">Otoño-Invierno (1) {{$now->format('Y')}}</label>               
+                                <label for="semestre_agregar" class="col-form-label">Otoño-Invierno  {{$now->format('Y')}}/1</label>               
                             @elseif($now->format('m')>= '09' && $now->format('m')<= '12')
-                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano (2) {{$now->format('Y')}}</label>        
+                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano {{$now->format('Y')}}/2</label>        
                             @elseif($now->format('m')>= '01' && $now->format('m')<= '03')
-                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano (2) {{$now->format('Y')-1}}</label>
+                                <label for="semestre_agregar" class="col-form-label">Primavera-Verano {{$now->format('Y')-1}}/2(</label>
                             @endif
                         
                         </div>
                     </div>
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
-                        <div class="col-md-4">
-                            <label for="name" style="margin-top:7px"> {{$now->format('d-m-Y')}}</label>
+                        <div class="col-md-5">
+                            <label for="name" style="margin-top:7px"> {{$now->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</label>
                         </div>
                     </div>
                     
@@ -294,7 +302,7 @@
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
                         <div class="col-md-4">
-                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->format('d/m/Y')}}</label>
+                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->format('d/m/y')}}</label>
                         </div>
                     </div>    
                 <div class="modal-footer">
@@ -335,7 +343,7 @@
 
 <!--Modal editar datos estudiantes version 2-->
 <div class="modal fade " id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
       <div class="modal-header custom-header custom-color">
             <h5 class="modal-title" id="exampleModalLabel" >Editar Datos</h5>
@@ -347,7 +355,7 @@
         <form action="{{ route('estudiante.update',$estudiante->id) }}" method="post">
                 @csrf
         <div class="modal-body">
-        <div class="col-xl-12 mx-auto">
+        <div class="col-xl-11 mx-auto">
             
                 <div class="form-group row">
                     <div class="col-sm-3">

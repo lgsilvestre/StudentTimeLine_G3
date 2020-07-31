@@ -188,6 +188,7 @@
 .custom-foto{
     width: 150px;
     height: 150px;
+    margin-bottom: 40px;
     margin-left:85px;
     border-color: red;
     background: url('../images/def.jpg');    
@@ -299,12 +300,11 @@
 .custom-tipo[tipo="Positiva"] {
     background: #90be6d;
     box-shadow: 0 0 0 4px #b5e98d, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
-    background: #90be6d;
+
 }
 .custom-tipo[tipo="Informativa"] {
     background: #5390d9;
-    box-shadow: 0 0 0 4px #b5e98d, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
-    background: #90be6d;
+    box-shadow: 0 0 0 4px #74a9eb, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
 }
 
 
@@ -597,4 +597,8 @@
         width: 20%;
         float: left;
     }
+}
+
+.nav-pills .nav-link.active {
+    background-color: #66a1d4!important;
 }
