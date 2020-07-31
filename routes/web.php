@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,10 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
+    Route::get('recordatorio/', function () {
+        return view('Usuario.recordatorio');
+    })->name('users.recordatorio');
+
     Route::post('/obtcarrera','UsersController@obtcarrera')->name('obtcarrera');
 
     Route::get('home/', 'CarreraController@index')->name('home');
@@ -144,4 +149,6 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('observacion/{estudiante}/destroy','ObservacionController@destroy')->name('observacion.destroy');
 
+    //ruta para enviar correo recordatorios
+    Route::post('enviarcorreos/','UsersController@enviarRecordatorio')->name('enviarrecordatorio');
 });
