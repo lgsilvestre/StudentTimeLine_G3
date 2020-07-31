@@ -78,6 +78,9 @@
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.disable')}}">
                                     {{ __('Habilitar') }}
                                 </a>
+                                <a class="dropdown-item custom-botondesplegable" href="{{route('users.recordatorio')}}">
+                                    {{ __('Recordatorio para realizar observaciónes') }}
+                                </a>
                             </div>
                         </li>
                         @endrole

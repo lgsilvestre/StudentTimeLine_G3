@@ -86,7 +86,7 @@
             }
         
         var table = $('#estudiantes').DataTable({//en caso de usar serverside se descomenta.
-            serverSide: true,
+            bserverSide: true,
             language : espanol,
             rowReorder: true,
             columnDefs: [
