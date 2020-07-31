@@ -10,6 +10,7 @@ use Caffeinated\Shinobi\Models\Role as Rol;
 use App\Usuario_carrera;
 use Auth;
 use Hash;
+use Mail;
 use Carbon\Carbon;
 
 class UsersController extends Controller
@@ -329,6 +330,21 @@ class UsersController extends Controller
             $carreras = collect($collect);
         }
         return $carreras->toJson();
+    }
+    public function enviarRecordatorio(){
+        User::chunk(150,function($users){
+            foreach($users as $user){
+                if($user->hasRole('profe')){
+                    Mail::send('Usuario.emailrecordatorio',['user'=>$user],function($message) use($user){
+                        $message->from(env('MAIL_USERNAME','Admin'),'Administrador');
+                        $message->to($user->email,$user->name)->subject('Recordatorio Evaluacion Ayudantes'. $user->name);
+                    });
+                }
+            }
+        });
+        
+        return redirect()->back()->with('success', 'Correos enviados con éxito.'); 
+
     }
     
 }
