@@ -598,3 +598,7 @@
         float: left;
     }
 }
+
+.nav-pills .nav-link.active {
+    background-color: #66a1d4!important;
+}
