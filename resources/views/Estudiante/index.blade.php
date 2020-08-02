@@ -86,7 +86,7 @@
             }
         
         var table = $('#estudiantes').DataTable({//en caso de usar serverside se descomenta.
-            serverSide: true,
+            bserverSide: true,
             language : espanol,
             rowReorder: true,
             columnDefs: [
@@ -326,7 +326,7 @@
         <div class="modal-body">
                 <div class="col-md-7 custom-file" style="">
                     <input id="file" type="file" class="custom-file-input" name="file" required>
-                    <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Importación de Estudiantes</label>
+                    <label class="custom-file-label text-truncate" data-browse="Buscar" for="customFile">Importación de Estudiantes</label>
                 </div>
         </div>
         <div class="modal-footer">  
@@ -339,6 +339,85 @@
 </div>
 
 <!-- -->
+<!-- MODAL PARA EXPORTAR -->
+<div id="modal_exportar" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header custom-header custom-color">
+                <h5 class="modal-title" id="wizard-title">Exportar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="nav nav-pills nav-stacked justify-content-center" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active btn" data-toggle="tab" href="#Todo" role="tab">Todo</a>
+                    <li>
+                    <li class="nav-item " style="margin-left:5px">
+                        <a class="nav-link btn" data-toggle="tab" href="#porfecha" role="tab">Por fecha</a>
+                    <li>
+                    <li class="nav-item " style="margin-left:5px">
+                        <a class="nav-link btn" data-toggle="tab" href="#individual" role="tab">Individual</a>
+                    <li>
+                </ul>
+                <div class="tab-content mt-2">
+                    <div class="tab-pane fade show active " id="Todo" role="tabpanel">
+                        <div class="form-group">
+                            <div class="form-group row justify-content-center">
+                                <button id="exportar-todo" class="btn btn-secondary" style="margin-right:7px">Exportar</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="porfecha" role="tabpanel">
+                        <div class="form-group">
+                            <div class="col-xl-12 mx-auto">
+                                <div class="form-group row justify-content-center">
+                                    <label for="inputContactNumber" style="margin-right:7px;margin-top:7px">Fecha inicio</label>
+                                        <div class="form-group icono-input">
+                                            <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                            <input type="date" class="form-control" id="fech_1" name="fech_1" placeholder="Inicial">
+                                    </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <label for="inputContactNumber" style="margin-right:7px;margin-top:7px">Fecha final</label>
+                                        <div class="form-group icono-input">
+                                            <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                            <input type="date" class="form-control" id="fech_2" name="fech_2" placeholder="Final">
+                                        </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <button id="exportar-por-fecha" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
+                                    <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="individual" role="tabpanel">
+                        <div class="form-group">
+                            <div class="col-xl-12 mx-auto">
+                                <div class="form-group row justify-content-center">
+                                    <label for="inputLastname" style="margin-right:7px;margin-top:7px">Rut</label>
+                                        <div class="form-group icono-input">
+                                            <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
+                                            <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1">
+                                        </div>
+                                </div>
+                                <div class="form-group row justify-content-center">
+                                    <button  id="exportar-individual" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
+                                    <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FIN MODAL EXPORTAR -->
 
 
 <!-- MODAL PARA CREAR ESTUDIANTE CON WIZARD -->

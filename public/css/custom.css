@@ -188,6 +188,7 @@
 .custom-foto{
     width: 150px;
     height: 150px;
+    margin-bottom: 40px;
     margin-left:85px;
     border-color: red;
     background: url('../images/def.jpg');    
@@ -596,4 +597,8 @@
         width: 20%;
         float: left;
     }
+}
+
+.nav-pills .nav-link.active {
+    background-color: #66a1d4!important;
 }
