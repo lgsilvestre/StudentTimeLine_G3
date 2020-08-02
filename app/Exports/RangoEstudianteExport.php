@@ -3,9 +3,11 @@
 namespace App\Exports;
 
 use App\Estudiante;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
+use Illuminate\Contracts\View\View;
 
-class RangoEstudianteExport implements FromCollection
+
+class RangoEstudianteExport implements FromView
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -13,5 +15,12 @@ class RangoEstudianteExport implements FromCollection
     public function collection()
     {
         return Estudiante::all();
+    }
+
+    public function view(): View
+    {
+        return view('Estudiante.rangoexport', [
+            'Estudiantes' => Estudiante::all()
+        ]);
     }
 }
