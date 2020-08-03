@@ -131,7 +131,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');
 
-
     //Rutas de carreras
 
     Route::post('carrera/store','CarreraController@store')->name('carrera.store')
@@ -152,6 +151,12 @@ Route::middleware(['auth'])->group(function(){
 
     //ruta para enviar correo recordatorios
     Route::post('enviarcorreos/','UsersController@enviarRecordatorio')->name('enviarrecordatorio');
+    
+    //RUTAS PARA EXPORTAR EXCEL
 
     Route::post('exportarrango/','EstudianteController@exportarRangoFechas')->name('exportrango');
+
+    Route::post('exporttodo/', 'EstudianteController@exportarTodo')->name('exporttodo');
+
+    Route::post('exportuno/','EstudianteController@exportarUno')->name('exportuno');
 });

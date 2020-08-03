@@ -16,7 +16,8 @@ use Rut;
 use Excel;
 use Illuminate\Support\Facades\DB;
 use App\Exports\RangoEstudianteExport;
-
+use App\Exports\TodoEstudianteExport;
+use App\Exports\UnoEstudianteExport;
 use App\Imports\EstudianteImport;
 
 
@@ -250,5 +251,15 @@ class EstudianteController extends Controller
     public function exportarRangoFechas(Request $request){
         $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
         return $export->download('estudiantes.xlsx');   
+    }
+
+    public function exportarTodo(Request $request){
+        $export = new TodoEstudianteExport($request);
+        return $export->download('estudiantesTodo.xlsx'); 
+    }
+
+    public function exportarUno(Request $request){
+        $export = new UnoEstudianteExport($request->get('rut'));
+        return $export->download('estudiante.xlsx');
     }
 }
