@@ -14,7 +14,7 @@ class Estudiante extends Model
     protected $fillable = [
         'nombre','ap_Paterno','ap_Materno','rut','matricula','correo','id_carrera','sexo','fech_nac',
         'plan','año_ingreso','estado_actual','comuna','region','creditos_aprobados','nivel','porc_avance',
-        'ult_ptje_prioridad','regular','prom_aprobadas','prom_cursados', 'num_observaciones',
+        'ult_ptje_prioridad','regular','prom_aprobadas','prom_cursados', 'num_observaciones', 'via_ingreso',
     ];
     protected $table = 'estudiante';
 
@@ -24,5 +24,9 @@ class Estudiante extends Model
 
     public function observacion_usuario_estudiante(){
         return $this->hasMany('App\Observacion_usuario_estudiante','id_estudiante');
+    }
+
+    public function observaciones(){
+        return $this->hasMany('App\Observacion','id_estudiante');
     }
 }

@@ -12,7 +12,7 @@ class Observacion extends Model
      * @var array
      */
     protected $fillable = [
-        'titulo','id_autor','nombre_autor','tipo_observacion','fecha','descripcion','modulo','created_at','nombre_categoria','semestre','fecha_limite'
+        'titulo','id_autor','nombre_autor','tipo_observacion','fecha','descripcion','modulo','created_at','nombre_categoria','semestre','fecha_limite','id_estudiante',
     ];
     protected $table = 'observacion';
     
@@ -20,8 +20,9 @@ class Observacion extends Model
         return $this->hasMany('App\Observacion_usuario_estudiante','id_observacion');
     }
     
-    /* public function categoria(){
-        return $this->belongsTo('App\Categoria','id_categoria');
-    } */
+    public function estudiante(){
+        return $this->belongsTo('App\Estudiante','id_estudiante');
+    }
+
 
 }

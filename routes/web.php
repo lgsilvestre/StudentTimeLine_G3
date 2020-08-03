@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Exports\RangoEstudianteExport;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,10 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::middleware(['auth'])->group(function(){ 
+    Route::get('recordatorio/', function () {
+        return view('Usuario.recordatorio');
+    })->name('users.recordatorio');
+
     Route::post('/obtcarrera','UsersController@obtcarrera')->name('obtcarrera');
 
     Route::get('home/', 'CarreraController@index')->name('home');
@@ -125,7 +131,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');
 
-
     //Rutas de carreras
 
     Route::post('carrera/store','CarreraController@store')->name('carrera.store')
@@ -144,4 +149,14 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('observacion/{estudiante}/destroy','ObservacionController@destroy')->name('observacion.destroy');
 
+    //ruta para enviar correo recordatorios
+    Route::post('enviarcorreos/','UsersController@enviarRecordatorio')->name('enviarrecordatorio');
+    
+    //RUTAS PARA EXPORTAR EXCEL
+
+    Route::post('exportarrango/','EstudianteController@exportarRangoFechas')->name('exportrango');
+
+    Route::post('exporttodo/', 'EstudianteController@exportarTodo')->name('exporttodo');
+
+    Route::post('exportuno/','EstudianteController@exportarUno')->name('exportUno');
 });
