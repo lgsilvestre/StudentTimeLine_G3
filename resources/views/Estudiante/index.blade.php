@@ -407,6 +407,8 @@
                     <div class="tab-pane fade" id="individual" role="tabpanel">
                         <div class="form-group">
                             <div class="col-xl-12 mx-auto">
+                                <form action="{{ route('exportuno')}}" method="POST">
+                                    @csrf
                                 <div class="form-group row justify-content-center">
                                     <label for="inputLastname" style="margin-right:7px;margin-top:7px">Rut</label>
                                         <div class="form-group icono-input">
@@ -416,6 +418,7 @@
                                 </div>
                                 <div class="form-group row justify-content-center">
                                     <button  id="exportar-individual" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
+                                </form>
                                     <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                                 </div>
                             </div>
