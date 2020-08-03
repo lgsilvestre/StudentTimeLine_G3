@@ -27,7 +27,7 @@
   </thead>
   <tbody>
     @php
-        $estu = Estudiante;
+      $estu = NULL;
     @endphp
     
     @foreach ($estudiantes as $estudiante) 
