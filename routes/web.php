@@ -151,8 +151,12 @@ Route::middleware(['auth'])->group(function(){
 
     //ruta para enviar correo recordatorios
     Route::post('enviarcorreos/','UsersController@enviarRecordatorio')->name('enviarrecordatorio');
+    
+    //RUTAS PARA EXPORTAR EXCEL
 
     Route::post('exportarrango/','EstudianteController@exportarRangoFechas')->name('exportrango');
 
     Route::post('exporttodo/', 'EstudianteController@exportarTodo')->name('exporttodo');
+
+    Route::post('exportuno/','EstudianteController@exportarUno')->name('exportUno');
 });

@@ -257,4 +257,9 @@ class EstudianteController extends Controller
         $export = new TodoEstudianteExport($request);
         return $export->download('estudiantesTodo.xlsx'); 
     }
+
+    public function exportarUno(Request $request){
+        $export =new EstudianteExport($request->get('rut'));
+        return $export->download('estudiante.xlsx');
+    }
 }
