@@ -251,4 +251,10 @@ class EstudianteController extends Controller
         $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
         return $export->download('estudiantes.xlsx');   
     }
+
+    public function exportartodoExcel(Request $request, Carrera $carrera){
+        dd($request);
+
+    }
+
 }

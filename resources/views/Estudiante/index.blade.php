@@ -361,17 +361,22 @@
                         <a class="nav-link btn" data-toggle="tab" href="#individual" role="tab">Individual</a>
                     <li>
                 </ul>
+                <!-- exportar para todos -->
+                <form action="{{ route('estudiante.exportartodo.excel', $carrera->id) }}" method="post">
+                @csrf
                 <div class="tab-content mt-2">
                     <div class="tab-pane fade show active " id="Todo" role="tabpanel">
                         <div class="form-group">
                             <div class="form-group row justify-content-center">
-                             
-                                <button id="exportar-todo" class="btn btn-secondary" style="margin-right:7px">Exportar</button>
-                            
-                                <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                                <div class="modal-footer">  
+                                    <button id="exportar-todo" class="btn btn-secondary" style="margin-right:7px">Exportar</button>
+                                    </form>
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                                </div>    
                             </div>
                         </div>
                     </div>
+                <!--hasta aca -->    
                     <div class="tab-pane fade" id="porfecha" role="tabpanel">
                         <div class="form-group">
                             <div class="col-xl-12 mx-auto">

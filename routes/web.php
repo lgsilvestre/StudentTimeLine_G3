@@ -132,6 +132,10 @@ Route::middleware(['auth'])->group(function(){
     ->middleware('has.role:admin');
 
 
+    //ruta para exportar excel todo
+    Route::post('estudiantes/{carrera}exportartodoExcel','EstudianteController@exportartodoExcel')->name('estudiante.exportartodo.excel')
+    ->middleware('has.role:admin');
+
     //Rutas de carreras
 
     Route::post('carrera/store','CarreraController@store')->name('carrera.store')
