@@ -365,7 +365,9 @@
                     <div class="tab-pane fade show active " id="Todo" role="tabpanel">
                         <div class="form-group">
                             <div class="form-group row justify-content-center">
+                             
                                 <button id="exportar-todo" class="btn btn-secondary" style="margin-right:7px">Exportar</button>
+                            
                                 <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
@@ -373,6 +375,8 @@
                     <div class="tab-pane fade" id="porfecha" role="tabpanel">
                         <div class="form-group">
                             <div class="col-xl-12 mx-auto">
+                                <form action="{{ route('exportrango')}}" method="POST">
+                                    @csrf
                                 <div class="form-group row justify-content-center">
                                     <label for="inputContactNumber" style="margin-right:7px;margin-top:7px">Fecha inicio</label>
                                         <div class="form-group icono-input">
@@ -389,6 +393,7 @@
                                 </div>
                                 <div class="form-group row justify-content-center">
                                     <button id="exportar-por-fecha" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
+                                    </form>
                                     <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                                 </div>
                             </div>

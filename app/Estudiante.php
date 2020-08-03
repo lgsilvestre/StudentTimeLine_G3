@@ -25,4 +25,8 @@ class Estudiante extends Model
     public function observacion_usuario_estudiante(){
         return $this->hasMany('App\Observacion_usuario_estudiante','id_estudiante');
     }
+
+    public function observaciones(){
+        return $this->hasMany('App\Observacion','id_estudiante');
+    }
 }

@@ -21,31 +21,56 @@
       <th scope="col">REGULAR</th>
       <th scope="col">PROM_APROBADAS</th>
       <th scope="col">PROM_CURSADAS</th>
+      <th scope="col">OBSERVACIONES</th>
+      
     </tr>
   </thead>
   <tbody>
-    @foreach ($users as $user) 
+    @php
+        $estu = []
+    @endphp
+    @foreach ($estudiantes as $estudiante) 
+      @foreach($estudiante->observaciones as $observacion)
+              @if($observacion->created_at >= $fecha_inicio && $observacion->created_at <= $fecha_final)
+                    @php
+                        $estu[] = $estudiante;
+                    @endphp
+                    @break
+              @endif
+      @endforeach
+    @endforeach
+    @php
+        $estu = collect($estu);
+    @endphp
+    @foreach ($estu as $estudiante) 
         <tr>
-            <td>{{$user->id_carrera}}</td>
-            <td>{{$user->matricula}}</td>
-            <td>{{$user->rut}}</td>
-            <td>{{$user->nombre}} {{$user->ap_Paterno}} {{$user->ap_Materno}}</td>
-            <td>{{$user->correo}}</td>
-            <td>{{$user->sexo}}</td>
-            <td>{{$user->fech_nac}}</td>
-            <td>{{$user->plan}}</td>
-            <td>{{$user->año_ingreso}}</td>
-            <td>{{$user->via_ingreso}}</td>
-            <td>{{$user->estado_actual}}</td>
-            <td>{{$user->region}}</td>
-            <td>{{$user->creditos_aprobados}}</td>
-            <td>{{$user->nivel}}</td>
-            <td>{{$user->porc_avance}}</td>
-            <td>{{$user->ult_ptje_prioridad}}</td>
-            <td>{{$user->regular}}</td>
-            <td>{{$user->prom_aprobadas}}</td>
-            <td>{{$user->prom_cursadas}}</td>
+            <td>{{$estudiante->id_carrera}}</td>
+            <td>{{$estudiante->matricula}}</td>
+            <td>{{$estudiante->rut}}</td>
+            <td>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
+            <td>{{$estudiante->correo}}</td>
+            <td>{{$estudiante->sexo}}</td>
+            <td>{{$estudiante->fech_nac}}</td>
+            <td>{{$estudiante->plan}}</td>
+            <td>{{$estudiante->año_ingreso}}</td>
+            <td>{{$estudiante->via_ingreso}}</td>
+            <td>{{$estudiante->estado_actual}}</td>
+            <td>{{$estudiante->comuna}}</td>
+            <td>{{$estudiante->region}}</td>
+            <td>{{$estudiante->creditos_aprobados}}</td>
+            <td>{{$estudiante->nivel}}</td>
+            <td>{{$estudiante->porc_avance}}</td>
+            <td>{{$estudiante->ult_ptje_prioridad}}</td>
+            <td>{{$estudiante->regular}}</td>
+            <td>{{$estudiante->prom_aprobadas}}</td>
+            <td>{{$estudiante->prom_cursados}}</td>
+            @foreach($estudiante->observaciones as $observacion)
+                @if($observacion->created_at >= $fecha_inicio && $observacion->created_at <= $fecha_final)
+                  <td>[Titulo:{{$observacion->titulo}},{{$observacion->descripcion}},{{$observacion->nombre_autor}},
+                       {{$observacion->tipo_observacion}},{{$observacion->nombre_categoria}},{{$observacion->created_at->format('d/m/y')}}]</td>
+                @endif
+            @endforeach
         </tr>
-    @end
+    @endforeach
   </tbody>
 </table>
