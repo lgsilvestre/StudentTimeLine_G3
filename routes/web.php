@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Exports\RangoEstudianteExport;
 
 
 /*
@@ -151,4 +152,6 @@ Route::middleware(['auth'])->group(function(){
 
     //ruta para enviar correo recordatorios
     Route::post('enviarcorreos/','UsersController@enviarRecordatorio')->name('enviarrecordatorio');
+
+    Route::post('exportarrango/','EstudianteController@exportarRangoFechas')->name('exportrango');
 });
