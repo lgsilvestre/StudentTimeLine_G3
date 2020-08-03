@@ -362,7 +362,7 @@
                     <li>
                 </ul>
                 <!-- exportar para todos -->
-                <form action="{{ route('estudiante.exportartodo.excel', $carrera->id) }}" method="post">
+                <form action="{{ route('exporttodo') }}" method="POST">
                 @csrf
                 <div class="tab-content mt-2">
                     <div class="tab-pane fade show active " id="Todo" role="tabpanel">

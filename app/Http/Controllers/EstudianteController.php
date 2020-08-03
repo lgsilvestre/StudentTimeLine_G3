@@ -16,6 +16,7 @@ use Rut;
 use Excel;
 use Illuminate\Support\Facades\DB;
 use App\Exports\RangoEstudianteExport;
+use App\Exports\TodoEstudianteExport;
 
 use App\Imports\EstudianteImport;
 
@@ -252,9 +253,8 @@ class EstudianteController extends Controller
         return $export->download('estudiantes.xlsx');   
     }
 
-    public function exportartodoExcel(Request $request, Carrera $carrera){
-        dd($request);
-
+    public function exportarTodo(Request $request){
+        $export = new TodoEstudianteExport($request);
+        return $export->download('estudiantesTodo.xlsx'); 
     }
-
 }
