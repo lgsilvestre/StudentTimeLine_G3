@@ -66,6 +66,7 @@ class ObservacionController extends Controller
     $observacion->modulo=$request->get('modulo');
     $observacion->id_autor = Auth::user()->id;
     $observacion->nombre_autor = Auth::user()->name;
+    
 
     $now = Carbon::now();
 
@@ -84,7 +85,7 @@ class ObservacionController extends Controller
 
     $fecha_limite = Carbon::now()->addDay(1);
     $observacion->fecha_limite = $fecha_limite;
-
+    $observacion->id_estudiante = $id;
     $observacion->save();
     
     
