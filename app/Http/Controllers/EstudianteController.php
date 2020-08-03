@@ -15,6 +15,7 @@ use Auth;
 use Rut;
 use Excel;
 use Illuminate\Support\Facades\DB;
+use App\Exports\RangoEstudianteExport;
 
 use App\Imports\EstudianteImport;
 
@@ -246,5 +247,8 @@ class EstudianteController extends Controller
             
         }
     }
-
+    public function exportarRangoFechas(Request $request){
+        $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
+        return $export->download('estudiantes.xlsx');   
+    }
 }
