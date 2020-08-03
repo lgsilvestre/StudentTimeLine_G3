@@ -17,7 +17,7 @@ use Excel;
 use Illuminate\Support\Facades\DB;
 use App\Exports\RangoEstudianteExport;
 use App\Exports\TodoEstudianteExport;
-
+use App\Exports\UnoEstudianteExport;
 use App\Imports\EstudianteImport;
 
 
@@ -259,7 +259,7 @@ class EstudianteController extends Controller
     }
 
     public function exportarUno(Request $request){
-        $export =new EstudianteExport($request->get('rut'));
+        $export = new UnoEstudianteExport($request->get('rut'));
         return $export->download('estudiante.xlsx');
     }
 }

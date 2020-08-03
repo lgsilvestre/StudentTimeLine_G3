@@ -602,3 +602,10 @@
 .nav-pills .nav-link.active {
     background-color: #66a1d4!important;
 }
+
+.nav-tabs .nav-link{
+    background-color: #e4e4e4;
+}
+.nav-tabs .nav-link.active {
+    background-color: #ffffff;
+}
