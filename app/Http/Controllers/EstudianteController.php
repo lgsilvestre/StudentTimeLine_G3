@@ -87,7 +87,7 @@ class EstudianteController extends Controller
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
-        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();;
+        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
         //Asi si se le pasa el id de carreda directamente
@@ -259,7 +259,11 @@ class EstudianteController extends Controller
     }
 
     public function exportarUno(Request $request){
-        $export = new UnoEstudianteExport($request->get('rut'));
+        $validate=$request->validate([
+            'rut'=>'cl_rut|required|string|max:20',
+            ]);
+        $rut = Rut::parse($request->get('rut'))->fix()->format();
+        $export = new UnoEstudianteExport($rut);
         return $export->download('estudiante.xlsx');
     }
 }

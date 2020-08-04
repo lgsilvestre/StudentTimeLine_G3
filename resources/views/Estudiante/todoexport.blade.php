@@ -50,8 +50,8 @@
             <td>{{$estudiante->prom_aprobadas}}</td>
             <td>{{$estudiante->prom_cursados}}</td>
             @foreach($estudiante->observaciones as $observacion)
-                <td>[Titulo:{{$observacion->titulo}},Descripcion:{{$observacion->descripcion}},Módulo:{{$observacion->modulo}},Autor:{{$observacion->nombre_autor}},
-                    Tipo:{{$observacion->tipo_observacion}},Categoria:{{$observacion->nombre_categoria}}]</td>
+            <td>[Titulo: {{$observacion->titulo}}, Descripción: {{$observacion->descripcion}}, Autor: {{$observacion->nombre_autor}}, Tipo: 
+                       {{$observacion->tipo_observacion}}, Categoría: {{$observacion->nombre_categoria}}, Módulo: {{$observacion->modulo}}, Fecha: {{$observacion->created_at->format('d/m/y')}}]</td>
             @endforeach
         </tr>
     @endforeach
