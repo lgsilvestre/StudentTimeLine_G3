@@ -37,9 +37,7 @@
         @endphp
       @endif
     @endforeach
-    @php
-        $estu = collect($estu);
-    @endphp
+    
 
     <tr>
         <td>{{$estu->id_carrera}}</td>
