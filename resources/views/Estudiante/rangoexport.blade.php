@@ -70,6 +70,7 @@
                        {{$observacion->tipo_observacion}}, Categoría: {{$observacion->nombre_categoria}}, Módulo: {{$observacion->modulo}}, Fecha: {{$observacion->created_at->format('d/m/y')}}]</td>
                 @endif
             @endforeach
+          
         </tr>
     @endforeach
   </tbody>

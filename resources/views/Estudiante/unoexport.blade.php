@@ -26,43 +26,32 @@
     </tr>
   </thead>
   <tbody>
-    @php
-      $estu = NULL;
-    @endphp
     
-    @foreach ($estudiantes as $estudiante) 
-      @if($estudiante->rut == $rut)
-        @php
-            $estu = $estudiante;
-        @endphp
-      @endif
-    @endforeach
     
-
     <tr>
-        <td>{{$estu->id_carrera}}</td>
-        <td>{{$estu->matricula}}</td>
-        <td>{{$estu->rut}}</td>
-        <td>{{$estu->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
-        <td>{{$estu->correo}}</td>
-        <td>{{$estu->sexo}}</td>
-        <td>{{$estu->fech_nac}}</td>
-        <td>{{$estu->plan}}</td>
-        <td>{{$estu->año_ingreso}}</td>
-        <td>{{$estu->via_ingreso}}</td>
-        <td>{{$estu->estado_actual}}</td>
-        <td>{{$estu->comuna}}</td>
-        <td>{{$estu->region}}</td>
-        <td>{{$estu->creditos_aprobados}}</td>
-        <td>{{$estu->nivel}}</td>
-        <td>{{$estu->porc_avance}}</td>
-        <td>{{$estu->ult_ptje_prioridad}}</td>
-        <td>{{$estu->regular}}</td>
-        <td>{{$estu->prom_aprobadas}}</td>
-        <td>{{$estu->prom_cursados}}</td>
-        @foreach($estu->observaciones as $observacion)
-            <td>[Titulo:{{$observacion->titulo}},{{$observacion->descripcion}},{{$observacion->nombre_autor}},
-                {{$observacion->tipo_observacion}},{{$observacion->nombre_categoria}},{{$observacion->created_at->format('d/m/y')}}]</td>
+        <td>{{$estudiante->id_carrera}}</td>
+        <td>{{$estudiante->matricula}}</td>
+        <td>{{$estudiante->rut}}</td>
+        <td>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
+        <td>{{$estudiante->correo}}</td>
+        <td>{{$estudiante->sexo}}</td>
+        <td>{{$estudiante->fech_nac}}</td>
+        <td>{{$estudiante->plan}}</td>
+        <td>{{$estudiante->año_ingreso}}</td>
+        <td>{{$estudiante->via_ingreso}}</td>
+        <td>{{$estudiante->estado_actual}}</td>
+        <td>{{$estudiante->comuna}}</td>
+        <td>{{$estudiante->region}}</td>
+        <td>{{$estudiante->creditos_aprobados}}</td>
+        <td>{{$estudiante->nivel}}</td>
+        <td>{{$estudiante->porc_avance}}</td>
+        <td>{{$estudiante->ult_ptje_prioridad}}</td>
+        <td>{{$estudiante->regular}}</td>
+        <td>{{$estudiante->prom_aprobadas}}</td>
+        <td>{{$estudiante->prom_cursados}}</td>
+        @foreach($estudiante->observaciones as $observacion)
+        <td>[Titulo: {{$observacion->titulo}}, Descripción: {{$observacion->descripcion}}, Autor: {{$observacion->nombre_autor}}, Tipo: 
+                       {{$observacion->tipo_observacion}}, Categoría: {{$observacion->nombre_categoria}}, Módulo: {{$observacion->modulo}}, Fecha: {{$observacion->created_at->format('d/m/y')}}]</td>
         @endforeach
     </tr>
   </tbody>
