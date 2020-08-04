@@ -70,17 +70,17 @@ class ObservacionController extends Controller
 
     $now = Carbon::now();
 
-    if($now->format('m')>= '03' && $now->format('m')<= '07'){
+    if($now->format('m')>= '03' && $now->format('m')<= '08'){
         $anio = $now->format('Y');
-        $observacion->semestre='Otoño-Invierno (1) '.$anio;
+        $observacion->semestre='Otoño-Invierno '.$anio.'/1';
     }
-    elseif($now->format('m')>= '08' && $now->format('m')<= '12'){
+    elseif($now->format('m')>= '09' && $now->format('m')<= '12'){
         $anio = $now->format('Y');
-        $observacion->semestre='Primavera-Verano (2) '.$anio;
+        $observacion->semestre='Primavera-Verano '.$anio.'/2';
     }
     elseif($now->format('m')>= '01' && $now->format('m')<= '03'){
         $anio = $now->format('Y')-1;
-        $observacion->semestre='Primavera-Verano (2) '.$anio;
+        $observacion->semestre='Primavera-Verano '.$anio.'/2';
     }
 
     $fecha_limite = Carbon::now()->addDay(1);
@@ -164,7 +164,13 @@ class ObservacionController extends Controller
         $observacion->nombre_autor =  $observacion->nombre_autor;
         $valor_semestre=$request->get('semester_edit');
         $valor_anio=$request->get('año');
-        $observacion->semestre=$valor_semestre.' '.$valor_anio;
+
+        if($valor_semestre == 'Primavera-Verano'){
+            $observacion->semestre=$valor_semestre.' '.$valor_anio.'/2';
+        }
+        else{
+            $observacion->semestre=$valor_semestre.' '.$valor_anio.'/1';
+        }  
     }
     else{
         $observacion->id_autor = Auth::user()->id;

@@ -222,8 +222,8 @@
                     <div class="form-group row">
                         <!--id llamado para editar-->
                         <input type="hidden" name="id_edit" id="id_editar" value="" class="col-md-8">  
-                        <!--fin de llamado al id-->  
-                        
+                        <!--fin de llamado al id-->
+
                         <label id="titulo" class="col-md-2 col-form-label"> Título: </label>
                         <input type="text" name="titulo_edit" id="titulo_editar" class="col-md-8" style="margin-left: 15px">    
 
@@ -277,15 +277,15 @@
                     <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Semestre:') }}</label>
                         <div class="col-md-5" style="margin-top: 10px">
                             <select for="editar_semestre" name="semester_edit" id="semestre_editar" class="form-control">
-                                <option value="Otoño-Invierno (1)">Otoño-Invierno (1)</option>
-                                <option value="Primavera-Verano (2)">Primavera-Verano (2)</option>
+                                <option value="Otoño-Invierno">Otoño-Invierno</option>
+                                <option value="Primavera-Verano">Primavera-Verano</option>
                             </select>
                         </div>
 
                     <label for="tipo_observacion" class="col-md-1 col-form-label" style="margin-top: 10px">{{ __('Año:') }}</label>
                         <div class="col-md-3" style="margin-top: 10px">
                             <select name="año" id="año_editar" class="form-control">
-                                @for($i= 1955; $i <= $now->format('Y') ; $i++)
+                                @for($i= 1981; $i <= $now->format('Y') ; $i++)
                                     <option value="{{$i}}">{{$i}}</option>
                                 @endfor
                             </select>
@@ -301,8 +301,8 @@
 
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
-                        <div class="col-md-4">
-                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->format('d/m/y')}}</label>
+                        <div class="col-md-6">
+                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</label>
                         </div>
                     </div>    
                 <div class="modal-footer">
@@ -488,8 +488,10 @@
         $('#id_editar').val(id);
         document.getElementById('mostrar_semestre').innerHTML = semestre;
         cadena = semestre.split(" ");
-        $('#semestre_editar').val(cadena[0]+" "+cadena[1]);
-        $('#año_editar').val(cadena[2]);
+        cadena2 = cadena[1].split("/");
+        console.log(cadena[0]);
+        $('#semestre_editar').val(cadena[0]);
+        $('#año_editar').val(cadena2[0]);
         $('#modal_editarObservacion').modal('show');
     }
 </script>

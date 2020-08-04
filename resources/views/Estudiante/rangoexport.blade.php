@@ -66,8 +66,8 @@
             <td>{{$estudiante->prom_cursados}}</td>
             @foreach($estudiante->observaciones as $observacion)
                 @if($observacion->created_at >= $fecha_inicio && $observacion->created_at <= $fecha_final)
-                  <td>[Titulo:{{$observacion->titulo}},{{$observacion->descripcion}},{{$observacion->nombre_autor}},
-                       {{$observacion->tipo_observacion}},{{$observacion->nombre_categoria}},{{$observacion->created_at->format('d/m/y')}}]</td>
+                  <td>[Titulo: {{$observacion->titulo}}, Descripción: {{$observacion->descripcion}}, Autor: {{$observacion->nombre_autor}}, Tipo: 
+                       {{$observacion->tipo_observacion}}, Categoría: {{$observacion->nombre_categoria}}, Módulo: {{$observacion->modulo}}, Fecha: {{$observacion->created_at->format('d/m/y')}}]</td>
                 @endif
             @endforeach
         </tr>

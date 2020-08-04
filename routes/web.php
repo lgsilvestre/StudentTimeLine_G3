@@ -158,5 +158,5 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('exporttodo/', 'EstudianteController@exportarTodo')->name('exporttodo');
 
-    Route::post('exportuno/','EstudianteController@exportarUno')->name('exportUno');
+    Route::post('exportuno/','EstudianteController@exportarUno')->name('exportuno');
 });
