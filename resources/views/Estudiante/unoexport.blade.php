@@ -37,9 +37,7 @@
         @endphp
       @endif
     @endforeach
-    @php
-        $estu = collect($estu);
-    @endphp
+    
 
     <tr>
         <td>{{$estu->id_carrera}}</td>
@@ -62,7 +60,7 @@
         <td>{{$estu->regular}}</td>
         <td>{{$estu->prom_aprobadas}}</td>
         <td>{{$estu->prom_cursados}}</td>
-        @foreach($estudiante->observaciones as $observacion)
+        @foreach($estu->observaciones as $observacion)
             <td>[Titulo:{{$observacion->titulo}},{{$observacion->descripcion}},{{$observacion->nombre_autor}},
                 {{$observacion->tipo_observacion}},{{$observacion->nombre_categoria}},{{$observacion->created_at->format('d/m/y')}}]</td>
         @endforeach
