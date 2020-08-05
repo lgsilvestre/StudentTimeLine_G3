@@ -26,23 +26,8 @@
     </tr>
   </thead>
   <tbody>
-    @php
-        $estu = []
-    @endphp
+   
     @foreach ($estudiantes as $estudiante) 
-      @foreach($estudiante->observaciones as $observacion)
-              @if($observacion->created_at >= $fecha_inicio && $observacion->created_at <= $fecha_final)
-                    @php
-                        $estu[] = $estudiante;
-                    @endphp
-                    @break
-              @endif
-      @endforeach
-    @endforeach
-    @php
-        $estu = collect($estu);
-    @endphp
-    @foreach ($estu as $estudiante) 
         <tr>
             <td>{{$estudiante->id_carrera}}</td>
             <td>{{$estudiante->matricula}}</td>
@@ -65,12 +50,9 @@
             <td>{{$estudiante->prom_aprobadas}}</td>
             <td>{{$estudiante->prom_cursados}}</td>
             @foreach($estudiante->observaciones as $observacion)
-                @if($observacion->created_at >= $fecha_inicio && $observacion->created_at <= $fecha_final)
-                  <td>[Titulo: {{$observacion->titulo}}, Descripción: {{$observacion->descripcion}}, Autor: {{$observacion->nombre_autor}}, Tipo: 
+            <td>[Titulo: {{$observacion->titulo}}, Descripción: {{$observacion->descripcion}}, Autor: {{$observacion->nombre_autor}}, Tipo: 
                        {{$observacion->tipo_observacion}}, Categoría: {{$observacion->nombre_categoria}}, Módulo: {{$observacion->modulo}}, Fecha: {{$observacion->created_at->format('d/m/y')}}]</td>
-                @endif
             @endforeach
-          
         </tr>
     @endforeach
   </tbody>

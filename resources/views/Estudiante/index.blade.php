@@ -350,7 +350,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <ul class="nav nav-pills nav-stacked justify-content-center" id="myTab" role="tablist">
+                <ul class="nav nav-tabs nav-stacked" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active btn" data-toggle="tab" href="#Todo" role="tab">Todo</a>
                     <li>
@@ -361,17 +361,19 @@
                         <a class="nav-link btn" data-toggle="tab" href="#individual" role="tab">Individual</a>
                     <li>
                 </ul>
+                <!-- exportar para todos -->
+                <form action="{{ route('exporttodo') }}" method="POST">
+                @csrf
                 <div class="tab-content mt-2">
                     <div class="tab-pane fade show active " id="Todo" role="tabpanel">
-                        <div class="form-group">
-                            <div class="form-group row justify-content-center">
-                             
-                                <button id="exportar-todo" class="btn btn-secondary" style="margin-right:7px">Exportar</button>
-                            
+                        <div class="modal-footer">
+                            <div class="form-group row">
+                                <button id="exportarTodo" style="margin-right:7px"class="btn btn-secondary  btn-sm">Exportar</button>
                                 <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
                     </div>
+                <!--hasta aca -->    
                     <div class="tab-pane fade" id="porfecha" role="tabpanel">
                         <div class="form-group">
                             <div class="col-xl-12 mx-auto">
@@ -391,7 +393,7 @@
                                             <input type="date" class="form-control" id="fech_2" name="fech_2" placeholder="Final">
                                         </div>
                                 </div>
-                                <div class="form-group row justify-content-center">
+                                <div class="modal-footer">
                                     <button id="exportar-por-fecha" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
                                     </form>
                                     <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
@@ -402,6 +404,8 @@
                     <div class="tab-pane fade" id="individual" role="tabpanel">
                         <div class="form-group">
                             <div class="col-xl-12 mx-auto">
+                                <form action="{{ route('exportuno')}}" method="POST">
+                                    @csrf
                                 <div class="form-group row justify-content-center">
                                     <label for="inputLastname" style="margin-right:7px;margin-top:7px">Rut</label>
                                         <div class="form-group icono-input">
@@ -409,8 +413,9 @@
                                             <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1">
                                         </div>
                                 </div>
-                                <div class="form-group row justify-content-center">
+                                <div class="modal-footer">
                                     <button  id="exportar-individual" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
+                                </form>
                                     <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                                 </div>
                             </div>

@@ -16,7 +16,8 @@ use Rut;
 use Excel;
 use Illuminate\Support\Facades\DB;
 use App\Exports\RangoEstudianteExport;
-
+use App\Exports\TodoEstudianteExport;
+use App\Exports\UnoEstudianteExport;
 use App\Imports\EstudianteImport;
 
 
@@ -86,7 +87,7 @@ class EstudianteController extends Controller
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
-        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();;
+        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
         //Asi si se le pasa el id de carreda directamente
@@ -250,5 +251,19 @@ class EstudianteController extends Controller
     public function exportarRangoFechas(Request $request){
         $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
         return $export->download('estudiantes.xlsx');   
+    }
+
+    public function exportarTodo(Request $request){
+        $export = new TodoEstudianteExport($request);
+        return $export->download('estudiantesTodo.xlsx'); 
+    }
+
+    public function exportarUno(Request $request){
+        $validate=$request->validate([
+            'rut'=>'cl_rut|required|string|max:20',
+            ]);
+        $rut = Rut::parse($request->get('rut'))->fix()->format();
+        $export = new UnoEstudianteExport($rut);
+        return $export->download('estudiante.xlsx');
     }
 }
