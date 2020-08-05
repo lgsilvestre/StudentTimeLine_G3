@@ -35,7 +35,7 @@
                                     </table>
                                     <div style="margin-right:auto">
                                         @can('estudiante.add')
-                                            <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar">
+                                            <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar_wizard">
                                             <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
                                             </button>
                                         @endcan
@@ -206,6 +206,284 @@
     </div>
 </div>
 
+<!--Modal WIZARD editar ESTUDIANTE-->
+<div id="modal_editar_wizard" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-header custom-header custom-color">
+        <h5 class="modal-title" id="wizard-title">Editar estudiante</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+    
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab" id="adsBack">Datos personales</a>
+          <li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
+          <li>
+        </ul>
+
+
+        <form action="{{ route('estudiante.update',$estudiante->id) }}" method="post">
+            @csrf
+        <div class="tab-content mt-2">
+          <div class="tab-pane fade show active" id="infoPanel" role="tabpanel"  href="#infoPanel">
+            <div class="form-group"> 
+            
+                <div class="col-xl-12 mx-auto">
+                    <div class="form-group row">
+                        <div class="col-sm-4">
+                            <label for="inputAddressLine1">Nombres</label>
+                            <label style="color:red"> (*) </label> 
+                                    <div class="form-group icono-input">
+                                        <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$estudiante->nombre}}" required>
+                                    </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="inputAddressLine2">Ap. Paterno</label>
+                            <label style="color:red"> (*) </label> 
+                                    <div class="form-group icono-input">
+                                        <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
+                                    </div>
+                        
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="inputAddressLine2">Ap. Materno</label>
+                            <label style="color:red"> (*) </label> 
+                                    <div class="form-group icono-input">
+                                        <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
+                                    </div>
+                        
+                        </div>
+  
+
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-4">
+                            <label for="inputLastname">Rut</label>
+                            <label style="color:red"> (*) </label> 
+                            <div class="form-group icono-input">
+                                <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 ">
+                                <label for="inputState">Género</label>
+                                <label style="color:red"> (*) </label> 
+                                <div class="form-group icono-input">
+                                    <span class="fas fa-venus-mars fa-lg form-control-feedback" aria-hidden="true"></span>
+                                    <select class="form-control" id="sexo" name="sexo" > 
+                                        <option>Masculino</option>
+                                        <option>Femenino</option>
+                                        <option>Otro</option>
+                                    </select>
+                                </div>
+                        </div>                  
+                        <div class="col-sm-4">
+                                <label for="inputContactNumber">Fecha de nacimiento</label>
+                                <label style="color:red"> (*) </label> 
+                                <div class="form-group icono-input">
+                                    <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
+                                </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-5">
+                                <label for="inputLastname">Correo Electrónico</label>
+                                <label style="color:red"> (*) </label> 
+                                <div class="form-group icono-input">
+                                    <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
+                                    <input type="text" class="form-control" id="correo" name="correo" value="{{$estudiante->correo}}" required>
+                                </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                                <label for="inputWebsite">Región</label>
+                                <div class="form-group icono-input">
+                                    <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                    <input type="number" class="form-control" min="1" max="16" id="region" name="region" value="{{$estudiante->region}}">
+                                </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <label for="inputWebsite">Comuna</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-house-user fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control" id="comuna" name="comuna" value="{{$estudiante->Comuna}}">
+                            </div>
+                        </div>
+
+                    
+
+                    </div>
+
+                </div>
+                <label style="color:red">(*)</label>
+                <label>Campos obligatorios</label>
+                <div class="float-right">
+                    <button id="scheduleContinue" class="btn btn-secondary">Continuar</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                </div>
+                <br></br>
+            </div>
+            
+          </div>
+
+
+          <div class="tab-pane fade" id="ads" role="tabpanel"  href="#ads">
+
+            <div class="form-group">
+               <div class="col-xl-12 mx-auto">
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-4">
+                            
+                            <label for="inputFirstname">Matrícula</label>
+                            <label style="color:red"> (*) </label> 
+                            <div class="form-group icono-input">
+                                <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control" id="matricula" name="matricula" value="{{$estudiante->matricula}}" required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="inputContactNumber">Año ingreso</label>
+                            <label style="color:red"> (*) </label> 
+                            <div class="form-group icono-input">
+                                <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso"value="{{$estudiante->ano_ingreso}}" required>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label for="inputContactNumber">Via ingreso</label>
+                            <label style="color:red"> (*) </label> 
+                            <div class="form-group icono-input">
+                                <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
+                                    <select class="form-control" id="via_ingreso" name="via_ingreso">
+                                        <option>Via PSU</option>
+                                        <option>Alumnos Talentosos</option>
+                                        <option>PACE</option>
+                                        <option>Beca extranjero</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-4">
+                                <label for="inputCity">Situación Academica</label>
+                                <label style="color:red"> (*) </label> 
+                                <div class="form-group icono-input">
+                                    <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
+                                    <select class="form-control" id="estado_actual" name="estado_actual">
+                                        <option>Regular</option>
+                                        <option>No regular</option>
+                                    </select>
+                                </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="inputWebsite">Nivel</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="number" class="form-control" min="1" max="12" id="nivel" name="nivel" value="{{$estudiante->nivel}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="inputWebsite">Plan</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control"  id="plan" name="plan" value="{{$estudiante->plan}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="inputWebsite">Créditos Aprobados</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="number" class="form-control" min="0" max="400" id="creditos" name="creditos" value="{{$estudiante->creditos}}">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+
+                        <div class="col-sm-3">
+                            <label for="inputWebsite">Porcentaje Avance</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="number" class="form-control" min="0" max="100"id="porc_avance" name="porc_avance" value="{{$estudiante->porc_avance}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="inputWebsite">Último puntaje prioridad</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control"  id="prioridad" name="prioridad" value="{{$estudiante->prioridad}}">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="inputWebsite">Promedio Aprobados</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control"  id="aprobados" name="aprobados" value="{{$estudiante->aprobados}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="inputWebsite">Promedio Cursados</label>
+                            <div class="form-group icono-input">
+                                <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
+                                <input type="text" class="form-control"  id="cursados" name="cursados" value="{{$estudiante->cursados}}">
+                            </div>
+                        </div>
+                    </div>
+               </div>
+               
+            </div>
+            <label style="color:red">(*)</label>
+            <label>Campos obligatorios</label>
+            <div class="float-right">
+                <button  class="btn btn-secondary"  >Guardar</button>
+                <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                </form>
+            </div>
+            <br></br>
+           </div>
+           
+            
+         </div>
+            <div class="progress mt-3">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Paso 1 de 2</div>
+            </div> 
+    </div>
+  </div>
+</div>
+
+<!--FIN MODAL WIZARD EDITAR ESTUDIANTE-->
 <!-- Modal editar observacion -->
 <div class="modal fade" id="modal_editarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -222,8 +500,8 @@
                     <div class="form-group row">
                         <!--id llamado para editar-->
                         <input type="hidden" name="id_edit" id="id_editar" value="" class="col-md-8">  
-                        <!--fin de llamado al id-->  
-                        
+                        <!--fin de llamado al id-->
+
                         <label id="titulo" class="col-md-2 col-form-label"> Título: </label>
                         <input type="text" name="titulo_edit" id="titulo_editar" class="col-md-8" style="margin-left: 15px">    
 
@@ -277,15 +555,15 @@
                     <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Semestre:') }}</label>
                         <div class="col-md-5" style="margin-top: 10px">
                             <select for="editar_semestre" name="semester_edit" id="semestre_editar" class="form-control">
-                                <option value="Otoño-Invierno (1)">Otoño-Invierno (1)</option>
-                                <option value="Primavera-Verano (2)">Primavera-Verano (2)</option>
+                                <option value="Otoño-Invierno">Otoño-Invierno</option>
+                                <option value="Primavera-Verano">Primavera-Verano</option>
                             </select>
                         </div>
 
                     <label for="tipo_observacion" class="col-md-1 col-form-label" style="margin-top: 10px">{{ __('Año:') }}</label>
                         <div class="col-md-3" style="margin-top: 10px">
                             <select name="año" id="año_editar" class="form-control">
-                                @for($i= 1955; $i <= $now->format('Y') ; $i++)
+                                @for($i= 1981; $i <= $now->format('Y') ; $i++)
                                     <option value="{{$i}}">{{$i}}</option>
                                 @endfor
                             </select>
@@ -301,8 +579,8 @@
 
                     <div class="form-grou row">
                         <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
-                        <div class="col-md-4">
-                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->format('d/m/y')}}</label>
+                        <div class="col-md-6">
+                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</label>
                         </div>
                     </div>    
                 <div class="modal-footer">
@@ -488,8 +766,10 @@
         $('#id_editar').val(id);
         document.getElementById('mostrar_semestre').innerHTML = semestre;
         cadena = semestre.split(" ");
-        $('#semestre_editar').val(cadena[0]+" "+cadena[1]);
-        $('#año_editar').val(cadena[2]);
+        cadena2 = cadena[1].split("/");
+        console.log(cadena[0]);
+        $('#semestre_editar').val(cadena[0]);
+        $('#año_editar').val(cadena2[0]);
         $('#modal_editarObservacion').modal('show');
     }
 </script>
