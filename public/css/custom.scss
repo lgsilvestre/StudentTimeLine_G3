@@ -174,6 +174,8 @@ clear: both;
 color: rgba(255,255,255,.9);
 margin-top:0;
 margin-bottom: 5px;
+font-size: 20px;
+  font-size: 1.25rem;
 }
 .cd-timeline-content p, .cd-timeline-content {
 color: rgba(255,255,255,.7);
@@ -252,6 +254,8 @@ border-right: 7px solid #577590;
   top: 24px;
   left: auto;
   right: 100%;
+  font-size: 16px;
+  font-size: 1rem;
   border-color: transparent;
   border-right-color: #577590;
 }
@@ -261,7 +265,7 @@ border-right: 7px solid #577590;
 .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-date {
   left: auto;
   right: 140%;
-  color: #dde0e2;;
+  color: #dde0e2;
   text-align: center;
   font-weight: bolder;
 }
