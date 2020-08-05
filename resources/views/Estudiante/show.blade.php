@@ -101,7 +101,7 @@
                                                     @endif
                                                 @endif
                                             @endrole
-                                            <span class="cd-date"><i class="fas fa-clock"></i><strong> {{$observacion->created_at->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</strong></span>
+                                            <span class="cd-date"><i class="fas fa-clock"></i><strong> {{$observacion->created_at->locale('es')->isoFormat('ddd D MMMM YYYY')}}</strong></span>
                                         </div> <!-- cd-timeline-content -->
                                     </div> <!-- cd-timeline-block -->
                                     @endforeach
