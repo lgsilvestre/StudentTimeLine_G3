@@ -116,6 +116,37 @@
     });
 </script>
 <!-- -->
+<!-- MODAL PARA IMPORTACION DE ESTUDIANTE -->
+
+<div class="modal fade " id="modal_importar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-header custom-color">
+        <h5 class="modal-title" id="exampleModalLabel" >Importar Estudiantes</h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <form action="{{ route('estudiante.import.excel', $carrera->id) }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <div class="modal-body">
+                <div class="col-md-7 custom-file" style="">
+                    <input id="file" type="file" class="custom-file-input" name="file" required>
+                    <label class="custom-file-label text-truncate" data-browse="Buscar" for="customFile">Importación de Estudiantes</label>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button style="background-color: #2a9d8f; color:white;margin-left:7px"class="btn btn-info  btn-sm">Importar</button>
+        </form>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
+       </div>
+    </div>
+  </div>
+</div>
+
+<!-- -->
+
 <!-- MODAL PARA EXPORTAR -->
 <div id="modal_exportar" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
@@ -146,6 +177,7 @@
                         <div class="modal-footer">
                             <div class="form-group row">
                                 <button id="exportarTodo" style="margin-right:7px"class="btn btn-secondary  btn-sm">Exportar</button>
+                                </form>
                                 <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
@@ -158,19 +190,23 @@
                                     @csrf
                                 <div class="form-group row justify-content-center">
                                     <label for="inputContactNumber" style="margin-right:7px;margin-top:7px">Fecha inicio</label>
+                                    <label style="color:red;margin-right:7px;margin-top:7px">(*)</label>
                                         <div class="form-group icono-input">
                                             <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                            <input type="date" class="form-control" id="fech_1" name="fech_1" placeholder="Inicial">
+                                            <input type="date" class="form-control" id="fech_1" name="fech_1" placeholder="Inicial" required>
                                     </div>
                                 </div>
                                 <div class="form-group row justify-content-center">
                                     <label for="inputContactNumber" style="margin-right:7px;margin-top:7px">Fecha final</label>
+                                    <label style="color:red;margin-right:7px;margin-top:7px">(*)</label>
                                         <div class="form-group icono-input">
                                             <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                            <input type="date" class="form-control" id="fech_2" name="fech_2" placeholder="Final">
+                                            <input type="date" class="form-control" id="fech_2" name="fech_2" placeholder="Final" required>
                                         </div>
                                 </div>
                                 <div class="modal-footer">
+                                    <label style="color:red">(*)</label>
+                                    <label>Campos obligatorios</label>
                                     <button id="exportar-por-fecha" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
                                     </form>
                                     <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
@@ -185,12 +221,15 @@
                                     @csrf
                                 <div class="form-group row justify-content-center">
                                     <label for="inputLastname" style="margin-right:7px;margin-top:7px">Rut</label>
+                                    <label style="color:red;margin-right:7px;margin-top:7px">(*)</label>
                                         <div class="form-group icono-input">
                                             <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                            <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1">
+                                            <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1" required>
                                         </div>
                                 </div>
                                 <div class="modal-footer">
+                                    <label style="color:red">(*)</label>
+                                    <label>Campos obligatorios</label>
                                     <button  id="exportar-individual" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
                                 </form>
                                     <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
@@ -228,7 +267,10 @@
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
           <li>
+            
         </ul>
+        
+        
 
 
         <form action="{{ route('estudiante.store',$carrera->id) }}" method="post">
@@ -241,26 +283,29 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="inputAddressLine1">Nombres</label>
+                            <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Juan Andres">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Juan Andres" >
                                     </div>
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputAddressLine2">Ap. Paterno</label>
+                            <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" placeholder="Pérez">
+                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" placeholder="Pérez" required>
                                     </div>
                         
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputAddressLine2">Ap. Materno</label>
+                            <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" placeholder="Soto">
+                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" placeholder="Soto" required>
                                     </div>
                         
                         </div>
@@ -272,13 +317,15 @@
 
                         <div class="col-sm-4">
                             <label for="inputLastname">Rut</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1">
+                                <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1" required>
                             </div>
                         </div>
                         <div class="col-sm-4 ">
                                 <label for="inputState">Género</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-venus-mars fa-lg form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" id="sexo" name="sexo"> 
@@ -290,9 +337,10 @@
                         </div>                  
                         <div class="col-sm-4">
                                 <label for="inputContactNumber">Fecha de nacimiento</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" placeholder="nacimiento">
+                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" placeholder="nacimiento" required>
                                 </div>
                         </div>
 
@@ -304,9 +352,10 @@
 
                         <div class="col-sm-5">
                                 <label for="inputLastname">Correo Electrónico</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="correo" name="correo" placeholder="ejemplo@utalca.alumnos.cl">
+                                    <input type="text" class="form-control" id="correo" name="correo" placeholder="ejemplo@utalca.alumnos.cl" required>
                                 </div>
                         </div>
 
@@ -331,10 +380,12 @@
                     </div>
 
                 </div>
-                <div class="float-right">
-                    <button id="scheduleContinue" class="btn btn-secondary">Continuar</button>
-                    <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
-                </div>
+                    <label style="color:red">(*)</label>
+                    <label>Campos obligatorios</label>
+                    <div class="float-right">
+                        <button id="scheduleContinue" class="btn btn-secondary">Continuar</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                    </div>
                 <br></br>
             </div>
             
@@ -351,22 +402,25 @@
                         <div class="col-sm-4">
                             
                             <label for="inputFirstname">Matrícula</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="matricula" name="matricula" placeholder="2015307020">
+                                <input type="text" class="form-control" id="matricula" name="matricula" placeholder="2015307020" required>
                             </div>
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputContactNumber">Año ingreso</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso"placeholder="2015">
+                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso"placeholder="2015" required>
                             </div>
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputContactNumber">Via ingreso</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" id="via_ingreso" name="via_ingreso">
@@ -384,6 +438,7 @@
 
                         <div class="col-sm-4">
                                 <label for="inputCity">Situación Academica</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" id="estado_actual" name="estado_actual">
@@ -452,6 +507,8 @@
                </div>
                
             </div>
+            <label style="color:red">(*)</label>
+            <label>Campos obligatorios</label>
             <div class="float-right">
                 <button  class="btn btn-secondary"  >Guardar</button>
                 <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>

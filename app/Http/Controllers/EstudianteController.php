@@ -69,18 +69,18 @@ class EstudianteController extends Controller
             'correo'=>'required|string|unique:estudiante',
             'sexo' => 'required|string|max:255',
             'fech_nac' => 'required|date',
-            'plan' => 'required|integer',
+            'plan' => 'integer',
             'via_ingreso'=>'required|max:255',
             'ano_ingreso' => 'integer|required',
-            'estado_actual' => 'string|max:255',
+            'estado_actual' => 'required|string|max:255',
             'comuna' => 'string|max:255',
-            'region' => 'integer|required',
-            'creditos' => 'required|integer',
-            'nivel' => 'required|integer',
-            'porc_avance' => 'required|integer',
-            'prioridad' => 'required|string',
-            'aprobados' => 'required|string',
-            'cursados' => 'required|string',
+            'region' => 'integer',
+            'creditos' => 'integer',
+            'nivel' => 'integer',
+            'porc_avance' => 'integer',
+            'prioridad' => 'string',
+            'aprobados' => 'string',
+            'cursados' => 'string',
             ]);
         
         $estudiante=new Estudiante();
@@ -90,7 +90,6 @@ class EstudianteController extends Controller
         $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
-        //Asi si se le pasa el id de carreda directamente
         $estudiante->id_carrera=$carrera->id;
         $estudiante->via_ingreso=$request->get('via_ingreso');
         $estudiante->sexo=$request->get('sexo');
@@ -104,7 +103,7 @@ class EstudianteController extends Controller
         $estudiante->nivel=$request->get('nivel');
         $estudiante->porc_avance=$request->get('porc_avance');
         $estudiante->ult_ptje_prioridad=$request->get('prioridad');
-        if($request->estado_actual=="regular"){
+        if($request->estado_actual=="Regular"){
             $estudiante->regular="Si";
         }else{
             $estudiante->regular="No";
@@ -189,27 +188,51 @@ class EstudianteController extends Controller
             'nombre'=>'required|string|max:255',
             'ap_Paterno'=>'required|string|max:255',
             'ap_Materno'=>'required|string|max:255',
-            'matricula'=>'required|string|max:20',
+            'matricula'=>'required|string|max:25',
+            'sexo' => 'required|string|max:255',
+            'fech_nac' => 'required|date',
             'plan' => 'integer',
-            'estado_actual' => 'string|max:255',
+            'via_ingreso'=>'required|max:255',
+            'ano_ingreso' => 'integer|required',
+            'estado_actual' => 'required|string|max:255',
             'comuna' => 'string|max:255',
             'region' => 'integer',
-            'nivel' => 'required|integer',
+            'creditos' => 'integer',
+            'nivel' => 'integer',
+            'porc_avance' => 'integer',
+            'prioridad' => 'string',
+            'aprobados' => 'string',
+            'cursados' => 'string',
             ]);
-
+        
+        $estudiante=new Estudiante();
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
-        $estudiante->rut=$request->get('rut');
+        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
-        $estudiante->id_carrera=$request->get('carrera');
         $estudiante->correo=$request->get('correo');
-        $estudiante->id_carrera=$request->get('carrera');
+        $estudiante->id_carrera=$carrera->id;
+        $estudiante->via_ingreso=$request->get('via_ingreso');
+        $estudiante->sexo=$request->get('sexo');
+        $estudiante->fech_nac=$request->get('fech_nac');
         $estudiante->plan=$request->get('plan');
+        $estudiante->año_ingreso=$request->get('ano_ingreso');
         $estudiante->estado_actual=$request->get('estado_actual');
         $estudiante->comuna=$request->get('comuna');
         $estudiante->region=$request->get('region');
+        $estudiante->creditos_aprobados=$request->get('creditos');
         $estudiante->nivel=$request->get('nivel');
+        $estudiante->porc_avance=$request->get('porc_avance');
+        $estudiante->ult_ptje_prioridad=$request->get('prioridad');
+        if($request->estado_actual=="Regular"){
+            $estudiante->regular="Si";
+        }else{
+            $estudiante->regular="No";
+        }
+        
+        $estudiante->prom_aprobadas=$request->get('aprobados');
+        $estudiante->prom_cursados=$request->get('cursados');
        
         $estudiante->save();
 
