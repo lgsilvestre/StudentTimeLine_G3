@@ -240,26 +240,29 @@
                     <div class="form-group row">
                         <div class="col-sm-4">
                             <label for="inputAddressLine1">Nombres</label>
+                            <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$estudiante->nombre}}">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$estudiante->nombre}}" required>
                                     </div>
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputAddressLine2">Ap. Paterno</label>
+                            <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}">
+                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
                                     </div>
                         
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputAddressLine2">Ap. Materno</label>
+                            <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" value="{{$estudiante->ap_Materno}}">
+                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
                                     </div>
                         
                         </div>
@@ -271,13 +274,15 @@
 
                         <div class="col-sm-4">
                             <label for="inputLastname">Rut</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}">
+                                <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}" required>
                             </div>
                         </div>
                         <div class="col-sm-4 ">
                                 <label for="inputState">Género</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-venus-mars fa-lg form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" id="sexo" name="sexo" > 
@@ -289,9 +294,10 @@
                         </div>                  
                         <div class="col-sm-4">
                                 <label for="inputContactNumber">Fecha de nacimiento</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" value="{{$estudiante->fech_nac}}">
+                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
                                 </div>
                         </div>
 
@@ -303,9 +309,10 @@
 
                         <div class="col-sm-5">
                                 <label for="inputLastname">Correo Electrónico</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="correo" name="correo" value="{{$estudiante->correo}}">
+                                    <input type="text" class="form-control" id="correo" name="correo" value="{{$estudiante->correo}}" required>
                                 </div>
                         </div>
 
@@ -330,6 +337,8 @@
                     </div>
 
                 </div>
+                <label style="color:red">(*)</label>
+                <label>Campos obligatorios</label>
                 <div class="float-right">
                     <button id="scheduleContinue" class="btn btn-secondary">Continuar</button>
                     <button type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
@@ -350,22 +359,25 @@
                         <div class="col-sm-4">
                             
                             <label for="inputFirstname">Matrícula</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="matricula" name="matricula" value="{{$estudiante->matricula}}">
+                                <input type="text" class="form-control" id="matricula" name="matricula" value="{{$estudiante->matricula}}" required>
                             </div>
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputContactNumber">Año ingreso</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso"value="{{$estudiante->ano_ingreso}}">
+                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso"value="{{$estudiante->ano_ingreso}}" required>
                             </div>
                         </div>
 
                         <div class="col-sm-4">
                             <label for="inputContactNumber">Via ingreso</label>
+                            <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" id="via_ingreso" name="via_ingreso">
@@ -383,6 +395,7 @@
 
                         <div class="col-sm-4">
                                 <label for="inputCity">Situación Academica</label>
+                                <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
                                     <select class="form-control" id="estado_actual" name="estado_actual">
@@ -451,6 +464,8 @@
                </div>
                
             </div>
+            <label style="color:red">(*)</label>
+            <label>Campos obligatorios</label>
             <div class="float-right">
                 <button  class="btn btn-secondary"  >Guardar</button>
                 <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
