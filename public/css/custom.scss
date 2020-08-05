@@ -237,12 +237,13 @@ border-right: 7px solid #577590;
   width: 100%;
   left: 140%;
   top: 22px;
-  background-color: #84878a;
+  background-color: #435a6e;
   border-radius: 13px;
   text-align: center;
   color: #dde0e2;;
-  font-size: 16px;
-  font-size: 1rem;
+  font-size: 30px;
+  font-size: 1.2rem;
+  font-weight: bolder;
 }
 .cd-timeline-block:nth-child(even) .cd-timeline-content {
   float: right;
@@ -262,5 +263,6 @@ border-right: 7px solid #577590;
   right: 140%;
   color: #dde0e2;;
   text-align: center;
+  font-weight: bolder;
 }
 }
