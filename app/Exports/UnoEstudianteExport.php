@@ -19,9 +19,9 @@ class UnoEstudianteExport implements FromView
     }
     public function view(): View
     {   
+        
         return view('Estudiante.unoexport' , [
-            'estudiantes' => Estudiante::all(),
-            'rut' => $this->rut,
+            'estudiante' => Estudiante::where('rut','=',$this->rut)->firstOrFail(),
         ]);
     }
 }
