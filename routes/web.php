@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Exports\RangoEstudianteExport;
+
 
 
 /*
@@ -70,6 +70,8 @@ Route::middleware(['auth'])->group(function(){
 
     //rutas de imagen, test
     Route::post('user/image','UsersController@postProfileImage')->name('users.postProfileImage');
+
+    Route::post('user/borrarimage','UsersController@deletePhoto')->name('users.deletePhoto');
 
     Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
     ->middleware('has.role:admin');

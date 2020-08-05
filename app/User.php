@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Caffeinated\Shinobi\Concerns\HasRolesAndPermissions;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
@@ -57,5 +58,15 @@ class User extends Authenticatable
             $query->where(['name','LIKE',"%$busqueda%"])
                   ->orWhere(['correo','LIKE',"%$busqueda%"]);
         }
+    }
+    /**
+     * Envia la notificacion de reiniciar contraseña.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
     }
 }
