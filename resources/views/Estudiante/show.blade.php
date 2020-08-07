@@ -435,7 +435,7 @@
                             <label for="inputWebsite">Comuna</label>
                             <div class="form-group icono-input">
                                 <span class="fas fa-house-user fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="comuna" name="comuna" value="{{$estudiante->Comuna}}">
+                                <input type="text" class="form-control" id="comuna" name="comuna" value="{{$estudiante->comuna}}">
                             </div>
                         </div>
 
@@ -478,7 +478,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso"value="{{$estudiante->ano_ingreso}}" required>
+                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso" value="{{$estudiante->año_ingreso}}" required>
                             </div>
                         </div>
 
@@ -529,7 +529,7 @@
                             <label for="inputWebsite">Créditos Aprobados</label>
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="number" class="form-control" min="0" max="400" id="creditos" name="creditos" value="{{$estudiante->creditos}}">
+                                <input type="number" class="form-control" min="0" max="400" id="creditos" name="creditos" value="{{$estudiante->creditos_aprobados}}">
                             </div>
                         </div>
 
@@ -549,7 +549,7 @@
                             <label for="inputWebsite">Último puntaje prioridad</label>
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control"  id="prioridad" name="prioridad" value="{{$estudiante->prioridad}}">
+                                <input type="text" class="form-control"  id="prioridad" name="prioridad" value="{{$estudiante->ult_ptje_prioridad}}">
                             </div>
                         </div>
 
@@ -557,14 +557,14 @@
                             <label for="inputWebsite">Promedio Aprobados</label>
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control"  id="aprobados" name="aprobados" value="{{$estudiante->aprobados}}">
+                                <input type="text" class="form-control"  id="aprobados" name="aprobados" value="{{$estudiante->prom_aprobadas}}">
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <label for="inputWebsite">Promedio Cursados</label>
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control"  id="cursados" name="cursados" value="{{$estudiante->cursados}}">
+                                <input type="text" class="form-control"  id="cursados" name="cursados" value="{{$estudiante->prom_cursados}}">
                             </div>
                         </div>
                     </div>
