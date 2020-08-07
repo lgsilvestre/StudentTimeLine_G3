@@ -115,7 +115,114 @@
         </div>
     </div>
 </div>  
+<div class="modal fade" id="modal_editarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <div class="modal-header custom-color">
+                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Editar Observación</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('observacion.update', $estudiante->id) }}" method="post">
+                <div class="modal-body">
+                    @csrf
+                    <div class="form-group row">
+                        <!--id llamado para editar-->
+                        <input type="hidden" name="id_edit" id="id_editar" value="" class="col-md-8">  
+                        <!--fin de llamado al id-->
 
+                        <label id="titulo" class="col-md-2 col-form-label"> Título: </label>
+                        <input type="text" name="titulo_edit" id="titulo_editar" class="col-md-8" style="margin-left: 15px">    
+
+                        <!--solo para llenar el campo, es momentaneo-->
+                        <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Tipo:') }}</label>
+                        <div class="col-md-9" style="margin-top: 10px">
+                            <select for="tipo_observacion" name="tipo_edit" id="tipo_editar" name="tipo_observacion" class="form-control">
+                                    <option value="Positiva">Positiva</option>
+                                    <option value="Negativa">Negativa</option>
+                                    <option value="Informativa">Informativa</option>
+                            </select>
+                        </div>
+                        <!--fin del solo para llenar el campo-->
+
+                        <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Categoría:') }}</label>
+                        <div class="col-md-9" style="margin-top: 10px">
+                            <select for="categoria" name="categoria_edit" id="categoria_editar" class="form-control">
+                                @foreach($categorias as $categoria)
+                                    <option value="{{$categoria->nombre}}">{{$categoria->nombre}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                      
+                        <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Módulo:') }}</label>
+                        <div class="col-md-9" style="margin-top: 10px">
+                            <select for="modulo" name="modulo_edit" id="modulo_editar" class="form-control">
+                            @foreach ($modulos as $modulo)
+                                <option value="{{$modulo->descripcion}}">{{$modulo->descripcion}}</option>
+                            @endforeach
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
+                        <div class="col-md-6">
+                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="3" cols="35" style="resize: none"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                    
+                        <label for="name" class="col-md-2 col-form-label"> Autor:</label>
+                        <div class="col-md-4">
+                            <label for="name" name="autor_edit" class="col-md-2 col-form-label">{{$usuario->name}}</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                    
+                    @role('admin')   
+                    <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Semestre:') }}</label>
+                        <div class="col-md-5" style="margin-top: 10px">
+                            <select for="editar_semestre" name="semester_edit" id="semestre_editar" class="form-control">
+                                <option value="Otoño-Invierno">Otoño-Invierno</option>
+                                <option value="Primavera-Verano">Primavera-Verano</option>
+                            </select>
+                        </div>
+
+                    <label for="tipo_observacion" class="col-md-1 col-form-label" style="margin-top: 10px">{{ __('Año:') }}</label>
+                        <div class="col-md-3" style="margin-top: 10px">
+                            <select name="año" id="año_editar" class="form-control">
+                                @for($i= 1981; $i <= $now->format('Y') ; $i++)
+                                    <option value="{{$i}}">{{$i}}</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div style="display: none" id="mostrar_semestre"></div>
+                    @else
+                        <label for="name" class="col-md-2 col-form-label"> Semestre:</label>
+                        <div class="col-md-6">
+                                <div for="editar_semestre" name="semestre_edit"  id="mostrar_semestre" class="col-form-label"></div>               
+                        </div>
+                    @endrole
+                    </div>
+
+                    <div class="form-grou row">
+                        <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
+                        <div class="col-md-6">
+                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</label>
+                        </div>
+                    </div>    
+                </div>
+                <div class="modal-footer">
+                    <button  class="btn btn-secondary btn-sm">Editar Observación</button>
+                    <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal agregar observacion -->
 <div class="modal fade" id="modalObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -479,119 +586,14 @@
             <div class="progress mt-3">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Paso 1 de 2</div>
             </div> 
+        </div>
     </div>
   </div>
 </div>
 
 <!--FIN MODAL WIZARD EDITAR ESTUDIANTE-->
 <!-- Modal editar observacion -->
-<div class="modal fade" id="modal_editarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content ">
-            <div class="modal-header custom-color">
-                <h5 class="modal-title" id="modalProfileLabel" style="color:white">Editar Observación</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('observacion.update', $estudiante->id) }}" method="post">
-                <div class="modal-body">
-                    @csrf
-                    <div class="form-group row">
-                        <!--id llamado para editar-->
-                        <input type="hidden" name="id_edit" id="id_editar" value="" class="col-md-8">  
-                        <!--fin de llamado al id-->
 
-                        <label id="titulo" class="col-md-2 col-form-label"> Título: </label>
-                        <input type="text" name="titulo_edit" id="titulo_editar" class="col-md-8" style="margin-left: 15px">    
-
-                        <!--solo para llenar el campo, es momentaneo-->
-                        <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Tipo:') }}</label>
-                        <div class="col-md-9" style="margin-top: 10px">
-                            <select for="tipo_observacion" name="tipo_edit" id="tipo_editar" name="tipo_observacion" class="form-control">
-                                    <option value="Positiva">Positiva</option>
-                                    <option value="Negativa">Negativa</option>
-                                    <option value="Informativa">Informativa</option>
-                            </select>
-                        </div>
-                        <!--fin del solo para llenar el campo-->
-
-                        <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Categoría:') }}</label>
-                        <div class="col-md-9" style="margin-top: 10px">
-                            <select for="categoria" name="categoria_edit" id="categoria_editar" class="form-control">
-                                @foreach($categorias as $categoria)
-                                    <option value="{{$categoria->nombre}}">{{$categoria->nombre}}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                      
-                        <label for="name" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Módulo:') }}</label>
-                        <div class="col-md-9" style="margin-top: 10px">
-                            <select for="modulo" name="modulo_edit" id="modulo_editar" class="form-control">
-                            @foreach ($modulos as $modulo)
-                                <option value="{{$modulo->descripcion}}">{{$modulo->descripcion}}</option>
-                            @endforeach
-                                <option value="Otro">Otro</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
-                        <div class="col-md-6">
-                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="3" cols="35" style="resize: none"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                    
-                        <label for="name" class="col-md-2 col-form-label"> Autor:</label>
-                        <div class="col-md-4">
-                            <label for="name" name="autor_edit" class="col-md-2 col-form-label">{{$usuario->name}}</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                    
-                    @role('admin')   
-                    <label for="tipo_observacion" class="col-md-2 col-form-label" style="margin-top: 10px">{{ __('Semestre:') }}</label>
-                        <div class="col-md-5" style="margin-top: 10px">
-                            <select for="editar_semestre" name="semester_edit" id="semestre_editar" class="form-control">
-                                <option value="Otoño-Invierno">Otoño-Invierno</option>
-                                <option value="Primavera-Verano">Primavera-Verano</option>
-                            </select>
-                        </div>
-
-                    <label for="tipo_observacion" class="col-md-1 col-form-label" style="margin-top: 10px">{{ __('Año:') }}</label>
-                        <div class="col-md-3" style="margin-top: 10px">
-                            <select name="año" id="año_editar" class="form-control">
-                                @for($i= 1981; $i <= $now->format('Y') ; $i++)
-                                    <option value="{{$i}}">{{$i}}</option>
-                                @endfor
-                            </select>
-                        </div>
-                        <div style="display: none" id="mostrar_semestre"></div>
-                    @else
-                        <label for="name" class="col-md-2 col-form-label"> Semestre:</label>
-                        <div class="col-md-6">
-                                <div for="editar_semestre" name="semestre_edit"  id="mostrar_semestre" class="col-form-label"></div>               
-                        </div>
-                    @endrole
-                    </div>
-
-                    <div class="form-grou row">
-                        <label for="name" class="col-md-2 col-form-label"> Fecha:</label>
-                        <div class="col-md-6">
-                            <label for="name" name="fecha_edit" style="margin-top:7px">{{$now->locale('es')->isoFormat('dddd D, MMMM YYYY')}}</label>
-                        </div>
-                    </div>    
-                <div class="modal-footer">
-                    <button  class="btn btn-secondary btn-sm">Editar Observación</button>
-                    <button class="btn btn-sm btn-info" data-dismiss="modal">Cerrar</button>
-                </div>
-            </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Modal para eliminar observacion -->
 <div class="modal fade" id="modal_eliminarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
