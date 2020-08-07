@@ -50,11 +50,9 @@
                     <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links --> 
                         @guest
-                            @if (Route::has('register'))
                                 <a class="nav-item custom-titulo ">
                                     <img src="/images/ingenieria.png" width="200px" height="50px">
                                 </a>
-                            @endif
                         @else
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('home')}}" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
                         @can('modulos.index')
