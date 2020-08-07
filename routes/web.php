@@ -16,11 +16,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if (!Auth::user()){
+        return view('auth.login');
+    }else{
+        return redirect()->route('home');
+    }
+    
 });
 
 
-Auth::routes();
+
+Auth::routes(['register' => false]);
 Route::middleware(['auth'])->group(function(){ 
     Route::get('recordatorio/', function () {
         return view('Usuario.recordatorio');
