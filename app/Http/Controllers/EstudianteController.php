@@ -177,7 +177,7 @@ class EstudianteController extends Controller
             $validate=$request->validate([
                 'correo'=>'required|string|unique:estudiante',
                 ]);
-        }
+            }
         if($estudiante->rut != $request->rut){
             $validate=$request->validate([
                 'rut'=>'cl_rut|unique:estudiante|required|string|max:20',
@@ -205,14 +205,13 @@ class EstudianteController extends Controller
             'cursados' => 'string',
             ]);
         
-        $estudiante=new Estudiante();
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
         $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
-        $estudiante->id_carrera=$carrera->id;
+        $estudiante->id_carrera=$request->get('carrera');
         $estudiante->via_ingreso=$request->get('via_ingreso');
         $estudiante->sexo=$request->get('sexo');
         $estudiante->fech_nac=$request->get('fech_nac');
