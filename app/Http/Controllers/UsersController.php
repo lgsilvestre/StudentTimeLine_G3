@@ -230,7 +230,6 @@ class UsersController extends Controller
         }
         
 
-        
         $user->name = $request->get('nombre');
         $user->email = $request->get('email');
 
@@ -281,6 +280,19 @@ class UsersController extends Controller
         ->with('success','Usuario Inhabilitado con éxito'); 
     }
 
+    public function deletePhoto(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $foto_nombre = $user->imagen; 
+        $user->imagen = null;
+        $direccion = public_path().'/images/'.$foto_nombre;
+        unlink($direccion);
+
+        $user->save();
+
+        return  redirect()->back()->with('success', 'Foto borrada con éxito');    
+    }
+
     public function restore(Request $request)
     {
         $user = User::onlyTrashed()->find($request->get('id'))->restore();
@@ -303,8 +315,16 @@ class UsersController extends Controller
         ]);
 
         $newname=null;
-        if($request->hasFile('foto')){
+        if($request->hasFile('foto')){   
             $file = $request->file('foto');
+            $foto_nombre = $user->imagen; 
+            
+            //Si hay foto existente, entonces se borra y se actualiza.
+            if($foto_nombre != NULL){
+                $direccion = public_path().'/images/'.$foto_nombre;
+                unlink($direccion);
+            }
+
             $newname = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$newname);
         }
