@@ -10,6 +10,7 @@ use Caffeinated\Shinobi\Models\Role as Rol;
 use App\Usuario_carrera;
 use Auth;
 use Hash;
+use Mail;
 use Carbon\Carbon;
 
 class UsersController extends Controller
@@ -25,6 +26,7 @@ class UsersController extends Controller
         ->join('users', 'role_user.user_id', '=', 'users.id')
         ->join('roles','role_user.role_id','=','roles.id')
         ->whereNull('users.deleted_at')
+        ->where('user_id','!=',1)
         ->select('role_user.user_id','role_user.role_id','users.name as nombre','users.email', 'roles.name','roles.id as id_rol','users.id')
         ->get();
 
@@ -228,7 +230,6 @@ class UsersController extends Controller
         }
         
 
-        
         $user->name = $request->get('nombre');
         $user->email = $request->get('email');
 
@@ -279,6 +280,19 @@ class UsersController extends Controller
         ->with('success','Usuario Inhabilitado con éxito'); 
     }
 
+    public function deletePhoto(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $foto_nombre = $user->imagen; 
+        $user->imagen = null;
+        $direccion = public_path().'/images/'.$foto_nombre;
+        unlink($direccion);
+
+        $user->save();
+
+        return  redirect()->back()->with('success', 'Foto borrada con éxito');    
+    }
+
     public function restore(Request $request)
     {
         $user = User::onlyTrashed()->find($request->get('id'))->restore();
@@ -301,8 +315,16 @@ class UsersController extends Controller
         ]);
 
         $newname=null;
-        if($request->hasFile('foto')){
+        if($request->hasFile('foto')){   
             $file = $request->file('foto');
+            $foto_nombre = $user->imagen; 
+            
+            //Si hay foto existente, entonces se borra y se actualiza.
+            if($foto_nombre != NULL){
+                $direccion = public_path().'/images/'.$foto_nombre;
+                unlink($direccion);
+            }
+
             $newname = time().$file->getClientOriginalName();
             $file->move(public_path().'/images/',$newname);
         }
@@ -311,6 +333,38 @@ class UsersController extends Controller
         $user->save();
 
         return  redirect()->back()->with('success', 'Foto cambiada con éxito');      
+    }
+
+    public function obtcarrera(Request $request){
+        $user = User::find($request->id);
+
+        if($user->id == 1){
+            $carreras = Carrera::all();
+        }else{
+            $carreras = $user->usuario_carrera;
+            $collect = [];
+            foreach($carreras as $carrera){
+                $car = $carrera->carrera;
+                $collect[]=$car; 
+            }
+            $carreras = collect($collect);
+        }
+        return $carreras->toJson();
+    }
+    public function enviarRecordatorio(){
+        User::chunk(150,function($users){
+            foreach($users as $user){
+                if($user->hasRole('profe')){
+                    Mail::send('Usuario.emailrecordatorio',['user'=>$user],function($message) use($user){
+                        $message->from(env('MAIL_USERNAME','Admin'),'Administrador');
+                        $message->to($user->email,$user->name)->subject('Recordatorio Evaluacion Ayudantes'. $user->name);
+                    });
+                }
+            }
+        });
+        
+        return redirect()->back()->with('success', 'Correos enviados con éxito.'); 
+
     }
     
 }

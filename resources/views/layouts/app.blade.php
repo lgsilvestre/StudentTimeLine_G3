@@ -21,8 +21,13 @@
     
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.scss') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/fontawesome.min.css">
+
+
+    <script src="https://kit.fontawesome.com/df11a4c4b4.js" crossorigin="anonymous"></script>
+
+
 
 </head>
 <body class="custom-fondo">
@@ -45,11 +50,9 @@
                     <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links --> 
                         @guest
-                            @if (Route::has('register'))
                                 <a class="nav-item custom-titulo ">
                                     <img src="/images/ingenieria.png" width="200px" height="50px">
                                 </a>
-                            @endif
                         @else
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('home')}}" style="color:#ffff" >{{ __('Inicio') }}</a> </li>
                         @can('modulos.index')
@@ -72,6 +75,9 @@
 
                                 <a class="dropdown-item custom-botondesplegable" href="{{route('users.disable')}}">
                                     {{ __('Habilitar') }}
+                                </a>
+                                <a class="dropdown-item custom-botondesplegable" href="{{route('users.recordatorio')}}">
+                                    {{ __('Recordatorio para realizar observaciónes') }}
                                 </a>
                             </div>
                         </li>

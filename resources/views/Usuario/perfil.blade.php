@@ -9,11 +9,16 @@
                 <div class="card-body"> 
                     <div class="row">
                         <div class= "custom-foto float-center">
-                            <img  class="imagen" src="../images/{{$user->imagen}}" alt="">
+                            @if($user->imagen == NULL)
+                                <img class="imagen" src="../images/def.jpg" alt="">
+                            @else
+                                <img class="imagen" src="../images/{{$user->imagen}}" alt="">
+                                <button class="float-right btn btn-lg" style="margin-top:-20px;margin-right:-10px"  data-toggle="modal" data-target="#modal_elminarfoto"><i class="fas fa-times-circle"></i></button>
+                            @endif
                         </div> 
                     </div>
                     <div clas="row">
-                            <button type="button" style="margin-left:60px" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#modalProfile">
+                            <button type="button" style="margin-top:-25px;margin-left:60px" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#modalProfile">
                                 Cambiar foto de perfil
                             </button>
                             
@@ -60,6 +65,7 @@
                             <input id="imagen" type="file" class="custom-file-input" name="foto" required>
                             <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Seleccionar archivo</label>
                         </div>  
+                   
                     </div>  
                     </div>  
                 <div class="modal-footer">
@@ -135,6 +141,31 @@
     </div>
 </div>
 
+<!-- Modal para eliminar foto de perfil -->
+<div class="modal fade" id="modal_elminarfoto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header custom-colorAdvertencia">
+        <h5 class="modal-title" id="exampleModalLabel" style="color:white">Advertencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro que desea eliminar su foto de perfil?
+      </div>
+      <div class="modal-footer">  
+            <form action="{{ route('users.deletePhoto') }}" method="post">
+            @csrf
+                <input type="hidden" id="id_cat" name="id" value="">
+                <button class="btn btn-secondary btn-sm">Confirmar</button>
+            </form>
+
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <script type="text/javascript">

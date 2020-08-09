@@ -8,7 +8,7 @@
 <div class="container">
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card margen-card custom-card" >
                 <div class="card-header shadow-sm custom-recuperarSesion" style="background-color:#577590; color:white">Usuarios Inhabilitados
                 </div>
@@ -19,7 +19,10 @@
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
-                                <th >Nombre</th>
+                                <th >Nombre
+                                <a style="marging-left:200px"></a>
+                                </th>
+                                
                                 <th >Email</th>        
                                 <th >Rol Asignado</th>
                                 <th></th>
@@ -68,7 +71,6 @@
                 }
             }
         var table = $('#usuarios').DataTable({
-            processing: true,
             serverSide: true,
             language : espanol,
             rowReorder: true,

@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Observacion;
 use App\Categoria;
 use App\Carrera;
+use DB;
 use Auth;
+use Carbon\Carbon;
 use App\Observacion_usuario_estudiante;
 use App\Estudiante;
 
@@ -62,9 +64,28 @@ class ObservacionController extends Controller
     $observacion->nombre_categoria=$categoria->nombre;
     $observacion->id_categoria=$categoria->id;
     $observacion->modulo=$request->get('modulo');
-    $observacion->id_autor =  Auth::user()->id;
+    $observacion->id_autor = Auth::user()->id;
     $observacion->nombre_autor = Auth::user()->name;
+    
 
+    $now = Carbon::now();
+
+    if($now->format('m')>= '03' && $now->format('m')<= '08'){
+        $anio = $now->format('Y');
+        $observacion->semestre='Otoño-Invierno '.$anio.'/1';
+    }
+    elseif($now->format('m')>= '09' && $now->format('m')<= '12'){
+        $anio = $now->format('Y');
+        $observacion->semestre='Primavera-Verano '.$anio.'/2';
+    }
+    elseif($now->format('m')>= '01' && $now->format('m')<= '03'){
+        $anio = $now->format('Y')-1;
+        $observacion->semestre='Primavera-Verano '.$anio.'/2';
+    }
+
+    $fecha_limite = Carbon::now()->addDay(1);
+    $observacion->fecha_limite = $fecha_limite;
+    $observacion->id_estudiante = $id;
     $observacion->save();
     
     
@@ -123,15 +144,40 @@ class ObservacionController extends Controller
             'modulo_edit'=>'required|string|max:255',
         ]);
 
+    
     $observacion=Observacion::find($request->get('id_edit'));
     $observacion->titulo=$request->get('titulo_edit');
     $observacion->tipo_observacion=$request->get('tipo_edit');
     $observacion->descripcion=$request->get('descripcion_edit');
     $observacion->nombre_categoria=$request->get('categoria_edit');
     $observacion->modulo=$request->get('modulo_edit');
-    $observacion->id_autor =  Auth::user()->id;
-    $observacion->nombre_autor = Auth::user()->name;
+    $observacion->fecha_limite = $observacion->fecha_limite;
 
+    $identidad = Auth::user()->id;
+    $rol = DB::table('role_user')
+        ->where('user_id','=',$identidad)
+        ->select('role_user.role_id')
+        ->get();
+    
+    if($rol[0]->role_id == 1){
+        $observacion->id_autor =  $observacion->id_autor;
+        $observacion->nombre_autor =  $observacion->nombre_autor;
+        $valor_semestre=$request->get('semester_edit');
+        $valor_anio=$request->get('año');
+
+        if($valor_semestre == 'Primavera-Verano'){
+            $observacion->semestre=$valor_semestre.' '.$valor_anio.'/2';
+        }
+        else{
+            $observacion->semestre=$valor_semestre.' '.$valor_anio.'/1';
+        }  
+    }
+    else{
+        $observacion->id_autor = Auth::user()->id;
+        $observacion->nombre_autor = Auth::user()->name;
+        $observacion->semestre = $observacion->semestre;
+    }
+    
     $observacion->save();
 
     return redirect()->action('EstudianteController@show', $id)

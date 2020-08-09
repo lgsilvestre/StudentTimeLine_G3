@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if (!Auth::user()){
+        return view('auth.login');
+    }else{
+        return redirect()->route('home');
+    }
+    
 });
 
 
-Auth::routes();
+
+Auth::routes(['register' => false]);
 Route::middleware(['auth'])->group(function(){ 
+    Route::get('recordatorio/', function () {
+        return view('Usuario.recordatorio');
+    })->name('users.recordatorio');
+
+    Route::post('/obtcarrera','UsersController@obtcarrera')->name('obtcarrera');
 
     Route::get('home/', 'CarreraController@index')->name('home');
 
@@ -63,6 +76,8 @@ Route::middleware(['auth'])->group(function(){
 
     //rutas de imagen, test
     Route::post('user/image','UsersController@postProfileImage')->name('users.postProfileImage');
+
+    Route::post('user/borrarimage','UsersController@deletePhoto')->name('users.deletePhoto');
 
     Route::post('users/destroy','UsersController@destroy')->name('users.destroy')
     ->middleware('has.role:admin');
@@ -124,7 +139,6 @@ Route::middleware(['auth'])->group(function(){
     Route::post('estudiantes/{carrera}/importExcel','EstudianteController@importExcel')->name('estudiante.import.excel')
     ->middleware('has.role:admin');
 
-
     //Rutas de carreras
 
     Route::post('carrera/store','CarreraController@store')->name('carrera.store')
@@ -143,4 +157,14 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('observacion/{estudiante}/destroy','ObservacionController@destroy')->name('observacion.destroy');
 
+    //ruta para enviar correo recordatorios
+    Route::post('enviarcorreos/','UsersController@enviarRecordatorio')->name('enviarrecordatorio');
+    
+    //RUTAS PARA EXPORTAR EXCEL
+
+    Route::post('exportarrango/','EstudianteController@exportarRangoFechas')->name('exportrango');
+
+    Route::post('exporttodo/', 'EstudianteController@exportarTodo')->name('exporttodo');
+
+    Route::post('exportuno/','EstudianteController@exportarUno')->name('exportuno');
 });

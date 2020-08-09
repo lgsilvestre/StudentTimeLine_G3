@@ -15,7 +15,9 @@ use Auth;
 use Rut;
 use Excel;
 use Illuminate\Support\Facades\DB;
-
+use App\Exports\RangoEstudianteExport;
+use App\Exports\TodoEstudianteExport;
+use App\Exports\UnoEstudianteExport;
 use App\Imports\EstudianteImport;
 
 
@@ -67,28 +69,27 @@ class EstudianteController extends Controller
             'correo'=>'required|string|unique:estudiante',
             'sexo' => 'required|string|max:255',
             'fech_nac' => 'required|date',
-            'plan' => 'required|integer',
+            'plan' => 'integer',
             'via_ingreso'=>'required|max:255',
             'ano_ingreso' => 'integer|required',
-            'estado_actual' => 'string|max:255',
+            'estado_actual' => 'required|string|max:255',
             'comuna' => 'string|max:255',
-            'region' => 'integer|required',
-            'creditos' => 'required|integer',
-            'nivel' => 'required|integer',
-            'porc_avance' => 'required|integer',
-            'prioridad' => 'required|string',
-            'aprobados' => 'required|string',
-            'cursados' => 'required|string',
+            'region' => 'integer',
+            'creditos' => 'integer',
+            'nivel' => 'integer',
+            'porc_avance' => 'integer',
+            'prioridad' => 'string',
+            'aprobados' => 'string',
+            'cursados' => 'string',
             ]);
         
         $estudiante=new Estudiante();
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
-        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();;
+        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
-        //Asi si se le pasa el id de carreda directamente
         $estudiante->id_carrera=$carrera->id;
         $estudiante->via_ingreso=$request->get('via_ingreso');
         $estudiante->sexo=$request->get('sexo');
@@ -102,7 +103,7 @@ class EstudianteController extends Controller
         $estudiante->nivel=$request->get('nivel');
         $estudiante->porc_avance=$request->get('porc_avance');
         $estudiante->ult_ptje_prioridad=$request->get('prioridad');
-        if($request->estado_actual=="regular"){
+        if($request->estado_actual=="Regular"){
             $estudiante->regular="Si";
         }else{
             $estudiante->regular="No";
@@ -128,7 +129,7 @@ class EstudianteController extends Controller
         $usuario = User::find(Auth::user()->id);
         $now = Carbon::now();
         $estudiante = Estudiante::find($id);
-
+        $carreras = Carrera::all();
         $modulos = Modulo_carrera::
             where('modulo.id_carrera',"=",$estudiante->id_carrera)
             ->get();
@@ -147,7 +148,7 @@ class EstudianteController extends Controller
         $categorias = Categoria::all();
 
         return view('estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
-                                                'observaciones', 'detalle_observacion'));
+                                                'observaciones', 'detalle_observacion','carreras'));
     }
 
     /**
@@ -172,46 +173,65 @@ class EstudianteController extends Controller
     public function update(Request $request, $id)
     {
         $estudiante = Estudiante::find($id);
-        if($estudiante->correo == $request->correo){
+        if($estudiante->correo != $request->correo){
             $validate=$request->validate([
-                'nombre'=>'required|string|max:255',
-                'ap_Paterno'=>'required|string|max:255',
-                'ap_Materno'=>'required|string|max:255',
-                'rut'=>'cl_rut|unique:estudiante|required|string|max:20',
-                'matricula'=>'required|string|max:20',
-                'plan' => 'integer',
-                'estado_actual' => 'string|max:255',
-                'comuna' => 'string|max:255',
-                'region' => 'integer',
-                'nivel' => 'required|integer',
-                ]);
-        } else{
-            $validate=$request->validate([
-                'nombre'=>'required|string|max:255',
-                'ap_Paterno'=>'required|string|max:255',
-                'ap_Materno'=>'required|string|max:255',
-                'rut'=>'required|string|max:20',
-                'matricula'=>'required|string|max:20',
                 'correo'=>'required|string|unique:estudiante',
-                'plan' => 'integer',
-                'estado_actual' => 'string|max:255',
-                'comuna' => 'string|max:255',
-                'region' => 'integer',
-                'nivel' => 'required|integer',
+                ]);
+            }
+        if($estudiante->rut != $request->rut){
+            $validate=$request->validate([
+                'rut'=>'cl_rut|unique:estudiante|required|string|max:20',
                 ]);
         }
 
+        $validate=$request->validate([
+            'nombre'=>'required|string|max:255',
+            'ap_Paterno'=>'required|string|max:255',
+            'ap_Materno'=>'required|string|max:255',
+            'matricula'=>'required|string|max:25',
+            'sexo' => 'required|string|max:255',
+            'fech_nac' => 'required|date',
+            'plan' => 'integer',
+            'via_ingreso'=>'required|max:255',
+            'ano_ingreso' => 'integer|required',
+            'estado_actual' => 'required|string|max:255',
+            'comuna' => 'string|max:255',
+            'region' => 'integer',
+            'creditos' => 'integer',
+            'nivel' => 'integer',
+            'porc_avance' => 'integer',
+            'prioridad' => 'string',
+            'aprobados' => 'string',
+            'cursados' => 'string',
+            ]);
+        
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
-        $estudiante->rut=$request->get('rut');
+        $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
+        $estudiante->id_carrera=$request->get('carrera');
+        $estudiante->via_ingreso=$request->get('via_ingreso');
+        $estudiante->sexo=$request->get('sexo');
+        $estudiante->fech_nac=$request->get('fech_nac');
         $estudiante->plan=$request->get('plan');
+        $estudiante->año_ingreso=$request->get('ano_ingreso');
         $estudiante->estado_actual=$request->get('estado_actual');
         $estudiante->comuna=$request->get('comuna');
         $estudiante->region=$request->get('region');
+        $estudiante->creditos_aprobados=$request->get('creditos');
         $estudiante->nivel=$request->get('nivel');
+        $estudiante->porc_avance=$request->get('porc_avance');
+        $estudiante->ult_ptje_prioridad=$request->get('prioridad');
+        if($request->estado_actual=="Regular"){
+            $estudiante->regular="Si";
+        }else{
+            $estudiante->regular="No";
+        }
+        
+        $estudiante->prom_aprobadas=$request->get('aprobados');
+        $estudiante->prom_cursados=$request->get('cursados');
        
         $estudiante->save();
 
@@ -234,16 +254,38 @@ class EstudianteController extends Controller
 
     public function importExcel(Request $request, Carrera $carrera){
 
-
         $validate=$request->validate([
             'file' => 'required|mimes:xls,xlsx'
-            ]);
+        ]);
+        try{
+            $file =  $request->file('file');
+            Excel::import(new EstudianteImport($carrera->id), $file);
+            return redirect()->action('EstudianteController@index',$carrera)
+            ->with('success','Estudiantes ingresados con éxito'); 
+        }
+        catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+            $failures = $e->failures();
+            return redirect()->action('EstudianteController@index', $carrera)
+             ->with('error','El archivo no tiene el formato correcto o los datos ya han sido ingresados'); 
             
-        $file =  $request->file('file');
-        Excel::import(new EstudianteImport($carrera->id), $file);
-        return redirect()->action('EstudianteController@index',$carrera)
-        ->with('success','Estudiantes ingresados con éxito'); 
-        
+        }
+    }
+    public function exportarRangoFechas(Request $request){
+        $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
+        return $export->download('estudiantes.xlsx');   
     }
 
+    public function exportarTodo(Request $request){
+        $export = new TodoEstudianteExport($request);
+        return $export->download('estudiantesTodo.xlsx'); 
+    }
+
+    public function exportarUno(Request $request){
+        $validate=$request->validate([
+            'rut'=>'cl_rut|required|string|max:20',
+            ]);
+        $rut = Rut::parse($request->get('rut'))->fix()->format();
+        $export = new UnoEstudianteExport($rut);
+        return $export->download('estudiante.xlsx');
+    }
 }

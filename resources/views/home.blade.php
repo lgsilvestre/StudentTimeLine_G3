@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card margen-card custom-card">
             <!-- {{ Breadcrumbs::render('home') }}   -->   
-                <div class="card-header custom-recuperarSesion custom-header">Carreras
+                <div class="card-header custom-recuperarSesion custom-header ">Carreras
                 @role('admin')
                     <a href="#"  data-toggle="modal" data-target="#modal_crear"
                         class="btn btn-sm btn-secondary float-right" > 
@@ -17,9 +17,9 @@
                 </div>
                         
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row justify-content-center">
                                 @foreach($carreras as $carrera)
-                                <div class="col-sm-4">
+                                <div class="col-md-5ths col-xs-6">
                                     <div class="card shadow p-3 " style="margin-bottom: 10px; border-radius: 25px; background-color: #474747" >
                                         <img class="card-img-top" src="../images/{{$carrera->imagen}}" alt="No image">
                                         @role('secretaria')
