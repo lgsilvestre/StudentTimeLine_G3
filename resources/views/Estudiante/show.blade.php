@@ -10,8 +10,14 @@
                 <div class="card-body " >
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class= "custom-foto float-center"></div> 
-                                <div class="form-group" >
+                                <div class= "float-center">
+                                    @if($estudiante->sexo == 'f')
+                                        <img class="imagen custom-fotoalumno" src="../images/alumna.png" alt="">
+                                    @else
+                                        <img class="imagen custom-fotoalumno" src="../images/alumno.png" alt="">
+                                    @endif
+                                </div>
+                                <div class="form-group">
 
                                     <table class="table table-striped table-bordered table-striped shadow p-3 mb-4">
                                         <tbody>
@@ -463,7 +469,7 @@
 
                     <div class="form-group row">
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             
                             <label for="inputFirstname">Matrícula</label>
                             <label style="color:red"> (*) </label> 
@@ -473,7 +479,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-2">
                             <label for="inputContactNumber">Año ingreso</label>
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
@@ -481,26 +487,41 @@
                                 <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso" value="{{$estudiante->año_ingreso}}" required>
                             </div>
                         </div>
-
                         <div class="col-sm-4">
-                            <label for="inputContactNumber">Via ingreso</label>
-                            <label style="color:red"> (*) </label> 
+                        <label for="inputCarrera">Carrera</label>
+                        <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
-                                <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <select class="form-control" id="via_ingreso" name="via_ingreso">
-                                        <option>Via PSU</option>
-                                        <option>Alumnos Talentosos</option>
-                                        <option>PACE</option>
-                                        <option>Beca extranjero</option>
-                                    </select>
+                            <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
+                            <select class="form-control" id="carrera" name="carrera">
+                                @foreach($carreras as $carrera)
+                                    @if($estudiante->id_carrera==$carrera->id)
+                                        <option value="{{$carrera->id}}" selected>{{$carrera->nombre}}</option>
+                                    @else
+                                        <option value="{{$carrera->id}}">{{$carrera->nombre}}</option>
+                                    @endif
+                                @endforeach
+                                </select>
                             </div>
                         </div>
+                        <div class="col-sm-3">
+                                <label for="inputContactNumber">Via ingreso</label>
+                                <label style="color:red"> (*) </label> 
+                                <div class="form-group icono-input">
+                                    <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
+                                        <select class="form-control" id="via_ingreso" name="via_ingreso">
+                                            <option>Via PSU</option>
+                                            <option>Alumnos Talentosos</option>
+                                            <option>PACE</option>
+                                            <option>Beca extranjero</option>
+                                        </select>
+                                </div>
+                            </div>
 
                     </div>
 
                     <div class="form-group row">
-
-                        <div class="col-sm-4">
+                        
+                        <div class="col-sm-3">
                                 <label for="inputCity">Situación Academica</label>
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
@@ -511,7 +532,7 @@
                                     </select>
                                 </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <label for="inputWebsite">Nivel</label>
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
@@ -580,8 +601,6 @@
             </div>
             <br></br>
            </div>
-           
-            
          </div>
             <div class="progress mt-3">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Paso 1 de 2</div>
@@ -781,6 +800,29 @@
         $('#id_eliminar_observacion').val(id);
         $('#modal_eliminarObservacion').modal('show');
     }
+</script>
+
+<script>
+    $('#infoContinue').click(function (e) {
+    e.preventDefault();
+    $('.progress-bar').css('width', '100%');
+    $('.progress-bar').html('Paso 2 de 2');
+    $('#myTab a[href="#ads"]').tab('show');
+  });
+
+  $('#scheduleContinue').click(function (e) {
+    e.preventDefault();
+    $('.progress-bar').css('width', '100%');
+    $('.progress-bar').html('Paso 2 of 2');
+    $('#myTab a[href="#ads"]').tab('show');
+  });
+
+  $('#adsBack').click(function (e) {
+    e.preventDefault();
+    $('.progress-bar').css('width', '50%');
+    $('.progress-bar').html('Paso 1 de 2');
+    $('#myTab a[href="#infoPanel"]').tab('show');
+  });
 </script>
 
 @endsection
