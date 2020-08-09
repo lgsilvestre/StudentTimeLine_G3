@@ -190,8 +190,16 @@
     height: 150px;
     margin-bottom: 40px;
     margin-left:85px;
-    border-color: red;
-    background: url('../images/def.jpg');    
+    border-color: red;  
+    border-radius: 100%;
+}
+
+.custom-fotoalumno{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 40px;
+    margin-left:85px;
+    border-color: red;  
     border-radius: 100%;
 }
 

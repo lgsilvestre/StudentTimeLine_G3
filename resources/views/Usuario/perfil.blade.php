@@ -9,14 +9,16 @@
                 <div class="card-body"> 
                     <div class="row">
                         <div class= "custom-foto float-center">
-                            <img  class="imagen" src="../images/{{$user->imagen}}" alt="">
-                            @if($user->imagen != NULL)
-                                <button class="float-right btn btn-lg" style="margin-top:-15px"  data-toggle="modal" data-target="#modal_elminarfoto"><i class="fas fa-times-circle"></i></button>
+                            @if($user->imagen == NULL)
+                                <img class="imagen" src="../images/def.jpg" alt="">
+                            @else
+                                <img class="imagen" src="../images/{{$user->imagen}}" alt="">
+                                <button class="float-right btn btn-lg" style="margin-top:-20px;margin-right:-10px"  data-toggle="modal" data-target="#modal_elminarfoto"><i class="fas fa-times-circle"></i></button>
                             @endif
                         </div> 
                     </div>
                     <div clas="row">
-                            <button type="button" style="margin-left:60px" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#modalProfile">
+                            <button type="button" style="margin-top:-25px;margin-left:60px" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#modalProfile">
                                 Cambiar foto de perfil
                             </button>
                             

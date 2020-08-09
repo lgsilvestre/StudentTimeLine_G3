@@ -10,8 +10,14 @@
                 <div class="card-body " >
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class= "custom-foto float-center"></div> 
-                                <div class="form-group" >
+                                <div class= "float-center">
+                                    @if($estudiante->sexo == 'f')
+                                        <img class="imagen custom-fotoalumno" src="../images/alumna.png" alt="">
+                                    @else
+                                        <img class="imagen custom-fotoalumno" src="../images/alumno.png" alt="">
+                                    @endif
+                                </div>
+                                <div class="form-group">
 
                                     <table class="table table-striped table-bordered table-striped shadow p-3 mb-4">
                                         <tbody>
