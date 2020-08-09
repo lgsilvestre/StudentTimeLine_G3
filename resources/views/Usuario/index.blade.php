@@ -6,7 +6,7 @@
 <div class="container">
 
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card margen-card custom-card" >
                 <div class="card-header shadow-sm custom-recuperarSesion" style="background-color:#577590; color:white">Usuarios
                 </div>
@@ -17,12 +17,16 @@
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
-                                <th >Nombre</th>
-                                <th >Email</th>
-                               
-                                <th >Rol asignado</th>
+                                <th>Nombre
+                                    <a class="" style="margin-left:100px"></a>
+                                </th>
+                                <th>Email
+                                    <a class="" style="margin-left:200px"></a>
+                                </th>
+                                   
+                                <th>Rol asignado</th>
                                 <th colspan="3px"> <a href=""  data-toggle="modal" data-target="#modal_crear"
-                                        class="btn btn-sm btn-secondary float-center" style="background-color: #2a9d8f"> 
+                                        class="btn btn-sm btn-secondary float-center" style="margin-left:250px;background-color: #2a9d8f"> 
                                         <i class="fas fa-plus"></i> Crear Usuario </a>&nbsp;</th>
                                 
                             </tr>
@@ -82,7 +86,7 @@
                 {data: 'nombre'},
                 {data: 'email'},
                 {data: 'name'},
-                {defaultContent: "<div class='text-center'><div clas='btn-group'><button class='btn btn-info btnEditar btn-custom btn-sm btnEditar' onClick='borrarCarreras();' ><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar' style='margin-left:5px'><i class='fas fa-user-minus'></i> Inhabilitar</button></div></div>"}
+                {defaultContent: "<div class='text-center' style='margin-left:250px'><div clas='btn-group'><button class='btn btn-info btnEditar btn-custom btn-sm btnEditar' onClick='borrarCarreras();' ><i class='fas fa-pencil-alt'></i> Editar</button><button class='btn btn-warning btn-sm btnEliminar' style='margin-left:5px'><i class='fas fa-user-minus'></i> Inhabilitar</button></div></div>"}
             ],
             
             

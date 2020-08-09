@@ -25,7 +25,7 @@ class Modulo_carreraController extends Controller
             return datatables()->of($modulos)->toJson();
         }
         $carreras = Carrera::all();
-        return view('modulo.index',compact('carreras'));
+        return view('Modulo.index',compact('carreras'));
     }
 
     /**
@@ -36,7 +36,7 @@ class Modulo_carreraController extends Controller
     public function create()
     {
         $carreras = Carrera::all();
-        return view('modulo.create',compact('carreras'));
+    //    return view('modulo.create',compact('carreras'));
     }
 
     /**
@@ -83,7 +83,7 @@ class Modulo_carreraController extends Controller
     public function edit($id)
     {
         $modulo = Modulo::find($id);
-        return view ('modulo.edit', compact('modulo'));
+    //    return view ('modulo.edit', compact('modulo'));
     }
 
     /**
