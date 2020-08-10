@@ -41,7 +41,7 @@
                                     </table>
                                     <div style="margin-right:auto">
                                         @can('estudiante.add')
-                                            <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar_wizard">
+                                            <button type="button" class="btn btn-sm btn-info" onClick="validar();" data-toggle="modal" data-target="#modal_editar_wizard">
                                             <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
                                             </button>
                                         @endcan
@@ -338,7 +338,7 @@
             <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab" id="adsBack">Datos personales</a>
           <li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
+            <a class="nav-link disabled" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
           <li>
         </ul>
 
@@ -356,7 +356,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="nombre_wizard" name="nombre" value="{{$estudiante->nombre}}" required>
+                                        <input type="text" class="form-control" id="nombre_wizard" oninput="validar();" name="nombre" value="{{$estudiante->nombre}}" required>
                                     </div>
                         </div>
 
@@ -365,7 +365,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Paterno_wizard" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
+                                        <input type="text" class="form-control" id="ap_Paterno_wizard" oninput="validar();" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
                                     </div>
                         
                         </div>
@@ -375,7 +375,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Materno_wizard" name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
+                                        <input type="text" class="form-control" id="ap_Materno_wizard" oninput="validar();"  name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
                                     </div>
                         
                         </div>
@@ -390,7 +390,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="rutificador_wizard"name="rut" value="{{$estudiante->rut}}" required>
+                                <input type="text" class="form-control" id="rutificador_wizard" oninput="validar();" name="rut" value="{{$estudiante->rut}}" required>
                             </div>
                         </div>
                         <div class="col-sm-4 ">
@@ -410,7 +410,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="date" class="form-control" id="fech_nac_wizard" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
+                                    <input type="date" class="form-control" oninput="validar();" id="fech_nac_wizard" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
                                 </div>
                         </div>
 
@@ -425,7 +425,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="correo_wizard" name="correo" value="{{$estudiante->correo}}" required>
+                                    <input type="text" class="form-control" oninput="validar();" id="correo_wizard" name="correo" value="{{$estudiante->correo}}" required>
                                 </div>
                         </div>
 
@@ -817,8 +817,7 @@
   });
 
 
-  $('#scheduleContinue').click(function (e) {
-    console.log("jejej");  
+  $('#scheduleContinue').click(function (e) { 
     var nombre = $("input#nombre_wizard").val().length;
     var ap_paterno = $("input#ap_Paterno_wizard").val().length;
     var ap_materno = $("input#ap_Materno_wizard").val().length;
@@ -833,7 +832,21 @@
         $('#myTab a[href="#ads"]').tab('show');
     }  
   });
-
+  function validar(){
+    var nombre = $("input#nombre_wizard").val().length;
+    var ap_paterno = $("input#ap_Paterno_wizard").val().length;
+    var ap_materno = $("input#ap_Materno_wizard").val().length;
+    var fecha = $("input#fech_nac_wizard").val().length;
+    var correo = $("input#correo_wizard").val().length;
+    var rut = $("#rutificador_wizard").val().length;  
+            console.log("hola");
+            if (nombre != 0 && ap_paterno != 0 && ap_materno != 0 && correo != 0 && fecha != 0 && rut != 0) {
+                $( "#infoContinue" ).removeClass('disabled');
+               
+            }  else{
+                $( "#infoContinue" ).addClass('disabled');
+            }
+};
 
 
 </script>
