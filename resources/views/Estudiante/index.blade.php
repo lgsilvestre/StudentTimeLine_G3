@@ -53,6 +53,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"defer></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script>
     
     $(document).ready(function() {
@@ -269,15 +270,12 @@
           <li>
             
         </ul>
-        
-        
-
-
+   
         <form action="{{ route('estudiante.store',$carrera->id) }}" method="post">
             @csrf
         <div class="tab-content mt-2">
           <div class="tab-pane fade show active" id="infoPanel" role="tabpanel"  href="#infoPanel">
-            <div class="form-group"> 
+            <div class="form-group" id="panel_1"> 
             
                 <div class="col-xl-12 mx-auto">
                     <div class="form-group row">
@@ -286,7 +284,12 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Juan Andres" >
+                                        <input type="text" class="form-control  @error('email') is-required @enderror " id="nombre" name="nombre" required placeholder="Juan Andres" >
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                         </div>
 
@@ -389,7 +392,7 @@
                 <br></br>
             </div>
             
-          </div>
+        </div>
 
 
           <div class="tab-pane fade" id="ads" role="tabpanel"  href="#ads">
@@ -510,7 +513,7 @@
             <label style="color:red">(*)</label>
             <label>Campos obligatorios</label>
             <div class="float-right">
-                <button  class="btn btn-secondary"  >Guardar</button>
+                <button id="validar"  class="btn btn-secondary"  >Guardar</button>
                 <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                 </form>
             </div>
@@ -539,7 +542,8 @@
 </script>
 
 <script>
-    $(function () {
+
+$(function () {
   $('#modalToggle').click(function() {
     $('#modal').modal({
       backdrop: 'static'
@@ -559,11 +563,31 @@
     $('.progress-bar').html('Paso 1 de 2');
     $('#myTab a[href="#infoPanel"]').tab('show');
   });
+
   $('#scheduleContinue').click(function (e) {
     e.preventDefault();
     $('.progress-bar').css('width', '100%');
     $('.progress-bar').html('Paso 2 of 2');
     $('#myTab a[href="#ads"]').tab('show');
+
+  });
+
+  $('#validar').click(function (e) {
+
+    var nombre = $("input#nombre").val().length;
+    var ap_paterno = $("input#ap_Paterno").val().length;
+    var ap_materno = $("input#ap_Materno").val().length;
+    var fecha = $("input#fech_nac").val().length;
+    var correo = $("input#correo").val().length;
+    /*var rut = $("#rut").val();  
+    console.log(rut);*/      
+
+    if (nombre == 0 || ap_paterno == 0 || ap_materno == 0 || correo == 0 || fecha == 0) {
+        e.preventDefault();
+        $('.progress-bar').css('width', '50%');
+        $('.progress-bar').html('Paso 1 de 2');
+        $('#myTab a[href="#infoPanel"]').tab('show');
+    }
   });
 
   $('#activate').click(function (e) {
@@ -587,9 +611,6 @@
     alert(JSON.stringify(formData));
   })
 })
-
-
-
 
 </script> 
 
