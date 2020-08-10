@@ -323,7 +323,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1" required>
+                                <input type="text" class="form-control" id="rutificador"name="rut" placeholder="14823887-1" required>
                             </div>
                         </div>
                         <div class="col-sm-4 ">
@@ -513,7 +513,7 @@
             <label style="color:red">(*)</label>
             <label>Campos obligatorios</label>
             <div class="float-right">
-                <button id="validar"  class="btn btn-secondary"  >Guardar</button>
+                <button class="btn btn-secondary"  >Guardar</button>
                 <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                 </form>
             </div>
@@ -557,7 +557,7 @@ $(function () {
     $('#myTab a[href="#ads"]').tab('show');
   });
 
-  $('#adsBack').click(function (e) {
+   $('#adsBack').click(function (e) {
     e.preventDefault();
     $('.progress-bar').css('width', '50%');
     $('.progress-bar').html('Paso 1 de 2');
@@ -565,30 +565,20 @@ $(function () {
   });
 
   $('#scheduleContinue').click(function (e) {
-    e.preventDefault();
-    $('.progress-bar').css('width', '100%');
-    $('.progress-bar').html('Paso 2 of 2');
-    $('#myTab a[href="#ads"]').tab('show');
-
-  });
-
-  $('#validar').click(function (e) {
-
     var nombre = $("input#nombre").val().length;
     var ap_paterno = $("input#ap_Paterno").val().length;
     var ap_materno = $("input#ap_Materno").val().length;
     var fecha = $("input#fech_nac").val().length;
     var correo = $("input#correo").val().length;
-    /*var rut = $("#rut").val();  
-    console.log(rut);*/      
-
-    if (nombre == 0 || ap_paterno == 0 || ap_materno == 0 || correo == 0 || fecha == 0) {
+    var rut = $("#rutificador").val().length;  
+    if (nombre != 0 && ap_paterno != 0 && ap_materno != 0 && correo != 0 && fecha != 0 && rut != 0) {
         e.preventDefault();
-        $('.progress-bar').css('width', '50%');
-        $('.progress-bar').html('Paso 1 de 2');
-        $('#myTab a[href="#infoPanel"]').tab('show');
-    }
+        $('.progress-bar').css('width', '100%');
+        $('.progress-bar').html('Paso 2 of 2');
+        $('#myTab a[href="#ads"]').tab('show');
+    }  
   });
+
 
   $('#activate').click(function (e) {
     e.preventDefault();
