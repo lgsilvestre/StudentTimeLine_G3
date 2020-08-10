@@ -356,7 +356,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$estudiante->nombre}}" required>
+                                        <input type="text" class="form-control" id="nombre_wizard" name="nombre" value="{{$estudiante->nombre}}" required>
                                     </div>
                         </div>
 
@@ -365,7 +365,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
+                                        <input type="text" class="form-control" id="ap_Paterno_wizard" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
                                     </div>
                         
                         </div>
@@ -375,7 +375,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
+                                        <input type="text" class="form-control" id="ap_Materno_wizard" name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
                                     </div>
                         
                         </div>
@@ -390,7 +390,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}" required>
+                                <input type="text" class="form-control" id="rutificador_wizard"name="rut" value="{{$estudiante->rut}}" required>
                             </div>
                         </div>
                         <div class="col-sm-4 ">
@@ -398,7 +398,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-venus-mars fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <select class="form-control" id="sexo" name="sexo" > 
+                                    <select class="form-control" id="sexo" name="sexo" required> 
                                         <option>Masculino</option>
                                         <option>Femenino</option>
                                         <option>Otro</option>
@@ -410,7 +410,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
+                                    <input type="date" class="form-control" id="fech_nac_wizard" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
                                 </div>
                         </div>
 
@@ -425,7 +425,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="correo" name="correo" value="{{$estudiante->correo}}" required>
+                                    <input type="text" class="form-control" id="correo_wizard" name="correo" value="{{$estudiante->correo}}" required>
                                 </div>
                         </div>
 
@@ -444,8 +444,6 @@
                                 <input type="text" class="form-control" id="comuna" name="comuna" value="{{$estudiante->comuna}}">
                             </div>
                         </div>
-
-                    
 
                     </div>
 
@@ -475,7 +473,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="matricula" name="matricula" value="{{$estudiante->matricula}}" required>
+                                <input type="text" class="form-control" id="matricula_wizard" name="matricula" value="{{$estudiante->matricula}}" required>
                             </div>
                         </div>
 
@@ -484,7 +482,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso" value="{{$estudiante->año_ingreso}}" required>
+                                <input type="number" class="form-control" min="1981" id="ano_ingreso_wizard" name="ano_ingreso" value="{{$estudiante->año_ingreso}}" required>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -492,7 +490,7 @@
                         <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                             <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <select class="form-control" id="carrera" name="carrera">
+                            <select class="form-control" id="carrera_wizard" name="carrera">
                                 @foreach($carreras as $carrera)
                                     @if($estudiante->id_carrera==$carrera->id)
                                         <option value="{{$carrera->id}}" selected>{{$carrera->nombre}}</option>
@@ -508,7 +506,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <select class="form-control" id="via_ingreso" name="via_ingreso">
+                                        <select class="form-control" id="via_ingreso_wizard" name="via_ingreso">
                                             <option>Via PSU</option>
                                             <option>Alumnos Talentosos</option>
                                             <option>PACE</option>
@@ -526,7 +524,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <select class="form-control" id="estado_actual" name="estado_actual">
+                                    <select class="form-control" id="estado_actual_wizard" name="estado_actual">
                                         <option>Regular</option>
                                         <option>No regular</option>
                                     </select>
@@ -640,7 +638,7 @@
   </div>
 </div>
 
-<!--Modal editar datos estudiantes version 2-->
+<!--Modal editar datos estudiantes version 2
 <div class="modal fade " id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -773,6 +771,7 @@
     </div>
   </div>
 </div>
+-->
 
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
 
@@ -810,19 +809,33 @@
     $('#myTab a[href="#ads"]').tab('show');
   });
 
-  $('#scheduleContinue').click(function (e) {
-    e.preventDefault();
-    $('.progress-bar').css('width', '100%');
-    $('.progress-bar').html('Paso 2 of 2');
-    $('#myTab a[href="#ads"]').tab('show');
-  });
-
   $('#adsBack').click(function (e) {
     e.preventDefault();
     $('.progress-bar').css('width', '50%');
     $('.progress-bar').html('Paso 1 de 2');
     $('#myTab a[href="#infoPanel"]').tab('show');
   });
+
+
+  $('#scheduleContinue').click(function (e) {
+    console.log("jejej");  
+    var nombre = $("input#nombre_wizard").val().length;
+    var ap_paterno = $("input#ap_Paterno_wizard").val().length;
+    var ap_materno = $("input#ap_Materno_wizard").val().length;
+    var fecha = $("input#fech_nac_wizard").val().length;
+    var correo = $("input#correo_wizard").val().length;
+    var rut = $("#rutificador_wizard").val().length;  
+    
+    if (nombre != 0 && ap_paterno != 0 && ap_materno != 0 && correo != 0 && fecha != 0 && rut != 0) {
+        e.preventDefault();
+        $('.progress-bar').css('width', '100%');
+        $('.progress-bar').html('Paso 2 de 2');
+        $('#myTab a[href="#ads"]').tab('show');
+    }  
+  });
+
+
+
 </script>
 
 @endsection
