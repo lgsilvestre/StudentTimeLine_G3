@@ -48,7 +48,7 @@ class EstudianteController extends Controller
     public function create()
     {
         $carreras=Carrera::all();
-        return view('estudiante.create',compact('carreras'));
+    //    return view('estudiante.create',compact('carreras'));
     }
 
     /**
@@ -147,7 +147,7 @@ class EstudianteController extends Controller
 
         $categorias = Categoria::all();
 
-        return view('estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
+        return view('Estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
                                                 'observaciones', 'detalle_observacion','carreras'));
     }
 
@@ -160,7 +160,7 @@ class EstudianteController extends Controller
     public function edit($id)
     {
         $estudiante = Estudiante::find($id);
-        return view('estudiante.edit',compact('estudiante'));
+     //   return view('estudiante.edit',compact('estudiante'));
     }
 
     /**

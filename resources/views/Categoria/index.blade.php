@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card margen-card custom-card">
                                   
 
@@ -14,11 +14,13 @@
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
                                     <th>id</th>
-                                    <th >Nombre Categoría</th>
+                                    <th >Nombre Categoría
+                                      <a class="" style="margin-left:420px"></a>
+                                    </th>
                                     <th >
                                         @role('admin')
                                             <a href="#"  data-toggle="modal" data-target="#modal_crear"
-                                            class="btn btn-sm btn-secondary float-left" > 
+                                            class="btn btn-sm btn-secondary float-left" style="margin-left:15px"> 
                                             <i class="fas fa-plus"></i> Crear Categoría
                                         @endrole
                                     </a></th>
