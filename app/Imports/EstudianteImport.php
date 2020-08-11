@@ -25,7 +25,8 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
     public function model(array $row)
     {
         $nombre = explode(' ',$row['nbe_alumno']);
-
+        $UNIX_DATE = ($row['fecha_nac'] - 25569) * 86400; //Dando formato a la columna fecha.
+        
         return new Estudiante([
             'nombre'                        => $nombre[2].' '.$nombre[3],
             'ap_Paterno'                    => $nombre[0],
@@ -35,7 +36,7 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
             'correo'                        => $row['correo'],
             'id_carrera'                    => $this->id_carrera,
             'sexo'                          => $row['sexo'],
-            'fech_nac'                      => $row['fecha_nac'],
+            'fech_nac'                      => gmdate("Y-m-d", $UNIX_DATE),
             'plan'                          => $row['plan'],
             'año_ingreso'                   => $row['anho_ingreso'],
             'estado_actual'                 => $row['sit_actual'],
@@ -72,14 +73,13 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
                 '*.plan' =>['required'],
                 '*.comuna' =>['required'],
                 '*.region' => ['required'],
-                '*.creditos_aprobados' => ['required'],
+                '*.cred_aprobados' => ['required'],
                 '*.nivel' => ['required'],
                 '*.porc_avance' => ['required'],
                 '*.ult_ptje_prioridad' => ['required'],
                 '*.regular' => ['required'],
                 '*.prom_aprobadas' => ['required'],
-                '*.prom_cursados' => ['required'],
-                '*.num_observaciones' => ['required'] 
+                '*.prom_cursadas' => ['required'],
             ];
         }
 
