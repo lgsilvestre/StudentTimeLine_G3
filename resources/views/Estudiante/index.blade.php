@@ -249,7 +249,7 @@
 
 <!-- MODAL PARA CREAR ESTUDIANTE CON WIZARD -->
 <div id="modal-wizard" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
 
       <div class="modal-header custom-header custom-color">

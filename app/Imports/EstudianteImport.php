@@ -26,12 +26,18 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
     {
         $nombre = explode(' ',$row['nbe_alumno']);
         $UNIX_DATE = ($row['fecha_nac'] - 25569) * 86400; //Dando formato a la columna fecha.
-        
+        $rut = Rut::parse($row['run'])->fix()->format();//dando formato al rut, para que queden todos iguales.
+        $sit_actual_min = strtolower($row['sit_actual']);
+        if($sit_actual_min=="regular"){
+            $sit_actual_min="Regular";
+        }else{
+            $sit_actual_min="No regular";
+        }
         return new Estudiante([
             'nombre'                        => $nombre[2].' '.$nombre[3],
             'ap_Paterno'                    => $nombre[0],
             'ap_Materno'                    => $nombre[1],
-            'rut'                           => $row['run'],
+            'rut'                           => $rut,
             'matricula'                     => $row['matricula'],
             'correo'                        => $row['correo'],
             'id_carrera'                    => $this->id_carrera,
@@ -39,7 +45,7 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
             'fech_nac'                      => gmdate("Y-m-d", $UNIX_DATE),
             'plan'                          => $row['plan'],
             'año_ingreso'                   => $row['anho_ingreso'],
-            'estado_actual'                 => $row['sit_actual'],
+            'estado_actual'                 => $sit_actual_min,
             'comuna'                        => $row['comuna'],
             'region'                        => $row['region'],
             'creditos_aprobados'            => $row['cred_aprobados'],
@@ -58,7 +64,9 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
     {
         return 6;
     }
-
+    /**
+     * Funcion para validar los datos que se ingresan en el excel.
+     */
     public function rules(): array
         {
             return [
