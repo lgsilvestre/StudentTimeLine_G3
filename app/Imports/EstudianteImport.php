@@ -4,17 +4,20 @@ namespace App\Imports;
 
 use App\Estudiante;
 use Maatwebsite\Excel\Concerns\ToModel; 
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Rut;
+use App\Carrera;
 
 class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
 {
 
     private $id_carrera;
-
+    private $carrera;
     public function __construct($id_carrera){
         $this->id_carrera = $id_carrera;
+        $carrera = Carrera::find($this->id_carrera);
     }
 
     /**
@@ -24,6 +27,7 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
     */
     public function model(array $row)
     {
+        
         $nombre = explode(' ',$row['nbe_alumno']);
         $UNIX_DATE = ($row['fecha_nac'] - 25569) * 86400; //Dando formato a la columna fecha.
         $rut = Rut::parse($row['run'])->fix()->format();//dando formato al rut, para que queden todos iguales.
@@ -69,7 +73,10 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
      */
     public function rules(): array
         {
+            $carrera = Carrera::find($this->id_carrera);
             return [
+                '*cod_carrera' => [Rule::in($carrera->codigo_carrera)],
+                '*.cod_carrera' => ['required'],
                 '*.matricula' => ['required','unique:estudiante,matricula'],
                 '*.nbe_alumno' =>['required'],
                 '*.sexo' =>['required'],
@@ -90,5 +97,14 @@ class EstudianteImport implements ToModel, WithHeadingRow, WithValidation
                 '*.prom_cursadas' => ['required'],
             ];
         }
+    /**
+     * @return array
+     */
+    public function customValidationMessages()
+    {
+        return [
+            '*cod_carrera.in' => 'Existen estudiantes con codigos de otra carrera.',
+        ];
+    }
 
 }

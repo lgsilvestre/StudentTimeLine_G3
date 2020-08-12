@@ -55,44 +55,45 @@
         </button>
       </div>
       <form action="{{ route('carrera.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
+      @csrf
+      <div class="modal-body">
 
-        <div class="form-group row">
-            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Carrera') }}</label>
-                
-            <div class="col-md-6 inputWithIcon">
-                <input id="nombre" type="text" class="custom-ajusteTextoImagen form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
-                @error('nombre')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div> 
-        
-        <div class="form-group row">
-            <label for="codigo_carrera" class="col-md-4 col-form-label text-md-right">{{ __('Codigo Carrera') }}</label>
-                
-            <div class="col-md-6 inputWithIcon">
-                <input id="codigo_carrera" type="text" class="custom-ajusteTextoImagen form-control @error('codigo_carrera') is-invalid @enderror" name="codigo_carrera"  required autocomplete="codigo_carrera" autofocus>
-                <i class="fa fa-hashtag fa-lg" aria-hidden="true"></i>
-                @error('codigo_carrera')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
-        </div>  
-
-        <div class="form-group row">
-            <label for="foto" class="col-md-4 col-form-label text-md-right fileinput">{{ __('Imagen Carrera') }}</label>
-            <div class="col-md-6 custom-file">
-                <input id="foto" type="file" class="custom-file-input" name="foto" >
-                <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Seleccionar archivo</label>
+            <div class="form-group row">
+                <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Carrera') }}</label>
+                    
+                <div class="col-md-6 inputWithIcon">
+                    <input id="nombre" type="text" class="custom-ajusteTextoImagen form-control @error('nombre') is-invalid @enderror" name="nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <i class="fa fa-pencil fa-lg" aria-hidden="true"></i>
+                    @error('nombre')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div> 
+            
+            <div class="form-group row">
+                <label for="codigo_carrera" class="col-md-4 col-form-label text-md-right">{{ __('Codigo Carrera') }}</label>
+                    
+                <div class="col-md-6 inputWithIcon">
+                    <input id="codigo_carrera" type="text" class="custom-ajusteTextoImagen form-control @error('codigo_carrera') is-invalid @enderror" name="codigo_carrera"  required autocomplete="codigo_carrera" autofocus>
+                    <i class="fa fa-hashtag fa-lg" aria-hidden="true"></i>
+                    @error('codigo_carrera')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
             </div>  
-        </div>
 
+            <div class="form-group row">
+                <label for="foto" class="col-md-4 col-form-label text-md-right fileinput">{{ __('Imagen Carrera') }}</label>
+                <div class="col-md-6 custom-file">
+                    <input id="foto" type="file" class="custom-file-input" name="foto" >
+                    <label class="custom-file-label text-truncate" data-browse="Elegir" for="customFile">Seleccionar archivo</label>
+                </div>  
+            </div>
+        </div>
         <div class="modal-footer">  
                 <button class="btn btn-secondary  btn-sm">Confirmar</button>
         </form>
