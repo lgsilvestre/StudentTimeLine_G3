@@ -29,7 +29,10 @@
     
     
     <tr>
-        <td>{{$estudiante->id_carrera}}</td>
+        @php
+              $carrera = App\Carrera::find($estudiante->id_carrera);
+        @endphp
+        <td>{{$carrera->codigo_carrera}}</td>
         <td>{{$estudiante->matricula}}</td>
         <td>{{$estudiante->rut}}</td>
         <td>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>

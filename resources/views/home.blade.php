@@ -54,10 +54,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="{{ route('carrera.store') }}" method="post" enctype="multipart/form-data">
+      @csrf
       <div class="modal-body">
-        <form action="{{ route('carrera.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
-        
+
             <div class="form-group row">
                 <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre Carrera') }}</label>
                     
