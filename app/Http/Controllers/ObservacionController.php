@@ -22,7 +22,7 @@ class ObservacionController extends Controller
     public function index()
     {
         $observaciones=Observacion::all();
-        return view('estudiante.show',compact('observaciones'));
+        return view('Estudiante.show',compact('observaciones'));
     }
 
     /**
@@ -35,7 +35,7 @@ class ObservacionController extends Controller
         $categorias=Categoria::all();
         $carrera=Carrera::find($request->get('id'));
         $modulos=$carrera->modulos();
-        return view ('observacion.create', compact('modulos', 'categorias'));
+        return view ('Observacion.create', compact('modulos', 'categorias'));
 
     }
 

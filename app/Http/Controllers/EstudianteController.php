@@ -48,7 +48,7 @@ class EstudianteController extends Controller
     public function create()
     {
         $carreras=Carrera::all();
-        return view('estudiante.create',compact('carreras'));
+    //    return view('estudiante.create',compact('carreras'));
     }
 
     /**
@@ -60,28 +60,66 @@ class EstudianteController extends Controller
     public function store(Request $request,Carrera $carrera)
     {
          
-        $validate=$request->validate([
-            'nombre'=>'required|string|max:255',
-            'ap_Paterno'=>'required|string|max:255',
-            'ap_Materno'=>'required|string|max:255',
-            'rut'=>'required|unique:estudiante|cl_rut',
-            'matricula'=>'required|string|max:25',
-            'correo'=>'required|string|unique:estudiante',
-            'sexo' => 'required|string|max:255',
-            'fech_nac' => 'required|date',
-            'plan' => 'integer',
-            'via_ingreso'=>'required|max:255',
-            'ano_ingreso' => 'integer|required',
-            'estado_actual' => 'required|string|max:255',
-            'comuna' => 'string|max:255',
-            'region' => 'integer',
-            'creditos' => 'integer',
-            'nivel' => 'integer',
-            'porc_avance' => 'integer',
-            'prioridad' => 'string',
-            'aprobados' => 'string',
-            'cursados' => 'string',
-            ]);
+            $validate=$request->validate([
+                'nombre'=>'required|string|max:255',
+                'ap_Paterno'=>'required|string|max:255',
+                'ap_Materno'=>'required|string|max:255',
+                'matricula'=>'required|string|max:25',
+                'rut'=>'required|unique:estudiante|cl_rut',
+                'correo'=>'required|string|unique:estudiante',
+                'sexo' => 'required|string|max:255',
+                'fech_nac' => 'required|date',
+                'via_ingreso'=>'required|max:255',
+                'ano_ingreso' => 'integer|required',
+                'estado_actual' => 'required|string|max:255',
+                ]);
+            if($request->get('plan')!=''){
+                $validate=$request->validate([
+                        'plan' => 'integer',
+                    ]);
+            }
+            if($request->get('comuna')!=''){
+                
+                $validate=$request->validate([
+                        'comuna' => 'string|max:255',
+                    ]);
+            }
+            if($request->get('region')!=''){
+                $validate=$request->validate([
+                        'region' => 'integer',
+                    ]);
+            }
+            if($request->get('creditos')!=''){
+                $validate=$request->validate([
+                        'creditos' => 'integer',
+                    ]);
+            }
+            if($request->get('nivel')!=''){
+                $validate=$request->validate([
+                        'nivel' => 'integer',
+                    ]);
+            }
+            if($request->get('porc_avance')!=''){
+                $validate=$request->validate([
+                        'porc_avance' => 'integer',
+                    ]);
+            }
+            if($request->get('prioridad')!=''){
+                $validate=$request->validate([
+                        'prioridad' => 'string',
+                    ]);
+            }
+            if($request->get('aprobados')!=''){
+                $validate=$request->validate([
+                        'aprobados' => 'string',
+                    ]);
+            }
+            if($request->get('cursados')!=''){
+                $validate=$request->validate([
+                        'cursados' => 'string',
+                    ]);
+            }
+            
         
         $estudiante=new Estudiante();
         $estudiante->nombre=$request->get('nombre');
@@ -147,7 +185,7 @@ class EstudianteController extends Controller
 
         $categorias = Categoria::all();
 
-        return view('estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
+        return view('Estudiante.show', compact('estudiante','categorias','usuario','now','modulos', 
                                                 'observaciones', 'detalle_observacion','carreras'));
     }
 
@@ -160,7 +198,7 @@ class EstudianteController extends Controller
     public function edit($id)
     {
         $estudiante = Estudiante::find($id);
-        return view('estudiante.edit',compact('estudiante'));
+     //   return view('estudiante.edit',compact('estudiante'));
     }
 
     /**
@@ -177,7 +215,7 @@ class EstudianteController extends Controller
             $validate=$request->validate([
                 'correo'=>'required|string|unique:estudiante',
                 ]);
-        }
+            }
         if($estudiante->rut != $request->rut){
             $validate=$request->validate([
                 'rut'=>'cl_rut|unique:estudiante|required|string|max:20',
@@ -191,28 +229,63 @@ class EstudianteController extends Controller
             'matricula'=>'required|string|max:25',
             'sexo' => 'required|string|max:255',
             'fech_nac' => 'required|date',
-            'plan' => 'integer',
             'via_ingreso'=>'required|max:255',
             'ano_ingreso' => 'integer|required',
             'estado_actual' => 'required|string|max:255',
-            'comuna' => 'string|max:255',
-            'region' => 'integer',
-            'creditos' => 'integer',
-            'nivel' => 'integer',
-            'porc_avance' => 'integer',
-            'prioridad' => 'string',
-            'aprobados' => 'string',
-            'cursados' => 'string',
             ]);
+        if($request->get('plan')!=''){
+            $validate=$request->validate([
+                    'plan' => 'integer',
+                ]);
+        }
+        if($request->get('comuna')!=''){
+            $validate=$request->validate([
+                    'comuna' => 'string|max:255',
+                ]);
+        }
+        if($request->get('region')!=''){
+            $validate=$request->validate([
+                    'region' => 'integer',
+                ]);
+        }
+        if($request->get('creditos')!=''){
+            $validate=$request->validate([
+                    'creditos' => 'integer',
+                ]);
+        }
+        if($request->get('nivel')!=''){
+            $validate=$request->validate([
+                    'nivel' => 'integer',
+                ]);
+        }
+        if($request->get('porc_avance')!=''){
+            $validate=$request->validate([
+                    'porc_avance' => 'integer',
+                ]);
+        }
+        if($request->get('prioridad')!=''){
+            $validate=$request->validate([
+                    'prioridad' => 'string',
+                ]);
+        }
+        if($request->get('aprobados')!=''){
+            $validate=$request->validate([
+                    'aprobados' => 'string',
+                ]);
+        }
+        if($request->get('cursados')!=''){
+            $validate=$request->validate([
+                    'cursados' => 'string',
+                ]);
+        }
         
-        $estudiante=new Estudiante();
         $estudiante->nombre=$request->get('nombre');
         $estudiante->ap_Paterno=$request->get('ap_Paterno');
         $estudiante->ap_Materno=$request->get('ap_Materno');
         $estudiante->rut=Rut::parse($request->get('rut'))->fix()->format();
         $estudiante->matricula=$request->get('matricula');
         $estudiante->correo=$request->get('correo');
-        $estudiante->id_carrera=$carrera->id;
+        $estudiante->id_carrera=$request->get('carrera');
         $estudiante->via_ingreso=$request->get('via_ingreso');
         $estudiante->sexo=$request->get('sexo');
         $estudiante->fech_nac=$request->get('fech_nac');
@@ -258,18 +331,18 @@ class EstudianteController extends Controller
         $validate=$request->validate([
             'file' => 'required|mimes:xls,xlsx'
         ]);
-        try{
+        /* try{ */
             $file =  $request->file('file');
             Excel::import(new EstudianteImport($carrera->id), $file);
             return redirect()->action('EstudianteController@index',$carrera)
             ->with('success','Estudiantes ingresados con éxito'); 
-        }
-        catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+        /* } */
+        /* catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failures = $e->failures();
             return redirect()->action('EstudianteController@index', $carrera)
              ->with('error','El archivo no tiene el formato correcto o los datos ya han sido ingresados'); 
             
-        }
+        } */
     }
     public function exportarRangoFechas(Request $request){
         $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
