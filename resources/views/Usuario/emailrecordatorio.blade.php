@@ -1,6 +1,13 @@
-<h1>Hola profesor {{$user->name}}</h1>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-tittle"style="color:#000000">Estimado(a) profesor(a) {{$user->name}}</h1>
 
-<p>Como administrador del sistema de evaluación de ayudantes, te recuerdo que realizes la evaluación
-a sus ayudantes, En caso de que ya lo realizo ignore este email.</p>
+    <p style="font-size: 15px; color:#4b4c4b">Como administrador del sistema de evaluación de ayudantes, le recuerdo que debe realizar la evaluación
+a sus ayudantes, en caso de que ya lo realizó ignore este correo.</p>
 
-<p>Saludos.</p>
+<p style="font-size: 15px; color: #4b4c4b">Saludos.</p>
+  </div>
+</div>
+
+
+
