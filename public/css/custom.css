@@ -81,18 +81,18 @@
     width: 250px;
 }
 
-    @media screen and (min-width: 400px) {
+    @media screen and (min-width: 450px) {
         .custom-imagenresponsive {
-            content: url("../images/logo_blanco.png");
+            content: url("/images/logo_blanco.png") ;
             width: 100%; 
             max-width: 330px; 
             min-width: 200px;
         }
     }
     
-    @media screen and (max-width: 399px) {
+    @media screen and (max-width: 449px) {
         .custom-imagenresponsive {
-            content: url("../images/logo_blanco2.png");
+            content: url("/images/logo_blanco2.png");
             width: 100%; 
             max-width: 50px; 
             min-width: 50px;
