@@ -331,18 +331,22 @@ class EstudianteController extends Controller
         $validate=$request->validate([
             'file' => 'required|mimes:xls,xlsx'
         ]);
-        /* try{ */
+        try{ 
             $file =  $request->file('file');
             Excel::import(new EstudianteImport($carrera->id), $file);
             return redirect()->action('EstudianteController@index',$carrera)
             ->with('success','Estudiantes ingresados con éxito'); 
-        /* } */
-        /* catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
+         } 
+        catch (\Maatwebsite\Excel\Validators\ValidationException $e) {
             $failures = $e->failures();
+            if($failures[0]->errors()[0]=='Existen estudiantes con codigos de otra carrera.'){
+                return redirect()->action('EstudianteController@index', $carrera)
+                ->with('error','Existen estudiantes con codigos de otra carrera.'); 
+            }
             return redirect()->action('EstudianteController@index', $carrera)
-             ->with('error','El archivo no tiene el formato correcto o los datos ya han sido ingresados'); 
+             ->with('error','El archivo tiene formato incorrecto o los datos ya han sido ingresados.'); 
             
-        } */
+        }
     }
     public function exportarRangoFechas(Request $request){
         $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
