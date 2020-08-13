@@ -120,10 +120,10 @@
             <form action="{{ route('users.restore')}}" method="post">
             @csrf
                 <input type="hidden" id="id_user" name="id" value="">
-                <button style="background-color: #2a9d8f; color:white"class="btn btn-info btn-sm">Confirmar</button>
+                <button class="btn btn-secondary btn-sm">Confirmar</button>
             </form>
 
-            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>
