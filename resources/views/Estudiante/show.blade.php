@@ -21,31 +21,35 @@
 
                                     <table class="table table-striped table-bordered table-striped shadow p-3 mb-4">
                                         <tbody>
-                                        <tr >
-                                            <td> <a class="custom-negrita">Nombre: </a>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
-                                        </tr>
-                                        <tr>   
-                                            <td><a class="custom-negrita">Rut: </a>{{$estudiante->rut}}  </td>
-                                        
-                                        <tr>
-                                            <td><a class="custom-negrita">Correo: </a>{{$estudiante->correo}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="custom-negrita">Matricula: </a>{{$estudiante->matricula}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="custom-negrita">Situacion Academica: </a>{{$estudiante->estado_actual}} </td>
-                                        </tr>
+                                            <tr >
+                                                <td> <a class="custom-negrita">Nombre: </a>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
+                                            </tr>
+
+                                            <tr>   
+                                                <td><a class="custom-negrita">Rut: </a>{{$estudiante->rut}}  </td>
+                                            </tr>
+
+                                            <tr>  
+                                                <td><a class="custom-negrita">Correo: </a>{{$estudiante->correo}} </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a class="custom-negrita">Matrícula: </a>{{$estudiante->matricula}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a class="custom-negrita">Situación Académica: </a>{{$estudiante->estado_actual}}</td>
+                                            </tr>
                                                 
                                         </tbody>
                                     </table>
                                     <div style="margin-right:auto">
                                         @can('estudiante.add')
-                                            <button type="button" class="btn btn-sm btn-info"  data-toggle="modal" data-target="#modal_editar_wizard">
+                                            <button type="button" class="btn btn-sm btn-info " onClick="validar();" data-toggle="modal" data-target="#modal_editar_wizard">
                                             <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
                                             </button>
                                         @endcan
-                                        <button type="button" class="btn btn-sm btn-secondary" style="margin-left:6px" data-toggle="modal" data-target="#modalObservacion">
+                                        <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalObservacion">
                                         <i class="fas fa-plus"></i> {{ __('Agregar observacion') }}
                                         </button>
                                         
@@ -62,7 +66,7 @@
                                     <ul >
                                         <li> 
                                             <h2>Sin observación</h2>
-                                                <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
+                                                <p style="text-align: justify">Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
                                                 no presenta observaciones en ningún módulo</p>
                                         </li>
                                     </ul>
@@ -89,7 +93,7 @@
                                                 </span>
                                                 
                                             </div>
-                                            <p>{{$observacion->descripcion}}</p>
+                                            <p style="text-align: justify">{{$observacion->descripcion}}</p>
                                             <ul class="content-skills">
                                             <li><i class="fas fa-info-circle"></i> Categoria: {{$observacion->nombre_categoria}}</li>
                                             <li><i class="fas fa-info-circle"></i> Modulo: {{$observacion->modulo}}</li>
@@ -171,10 +175,11 @@
                             </select>
                         </div>
                     </div>
+ 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
-                        <div class="col-md-6">
-                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="3" cols="35" style="resize: none"></textarea>
+                        <label for="name" class="col-md-2 col-form-label">{{ __('Detalle:') }}</label>
+                        <div class="col-md-4">
+                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="4" cols="40" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -279,7 +284,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-md-2 col-form-label">{{ __('Detalle:') }}</label>
                         <div class="col-md-4">
-                            <textarea for="descripcion" id="descripcion" name="descripcion" rows="3" cols="35" style="resize: none"></textarea>
+                            <textarea for="descripcion" id="descripcion" name="descripcion" rows="4" cols="40" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -321,7 +326,7 @@
 
 <!--Modal WIZARD editar ESTUDIANTE-->
 <div id="modal_editar_wizard" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
 
       <div class="modal-header custom-header custom-color">
@@ -338,7 +343,7 @@
             <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab" id="adsBack">Datos personales</a>
           <li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
+            <a class="nav-link disabled" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
           <li>
         </ul>
 
@@ -356,7 +361,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{$estudiante->nombre}}" required>
+                                        <input type="text" class="form-control" id="nombre_wizard" oninput="validar();" name="nombre" value="{{$estudiante->nombre}}" required>
                                     </div>
                         </div>
 
@@ -365,7 +370,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
+                                        <input type="text" class="form-control" id="ap_Paterno_wizard" oninput="validar();" name="ap_Paterno" value="{{$estudiante->ap_Paterno}}" required>
                                     </div>
                         
                         </div>
@@ -375,7 +380,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
+                                        <input type="text" class="form-control" id="ap_Materno_wizard" oninput="validar();"  name="ap_Materno" value="{{$estudiante->ap_Materno}}" required>
                                     </div>
                         
                         </div>
@@ -390,7 +395,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}" required>
+                                <input type="text" class="form-control" id="rutificador_wizard" oninput="validar();" name="rut" value="{{$estudiante->rut}}" required>
                             </div>
                         </div>
                         <div class="col-sm-4 ">
@@ -398,7 +403,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-venus-mars fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <select class="form-control" id="sexo" name="sexo" > 
+                                    <select class="form-control" id="sexo" name="sexo" required> 
                                         <option>Masculino</option>
                                         <option>Femenino</option>
                                         <option>Otro</option>
@@ -410,7 +415,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
+                                    <input type="date" class="form-control" oninput="validar();" id="fech_nac_wizard" name="fech_nac" value="{{$estudiante->fech_nac}}" required>
                                 </div>
                         </div>
 
@@ -425,7 +430,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="correo" name="correo" value="{{$estudiante->correo}}" required>
+                                    <input type="text" class="form-control" oninput="validar();" id="correo_wizard" name="correo" value="{{$estudiante->correo}}" required>
                                 </div>
                         </div>
 
@@ -444,8 +449,6 @@
                                 <input type="text" class="form-control" id="comuna" name="comuna" value="{{$estudiante->comuna}}">
                             </div>
                         </div>
-
-                    
 
                     </div>
 
@@ -475,7 +478,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="fas fa-hashtag fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="matricula" name="matricula" value="{{$estudiante->matricula}}" required>
+                                <input type="text" class="form-control" id="matricula_wizard" name="matricula" value="{{$estudiante->matricula}}" required>
                             </div>
                         </div>
 
@@ -484,7 +487,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="number" class="form-control" min="1981" id="ano_ingreso" name="ano_ingreso" value="{{$estudiante->año_ingreso}}" required>
+                                <input type="number" class="form-control" min="1981" id="ano_ingreso_wizard" name="ano_ingreso" value="{{$estudiante->año_ingreso}}" required>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -492,7 +495,7 @@
                         <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                             <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                            <select class="form-control" id="carrera" name="carrera">
+                            <select class="form-control" id="carrera_wizard" name="carrera">
                                 @foreach($carreras as $carrera)
                                     @if($estudiante->id_carrera==$carrera->id)
                                         <option value="{{$carrera->id}}" selected>{{$carrera->nombre}}</option>
@@ -508,7 +511,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <select class="form-control" id="via_ingreso" name="via_ingreso">
+                                        <select class="form-control" id="via_ingreso_wizard" name="via_ingreso">
                                             <option>Via PSU</option>
                                             <option>Alumnos Talentosos</option>
                                             <option>PACE</option>
@@ -526,7 +529,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="fas fa-graduation-cap fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <select class="form-control" id="estado_actual" name="estado_actual">
+                                    <select class="form-control" id="estado_actual_wizard" name="estado_actual">
                                         <option>Regular</option>
                                         <option>No regular</option>
                                     </select>
@@ -640,7 +643,7 @@
   </div>
 </div>
 
-<!--Modal editar datos estudiantes version 2-->
+<!--Modal editar datos estudiantes version 2
 <div class="modal fade " id="modal_editar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl" role="document">
     <div class="modal-content">
@@ -773,6 +776,7 @@
     </div>
   </div>
 </div>
+-->
 
 <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
 
@@ -788,7 +792,6 @@
         document.getElementById('mostrar_semestre').innerHTML = semestre;
         cadena = semestre.split(" ");
         cadena2 = cadena[1].split("/");
-        console.log(cadena[0]);
         $('#semestre_editar').val(cadena[0]);
         $('#año_editar').val(cadena2[0]);
         $('#modal_editarObservacion').modal('show');
@@ -810,19 +813,46 @@
     $('#myTab a[href="#ads"]').tab('show');
   });
 
-  $('#scheduleContinue').click(function (e) {
-    e.preventDefault();
-    $('.progress-bar').css('width', '100%');
-    $('.progress-bar').html('Paso 2 of 2');
-    $('#myTab a[href="#ads"]').tab('show');
-  });
-
   $('#adsBack').click(function (e) {
     e.preventDefault();
     $('.progress-bar').css('width', '50%');
     $('.progress-bar').html('Paso 1 de 2');
     $('#myTab a[href="#infoPanel"]').tab('show');
   });
+
+
+  $('#scheduleContinue').click(function (e) { 
+    var nombre = $("input#nombre_wizard").val().length;
+    var ap_paterno = $("input#ap_Paterno_wizard").val().length;
+    var ap_materno = $("input#ap_Materno_wizard").val().length;
+    var fecha = $("input#fech_nac_wizard").val().length;
+    var correo = $("input#correo_wizard").val().length;
+    var rut = $("#rutificador_wizard").val().length;  
+    
+    if (nombre != 0 && ap_paterno != 0 && ap_materno != 0 && correo != 0 && fecha != 0 && rut != 0) {
+        e.preventDefault();
+        $('.progress-bar').css('width', '100%');
+        $('.progress-bar').html('Paso 2 de 2');
+        $('#myTab a[href="#ads"]').tab('show');
+    }  
+  });
+  function validar(){
+    var nombre = $("input#nombre_wizard").val().length;
+    var ap_paterno = $("input#ap_Paterno_wizard").val().length;
+    var ap_materno = $("input#ap_Materno_wizard").val().length;
+    var fecha = $("input#fech_nac_wizard").val().length;
+    var correo = $("input#correo_wizard").val().length;
+    var rut = $("#rutificador_wizard").val().length;  
+            console.log("hola");
+            if (nombre != 0 && ap_paterno != 0 && ap_materno != 0 && correo != 0 && fecha != 0 && rut != 0) {
+                $( "#infoContinue" ).removeClass('disabled');
+               
+            }  else{
+                $( "#infoContinue" ).addClass('disabled');
+            }
+};
+
+
 </script>
 
 @endsection

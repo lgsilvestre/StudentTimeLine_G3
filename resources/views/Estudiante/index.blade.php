@@ -3,12 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12 ">
             <div class="card margen-card custom-card">
             {{ Breadcrumbs::render('carrera', $carrera) }} 
 
                     <div class="card-body">     
-                    <table id="estudiantes"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
+                    <table id="estudiantes"class="table table-responsive-lg table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
                                     <th >Matrícula</th>
@@ -53,6 +53,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"defer></script>
 <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 <script>
     
     $(document).ready(function() {
@@ -248,7 +249,7 @@
 
 <!-- MODAL PARA CREAR ESTUDIANTE CON WIZARD -->
 <div id="modal-wizard" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
 
       <div class="modal-header custom-header custom-color">
@@ -265,19 +266,16 @@
             <a class="nav-link active" data-toggle="tab" href="#infoPanel" role="tab" id="adsBack">Datos personales</a>
           <li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#ads" role="tab" id="infoContinue">Datos académicos</a>
+            <a class="nav-link disabled" data-toggle="tab" href="#ads" role="tab" id="infoContinue" disabled>Datos académicos</a>
           <li>
             
         </ul>
-        
-        
-
-
+   
         <form action="{{ route('estudiante.store',$carrera->id) }}" method="post">
             @csrf
         <div class="tab-content mt-2">
           <div class="tab-pane fade show active" id="infoPanel" role="tabpanel"  href="#infoPanel">
-            <div class="form-group"> 
+            <div class="form-group" id="panel_1"> 
             
                 <div class="col-xl-12 mx-auto">
                     <div class="form-group row">
@@ -286,7 +284,12 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Juan Andres" >
+                                        <input type="text" class="form-control  @error('email') is-required @enderror "  oninput="validar();" id="nombre" name="nombre" required placeholder="Juan Andres" >
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                         </div>
 
@@ -295,7 +298,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Paterno" name="ap_Paterno" placeholder="Pérez" required>
+                                        <input type="text" class="form-control" id="ap_Paterno"  oninput="validar();" name="ap_Paterno" placeholder="Pérez" required>
                                     </div>
                         
                         </div>
@@ -305,7 +308,7 @@
                             <label style="color:red"> (*) </label> 
                                     <div class="form-group icono-input">
                                         <span class="fas fa-pencil-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                        <input type="text" class="form-control" id="ap_Materno" name="ap_Materno" placeholder="Soto" required>
+                                        <input type="text" class="form-control" id="ap_Materno" oninput="validar();" name="ap_Materno" placeholder="Soto" required>
                                     </div>
                         
                         </div>
@@ -320,7 +323,7 @@
                             <label style="color:red"> (*) </label> 
                             <div class="form-group icono-input">
                                 <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
-                                <input type="text" class="form-control" id="rut"name="rut" placeholder="14823887-1" required>
+                                <input type="text" class="form-control" oninput="validar();" id="rutificador"name="rut" placeholder="14823887-1" required>
                             </div>
                         </div>
                         <div class="col-sm-4 ">
@@ -340,7 +343,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="date" class="form-control" id="fech_nac" name="fech_nac" placeholder="nacimiento" required>
+                                    <input type="date" class="form-control" oninput="validar();" id="fech_nac" name="fech_nac" placeholder="nacimiento" required>
                                 </div>
                         </div>
 
@@ -355,7 +358,7 @@
                                 <label style="color:red"> (*) </label> 
                                 <div class="form-group icono-input">
                                     <span class="far fa-envelope fa-lg form-control-feedback" aria-hidden="true"></span>
-                                    <input type="text" class="form-control" id="correo" name="correo" placeholder="ejemplo@utalca.alumnos.cl" required>
+                                    <input type="text" class="form-control" oninput="validar();" id="correo" name="correo" placeholder="ejemplo@utalca.alumnos.cl" required>
                                 </div>
                         </div>
 
@@ -389,10 +392,10 @@
                 <br></br>
             </div>
             
-          </div>
+        </div>
 
 
-          <div class="tab-pane fade" id="ads" role="tabpanel"  href="#ads">
+          <div class="tab-pane fade" id="ads" role="tabpanel" href="#ads">
 
             <div class="form-group">
                <div class="col-xl-12 mx-auto">
@@ -510,7 +513,7 @@
             <label style="color:red">(*)</label>
             <label>Campos obligatorios</label>
             <div class="float-right">
-                <button  class="btn btn-secondary"  >Guardar</button>
+                <button class="btn btn-secondary"  >Guardar</button>
                 <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
                 </form>
             </div>
@@ -531,40 +534,67 @@
 <script>
         $(document).ready(function(){
             $('.custom-file-input').on('change', function() { 
-            console.log("hola");
-            let fileName = $(this).val().split('\\').pop(); 
-            $(this).next('.custom-file-label').addClass("selected").html(fileName); 
+                
+                let fileName = $(this).val().split('\\').pop(); 
+                $(this).next('.custom-file-label').addClass("selected").html(fileName); 
             });
         });    
 </script>
 
 <script>
-    $(function () {
+
+function validar(){
+    var nombre = $("input#nombre").val().length;
+            var ap_paterno = $("input#ap_Paterno").val().length;
+            var ap_materno = $("input#ap_Materno").val().length;
+            var fecha = $("input#fech_nac").val().length;
+            var correo = $("input#correo").val().length;
+            var rut = $("#rutificador").val().length;  
+            console.log(infoContinue);
+            if (nombre != 0 && ap_paterno != 0 && ap_materno != 0 && correo != 0 && fecha != 0 && rut != 0) {
+                $( "#infoContinue" ).removeClass('disabled');
+               
+            }  else{
+                $( "#infoContinue" ).addClass('disabled');
+            }
+};
+$(function () {
   $('#modalToggle').click(function() {
     $('#modal').modal({
       backdrop: 'static'
     });
   });
 
+
   $('#infoContinue').click(function (e) {
     e.preventDefault();
     $('.progress-bar').css('width', '100%');
     $('.progress-bar').html('Paso 2 de 2');
-    $('#myTab a[href="#ads"]').tab('show');
+    $('#myTab a[href="#ads"]').tab('show'); 
   });
 
-  $('#adsBack').click(function (e) {
+   $('#adsBack').click(function (e) {
     e.preventDefault();
     $('.progress-bar').css('width', '50%');
     $('.progress-bar').html('Paso 1 de 2');
     $('#myTab a[href="#infoPanel"]').tab('show');
   });
+
   $('#scheduleContinue').click(function (e) {
-    e.preventDefault();
-    $('.progress-bar').css('width', '100%');
-    $('.progress-bar').html('Paso 2 of 2');
-    $('#myTab a[href="#ads"]').tab('show');
+    var nombre = $("input#nombre").val().length;
+    var ap_paterno = $("input#ap_Paterno").val().length;
+    var ap_materno = $("input#ap_Materno").val().length;
+    var fecha = $("input#fech_nac").val().length;
+    var correo = $("input#correo").val().length;
+    var rut = $("#rutificador").val().length;  
+    if (nombre != 0 && ap_paterno != 0 && ap_materno != 0 && correo != 0 && fecha != 0 && rut != 0) {
+        e.preventDefault();
+        $('.progress-bar').css('width', '100%');
+        $('.progress-bar').html('Paso 2 of 2');
+        $('#myTab a[href="#ads"]').tab('show');
+    }  
   });
+
 
   $('#activate').click(function (e) {
     e.preventDefault();
@@ -587,9 +617,6 @@
     alert(JSON.stringify(formData));
   })
 })
-
-
-
 
 </script> 
 

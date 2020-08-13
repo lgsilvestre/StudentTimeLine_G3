@@ -15,7 +15,7 @@
                 
                 <div class="card-body">     
                 
-                <table id="usuarios" class="table shadow table-responsive-sm table-hover " style="width:100%">
+                <table id="usuarios" class="table shadow table-responsive-lg table-hover " style="width:100%">
                         <thead class="thead" style="background-color: #577590; color:white;" >
                             
                             <tr>
