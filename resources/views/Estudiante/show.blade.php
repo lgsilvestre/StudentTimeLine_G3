@@ -21,31 +21,35 @@
 
                                     <table class="table table-striped table-bordered table-striped shadow p-3 mb-4">
                                         <tbody>
-                                        <tr >
-                                            <td> <a class="custom-negrita">Nombre: </a>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
-                                        </tr>
-                                        <tr>   
-                                            <td><a class="custom-negrita">Rut: </a>{{$estudiante->rut}}  </td>
-                                        
-                                        <tr>
-                                            <td><a class="custom-negrita">Correo: </a>{{$estudiante->correo}} </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="custom-negrita">Matricula: </a>{{$estudiante->matricula}}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a class="custom-negrita">Situacion Academica: </a>{{$estudiante->estado_actual}} </td>
-                                        </tr>
+                                            <tr >
+                                                <td> <a class="custom-negrita">Nombre: </a>{{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}}</td>
+                                            </tr>
+
+                                            <tr>   
+                                                <td><a class="custom-negrita">Rut: </a>{{$estudiante->rut}}  </td>
+                                            </tr>
+
+                                            <tr>  
+                                                <td><a class="custom-negrita">Correo: </a>{{$estudiante->correo}} </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a class="custom-negrita">Matrícula: </a>{{$estudiante->matricula}}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><a class="custom-negrita">Situación Académica: </a>{{$estudiante->estado_actual}}</td>
+                                            </tr>
                                                 
                                         </tbody>
                                     </table>
                                     <div style="margin-right:auto">
                                         @can('estudiante.add')
-                                            <button type="button" class="btn btn-sm btn-info" onClick="validar();" data-toggle="modal" data-target="#modal_editar_wizard">
+                                            <button type="button" class="btn btn-sm btn-info " onClick="validar();" data-toggle="modal" data-target="#modal_editar_wizard">
                                             <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
                                             </button>
                                         @endcan
-                                        <button type="button" class="btn btn-sm btn-secondary" style="margin-left:6px" data-toggle="modal" data-target="#modalObservacion">
+                                        <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalObservacion">
                                         <i class="fas fa-plus"></i> {{ __('Agregar observacion') }}
                                         </button>
                                         
@@ -62,7 +66,7 @@
                                     <ul >
                                         <li> 
                                             <h2>Sin observación</h2>
-                                                <p>Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
+                                                <p style="text-align: justify">Hasta el momento, {{$estudiante->nombre}} {{$estudiante->ap_Paterno}} {{$estudiante->ap_Materno}} 
                                                 no presenta observaciones en ningún módulo</p>
                                         </li>
                                     </ul>
@@ -89,7 +93,7 @@
                                                 </span>
                                                 
                                             </div>
-                                            <p>{{$observacion->descripcion}}</p>
+                                            <p style="text-align: justify">{{$observacion->descripcion}}</p>
                                             <ul class="content-skills">
                                             <li><i class="fas fa-info-circle"></i> Categoria: {{$observacion->nombre_categoria}}</li>
                                             <li><i class="fas fa-info-circle"></i> Modulo: {{$observacion->modulo}}</li>
@@ -171,10 +175,11 @@
                             </select>
                         </div>
                     </div>
+ 
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label">{{ __('Observación:') }}</label>
-                        <div class="col-md-6">
-                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="3" cols="35" style="resize: none"></textarea>
+                        <label for="name" class="col-md-2 col-form-label">{{ __('Detalle:') }}</label>
+                        <div class="col-md-4">
+                            <textarea for="descripcion" name="descripcion_edit" id="descripcion_editar" rows="4" cols="40" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -279,7 +284,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-md-2 col-form-label">{{ __('Detalle:') }}</label>
                         <div class="col-md-4">
-                            <textarea for="descripcion" id="descripcion" name="descripcion" rows="3" cols="35" style="resize: none"></textarea>
+                            <textarea for="descripcion" id="descripcion" name="descripcion" rows="4" cols="40" style="resize: none"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -787,7 +792,6 @@
         document.getElementById('mostrar_semestre').innerHTML = semestre;
         cadena = semestre.split(" ");
         cadena2 = cadena[1].split("/");
-        console.log(cadena[0]);
         $('#semestre_editar').val(cadena[0]);
         $('#año_editar').val(cadena2[0]);
         $('#modal_editarObservacion').modal('show');
