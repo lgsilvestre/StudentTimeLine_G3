@@ -127,10 +127,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('estudiantes/{carrera}/','EstudianteController@index')->name('estudiantes.index');
 
     Route::post('estudiantes/{carrera}/store','EstudianteController@store')->name('estudiante.store')
-    ->middleware('has.role:admin');
+    ->middleware('can:estudiante.add');
     
     Route::post('estudiante/{estudiante}/update','EstudianteController@update')->name('estudiante.update')
-    ->middleware('has.role:admin');
+    ->middleware('can:estudiante.add');
 
     Route::get('estudiante/{estudiante}/', 'EstudianteController@show')->name('estudiante.show');
 
