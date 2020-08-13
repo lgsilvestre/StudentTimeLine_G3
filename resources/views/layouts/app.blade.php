@@ -33,11 +33,11 @@
 <body class="custom-fondo">
     <div id="app">
      @include('mensajes-flash')   
-        <nav class="navbar navbar-expand-md navbar-dark custom-color shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-dark custom-color shadow-sm">
             <div class="container" >
             
                 <a class="navbar-brand ">
-                    <img class="img-responsive" src="/images/logo_blanco.png" style="width: 100%; max-width: 330px; min-width: 200px" >
+                        <img class="custom-imagenresponsive" src="...">
                 </a>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
