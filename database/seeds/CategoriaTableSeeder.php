@@ -22,9 +22,6 @@ class CategoriaTableSeeder extends Seeder
             'nombre' => 'Copia',
         ]);
         Categoria::create([
-            'nombre' => 'Otro',
-        ]);
-        Categoria::create([
             'nombre' => 'En Observacion - 1 por Tercera',
         ]);
         Categoria::create([
@@ -44,6 +41,9 @@ class CategoriaTableSeeder extends Seeder
         ]);
         Categoria::create([
             'nombre' => 'Eliminado Art. 31 B',
+        ]);
+        Categoria::create([
+            'nombre' => 'Otro',
         ]);
     }
 }

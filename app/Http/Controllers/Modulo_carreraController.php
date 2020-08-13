@@ -17,14 +17,41 @@ class Modulo_carreraController extends Controller
     public function index(Request $request)
     {
         
-        $modulos = DB::table('carrera')
-        ->join('modulo', 'carrera.id', '=', 'modulo.id_carrera')
-        ->select('modulo.id','modulo.descripcion', 'carrera.nombre','modulo.id_carrera')
-        ->get();
-        if($request->ajax()){
-            return datatables()->of($modulos)->toJson();
+        $user = User::find(Auth::user()->id);
+        if($user->hasrole('admin')){
+                $modulos = DB::table('carrera')
+                ->join('modulo', 'carrera.id', '=', 'modulo.id_carrera')
+                ->select('modulo.id','modulo.descripcion', 'carrera.nombre','modulo.id_carrera')
+                ->get();
+                if($request->ajax()){
+                        return datatables()->of($modulos)->toJson();
+                }
+        }else{
+                $carreras = $user->usuario_carrera;
+                $car = 0;
+                foreach($carreras as $carrera){
+                        $car = $carrera->id;
+                }               
+                $modulos = DB::table('carrera')
+                ->join('modulo', 'carrera.id', '=', 'modulo.id_carrera')
+                ->where('carrera.id','=',$car)
+                ->select('modulo.id','modulo.descripcion', 'carrera.nombre','modulo.id_carrera')
+                ->get();
+                if($request->ajax()){
+                        return datatables()->of($modulos)->toJson();
+                }
         }
-        $carreras = Carrera::all();
+        if($user->id == 1){
+            $carreras = Carrera::all();
+        }else{
+            $carreras = $user->usuario_carrera;
+            $collect = [];
+            foreach($carreras as $carrera){
+                $car = $carrera->carrera;
+                $collect[]=$car; 
+            }
+            $carreras = collect($collect);
+        }
         return view('Modulo.index',compact('carreras'));
     }
 
