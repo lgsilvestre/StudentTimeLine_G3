@@ -61,26 +61,28 @@
                         @can('categoria.index')
                         <li class="nav-item "> <a class="nav-link active custom-botonmenu" href="{{route('categoria.index')}}" style="color:#ffff">{{ __('Categorías') }}</a> </li>  
                         @endcan  
-                        @role('admin')       
+                        @role('admin')  
+                             
                         <li class="nav-item dropdown">
                             
                             <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
                                     {{ __('Gestión de Usuarios') }} <span class="caret"></span>
                             </a>
                             
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item custom-botondesplegable" href="{{route('users.index')}}">
+                            <div class="dropdown-menu dropdown-menu-right custom-colornav" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item custom-botondesplegable" style="color:white" href="{{route('users.index')}}">
                                     {{ __('Crear / Inhabilitar') }}
                                 </a> 
 
-                                <a class="dropdown-item custom-botondesplegable" href="{{route('users.disable')}}">
+                                <a class="dropdown-item custom-botondesplegable" style="color:white" href="{{route('users.disable')}}">
                                     {{ __('Habilitar') }}
                                 </a>
-                                <a class="dropdown-item custom-botondesplegable" href="{{route('users.recordatorio')}}">
+                                <a class="dropdown-item custom-botondesplegable" style="color:white" href="{{route('users.recordatorio')}}">
                                     {{ __('Recordatorio para realizar observaciónes') }}
-                                </a>
+                                </a>                            
                             </div>
                         </li>
+                        
                         @endrole
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle custom-botonmenu" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color:#ffff">
@@ -93,11 +95,11 @@
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                                 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item custom-botondesplegable" href="{{route('user.perfil',auth()->user()->id)}}">
+                                <div class="dropdown-menu dropdown-menu-right custom-colornav" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item custom-botondesplegable" style="color:white" href="{{route('user.perfil',auth()->user()->id)}}">
                                         {{ __('Perfil') }}
                                     </a>
-                                    <a class="dropdown-item custom-botondesplegable" href="{{ route('logout') }}"
+                                    <a class="dropdown-item custom-botondesplegable" style="color:white" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Cerrar sesión') }}
@@ -113,6 +115,8 @@
                 </div>
             </div> 
         </nav>
+
+        
 
         <main>
             @yield('content')
