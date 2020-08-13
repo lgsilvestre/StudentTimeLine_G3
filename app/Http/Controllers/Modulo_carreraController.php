@@ -32,7 +32,8 @@ class Modulo_carreraController extends Controller
                 $carreras = $user->usuario_carrera;
                 $car = 0;
                 foreach($carreras as $carrera){
-                        $car = $carrera->id;
+                        $car = $carrera->carrera;
+                        $car = $car->id;
                 }               
                 $modulos = DB::table('carrera')
                 ->join('modulo', 'carrera.id', '=', 'modulo.id_carrera')
