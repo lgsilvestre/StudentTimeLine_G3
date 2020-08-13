@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Modulo_carrera as Modulo;
 use App\Carrera;
 use DB;
+use Auth;
+use App\User;
 
 class Modulo_carreraController extends Controller
 {
