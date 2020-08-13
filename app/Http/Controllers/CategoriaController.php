@@ -47,7 +47,7 @@ class CategoriaController extends Controller
         $categoria->save();
 
         return redirect()->action('CategoriaController@index')
-            ->with('success','Categoria creada con éxito'); 
+            ->with('success','Categoría creada con éxito'); 
     }
 
     /**
@@ -91,7 +91,7 @@ class CategoriaController extends Controller
         $categoria->save();     
 
         return redirect()->action('CategoriaController@index')
-            ->with('success','Categoria editada con éxito'); 
+            ->with('success','Categoría modificada con éxito'); 
     }
 
     /**
@@ -106,6 +106,6 @@ class CategoriaController extends Controller
         $categorias = Categoria::all();
         
         return redirect()->action('CategoriaController@index')
-            ->with('success','Categoria eliminada con éxito'); 
+            ->with('success','Categoría eliminada con éxito'); 
     }
 }

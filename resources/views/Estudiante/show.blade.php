@@ -45,9 +45,14 @@
                                     </table>
                                     <div style="margin-right:auto">
                                         @can('estudiante.add')
+                                            <button   data-toggle="modal" data-target="#modal_exportar"
+                                            class="btn btn-sm btn-secondary " title="Exportar Estudiantes" style="margin-left:4px; background-color: #f8961e;border-color:#f8961e"> 
+                                            <i class="fas fa-file-download"></i> 
+                                            </button>
                                             <button type="button" class="btn btn-sm btn-info " onClick="validar();" data-toggle="modal" data-target="#modal_editar_wizard">
                                             <i class="fas fa-pencil-alt"></i> {{ __('Editar datos') }}
                                             </button>
+                                            
                                         @endcan
                                         <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modalObservacion">
                                         <i class="fas fa-plus"></i> {{ __('Agregar observacion') }}
@@ -125,6 +130,38 @@
         </div>
     </div>
 </div>  
+<div id="modal_exportar" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header custom-header custom-color">
+                <h5 class="modal-title" id="wizard-title">Exportar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:white">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('exportuno')}}" method="POST">
+            <div class="modal-body">
+                @csrf
+                <div class="form-group row justify-content-center">
+                    <label for="inputLastname" style="margin-right:7px;margin-top:7px">Rut</label>
+                    <label style="color:red;margin-right:7px;margin-top:7px">(*)</label>
+                        <div class="form-group icono-input">
+                            <span class="far fa-id-card fa-lg form-control-feedback" aria-hidden="true"></span>
+                            <input type="text" class="form-control" id="rut"name="rut" value="{{$estudiante->rut}}" readonly required>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <label style="color:red">(*)</label>
+                    <label>Campos obligatorios</label>
+                    <button  id="exportar-individual" class="btn btn-secondary" style="margin-right:7px" >Exportar</button>
+                </form>
+                    <button  type="button" class="btn btn-info" data-dismiss="modal" >Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal para editar observacion -->
 <div class="modal fade" id="modal_editarObservacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content ">

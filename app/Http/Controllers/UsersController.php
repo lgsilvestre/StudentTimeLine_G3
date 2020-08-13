@@ -159,7 +159,7 @@ class UsersController extends Controller
             $carreras = Carrera::all();
             foreach($carreras as $carrera){
                 $user_carrera = Usuario_carrera::create([
-                    'id_carrera' => $carrera,
+                    'id_carrera' => $carrera->id,
                     'id_usuario' => $user->id,
                 ]);
             }
@@ -216,12 +216,24 @@ class UsersController extends Controller
     public function update(Request $request)
     {
         $user = User::find($request->get('id'));
-        if($user->email == $request->email){
+        $role = Rol::find($request->get('id_rol')); 
+        if($user->email == $request->email && $role->slug=="admin"){
+            $validate=$request->validate([
+                'nombre'=>'required|string',
+            ]);
+        }elseif($user->email != $request->email && $role->slug=="admin"){
+            $validate=$request->validate([
+                'nombre'=>'required|string',
+                'email'=>'required|string|unique:users',
+            ]);
+
+        }
+        if($user->email == $request->email && $role->slug!="admin"){
             $validate=$request->validate([
                 'nombre'=>'required|string',
                 'carreras'=>'required',
             ]);
-        }else{
+        }elseif($user->email != $request->email && $role->slug!="admin"){
             $validate=$request->validate([
                 'nombre'=>'required|string',
                 'email'=>'required|string|unique:users',
@@ -234,17 +246,31 @@ class UsersController extends Controller
         $user->email = $request->get('email');
 
 
-        $role = Rol::find($request->get('id_rol')); 
+        
         $user->syncRoles($role->slug);
-        $user_carrera_del = DB::table('carrera_usuario')
-                        ->where('carrera_usuario.id_usuario','=',$request->get('id'))
+        if($user->hasrole('admin')){
+            $user_carrera_del = Usuario_carrera::
+                        where('carrera_usuario.id_usuario','=',$request->get('id'))
                         ->delete();
-        foreach($request->carreras as $carrera){
+            $carreras = Carrera::all();
+            foreach($carreras as $carrera){
             $user_carrera = Usuario_carrera::create([
-                'id_carrera' => $carrera,
-                'id_usuario' => $user->id,
-            ]);
+                    'id_carrera' => $carrera->id,
+                    'id_usuario' => $user->id,
+                ]);
+            }
+        }else{
+            $user_carrera_del = Usuario_carrera::where('carrera_usuario.id_usuario','=',$request->get('id'))
+                        ->delete();
+            foreach($request->carreras as $carrera){
+                $user_carrera = Usuario_carrera::create([
+                    'id_carrera' => $carrera,
+                    'id_usuario' => $user->id,
+                ]);
+            }
         }
+        
+        
         $user->save();
 
         return redirect()->action('UsersController@index')
