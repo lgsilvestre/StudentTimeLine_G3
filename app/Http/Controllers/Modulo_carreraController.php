@@ -90,7 +90,7 @@ class Modulo_carreraController extends Controller
         $modulo->id_carrera=$request->get('carrera'); //asignar id directamente
         $modulo->save();
         return redirect()->action('Modulo_carreraController@index')
-        ->with('success','Modulo ingresado con éxito'); 
+        ->with('success','Módulo creado con éxito'); 
     }
 
     /**
@@ -134,7 +134,7 @@ class Modulo_carreraController extends Controller
         $modulo->save();
 
         return redirect()->action('Modulo_carreraController@index')
-        ->with('success','Modulo actualizado con éxito'); 
+        ->with('success','Módulo actualizado con éxito'); 
     }
 
     /**
@@ -148,6 +148,6 @@ class Modulo_carreraController extends Controller
         Modulo::destroy($request->get('id'));
 
         return redirect()->action('Modulo_carreraController@index')
-        ->with('success','Modulo eliminado con éxito'); 
+        ->with('success','Módulo eliminado con éxito'); 
     }
 }
