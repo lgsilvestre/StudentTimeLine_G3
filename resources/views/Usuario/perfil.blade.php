@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card margen-card">
                 <div class="card-header custom-color custom-recuperarSesion">Mi Perfil</div>
-                <div class="card-body"> 
+                <div class="card-body custom-alinear"> 
                     <div class="row">
                         <div class= "custom-foto float-center">
                             @if($user->imagen == NULL)
@@ -18,7 +18,7 @@
                         </div> 
                     </div>
                     <div clas="row">
-                            <button type="button" style="margin-top:-25px;margin-left:60px" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#modalProfile">
+                            <button type="button" style="margin-top:-25px; margin-left:30px" class="btn btn-link custom-olvido" data-toggle="modal" data-target="#modalProfile">
                                 Cambiar foto de perfil
                             </button>
                             
@@ -31,12 +31,12 @@
                     </div>
                     <div class="row">
                         <ul >
-                            <a style="text-align: center;"  class="custom-negrita">Correo:</a>
+                            <a class="custom-negrita">Correo:</a>
                             {{$user->email}}
                         </ul>
                     </div>
                     <div class="row">
-                        <button type="button" style="margin-left:auto;margin-right:auto" class="btn btn-link float-center custom-olvido" data-toggle="modal" data-target="#exampleModal">
+                        <button type="button" style="margin-left:30px" class="btn btn-link custom-olvido" data-toggle="modal" data-target="#exampleModal">
                             ¿Desea cambiar su contraseña?
                         </button>   
                     </div>
