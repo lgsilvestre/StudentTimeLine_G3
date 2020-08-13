@@ -79,7 +79,7 @@
                                     {{ __('Habilitar') }}
                                 </a>
                                 <a class="dropdown-item custom-botondesplegable" style="color:white" href="{{route('users.recordatorio')}}">
-                                    {{ __('Recordatorio para realizar observaciónes') }}
+                                    {{ __('Recordatorio para realizar observaciones') }}
                                 </a>                            
                             </div>
                         </li>

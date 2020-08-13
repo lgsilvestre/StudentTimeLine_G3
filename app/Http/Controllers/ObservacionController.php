@@ -99,7 +99,7 @@ class ObservacionController extends Controller
     $estudiante->save();
 
     return redirect()->action('EstudianteController@show', $id)
-        ->with('success','Observacion ingresada con éxito'); 
+        ->with('success','Observación creada con éxito'); 
     }
 
     /**
@@ -181,7 +181,7 @@ class ObservacionController extends Controller
     $observacion->save();
 
     return redirect()->action('EstudianteController@show', $id)
-    ->with('success','Observacion modificada con éxito'); 
+    ->with('success','Observación modificada con éxito'); 
     }
 
     /**
@@ -198,6 +198,6 @@ class ObservacionController extends Controller
 
         Observacion::find($request->get('id_observacion_eliminar'))->delete();
         return redirect()->action('EstudianteController@show', $id)
-        ->with('success','Observacion eliminada con éxito'); 
+        ->with('success','Observación eliminada con éxito'); 
     }
 }
