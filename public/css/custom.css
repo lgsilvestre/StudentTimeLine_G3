@@ -81,6 +81,24 @@
     width: 250px;
 }
 
+    @media screen and (min-width: 400px) {
+        .custom-imagenresponsive {
+            content: url("../images/logo_blanco.png");
+            width: 100%; 
+            max-width: 330px; 
+            min-width: 200px;
+        }
+    }
+    
+    @media screen and (max-width: 399px) {
+        .custom-imagenresponsive {
+            content: url("../images/logo_blanco2.png");
+            width: 100%; 
+            max-width: 50px; 
+            min-width: 50px;
+        }
+    }
+
 .custom-ingresar{
     text-align: center;
     height:40px; 
@@ -190,8 +208,8 @@
 }
 
 .custom-foto{
-    display: table-cell;
-    vertical-align: middle;
+    display: flex;
+    justify-content: center;
     width: 200px;
     height: 200px;
     margin-bottom: 30px;
