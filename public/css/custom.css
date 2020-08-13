@@ -219,8 +219,9 @@
 }
 
 .custom-fotoalumno{
-    display: table-cell;
+    display: flex;
     vertical-align: middle;
+    justify-content: center; 
     width: 200px;
     height: 200px;
     margin-bottom: 30px;
