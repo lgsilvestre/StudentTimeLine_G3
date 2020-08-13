@@ -19,7 +19,7 @@ class CarreraController extends Controller
     public function index(Request $request)
     {
         $user = User::find(Auth::user()->id);
-        if($user->id == 1){
+        if($user->hasrole('admin')){
             $carreras = Carrera::all();
         }else{
             $carreras = $user->usuario_carrera;
