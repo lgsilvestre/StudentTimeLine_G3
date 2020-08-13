@@ -9,7 +9,7 @@
                 
                 <div class="card-header custom-recuperarSesion custom-header">Módulos de carreras</div>
                     <div class="card-body shadow-lg">            
-                    <table id="modulos"class="table table-responsive-sm table-striped table-hover shadow" style="width:100%" >
+                    <table id="modulos"class="table table-responsive-md table-striped table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
                                     <th >Nombre Módulo</th>

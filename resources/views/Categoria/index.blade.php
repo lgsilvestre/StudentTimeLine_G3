@@ -10,7 +10,7 @@
                 <div class="card-header custom-recuperarSesion" style="background-color:#577590; color:white">Categorías Observaciones</div>
 
                     <div class="card-body shadow-lg">                   
-                    <table id="categorias"class="table table-responsive-sm table-hover shadow" style="width:100%" >
+                    <table id="categorias"class="table table-responsive-lg table-hover shadow" style="width:100%" >
                             <thead class="thead" style="background-color: #577590; color:white;">
                                 <tr>
                                     <th>id</th>
