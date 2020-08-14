@@ -194,7 +194,7 @@
                                     <label style="color:red;margin-right:7px;margin-top:7px">(*)</label>
                                         <div class="form-group icono-input">
                                             <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                            <input type="date" class="form-control" id="fech_1" name="fech_1" placeholder="Inicial" required>
+                                            <input type="date" class="form-control" id="fech_1" name="fecha_inicio" placeholder="Inicial" required>
                                     </div>
                                 </div>
                                 <div class="form-group row justify-content-center">
@@ -202,7 +202,7 @@
                                     <label style="color:red;margin-right:7px;margin-top:7px">(*)</label>
                                         <div class="form-group icono-input">
                                             <span class="far fa-calendar-alt fa-lg form-control-feedback" aria-hidden="true"></span>
-                                            <input type="date" class="form-control" id="fech_2" name="fech_2" placeholder="Final" required>
+                                            <input type="date" class="form-control" id="fech_2" name="fecha_final" placeholder="Final" required>
                                         </div>
                                 </div>
                                 <div class="modal-footer">

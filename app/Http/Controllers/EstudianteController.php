@@ -349,7 +349,11 @@ class EstudianteController extends Controller
         }
     }
     public function exportarRangoFechas(Request $request){
-        $export = new RangoEstudianteExport($request->get('fech_1'),$request->get('fech_2'));
+        $validate=$request->validate([
+            'fecha_inicio' => 'required|before_or_equal:'.date('d-m-Y'),
+            'fecha_final' => 'required|after_or_equal:fecha_inicio|before_or_equal:'.date('d-m-Y'),
+        ]);
+        $export = new RangoEstudianteExport($request->get('fecha_inicio'),$request->get('fecha_final'));
         return $export->download('estudiantes.xlsx');   
     }
 
